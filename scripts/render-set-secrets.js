@@ -99,6 +99,7 @@ async function main() {
     OMNI_DEV_MODE: '0',
     BRAND_TTS_ENGINE: 'xtts',
     BRAND_USE_CONFIGURED_VOICE: '1',
+    ELEVENLABS_PREMADE_VOICE_ID: '21m00Tcm4TlvDq8ikWAM',
     ELEVENLABS_API_KEY: local.ELEVENLABS_API_KEY || eleven.key,
     ELEVENLABS_VOICE_ID: local.ELEVENLABS_VOICE_ID || eleven.voice,
     OMNI_SECRET_KEY: local.OMNI_SECRET_KEY || token(),

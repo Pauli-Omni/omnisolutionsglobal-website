@@ -193,6 +193,10 @@ function clearVoiceCache() {
   try { fs.unlinkSync(VOICE_CACHE); } catch (e) { /* ignore */ }
 }
 
+if (shouldPreferConfiguredVoice()) {
+  clearVoiceCache();
+}
+
 async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
   const candidates = [];
   const seen = new Set();
@@ -204,23 +208,31 @@ async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
     candidates.push({ voiceId: voiceId, reason: reason });
   }
 
-  addCandidate(resolvedVoiceId, 'resolved');
   addCandidate(configuredVoiceId(), 'configured');
-  addCandidate(readCachedVoiceId(), 'cached');
   addCandidate(premadeVoiceFallback(), 'premade');
+  addCandidate(resolvedVoiceId, 'resolved');
+  addCandidate(readCachedVoiceId(), 'cached');
 
   let lastErr = null;
   for (let i = 0; i < candidates.length; i += 1) {
     const pick = candidates[i];
     try {
-      const buf = await requestTts(apiKey, pick.voiceId, text, lang, streamPreferred, false);
-      resolvedVoiceId = pick.voiceId;
-      if (pick.reason !== 'cached') writeCachedVoiceId(pick.voiceId);
-      return buf;
+      try {
+        const buf = await requestTts(apiKey, pick.voiceId, text, lang, streamPreferred, false);
+        resolvedVoiceId = pick.voiceId;
+        writeCachedVoiceId(pick.voiceId);
+        return buf;
+      } catch (langErr) {
+        if (isVoiceNotFoundError(langErr && langErr.message)) throw langErr;
+        return requestTts(apiKey, pick.voiceId, text, lang, streamPreferred, true);
+      }
     } catch (err) {
       lastErr = err;
-      if (!isVoiceNotFoundError(err && err.message)) throw err;
-      console.warn('elevenlabs voice rejected:', pick.voiceId, pick.reason);
+      if (!isVoiceNotFoundError(err && err.message)) {
+        console.error('elevenlabs tts failed:', pick.reason, String(err && err.message || err).slice(0, 160));
+      } else {
+        console.warn('elevenlabs voice rejected:', pick.voiceId, pick.reason);
+      }
     }
   }
 
@@ -228,10 +240,22 @@ async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
     clearVoiceCache();
     try {
       const cloned = await createVoiceCloneFromLocalReference(apiKey);
-      return requestTts(apiKey, cloned, text, lang, streamPreferred, false);
+      return requestTts(apiKey, cloned, text, lang, streamPreferred, true);
     } catch (cloneErr) {
       lastErr = cloneErr;
     }
+  }
+
+  try {
+    const accountVoice = await resolveAccountVoiceId(apiKey);
+    addCandidate(accountVoice, 'account');
+    const pick = candidates[candidates.length - 1];
+    const buf = await requestTts(apiKey, pick.voiceId, text, lang, streamPreferred, true);
+    resolvedVoiceId = pick.voiceId;
+    writeCachedVoiceId(pick.voiceId);
+    return buf;
+  } catch (accountErr) {
+    lastErr = accountErr;
   }
 
   throw lastErr || new Error('elevenlabs_voice_missing');
@@ -259,6 +283,9 @@ function languagePayload(lang, forceAuto) {
 function parseUpstreamError(status, detail) {
   if (status === 401 && detail.indexOf('quota_exceeded') >= 0) {
     throw new Error('elevenlabs_quota_exceeded');
+  }
+  if (status === 401 || status === 403) {
+    throw new Error('elevenlabs_key_missing');
   }
   if (status === 400 && detail.indexOf('unsupported_language') >= 0) {
     return 'unsupported_language';

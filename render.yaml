@@ -20,6 +20,10 @@ services:
         value: "0"
       - key: BRAND_TTS_ENGINE
         value: xtts
+      - key: BRAND_USE_CONFIGURED_VOICE
+        value: "1"
+      - key: ELEVENLABS_PREMADE_VOICE_ID
+        value: "21m00Tcm4TlvDq8ikWAM"
       # --- Pflicht: als „Secret“ im Render-Dashboard setzen ---
       - key: ELEVENLABS_API_KEY
         sync: false
