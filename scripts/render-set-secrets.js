@@ -26,16 +26,11 @@ function loadKey() {
 }
 
 function readElevenLabsKey() {
-  if (!fs.existsSync(ELEVEN_FILE)) return { key: '', voice: '' };
-  const lines = fs.readFileSync(ELEVEN_FILE, 'utf8').split(/\r?\n/);
-  const key = (lines[15] || '').trim();
-  let voice = '';
-  for (const line of lines) {
-    if (line.startsWith('ELEVENLABS_VOICE_ID=')) {
-      voice = line.split('=').slice(1).join('=').trim();
-    }
-  }
-  return { key, voice };
+  const keyMod = require(path.join(__dirname, '..', 'server', 'elevenlabs-key'));
+  return {
+    key: keyMod.getElevenLabsApiKey(),
+    voice: keyMod.getElevenLabsVoiceIdFromConfig()
+  };
 }
 
 async function api(method, route, body) {
