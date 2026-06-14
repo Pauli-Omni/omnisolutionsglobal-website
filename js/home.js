@@ -3,12 +3,14 @@
 
   var TICKET_BASE = 100511;
 
+  var INFINITY_PATH = 'M96 90 C96 58 132 58 160 90 C188 122 224 122 224 90 C224 58 188 58 160 90 C132 122 96 122 96 90 Z';
+
   function buildAnimatedLogoHTML() {
     return (
       '<div class="osg-logo-anim">' +
         '<div class="osg-logo-aura" aria-hidden="true"></div>' +
         '<svg class="osg-logo-infinity" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-          '<path class="osg-infinity-path" d="M96 90 C96 58 132 58 160 90 C188 122 224 122 224 90 C224 58 188 58 160 90 C132 122 96 122 96 90 Z"/>' +
+          '<path class="osg-infinity-path" d="' + INFINITY_PATH + '"/>' +
         '</svg>' +
         '<div class="osg-globe osg-globe--top" aria-hidden="true">' +
           '<div class="osg-globe-body"><div class="osg-globe-lines"></div></div>' +
@@ -26,10 +28,42 @@
     );
   }
 
+  function buildPortalLogoHTML() {
+    return (
+      '<div class="osg-logo-anim osg-logo-anim--portal">' +
+        '<div class="osg-logo-aura osg-logo-aura--portal" aria-hidden="true"></div>' +
+        '<svg class="osg-logo-infinity osg-logo-infinity--portal" viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+          '<defs>' +
+            '<linearGradient id="osg-portal-energy" x1="0%" y1="0%" x2="100%" y2="0%">' +
+              '<stop offset="0%" stop-color="#c8d6e4"/>' +
+              '<stop offset="45%" stop-color="#00e5ff"/>' +
+              '<stop offset="100%" stop-color="#a855f7"/>' +
+            '</linearGradient>' +
+          '</defs>' +
+          '<path class="osg-infinity-path osg-infinity-path--base" d="' + INFINITY_PATH + '"/>' +
+          '<path class="osg-infinity-path osg-infinity-path--energy" d="' + INFINITY_PATH + '"/>' +
+        '</svg>' +
+        '<div class="osg-globe osg-globe--center" aria-hidden="true">' +
+          '<div class="osg-globe-body">' +
+            '<div class="osg-globe-lines"></div>' +
+            '<div class="osg-globe-nodes"></div>' +
+            '<div class="osg-globe-arc osg-globe-arc--1"></div>' +
+            '<div class="osg-globe-arc osg-globe-arc--2"></div>' +
+          '</div>' +
+        '</div>' +
+        '<span class="osg-light-point osg-lp-portal-1" aria-hidden="true"></span>' +
+        '<span class="osg-light-point osg-lp-portal-2" aria-hidden="true"></span>' +
+        '<span class="osg-light-point osg-lp-portal-3" aria-hidden="true"></span>' +
+        '<span class="osg-light-point osg-lp-portal-4" aria-hidden="true"></span>' +
+      '</div>'
+    );
+  }
+
   function initAnimatedLogo() {
     document.querySelectorAll('.osg-logo-mount').forEach(function (mount) {
       if (mount.firstElementChild) return;
-      mount.innerHTML = buildAnimatedLogoHTML();
+      var isPortal = mount.classList.contains('osg-logo-mount--portal');
+      mount.innerHTML = isPortal ? buildPortalLogoHTML() : buildAnimatedLogoHTML();
     });
   }
 

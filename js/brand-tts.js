@@ -60,10 +60,17 @@
     return ensureScriptModule('data-osg-tts-speech-prep', 'js/tts-speech-prep.js');
   }
 
+  function ensureTerminalPunctuation(text) {
+    var t = String(text || '').trim();
+    if (!t) return t;
+    if (/[.!?…]$/.test(t)) return t;
+    return t + '.';
+  }
+
   function splitChunks(text) {
     var full = String(text || '').trim();
     if (!full) return [];
-    if (full.length <= MAX_CHUNK) return [full];
+    if (full.length <= MAX_CHUNK) return [ensureTerminalPunctuation(full)];
 
     var parts = full.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [full];
     var chunks = [];
@@ -79,7 +86,18 @@
       }
     });
     if (buf) chunks.push(buf.trim());
-    return chunks.length ? chunks : [full];
+    if (chunks.length) {
+      chunks[chunks.length - 1] = ensureTerminalPunctuation(chunks[chunks.length - 1]);
+    }
+    return chunks.length ? chunks : [ensureTerminalPunctuation(full)];
+  }
+
+  function prefetchSegments(self, flat) {
+    if (!flat.length) return Promise.resolve();
+    return Promise.all(flat.map(function (seg, idx) {
+      var useStream = flat.length === 1 && idx === 0;
+      return self._fetchDynamicAudio(seg.text, seg.lang, useStream);
+    }));
   }
 
   function pageContext() {
@@ -143,11 +161,41 @@
           return;
         }
         var audio = new Audio(url);
+        var settled = false;
         self._audio = audio;
-        audio.onended = function () { resolve(); };
-        audio.onerror = function () { reject(new Error('audio')); };
-        var p = audio.play();
-        if (p && typeof p.catch === 'function') p.catch(reject);
+        audio.preload = 'auto';
+
+        function finish() {
+          if (settled) return;
+          settled = true;
+          setTimeout(resolve, 160);
+        }
+
+        audio.onended = finish;
+        audio.onerror = function () {
+          if (settled) return;
+          settled = true;
+          reject(new Error('audio'));
+        };
+
+        function startPlayback() {
+          var p = audio.play();
+          if (p && typeof p.catch === 'function') {
+            p.catch(function (err) {
+              if (!settled) {
+                settled = true;
+                reject(err);
+              }
+            });
+          }
+        }
+
+        if (audio.readyState >= 3) {
+          startPlayback();
+        } else {
+          audio.addEventListener('canplaythrough', startPlayback, { once: true });
+          audio.load();
+        }
       });
     },
 
@@ -200,36 +248,63 @@
 
     _speakChunksDynamic: function (chunks, langTag, hooks) {
       var self = this;
+      if (!chunks.length) return Promise.resolve();
+
       var useStream = chunks.length === 1;
-      var chain = Promise.resolve();
-      chunks.forEach(function (chunk, idx) {
-        chain = chain.then(function () {
-          if (self._abort) throw new Error('aborted');
-          if (hooks && hooks.onProgress) hooks.onProgress(idx + 1, chunks.length);
-          return self._fetchDynamicAudio(chunk, langTag, useStream && idx === 0).then(function (url) {
-            return self._playUrl(url);
-          });
+      var nextFetch = null;
+
+      function step(i) {
+        if (self._abort) return Promise.reject(new Error('aborted'));
+        if (i >= chunks.length) return Promise.resolve();
+        if (hooks && hooks.onProgress) hooks.onProgress(i + 1, chunks.length);
+
+        var currentFetch = nextFetch || self._fetchDynamicAudio(chunks[i], langTag, useStream && i === 0);
+        if (i + 1 < chunks.length) {
+          nextFetch = self._fetchDynamicAudio(chunks[i + 1], langTag, false);
+        } else {
+          nextFetch = null;
+        }
+
+        return currentFetch.then(function (url) {
+          return self._playUrl(url);
+        }).then(function () {
+          return step(i + 1);
         });
-      });
-      return chain;
+      }
+
+      return step(0);
     },
 
     _speakSegmentsDynamic: function (segments, hooks) {
       var self = this;
       var flat = self._flattenSegments(segments);
       if (!flat.length) return Promise.reject(new Error('empty'));
+
       var useStream = flat.length === 1;
-      var chain = Promise.resolve();
-      flat.forEach(function (seg, idx) {
-        chain = chain.then(function () {
-          if (self._abort) throw new Error('aborted');
-          if (hooks && hooks.onProgress) hooks.onProgress(idx + 1, flat.length);
-          return self._fetchDynamicAudio(seg.text, seg.lang, useStream && idx === 0).then(function (url) {
-            return self._playUrl(url);
-          });
+      var nextFetch = null;
+
+      function step(i) {
+        if (self._abort) return Promise.reject(new Error('aborted'));
+        if (i >= flat.length) return Promise.resolve();
+        if (hooks && hooks.onProgress) hooks.onProgress(i + 1, flat.length);
+
+        var seg = flat[i];
+        var currentFetch = nextFetch || self._fetchDynamicAudio(seg.text, seg.lang, useStream && i === 0);
+        if (i + 1 < flat.length) {
+          var nextSeg = flat[i + 1];
+          nextFetch = self._fetchDynamicAudio(nextSeg.text, nextSeg.lang, false);
+        } else {
+          nextFetch = null;
+        }
+
+        return currentFetch.then(function (url) {
+          return self._playUrl(url);
+        }).then(function () {
+          return step(i + 1);
         });
-      });
-      return chain;
+      }
+
+      return step(0);
     },
 
     speak: function (text, langTag, hooks) {
@@ -260,7 +335,10 @@
         }
         return [{ text: preparedText, lang: langTag }];
       }).then(function (segments) {
-        return self._speakSegmentsDynamic(segments, hooks);
+        var flat = self._flattenSegments(segments);
+        return prefetchSegments(self, flat).then(function () {
+          return self._speakSegmentsDynamic(segments, hooks);
+        });
       }).then(function () {
         if (hooks && hooks.onEnd) hooks.onEnd();
       }).catch(function (err) {
@@ -270,11 +348,16 @@
         if (hooks && hooks.onError) {
           if (code === 'unsupported_language' || /not supported|unsupported_language/i.test(msg)) {
             hooks.onError('lang');
-          } else if (code === 'elevenlabs_key_missing') {
+          } else if (/failed to fetch|networkerror|load failed|network request failed/i.test(msg)) {
+            hooks.onError('connect-failed');
+          } else if (code === 'elevenlabs_key_missing' || code === 'elevenlabs_upstream' ||
+              code === 'elevenlabs_quota_exceeded') {
             hooks.onError('elevenlabs_key_missing');
           } else if (code === 'xtts_unavailable' || code === 'tts_engine_unavailable' ||
               code === 'no_tts_engine' || code === 'local_reference_missing') {
             hooks.onError('no-brand-voice');
+          } else if (code === 'tts_failed' || code === 'api') {
+            hooks.onError('failed');
           } else {
             hooks.onError('failed');
           }

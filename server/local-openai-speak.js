@@ -12,8 +12,29 @@ function isEnabled() {
   return !!OPENAI_KEY;
 }
 
+function speechInstruction(lang) {
+  const code = String(lang || 'de-DE').split('-')[0].toLowerCase();
+  if (code === 'th') return 'Speak in Thai (ภาษาไทย) with natural native fluency and clear pronunciation.';
+  if (code === 'de') return 'Speak in German with natural native fluency.';
+  if (code === 'en') return 'Speak in English with natural native fluency.';
+  if (code === 'pl') return 'Speak in Polish with natural native fluency.';
+  if (code === 'ru') return 'Speak in Russian with natural native fluency.';
+  if (code === 'zh') return 'Speak in Mandarin Chinese with natural native fluency.';
+  return 'Speak in the language of the input text with natural native fluency.';
+}
+
 async function synthesizeMp3(text, lang) {
   if (!OPENAI_KEY) throw new Error('openai_key_missing');
+
+  const body = {
+    model: OPENAI_MODEL,
+    voice: OPENAI_VOICE,
+    input: text,
+    response_format: 'mp3'
+  };
+  if (OPENAI_MODEL.indexOf('gpt-4o') >= 0) {
+    body.instructions = speechInstruction(lang);
+  }
 
   const res = await fetch('https://api.openai.com/v1/audio/speech', {
     method: 'POST',
@@ -21,12 +42,7 @@ async function synthesizeMp3(text, lang) {
       Authorization: 'Bearer ' + OPENAI_KEY,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      model: OPENAI_MODEL,
-      voice: OPENAI_VOICE,
-      input: text,
-      response_format: 'mp3'
-    })
+    body: JSON.stringify(body)
   });
 
   if (!res.ok) {

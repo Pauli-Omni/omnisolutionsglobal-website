@@ -1,0 +1,60 @@
+{
+  "styleSystem": "Premium dark fintech brand aesthetic for Omni Solutions Global. Floating chrome-finished 3D app icon, diamond-cut metal reflections, subtle cyan (#00e5ff) and soft purple edge glow, photorealistic studio lighting, fully transparent background, no text, no letters, no watermark, no UI chrome, square 1024×1024 PNG, App Store quality.",
+  "apps": [
+    {
+      "id": "pauliBestprice",
+      "output": "assets/icons/apps/pauli-bestprice.png",
+      "imagePrompt": "Floating diamond-cut 3D Thai baht coin symbol, polished silver-chrome metal, faceted edges catching cyan light, isolated on transparent background, price comparison and savings theme"
+    },
+    {
+      "id": "omnicadAiCam",
+      "output": "assets/icons/apps/omnicad-ai-cam.png",
+      "imagePrompt": "Floating chrome 3D technical room blueprint chip: miniature floor plan with wall lines and measurement arcs, CAD/CAM precision engineering, cyan laser scan accents, transparent background"
+    },
+    {
+      "id": "omnigateAiMaster",
+      "output": "assets/icons/apps/omnigate-ai-master.png",
+      "imagePrompt": "Floating chrome 3D security gate arch with integrated AI neural circuit pattern, smart access control, subtle blue lock glow, industrial premium metal, transparent background"
+    },
+    {
+      "id": "omniqrAiPay",
+      "output": "assets/icons/apps/omniqr-ai-pay.png",
+      "imagePrompt": "Floating chrome 3D PromptPay payment emblem: stylized QR motif merged with secure wallet shield, Thailand tourism fintech, cyan PromptPay accent ring, transparent background, decorative only not a scannable QR"
+    },
+    {
+      "id": "omnifixAiDokument",
+      "output": "assets/icons/apps/omnifix-ai-dokument.png",
+      "imagePrompt": "Floating chrome-finished 3D document stack with AI sparkle correction lines, professional PDF letter icon, silver metal pages with subtle cyan edge glow, transparent background"
+    },
+    {
+      "id": "omnibotKiProfit",
+      "output": "assets/icons/apps/omnibot-ki-profit.png",
+      "imagePrompt": "Freestanding reflective chrome 3D trading symbol: ascending chart arrow inside circular bot core, autonomous AI finance, mirror metal finish with cyan profit glow, transparent background"
+    },
+    {
+      "id": "omniaiQrGenerator",
+      "output": "assets/icons/apps/omniai-qr-generator.png",
+      "imagePrompt": "Floating chrome 3D dynamic QR generator cube: abstract geometric QR-like pattern on glass face, smart routing marketing tech, cyan-purple edge glow, transparent background, decorative pattern only"
+    },
+    {
+      "id": "omnitalkAiLive",
+      "output": "assets/icons/apps/omnitalk-ai-live.png",
+      "imagePrompt": "Freestanding floating chrome 3D vintage telephone handset with live translation wave rings, voice cloning AI communication, mirror silver finish, cyan sound-wave halo, transparent background"
+    }
+  ],
+  "portalVideo": {
+    "output": "assets/video/portal-loop.mp4",
+    "model": "sora-2",
+    "size": "1280x720",
+    "seconds": "8",
+    "prompt": "Seamless infinite-loop 3D kinetic branding animation, photorealistic, static locked camera, centered composition, pitch-black seamless studio void (#060608). Absolute center: realistic detailed planet Earth globe with deep blue oceans and highly defined continents, smooth continuous majestic rotation on its axis. A massive three-dimensional infinity loop (∞) encircles the globe — not a solid object but a perpetual electric energy stream: liquid silver light and pulsing cyan-blue particles rushing through the loop at high velocity, volumetric glow, roaring electric current. When the silver-cyan stream passes the globe, subtle arcing electricity, fine data lines, and glowing network nodes pulse across continents — visualizing global AI infrastructure. Steady-state loop only: first frame visually matches last frame, repeating cycle forever, no intro sequence, no outro, no fade to black, no hard cut, no camera pan, no zoom, no scene reset. No text, no letters, no logos, no watermark, no UI elements, no people. Premium fintech cinematic studio lighting, dramatic chrome reflections on the energy stream, ultra sharp, mesmerizing, 100% professional."
+  },
+  "backgroundVideo": {
+    "output": "assets/video/chameleon-bg.mp4",
+    "poster": "assets/video/chameleon-bg-poster.webp",
+    "model": "sora-2",
+    "size": "1280x720",
+    "seconds": "4",
+    "prompt": "Cinematic abstract background loop for a premium fintech tourism website. Deep anthracite black base (#060608), subtle liquid metal chrome reflections, soft cyan and electric blue light ribbons flowing slowly left to right, faint purple ambient glow at edges, ultra minimal, no text, no logos, no people, no buildings, no QR patterns, no UI elements. Macro lens feel, shallow depth of field, silky smooth motion, seamless loop, dark luxury aesthetic like high-end payment app, photorealistic lighting but abstract, calm and elegant, not flashy neon disco."
+  }
+}

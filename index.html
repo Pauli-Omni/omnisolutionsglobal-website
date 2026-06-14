@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2026.06.12.2">
+  <link rel="stylesheet" href="css/style.css?v=2026.06.14.2">
 </head>
 <body data-page="home" data-i18n-title="home.title" data-i18n-meta="home.meta">
 
@@ -22,15 +22,13 @@
 
   <!-- Portal / Vorschaltseite (nur index.html) -->
   <div id="portal-overlay" class="portal-overlay" aria-hidden="false">
-    <div class="portal-epoxy-base" aria-hidden="true"></div>
-    <div class="portal-stars" aria-hidden="true"></div>
-    <div class="portal-epoxy-gloss" aria-hidden="true"></div>
-    <div class="portal-curtain portal-curtain-left" aria-hidden="true"></div>
-    <div class="portal-curtain portal-curtain-right" aria-hidden="true"></div>
+    <video id="portal-brand-video" class="portal-brand-video" hidden preload="auto" aria-hidden="true"></video>
+    <div id="portal-sparks" class="portal-sparks" aria-hidden="true"></div>
     <div class="portal-center">
-      <div id="portal-logo-slot" class="portal-logo-slot" data-i18n-aria="a11y.portalLogo">
+      <div id="portal-logo-slot" class="portal-logo-slot portal-logo-slot--fallback" data-i18n-aria="a11y.portalLogo">
         <div class="osg-logo-mount osg-logo-mount--portal"></div>
       </div>
+      <p class="portal-brand-name portal-brand-name--chrome" data-i18n-company></p>
       <button type="button" id="portal-enter-btn" class="btn btn-portal-enter" data-i18n="portal.welcomeBtn" data-i18n-aria="portal.enterAria"></button>
     </div>
   </div>
@@ -74,6 +72,7 @@
             <h1 class="page-title" data-i18n="nav.home"></h1>
             <p class="page-subtitle" data-i18n="home.lead"></p>
           </div>
+          <div id="app-voice-slot"></div>
         </div>
       </header>
 
@@ -173,8 +172,13 @@
   <script src="js/app-registry.js?v=2026.06.12.2"></script>
   <script src="js/hub-sidebar.js?v=2026.06.12.2"></script>
   <script src="js/portfolio.js?v=2026.06.12.2"></script>
-  <script src="js/home.js?v=2026.06.12.2"></script>
-  <script src="js/app.js?v=2026.06.12.2"></script>
+  <script src="js/home.js?v=2026.06.14.2"></script>
+  <script src="js/portal-video.js?v=2026.06.14.2"></script>
+  <script src="js/osg-voice-config.js?v=2026.06.12.2"></script>
+  <script src="js/voice-mount.js?v=2026.06.12.2"></script>
+  <script src="js/brand-tts.js?v=2026.06.12.2"></script>
+  <script src="js/voice.js?v=2026.06.12.2"></script>
+  <script src="js/app.js?v=2026.06.14.2"></script>
   <link rel="stylesheet" href="css/osg-security.css?v=2026.06.12.2" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/osg-security.css?v=2026.06.12.2"></noscript>
   <div id="osg-security-container">

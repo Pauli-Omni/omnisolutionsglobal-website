@@ -14,6 +14,8 @@ const XTTS_LANGS = new Set([
   'zh-cn', 'hu', 'ko', 'ja', 'hi'
 ]);
 
+const CLOUD_FIRST_LANGS = new Set(['th', 'vi']);
+
 function localReferencePresent() {
   return fs.existsSync(REFERENCE_MP3) || fs.existsSync(REFERENCE_WAV);
 }
@@ -47,6 +49,10 @@ function langCode(raw) {
 
 function isXttsLang(lang) {
   return XTTS_LANGS.has(langCode(lang));
+}
+
+function isCloudFirstLang(lang) {
+  return CLOUD_FIRST_LANGS.has(langCode(lang));
 }
 
 function isUnsupportedLangError(err) {
@@ -103,6 +109,24 @@ async function synthesizeViaOpenai(text, lang) {
 }
 
 async function synthesizeChunk(text, lang) {
+  if (isCloudFirstLang(lang)) {
+    if (!elevenlabs.hasApiKey()) throw new Error('elevenlabs_key_missing');
+    try {
+      return await synthesizeViaElevenlabs(text, lang);
+    } catch (err) {
+      if (!isUnsupportedLangError(err) && openaiTts.isEnabled()) {
+        try {
+          return await synthesizeViaOpenai(text, lang);
+        } catch (openErr) {
+          if (isUnsupportedLangError(openErr)) throw new Error('unsupported_language');
+          throw openErr;
+        }
+      }
+      if (isUnsupportedLangError(err)) throw new Error('unsupported_language');
+      throw err;
+    }
+  }
+
   if (isXttsLang(lang)) {
     try {
       return await synthesizeViaXtts(text, lang);
@@ -137,6 +161,7 @@ async function synthesizeChunk(text, lang) {
     }
   }
 
+  if (isCloudFirstLang(lang)) throw new Error('elevenlabs_key_missing');
   throw new Error('unsupported_language');
 }
 

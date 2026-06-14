@@ -97,6 +97,9 @@
     "langWorldHint": "Wpisz dowolny język świata — nazwę lub kod (np. Français, 日本語, vi-VN). Odczyt używa dokładnie tego języka.",
     "langQuickLabel": "Szybki wybór",
     "worldLangNote": "Wybierz język",
+    "pauliAbbrev": {
+      "niepełnosprawnościami": "nie pełno sprawnościami"
+    },
     "brandVoiceRequired": "Lokalny głos marki nie jest gotowy. Uruchom raz: ./scripts/setup-xtts-local.sh — potem ./scripts/start-local-with-voice.sh (głos z omni-homepage-voice.mp3, tylko na tym komputerze).",
     "brandVoiceError": "Lokalny odczyt nie powiódł się. Uruchom ./scripts/start-local-with-voice.sh — głos pozostaje na Twoim komputerze (omni-homepage-voice.mp3).",
     "brandVoiceLocalHost": "Odczyt działa tylko pod http://localhost:8080 — uruchom ./scripts/start-local-with-voice.sh i otwórz stronę tam (nie jako plik).",

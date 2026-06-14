@@ -32,6 +32,14 @@
     return !!(window.location && window.location.protocol === 'file:');
   }
 
+  var CLOUD_SPEECH_LANGS = { th: 1, vi: 1 };
+
+  function isCloudSpeechLang() {
+    var tag = String(speechLangTag() || '').toLowerCase();
+    var base = tag.split('-')[0];
+    return !!CLOUD_SPEECH_LANGS[base];
+  }
+
   function tVoice(key) {
     if (!window.i18next) return key;
     return i18next.t(key, { opsPath: OPS_PATH, year: new Date().getFullYear() });
@@ -122,8 +130,16 @@
       var front = document.getElementById('app-front-werbetext');
       var desc = document.getElementById('app-desc-body');
       var el = front || desc;
-      if (!el) return '';
-      return (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (el) {
+        return (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
+      }
+
+      var main = document.getElementById('main');
+      if (main) {
+        return (main.innerText || main.textContent || '').replace(/\s+/g, ' ').trim();
+      }
+
+      return '';
     },
 
     _whenLangReady: function () {
@@ -179,18 +195,26 @@
 
     _errorKeyFor: function (code) {
       if (code === 'lang') return 'voice.brandVoiceLangUnsupported';
+      if (code === 'connect-failed') {
+        return isLocalDev() ? 'voice.brandVoiceConnectFailed' : 'voice.brandVoiceServerError';
+      }
       if (code === 'no-api') {
         if (isFileProtocol()) return 'voice.brandVoiceNoApi';
         if (isLocalDev()) return 'voice.brandVoiceLocalHost';
         return 'voice.brandVoiceServerNotReady';
       }
       if (code === 'elevenlabs_key_missing') {
-        return isLocalDev() ? 'voice.brandVoiceRequired' : 'voice.brandVoiceElevenLabsMissing';
+        return isLocalDev() ? 'voice.brandVoiceCloudLangLocal' : 'voice.brandVoiceElevenLabsMissing';
       }
       if (code === 'no-brand-voice') {
+        if (isLocalDev() && isCloudSpeechLang()) return 'voice.brandVoiceCloudLangLocal';
         return isLocalDev() ? 'voice.brandVoiceRequired' : 'voice.brandVoiceServerConfig';
       }
-      return isLocalDev() ? 'voice.brandVoiceError' : 'voice.brandVoiceServerError';
+      if (code === 'failed') {
+        if (isLocalDev() && isCloudSpeechLang()) return 'voice.brandVoiceCloudLangLocal';
+        return isLocalDev() ? 'voice.brandVoiceRetry' : 'voice.brandVoiceServerError';
+      }
+      return isLocalDev() ? 'voice.brandVoiceRetry' : 'voice.brandVoiceServerError';
     },
 
     _notifyError: function (code) {

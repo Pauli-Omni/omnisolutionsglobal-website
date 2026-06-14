@@ -2,6 +2,8 @@
 server/elevenlabs.config.env
 server/.env
 .env
+scripts/render.local.env
+scripts/cloudflare.local.env
 *.pem
 
 # Dependencies & builds

@@ -117,37 +117,66 @@ function usePremadeVoiceFallback(reason) {
   return id;
 }
 
+function shouldPreferConfiguredVoice() {
+  return process.env.BRAND_USE_CONFIGURED_VOICE === '1' || !localReferencePath();
+}
+
 async function ensureVoiceId() {
   if (resolvedVoiceId) return resolvedVoiceId;
 
+  const apiKey = getApiKey();
+  if (!apiKey) throw new Error('elevenlabs_key_missing');
+
   const explicit = configuredVoiceId();
+  const hasRef = !!localReferencePath();
+
+  if (shouldPreferConfiguredVoice() && explicit) {
+    resolvedVoiceId = explicit;
+    return explicit;
+  }
+
+  const cached = readCachedVoiceId();
+  if (cached && (!explicit || cached === explicit || hasRef)) {
+    resolvedVoiceId = cached;
+    return cached;
+  }
+
+  const preferLocalClone = process.env.BRAND_USE_CONFIGURED_VOICE !== '1';
+  if (preferLocalClone && hasRef) {
+    try {
+      return await createVoiceCloneFromLocalReference(apiKey);
+    } catch (err) {
+      const msg = String(err && err.message || '');
+      const explicit = configuredVoiceId();
+      if (explicit) {
+        console.warn('local clone unavailable — using configured ELEVENLABS_VOICE_ID');
+        resolvedVoiceId = explicit;
+        writeCachedVoiceId(explicit);
+        return explicit;
+      }
+      if (msg.indexOf('elevenlabs_local_clone') >= 0) {
+        console.warn('voice clone unavailable — trying existing ElevenLabs account voice');
+        try {
+          return await resolveAccountVoiceId(apiKey);
+        } catch (listErr) {
+          return usePremadeVoiceFallback(String(listErr && listErr.message || 'voices-unavailable'));
+        }
+      }
+      throw err;
+    }
+  }
+
   if (explicit) {
     resolvedVoiceId = explicit;
     writeCachedVoiceId(explicit);
     return explicit;
   }
 
-  const cached = readCachedVoiceId();
-  if (cached) {
-    resolvedVoiceId = cached;
-    return cached;
-  }
-
-  const apiKey = getApiKey();
-  if (!apiKey) throw new Error('elevenlabs_key_missing');
-
   try {
     return await createVoiceCloneFromLocalReference(apiKey);
   } catch (err) {
     const msg = String(err && err.message || '');
-    const fallback = configuredVoiceId();
-    if (fallback) {
-      console.warn('local clone unavailable — using configured ELEVENLABS_VOICE_ID');
-      resolvedVoiceId = fallback;
-      writeCachedVoiceId(fallback);
-      return fallback;
-    }
-    if (msg.indexOf('elevenlabs_local_clone') >= 0) {
+    if (msg.indexOf('local_reference_missing') >= 0 || msg.indexOf('elevenlabs_local_clone') >= 0) {
       console.warn('voice clone unavailable — trying existing ElevenLabs account voice');
       try {
         return await resolveAccountVoiceId(apiKey);
@@ -159,9 +188,59 @@ async function ensureVoiceId() {
   }
 }
 
+function clearVoiceCache() {
+  resolvedVoiceId = null;
+  try { fs.unlinkSync(VOICE_CACHE); } catch (e) { /* ignore */ }
+}
+
+async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
+  const candidates = [];
+  const seen = new Set();
+
+  function addCandidate(id, reason) {
+    const voiceId = String(id || '').trim();
+    if (!voiceId || seen.has(voiceId)) return;
+    seen.add(voiceId);
+    candidates.push({ voiceId: voiceId, reason: reason });
+  }
+
+  addCandidate(resolvedVoiceId, 'resolved');
+  addCandidate(configuredVoiceId(), 'configured');
+  addCandidate(readCachedVoiceId(), 'cached');
+  addCandidate(premadeVoiceFallback(), 'premade');
+
+  let lastErr = null;
+  for (let i = 0; i < candidates.length; i += 1) {
+    const pick = candidates[i];
+    try {
+      const buf = await requestTts(apiKey, pick.voiceId, text, lang, streamPreferred, false);
+      resolvedVoiceId = pick.voiceId;
+      if (pick.reason !== 'cached') writeCachedVoiceId(pick.voiceId);
+      return buf;
+    } catch (err) {
+      lastErr = err;
+      if (!isVoiceNotFoundError(err && err.message)) throw err;
+      console.warn('elevenlabs voice rejected:', pick.voiceId, pick.reason);
+    }
+  }
+
+  if (localReferencePath()) {
+    clearVoiceCache();
+    try {
+      const cloned = await createVoiceCloneFromLocalReference(apiKey);
+      return requestTts(apiKey, cloned, text, lang, streamPreferred, false);
+    } catch (cloneErr) {
+      lastErr = cloneErr;
+    }
+  }
+
+  throw lastErr || new Error('elevenlabs_voice_missing');
+}
+
 const MULTILINGUAL_V2_LANGS = new Set([
   'en', 'ja', 'zh', 'de', 'hi', 'fr', 'ko', 'pt', 'it', 'es', 'id', 'nl', 'tr',
-  'fil', 'pl', 'sv', 'bg', 'ro', 'ar', 'cs', 'el', 'fi', 'hr', 'ms', 'sk', 'da', 'ta', 'uk', 'ru'
+  'fil', 'pl', 'sv', 'bg', 'ro', 'ar', 'cs', 'el', 'fi', 'hr', 'ms', 'sk', 'da', 'ta', 'uk', 'ru',
+  'th', 'vi'
 ]);
 
 function langCode(lang) {
@@ -173,7 +252,6 @@ function langCode(lang) {
 function languagePayload(lang, forceAuto) {
   if (forceAuto) return {};
   const code = langCode(lang);
-  if (code === 'th') return {};
   if (MULTILINGUAL_V2_LANGS.has(code)) return { language_code: code };
   return {};
 }
@@ -227,30 +305,18 @@ async function requestTts(apiKey, voiceId, text, lang, streamPreferred, forceAut
 function isVoiceNotFoundError(message) {
   const msg = String(message || '');
   return msg.indexOf('voice_not_found') >= 0 ||
-    (msg.indexOf('elevenlabs_upstream:404') >= 0 && msg.indexOf('voice') >= 0);
+    msg.indexOf('invalid_uid') >= 0 ||
+    msg.indexOf('invalid ID') >= 0 ||
+    (msg.indexOf('elevenlabs_upstream:404') >= 0 && msg.indexOf('voice') >= 0) ||
+    (msg.indexOf('elevenlabs_upstream:400') >= 0 && /voice|invalid/i.test(msg));
 }
 
 async function synthesizeMp3(text, lang, _referenceWav, streamPreferred) {
   const API_KEY = getApiKey();
   if (!API_KEY) throw new Error('elevenlabs_key_missing');
 
-  let voiceId = await ensureVoiceId();
-  if (!voiceId) throw new Error('elevenlabs_voice_missing');
-
-  const autoLang = langCode(lang) === 'th';
-
-  try {
-    return await requestTts(API_KEY, voiceId, text, lang, streamPreferred, autoLang);
-  } catch (err) {
-    if (!isVoiceNotFoundError(err && err.message)) throw err;
-    if (configuredVoiceId()) throw err;
-
-    console.warn('cached elevenlabs voice invalid, re-cloning from local reference');
-    resolvedVoiceId = null;
-    try { fs.unlinkSync(VOICE_CACHE); } catch (e) { /* ignore */ }
-    voiceId = await createVoiceCloneFromLocalReference(API_KEY);
-    return requestTts(API_KEY, voiceId, text, lang, streamPreferred, autoLang);
-  }
+  await ensureVoiceId();
+  return requestTtsWithFallbacks(API_KEY, text, lang, streamPreferred);
 }
 
 function hasApiKey() {

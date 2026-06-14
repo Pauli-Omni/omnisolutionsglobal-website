@@ -33,6 +33,10 @@
     var btn = document.getElementById('portal-enter-btn');
 
     function dismissPortal() {
+      var vid = document.getElementById('portal-brand-video');
+      if (vid) {
+        try { vid.pause(); } catch (e) { /* ignore */ }
+      }
       portal.classList.add('portal-reveal');
       portal.setAttribute('aria-hidden', 'true');
       try { localStorage.setItem(PORTAL_SEEN_KEY, '1'); } catch (e) { /* ignore */ }
@@ -46,6 +50,10 @@
       if (localStorage.getItem(PORTAL_SEEN_KEY) === '1') {
         portal.classList.add('portal-hidden');
         portal.setAttribute('aria-hidden', 'true');
+        var vidSeen = document.getElementById('portal-brand-video');
+        if (vidSeen) {
+          try { vidSeen.pause(); } catch (e2) { /* ignore */ }
+        }
         return;
       }
     } catch (e) { /* ignore */ }
@@ -93,9 +101,47 @@
         });
       }
     }
+    if (document.getElementById('app-voice-slot') && window.OSGVoiceMount) {
+      OSGVoiceMount.mount();
+    }
+  }
+
+  function initChameleonVideoBg() {
+    var container = document.querySelector('.chameleon-bg');
+    if (!container || container.querySelector('.chameleon-bg__video')) return;
+
+    var videoSrc = '/assets/video/chameleon-bg.mp4';
+    fetch(videoSrc, { method: 'HEAD' })
+      .then(function (res) {
+        if (!res.ok) return;
+        var video = document.createElement('video');
+        video.className = 'chameleon-bg__video';
+        video.src = videoSrc;
+        video.muted = true;
+        video.loop = true;
+        video.autoplay = true;
+        video.playsInline = true;
+        video.setAttribute('playsinline', '');
+        video.setAttribute('aria-hidden', 'true');
+        video.preload = 'metadata';
+        container.insertBefore(video, container.firstChild);
+      })
+      .catch(function () { /* CSS-only fallback */ });
+  }
+
+  function initPortalBranding() {
+    if (window.OSGPortalVideo) {
+      OSGPortalVideo.init();
+      return;
+    }
+    if (window.OSGHome && document.querySelector('.osg-logo-mount--portal')) {
+      OSGHome.initAnimatedLogo();
+    }
   }
 
   function boot() {
+    initPortalBranding();
+    initChameleonVideoBg();
     OSGI18n.init().then(function () {
       initSidebar();
       initPortal();

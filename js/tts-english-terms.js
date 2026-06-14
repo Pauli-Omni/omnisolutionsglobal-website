@@ -88,6 +88,14 @@
     return out;
   }
 
+  function absorbTrailingPunctuation(text, ranges) {
+    return ranges.map(function (r) {
+      var end = r.end;
+      while (end < text.length && /[!.,;:?)]/.test(text.charAt(end))) end++;
+      return { start: r.start, end: end };
+    });
+  }
+
   function findEnglishRanges(text, terms) {
     var ranges = [];
     terms.forEach(function (term) {
@@ -113,7 +121,21 @@
         last.end = Math.max(last.end, r.end);
       }
     });
-    return merged;
+    return absorbTrailingPunctuation(text, merged);
+  }
+
+  function mergePunctuationOnlySegments(segments) {
+    var out = [];
+    segments.forEach(function (seg) {
+      var text = normalizeTerm(seg.text);
+      if (!text) return;
+      if (/^[!.,;:?)\]]+$/.test(text) && out.length) {
+        out[out.length - 1].text = normalizeTerm(out[out.length - 1].text + ' ' + text);
+      } else {
+        out.push({ text: text, lang: seg.lang });
+      }
+    });
+    return out;
   }
 
   function segmentText(text, baseLangTag, terms) {
@@ -143,7 +165,7 @@
       if (tail.trim()) segments.push({ text: tail, lang: baseLangTag });
     }
 
-    return mergeAdjacentSegments(segments);
+    return mergePunctuationOnlySegments(mergeAdjacentSegments(segments));
   }
 
   function ensureTerms() {

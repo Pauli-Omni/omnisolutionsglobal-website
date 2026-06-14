@@ -104,11 +104,16 @@
       "THB": "Thai baht",
       "%": "percent",
       "AML": "Anti-Money-Laundering",
-      "§": "section"
+      "§": "section",
+      "Aptoide!": "Aptoid",
+      "Aptoide": "Aptoid"
     },
     "brandVoiceRequired": "Local brand voice not ready. Run once: ./scripts/setup-xtts-local.sh — then ./scripts/start-local-with-voice.sh (voice from omni-homepage-voice.mp3, on this computer only).",
     "brandVoiceError": "Local narration failed. Run ./scripts/start-local-with-voice.sh — voice stays on your computer (omni-homepage-voice.mp3).",
-    "brandVoiceLocalHost": "Narration only works at http://localhost:8080 — run ./scripts/start-local-with-voice.sh and open the site there (not as a file).",
+    "brandVoiceRetry": "Read-aloud failed. Reload the page and try again. If it keeps failing, check http://localhost:8080/health — for Thai/Vietnamese, ElevenLabs is used (no XTTS required).",
+    "brandVoiceConnectFailed": "Could not reach the voice server. Start the site at http://localhost:8080/ (./scripts/start-preview.sh or ./scripts/start-local-with-voice.sh) — do not open the HTML file directly.",
+    "brandVoiceCloudLangLocal": "Thai and similar languages use the cloud voice clone (ElevenLabs) from your local reference MP3 — XTTS is not required. ./scripts/start-preview.sh is enough if ELEVENLABS_API_KEY is set in server/elevenlabs.config.env. Open http://localhost:8080/",
+    "brandVoiceLocalHost": "Narration only works at http://localhost:8080 — run ./scripts/start-preview.sh or ./scripts/start-local-with-voice.sh and open the site there (not as a file).",
     "brandVoiceLangUnsupported": "This language is not yet supported by the brand voice. Please choose another language or contact support.",
     "brandVoiceNoApi": "Read-aloud does not work when opening the HTML file directly. Please open the site via the web server (https://…).",
     "brandVoiceServerNotReady": "Read-aloud is not ready on the server yet (API key or endpoint missing). Admins check: {{opsPath}}",

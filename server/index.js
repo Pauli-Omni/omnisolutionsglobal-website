@@ -87,6 +87,14 @@ async function handleSpeak(req, res) {
       });
       return;
     }
+    if (msg.indexOf('elevenlabs_quota_exceeded') >= 0) {
+      res.status(503).json({ error: 'elevenlabs_quota_exceeded' });
+      return;
+    }
+    if (msg.indexOf('elevenlabs_upstream') >= 0) {
+      res.status(502).json({ error: 'elevenlabs_upstream' });
+      return;
+    }
     if (msg.indexOf('local_reference_missing') >= 0) {
       res.status(503).json({
         error: 'local_reference_missing',

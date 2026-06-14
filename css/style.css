@@ -26,7 +26,8 @@
   --font-display: "Syne", "Inter", sans-serif;
   --font-portal: "Cormorant Garamond", Georgia, serif;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --wave-cycle: 30s;
+  --wave-cycle: 36s;
+  --chameleon-video-opacity: 0.28;
   --portal-curtain-duration: 4s;
   --frame-width: 10px;
   --frame-inset: 1cm;
@@ -34,13 +35,16 @@
   --purple-deep: #060608;
   --purple-mid: #0d0d14;
   --purple-rich: #12121c;
-  --chameleon-base: radial-gradient(ellipse 120% 90% at 50% 40%, #111118 0%, #060608 72%);
-  --chameleon-flow: radial-gradient(ellipse 90% 70% at 25% 30%,
-    rgba(0, 229, 255, 0.12) 0%,
-    transparent 55%),
-    radial-gradient(ellipse 80% 60% at 78% 68%,
-    rgba(168, 85, 247, 0.14) 0%,
-    transparent 58%);
+  --chameleon-base: radial-gradient(ellipse 140% 105% at 50% 38%, #14141c 0%, #0a0a10 42%, #060608 100%);
+  --chameleon-flow: radial-gradient(ellipse 95% 72% at 22% 28%,
+    rgba(0, 229, 255, 0.07) 0%,
+    transparent 58%),
+    radial-gradient(ellipse 82% 62% at 80% 70%,
+    rgba(168, 85, 247, 0.08) 0%,
+    transparent 60%),
+    radial-gradient(ellipse 120% 90% at 50% 100%,
+    rgba(0, 0, 0, 0.55) 0%,
+    transparent 72%);
   --portal-epoxy-base: linear-gradient(158deg,
     #0c1834 0%,
     #142848 38%,
@@ -147,6 +151,31 @@ body {
   pointer-events: none;
 }
 
+.chameleon-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+.chameleon-bg__video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: var(--chameleon-video-opacity);
+  mix-blend-mode: screen;
+  filter: saturate(0.82) brightness(0.72) contrast(1.05);
+  pointer-events: none;
+}
+
 /* Portal: Seite dahinter dezent sichtbar (dunkel-lila), nach Welcome voll aktiv */
 body:has(#portal-overlay:not(.portal-hidden)) .chameleon-bg {
   opacity: 0.35;
@@ -173,44 +202,44 @@ body:has(#portal-overlay.portal-hidden) .chameleon-bg {
 
 .chameleon-wave--deep {
   z-index: 1;
-  width: 300vmax;
-  height: 300vmax;
-  margin-left: -150vmax;
-  margin-top: -150vmax;
+  width: 280vmax;
+  height: 280vmax;
+  margin-left: -140vmax;
+  margin-top: -140vmax;
   background:
-    radial-gradient(circle at 40% 48%, rgba(0, 229, 255, 0.35) 0%, transparent 22%),
-    radial-gradient(circle at 52% 52%, rgba(59, 130, 246, 0.3) 0%, transparent 24%),
-    radial-gradient(circle at 58% 46%, rgba(168, 85, 247, 0.28) 0%, transparent 20%);
-  filter: blur(48px) saturate(1.5);
+    radial-gradient(circle at 40% 48%, rgba(0, 229, 255, 0.18) 0%, transparent 24%),
+    radial-gradient(circle at 52% 52%, rgba(59, 130, 246, 0.16) 0%, transparent 26%),
+    radial-gradient(circle at 58% 46%, rgba(168, 85, 247, 0.14) 0%, transparent 22%);
+  filter: blur(56px) saturate(1.15);
 }
 
 .chameleon-wave--mid {
   z-index: 2;
-  width: 260vmax;
-  height: 260vmax;
-  margin-left: -130vmax;
-  margin-top: -130vmax;
+  width: 240vmax;
+  height: 240vmax;
+  margin-left: -120vmax;
+  margin-top: -120vmax;
   background:
-    radial-gradient(circle at 38% 46%, rgba(0, 229, 255, 0.72) 0%, transparent 16%),
-    radial-gradient(circle at 46% 50%, rgba(59, 130, 246, 0.68) 0%, transparent 15%),
-    radial-gradient(circle at 52% 52%, rgba(120, 80, 255, 0.62) 0%, transparent 17%),
-    radial-gradient(circle at 58% 48%, rgba(168, 85, 247, 0.58) 0%, transparent 14%);
-  filter: blur(28px) saturate(1.8);
+    radial-gradient(circle at 38% 46%, rgba(0, 229, 255, 0.38) 0%, transparent 18%),
+    radial-gradient(circle at 46% 50%, rgba(59, 130, 246, 0.34) 0%, transparent 17%),
+    radial-gradient(circle at 52% 52%, rgba(120, 80, 255, 0.3) 0%, transparent 19%),
+    radial-gradient(circle at 58% 48%, rgba(168, 85, 247, 0.28) 0%, transparent 16%);
+  filter: blur(34px) saturate(1.25);
   animation-delay: -0.15s;
 }
 
 .chameleon-wave--crest {
   z-index: 3;
-  width: 200vmax;
-  height: 200vmax;
-  margin-left: -100vmax;
-  margin-top: -100vmax;
+  width: 180vmax;
+  height: 180vmax;
+  margin-left: -90vmax;
+  margin-top: -90vmax;
   background:
-    radial-gradient(circle at 44% 50%, rgba(0, 229, 255, 0.95) 0%, transparent 12%),
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.9) 0%, transparent 11%),
-    radial-gradient(circle at 54% 50%, rgba(168, 85, 247, 0.88) 0%, transparent 12%),
-    radial-gradient(ellipse 10% 8% at 50% 50%, rgba(255, 255, 255, 0.45) 0%, transparent 68%);
-  filter: blur(14px) saturate(2.1) brightness(1.12);
+    radial-gradient(circle at 44% 50%, rgba(0, 229, 255, 0.52) 0%, transparent 14%),
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.48) 0%, transparent 13%),
+    radial-gradient(circle at 54% 50%, rgba(168, 85, 247, 0.44) 0%, transparent 14%),
+    radial-gradient(ellipse 10% 8% at 50% 50%, rgba(255, 255, 255, 0.22) 0%, transparent 68%);
+  filter: blur(18px) saturate(1.35) brightness(1.04);
   animation-name: chameleon-wave-crest;
 }
 
@@ -852,9 +881,64 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   inset: var(--frame-width);
   z-index: 600;
   overflow: hidden;
-  background: linear-gradient(165deg, #12081f 0%, #1a0e2e 45%, #0f0820 100%);
+  background: #060608;
   border-radius: calc(var(--frame-radius) - 2px);
   transition: opacity 0.42s ease;
+}
+
+.portal-brand-video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.portal-has-video .portal-brand-video {
+  opacity: 1;
+}
+
+.portal-sparks {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.portal-spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  margin: -1.5px 0 0 -1.5px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow:
+    0 0 6px #00e5ff,
+    0 0 14px rgba(59, 130, 246, 0.85),
+    0 0 22px rgba(168, 85, 247, 0.45);
+  animation: portal-spark-burst 0.55s ease-out forwards;
+  transform: rotate(var(--spark-angle, 0deg));
+}
+
+@keyframes portal-spark-burst {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--spark-angle, 0deg)) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--spark-angle, 0deg)) translateY(-28px) scale(0.2);
+  }
+}
+
+.portal-has-video .portal-logo-slot--fallback {
+  display: none;
 }
 
 .portal-epoxy-base,
@@ -971,38 +1055,135 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.85rem, 2.5vh, 1.6rem);
+  padding: clamp(1.25rem, 5vw, 3rem);
+  padding-bottom: clamp(2rem, 8vh, 4.5rem);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  pointer-events: none;
+}
+
+.portal-center > * {
+  pointer-events: auto;
+}
+
+.portal-has-video .portal-center {
+  justify-content: flex-end;
+  background: linear-gradient(180deg, transparent 0%, transparent 55%, rgba(6, 6, 8, 0.35) 78%, rgba(6, 6, 8, 0.72) 100%);
+}
+
+.portal-overlay:not(.portal-has-video) .portal-center {
   justify-content: center;
-  gap: 2rem;
-  padding: 2rem;
-  transition: opacity 1.2s ease 0.6s;
 }
 
 .portal-logo-slot {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  width: 100%;
+  max-height: min(62vh, 520px);
+  min-height: min(38vh, 280px);
+}
+
+.portal-brand-name {
+  flex: 0 0 auto;
+  font-family: var(--font-display);
+  font-size: clamp(0.72rem, 2.6vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.35;
+  max-width: min(92vw, 36rem);
+  margin: 0;
+}
+
+.portal-brand-name--chrome {
+  font-size: clamp(0.85rem, 3.2vw, 1.35rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  background: linear-gradient(165deg,
+    #ffffff 0%,
+    #f0f4fa 12%,
+    #b8c4d4 28%,
+    #ffffff 42%,
+    #8a96a8 56%,
+    #eef2f8 70%,
+    #c0cad8 84%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  filter:
+    drop-shadow(0 0 12px rgba(0, 229, 255, 0.35))
+    drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65));
+  position: relative;
+}
+
+.portal-brand-name--chrome::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -4px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.55), transparent);
+  opacity: 0.7;
+  pointer-events: none;
 }
 
 .btn-portal-enter {
-  background: linear-gradient(145deg, #7a8696, #c8d6e4 42%, #9aaab8);
-  color: #0a0e14;
+  flex: 0 0 auto;
+  background: linear-gradient(145deg, rgba(0, 229, 255, 0.18) 0%, rgba(10, 14, 20, 0.92) 38%, rgba(0, 229, 255, 0.12) 100%);
+  color: var(--neon-cyan);
   font-family: var(--font-portal);
-  font-size: clamp(1.35rem, 4vw, 1.85rem);
+  font-size: clamp(1.2rem, 3.8vw, 1.75rem);
   font-weight: 600;
   font-style: italic;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: none;
-  padding: 0.95rem 2.4rem;
-  border: 1px solid var(--border-strong);
-  box-shadow: 0 4px 28px var(--glow), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  padding: 0.9rem 2.2rem;
+  border: 1px solid rgba(0, 229, 255, 0.55);
+  border-radius: var(--radius-sm);
+  box-shadow:
+    0 0 22px rgba(0, 229, 255, 0.28),
+    0 0 48px rgba(0, 229, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  animation: portal-btn-cyan-pulse 2.4s ease-in-out infinite;
 }
 
 .btn-portal-enter:hover,
 .btn-portal-enter:focus-visible {
-  box-shadow: 0 6px 32px rgba(180, 200, 220, 0.28);
-  color: var(--bg-deep);
+  color: #ffffff;
+  border-color: rgba(0, 229, 255, 0.85);
+  box-shadow:
+    0 0 32px rgba(0, 229, 255, 0.45),
+    0 0 64px rgba(0, 229, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.portal-overlay.portal-opening .portal-center {
+@keyframes portal-btn-cyan-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 18px rgba(0, 229, 255, 0.22),
+      0 0 40px rgba(0, 229, 255, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow:
+      0 0 28px rgba(0, 229, 255, 0.48),
+      0 0 56px rgba(0, 229, 255, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    transform: scale(1.03);
+  }
+}
+
+.portal-overlay.portal-reveal .portal-center {
   opacity: 0;
+  transform: scale(0.98);
   pointer-events: none;
 }
 
@@ -1861,9 +2042,109 @@ body.app-page:has(.chrome-frame-inner) .app-voice-toolbar {
   animation: osg-logo-pulse-glow 4s ease-in-out infinite;
 }
 
+.osg-logo-mount--portal .osg-logo-anim,
+.osg-logo-anim--portal {
+  width: min(92vw, 640px);
+  height: min(52vw, 360px);
+  max-height: min(62vh, 520px);
+}
+
+.osg-logo-aura--portal {
+  inset: -12%;
+  background:
+    radial-gradient(circle, rgba(0, 229, 255, 0.28) 0%, transparent 62%),
+    radial-gradient(circle at 60% 40%, rgba(168, 85, 247, 0.12) 0%, transparent 55%);
+}
+
+.osg-infinity-path--base {
+  stroke: rgba(200, 208, 220, 0.35);
+  stroke-width: 7;
+}
+
+.osg-infinity-path--energy {
+  fill: none;
+  stroke: url(#osg-portal-energy);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 18 140;
+  animation: osg-infinity-energy-flow 2.2s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.55));
+}
+
+.osg-globe--center {
+  top: 50%;
+  left: 50%;
+  width: clamp(72px, 22vw, 118px);
+  height: clamp(72px, 22vw, 118px);
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
+
+.osg-globe--center .osg-globe-body {
+  border-width: 2px;
+  box-shadow:
+    0 0 24px rgba(0, 229, 255, 0.45),
+    inset 0 0 18px rgba(0, 229, 255, 0.12);
+}
+
+.osg-globe-nodes {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 28% 38%, rgba(0, 229, 255, 0.85) 0%, transparent 4%),
+    radial-gradient(circle at 62% 44%, rgba(59, 130, 246, 0.8) 0%, transparent 3.5%),
+    radial-gradient(circle at 44% 68%, rgba(168, 85, 247, 0.75) 0%, transparent 3%),
+    radial-gradient(circle at 72% 62%, rgba(0, 229, 255, 0.7) 0%, transparent 2.5%);
+  animation: osg-globe-nodes-pulse 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.osg-globe-arc {
+  position: absolute;
+  border: 1px solid transparent;
+  border-top-color: rgba(0, 229, 255, 0.65);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  animation: osg-globe-arc-flash 4s ease-in-out infinite;
+}
+
+.osg-globe-arc--1 {
+  inset: 8%;
+  animation-delay: 0.4s;
+}
+
+.osg-globe-arc--2 {
+  inset: 18%;
+  animation-delay: 2.1s;
+}
+
+.osg-lp-portal-1 { top: 18%; left: 12%; animation-delay: 0s; background: #00e5ff; box-shadow: 0 0 14px #00e5ff; }
+.osg-lp-portal-2 { top: 42%; left: 6%; animation-delay: 0.8s; background: #e4eaf2; box-shadow: 0 0 12px #e4eaf2; }
+.osg-lp-portal-3 { top: 42%; right: 6%; animation-delay: 1.6s; background: #00e5ff; box-shadow: 0 0 14px #00e5ff; }
+.osg-lp-portal-4 { bottom: 22%; right: 14%; animation-delay: 2.4s; background: #3b82f6; box-shadow: 0 0 12px #3b82f6; }
+
+@keyframes osg-infinity-energy-flow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -316; }
+}
+
+@keyframes osg-globe-nodes-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+@keyframes osg-globe-arc-flash {
+  0%, 100% { opacity: 0; transform: rotate(0deg); }
+  12%, 28% { opacity: 0.85; transform: rotate(18deg); }
+  40% { opacity: 0; transform: rotate(36deg); }
+}
+
 .osg-logo-mount--portal .osg-logo-anim {
-  width: min(340px, 78vw);
-  height: min(190px, 42vw);
+  width: min(92vw, 640px);
+  height: min(52vw, 360px);
 }
 
 .osg-logo-aura {
@@ -3301,6 +3582,21 @@ a.store-badge:hover {
 }
 
 @media (max-width: 480px) {
+  .portal-logo-slot {
+    max-height: min(56vh, 420px);
+    min-height: min(34vh, 220px);
+  }
+
+  .portal-brand-name {
+    font-size: clamp(0.62rem, 3.2vw, 0.88rem);
+    letter-spacing: 0.08em;
+  }
+
+  .btn-portal-enter {
+    width: min(100%, 18rem);
+    padding: 0.85rem 1.4rem;
+  }
+
   .presentation-splash-logo {
     width: 110vw;
     opacity: 0.32;
