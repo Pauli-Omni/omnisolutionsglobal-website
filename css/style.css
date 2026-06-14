@@ -1069,7 +1069,20 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
 
 .portal-has-video .portal-center {
   justify-content: flex-end;
-  background: linear-gradient(180deg, transparent 0%, transparent 55%, rgba(6, 6, 8, 0.35) 78%, rgba(6, 6, 8, 0.72) 100%);
+  background: linear-gradient(180deg, transparent 0%, transparent 45%, rgba(6, 6, 8, 0.25) 70%, rgba(6, 6, 8, 0.78) 100%);
+}
+
+.portal-has-video .portal-logo-slot {
+  display: none;
+}
+
+.portal-has-video .portal-brand-name--chrome {
+  animation: portal-brand-glow 4.5s ease-in-out infinite;
+}
+
+@keyframes portal-brand-glow {
+  0%, 100% { filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.35)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65)); }
+  50% { filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.55)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55)); }
 }
 
 .portal-overlay:not(.portal-has-video) .portal-center {

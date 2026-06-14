@@ -62,8 +62,15 @@
   function initAnimatedLogo() {
     document.querySelectorAll('.osg-logo-mount').forEach(function (mount) {
       if (mount.firstElementChild) return;
-      var isPortal = mount.classList.contains('osg-logo-mount--portal');
-      mount.innerHTML = isPortal ? buildPortalLogoHTML() : buildAnimatedLogoHTML();
+      if (mount.classList.contains('osg-logo-mount--portal')) return;
+      mount.innerHTML = buildAnimatedLogoHTML();
+    });
+  }
+
+  function initPortalFallbackLogo() {
+    document.querySelectorAll('.osg-logo-mount--portal').forEach(function (mount) {
+      if (mount.firstElementChild) return;
+      mount.innerHTML = buildPortalLogoHTML();
     });
   }
 
@@ -142,6 +149,7 @@
 
   window.OSGHome = {
     initAnimatedLogo: initAnimatedLogo,
+    initPortalFallbackLogo: initPortalFallbackLogo,
     init: function () {
       if (document.body.getAttribute('data-page') !== 'home') return;
       initContactModal();

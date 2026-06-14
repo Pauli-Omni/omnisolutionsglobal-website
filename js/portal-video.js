@@ -32,8 +32,11 @@
     function showFallback() {
       portal.classList.remove('portal-has-video');
       video.setAttribute('hidden', '');
+      video.setAttribute('data-fallback', '1');
       if (fallback) fallback.removeAttribute('hidden');
-      if (window.OSGHome) OSGHome.initAnimatedLogo();
+      if (window.OSGHome && window.OSGHome.initPortalFallbackLogo) {
+        OSGHome.initPortalFallbackLogo();
+      }
     }
 
     video.addEventListener('loadeddata', showVideo);
