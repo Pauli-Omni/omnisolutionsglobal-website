@@ -289,3 +289,26 @@
     padding: 16px;
   }
 }
+
+/* Legal pages: badge oben rechts — deckt Footer nicht zu */
+body[data-page="impressum"] #osg-security-container,
+body[data-page="agb"] #osg-security-container {
+  top: max(12px, env(safe-area-inset-top, 12px));
+  bottom: auto;
+  right: max(12px, env(safe-area-inset-right, 12px));
+  left: auto;
+}
+
+body[data-page="impressum"] #osg-security-modal,
+body[data-page="agb"] #osg-security-modal {
+  bottom: auto;
+  top: calc(100% + 8px);
+  right: 0;
+}
+
+@media (max-width: 480px) {
+  body[data-page="impressum"] #osg-security-container,
+  body[data-page="agb"] #osg-security-container {
+    top: max(4.5rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
+  }
+}

@@ -77,6 +77,13 @@
         ? OSGWorldLang.getInitialUiLocale()
         : cfg.normalizeLocale(navigator.language);
 
+      try {
+        var urlLang = new URLSearchParams(window.location.search).get('lang');
+        if (urlLang && cfg.isSupported(cfg.normalizeLocale(urlLang))) {
+          initialLng = cfg.normalizeLocale(urlLang);
+        }
+      } catch (e) { /* ignore */ }
+
       return new Promise(function (resolve, reject) {
         i18next
           .use(i18nextHttpBackend)

@@ -82,6 +82,9 @@
     if (document.body.getAttribute('data-page') === 'impressum' && window.OSGContactForm) {
       OSGContactForm.init();
     }
+    if (document.getElementById('ui-lang-picker-mount') && window.OSGUiLangPicker) {
+      OSGUiLangPicker.mount('#ui-lang-picker-mount');
+    }
     if (document.body.classList.contains('app-page--desc') && window.OSGAppDescPage) {
       OSGAppDescPage.boot();
       if (window.i18next) {

@@ -675,6 +675,57 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
 }
 .legal-section h2:first-child { margin-top: 0; }
 
+.ui-lang-picker {
+  flex-shrink: 0;
+  max-width: min(100%, 280px);
+}
+
+.ui-lang-picker__label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.ui-lang-picker__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+}
+
+.ui-lang-picker__btn {
+  font-size: 0.72rem;
+  padding: 0.38rem 0.62rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(14, 18, 26, 0.55);
+  color: var(--silver);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.ui-lang-picker__btn:hover,
+.ui-lang-picker__btn:focus-visible {
+  border-color: rgba(0, 212, 255, 0.65);
+  color: #fff;
+  outline: none;
+}
+
+.ui-lang-picker__btn.is-active {
+  border-color: rgba(0, 212, 255, 0.9);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.18);
+}
+
+.page-header-tools {
+  display: flex;
+  align-items: flex-start;
+}
+
 .promo-tile {
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
@@ -777,6 +828,21 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
 @media (max-width: 479px) {
   .hero-actions { flex-direction: column; }
   .btn { width: 100%; }
+
+  body[data-page="impressum"] .page-header-row,
+  body[data-page="agb"] .page-header-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ui-lang-picker {
+    max-width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .ui-lang-picker__grid {
+    justify-content: flex-start;
+  }
 }
 
 /* ── Portal: Epoxidharz-Sternenhimmel (eigene Welt, heller als Innenseite) ── */
