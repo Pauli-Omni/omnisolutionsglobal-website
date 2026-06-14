@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "होम पर वापस"
+  },
+  "omniqr": {
+    "btnScanLabel": "QR लोड करें",
+    "btnConfirmLabel": "भुगतान पुष्टि",
+    "btnSpeakLabel": "स्थिति पढ़ें",
+    "support": {
+      "fabLabel": "संपर्क / सहायता",
+      "submitBtn": "भेजें",
+      "cancelBtn": "रद्द"
+    },
+    "terms": {
+      "acceptBtn": "बंद",
+      "navLabel": "नियम / कानूनी",
+      "navAria": "नियम व शर्तें पृष्ठ खोलें",
+      "menuAria": "ऐप मेनू",
+      "menuHome": "होम",
+      "menuDesc": "विवरण",
+      "menuSupport": "संपर्क / सहायता",
+      "pageBadge": "कानूनी · पृ. ३",
+      "readFullPage": "पूर्ण नियम",
+      "readFullPageAria": "पूरा कानूनी पाठ खोलें",
+      "pdfDownload": "PDF डाउनलोड",
+      "pdfDownloadAria": "नियम PDF डिवाइस पर सहेजें",
+      "pdfHint": "PDF डिवाइस पर सहेजा — प्रिंट के लिए तैयार।",
+      "pdfError": "PDF डाउनलोड विफल।",
+      "readAloud": "नियम पढ़ें",
+      "readAloudAria": "शुरू से अंत तक नियम पढ़ें",
+      "welcomeTitle": "OmniQR-AI में आपका स्वागत है",
+      "welcomeLead": "स्क्रीन पर नियम पढ़ें। भुगतान के लिए स्वीकृति आवश्यक है।",
+      "welcomeAgbBtn": "नियम / कानूनी",
+      "welcomeAgbAria": "पूर्ण नियम पृष्ठ खोलें",
+      "welcomeContinue": "जारी रखें",
+      "welcomeContinueAria": "ऐप पर जाएँ"
+    }
+  }
+}

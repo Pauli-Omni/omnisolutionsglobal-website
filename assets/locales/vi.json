@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Về trang chính"
+  },
+  "omniqr": {
+    "btnScanLabel": "Tải QR",
+    "btnConfirmLabel": "Xác nhận thanh toán",
+    "btnSpeakLabel": "Đọc trạng thái",
+    "support": {
+      "fabLabel": "Liên hệ / Hỗ trợ",
+      "submitBtn": "Gửi",
+      "cancelBtn": "Hủy"
+    },
+    "terms": {
+      "acceptBtn": "Đóng",
+      "navLabel": "Điều khoản / Pháp lý",
+      "navAria": "Mở trang điều khoản",
+      "menuAria": "Menu ứng dụng",
+      "menuHome": "Trang chủ",
+      "menuDesc": "Mô tả",
+      "menuSupport": "Liên hệ / Hỗ trợ",
+      "pageBadge": "Pháp lý · Tr. 3",
+      "readFullPage": "Điều khoản đầy đủ",
+      "readFullPageAria": "Mở trang văn bản pháp lý đầy đủ",
+      "pdfDownload": "Tải PDF",
+      "pdfDownloadAria": "Lưu PDF điều khoản vào thiết bị",
+      "pdfHint": "PDF đã lưu trên thiết bị — sẵn sàng in.",
+      "pdfError": "Tải PDF thất bại.",
+      "readAloud": "Đọc điều khoản",
+      "readAloudAria": "Đọc điều khoản từ đầu đến cuối",
+      "welcomeTitle": "Chào mừng đến OmniQR-AI",
+      "welcomeLead": "Đọc điều khoản trên màn hình. Thanh toán cần chấp nhận điều khoản.",
+      "welcomeAgbBtn": "Điều khoản / Pháp lý",
+      "welcomeAgbAria": "Mở trang điều khoản đầy đủ",
+      "welcomeContinue": "Tiếp tục",
+      "welcomeContinueAria": "Vào ứng dụng"
+    }
+  }
+}

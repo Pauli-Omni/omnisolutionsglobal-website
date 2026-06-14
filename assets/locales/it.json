@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Torna al hub"
+  },
+  "omniqr": {
+    "btnScanLabel": "Carica QR",
+    "btnConfirmLabel": "Conferma pagamento",
+    "btnSpeakLabel": "Leggi stato",
+    "support": {
+      "fabLabel": "Contatto / Supporto",
+      "submitBtn": "Invia",
+      "cancelBtn": "Annulla"
+    },
+    "terms": {
+      "acceptBtn": "Chiudi",
+      "navLabel": "Termini / Legale",
+      "navAria": "Apri pagina termini e condizioni",
+      "menuAria": "Menu app",
+      "menuHome": "Home",
+      "menuDesc": "Descrizione",
+      "menuSupport": "Contatto / Supporto",
+      "pageBadge": "Legale · Pag. 3",
+      "readFullPage": "Termini completi",
+      "readFullPageAria": "Apri il testo legale completo",
+      "pdfDownload": "Scarica PDF",
+      "pdfDownloadAria": "Salva PDF dei termini",
+      "pdfHint": "PDF salvato sul dispositivo — pronto per la stampa.",
+      "pdfError": "Download PDF non riuscito.",
+      "readAloud": "Leggi termini",
+      "readAloudAria": "Leggi i termini dall’inizio alla fine",
+      "welcomeTitle": "Benvenuto in OmniQR-AI",
+      "welcomeLead": "Leggi i termini sullo schermo. Il pagamento richiede l’accettazione.",
+      "welcomeAgbBtn": "Termini / Legale",
+      "welcomeAgbAria": "Apri pagina termini completa",
+      "welcomeContinue": "Continua",
+      "welcomeContinueAria": "Vai all’applicazione"
+    }
+  }
+}

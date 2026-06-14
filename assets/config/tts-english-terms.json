@@ -1,0 +1,15 @@
+{
+  "techTerms": [
+    "Python", "JavaScript", "TypeScript", "Composer", "Node.js", "React", "Three.js",
+    "WebGL", "CUDA", "GPU", "CPU", "API", "SDK", "HTTP", "HTTPS", "JSON", "XML",
+    "HTML", "CSS", "GitHub", "Render", "Docker", "Kubernetes", "Linux", "macOS",
+    "Windows", "Bluetooth", "Wi-Fi", "WiFi", "LTE", "5G", "AI", "ML", "UI", "UX",
+    "CAD", "CAM", "CAD/CAM", "PDF", "QR", "QR code", "QR Code", "XTTS", "OpenAI",
+    "ElevenLabs", "Coqui", "npm", "Git", "i18n", "TTS", "STT", "LLM", "GPT"
+  ],
+  "platformTerms": [
+    "Google Play", "Google Play Store", "Play Store", "App Store", "Apple App Store",
+    "Aptoide", "Android", "iOS", "Huawei", "Samsung", "PromptPay", "Wi-Fi",
+    "OmniQR-AI for Tourist of Thailand", "OmniQR-AI", "Pauli BestPrice", "Pauli BestPrice Thailand"
+  ]
+}

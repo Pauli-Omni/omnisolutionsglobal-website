@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Retour au hub"
+  },
+  "omniqr": {
+    "btnScanLabel": "Charger QR",
+    "btnConfirmLabel": "Confirmer paiement",
+    "btnSpeakLabel": "Lire statut",
+    "support": {
+      "fabLabel": "Contact / Support",
+      "submitBtn": "Envoyer",
+      "cancelBtn": "Annuler"
+    },
+    "terms": {
+      "acceptBtn": "Fermer",
+      "navLabel": "CGU / Légal",
+      "navAria": "Ouvrir la page des conditions",
+      "menuAria": "Menu de l’app",
+      "menuHome": "Accueil",
+      "menuDesc": "Description",
+      "menuSupport": "Contact / Support",
+      "pageBadge": "Légal · Page 3",
+      "readFullPage": "Page CGU complète",
+      "readFullPageAria": "Ouvrir le texte intégral des CGU",
+      "pdfDownload": "Télécharger PDF",
+      "pdfDownloadAria": "Enregistrer le PDF des CGU",
+      "pdfHint": "PDF enregistré sur l’appareil — prêt à imprimer.",
+      "pdfError": "Échec du téléchargement PDF.",
+      "readAloud": "Lire les CGU",
+      "readAloudAria": "Lire les CGU du début à la fin",
+      "welcomeTitle": "Bienvenue sur OmniQR-AI",
+      "welcomeLead": "Lisez les conditions à l’écran. Le paiement exige leur acceptation.",
+      "welcomeAgbBtn": "CGU / Légal",
+      "welcomeAgbAria": "Ouvrir la page CGU complète",
+      "welcomeContinue": "Continuer",
+      "welcomeContinueAria": "Accéder à l’application"
+    }
+  }
+}

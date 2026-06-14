@@ -1,0 +1,107 @@
+.ops-voice-check {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 2.5rem;
+}
+
+.ops-voice-check__head {
+  margin-bottom: 1.25rem;
+}
+
+.ops-voice-check__title {
+  font-family: var(--font-display, Syne, sans-serif);
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
+  margin: 0 0 0.5rem;
+}
+
+.ops-voice-check__intro,
+.ops-voice-check__hint,
+.ops-voice-check__meta,
+.ops-voice-check__message {
+  color: var(--text-muted, #b8c0cc);
+  line-height: 1.5;
+}
+
+.ops-voice-check__panel {
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.ops-voice-check__panel h2 {
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+.ops-voice-check__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.ops-voice-check__field input {
+  min-height: 2.75rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  font: inherit;
+}
+
+.ops-voice-check__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ops-voice-check__summary {
+  margin: 0.75rem 0 0.35rem;
+  font-weight: 600;
+}
+
+.ops-voice-check__list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.ops-voice-check__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ops-voice-check__row strong {
+  font-size: 0.92rem;
+}
+
+.ops-voice-check__row span {
+  font-size: 0.85rem;
+  color: var(--text-muted, #b8c0cc);
+}
+
+.ops-voice-check__row--ok strong { color: #6ee7a8; }
+.ops-voice-check__row--warn strong { color: #fcd34d; }
+.ops-voice-check__row--fail strong { color: #f87171; }
+
+.ops-voice-check__pill {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+
+.ops-voice-check__pill--ok { background: rgba(110, 231, 168, 0.15); color: #6ee7a8; }
+.ops-voice-check__pill--fail { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+
+@media (max-width: 480px) {
+  .ops-voice-check {
+    padding: 1rem 0.75rem 2rem;
+  }
+  .ops-voice-check__actions .btn {
+    width: 100%;
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "홈으로"
+  },
+  "omniqr": {
+    "btnScanLabel": "QR 불러오기",
+    "btnConfirmLabel": "결제 확인",
+    "btnSpeakLabel": "상태 읽기",
+    "support": {
+      "fabLabel": "문의 / 지원",
+      "submitBtn": "보내기",
+      "cancelBtn": "취소"
+    },
+    "terms": {
+      "acceptBtn": "닫기",
+      "navLabel": "약관 / 법적",
+      "navAria": "약관 페이지 열기",
+      "menuAria": "앱 메뉴",
+      "menuHome": "홈",
+      "menuDesc": "설명",
+      "menuSupport": "문의 / 지원",
+      "pageBadge": "법적 · 3페이지",
+      "readFullPage": "약관 전체",
+      "readFullPageAria": "약관 전문 페이지 열기",
+      "pdfDownload": "PDF 다운로드",
+      "pdfDownloadAria": "약관 PDF를 기기에 저장",
+      "pdfHint": "PDF가 기기에 저장됨 — 인쇄 가능.",
+      "pdfError": "PDF 다운로드 실패.",
+      "readAloud": "약관 읽기",
+      "readAloudAria": "약관을 처음부터 끝까지 읽기",
+      "welcomeTitle": "OmniQR-AI에 오신 것을 환영합니다",
+      "welcomeLead": "화면에서 약관을 확인하세요. 결제에는 동의가 필요합니다.",
+      "welcomeAgbBtn": "약관 / 법적",
+      "welcomeAgbAria": "약관 전체 페이지 열기",
+      "welcomeContinue": "계속",
+      "welcomeContinueAria": "앱으로 이동"
+    }
+  }
+}

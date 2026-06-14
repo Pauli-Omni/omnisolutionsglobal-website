@@ -1,0 +1,34 @@
+---
+description: Rechtstexte & nutzersichtige App-Inhalte Web ↔ Native immer 1:1 synchron halten
+alwaysApply: true
+---
+
+# Legal & App-Content — Web ↔ Native Sync (Pflicht)
+
+Gilt für **OmniQR** und **jede künftige App** mit Homepage + Mobile (Android/iOS/Kivy/Flutter/React Native).
+
+## Single Source of Truth
+
+| Inhalt | Kanonische Quelle | Spiegel |
+|--------|-------------------|---------|
+| OmniQR AGB §1–§4 | `assets/locales/{lang}.json` → `omniqr.terms.s1*` … `s4*` | Native: `../Omni QR-Pay for Turist of Thailand/i18n.py` → `termsS1*` … `termsS4*` |
+| OmniQR AGB PDF (DE) | `server/omniqr-ai-for-tourist-of-thailand/legal/agb-canonical-de.js` | PDF neu generieren nach Änderung |
+| Hub-AGB (allgemeine Website) | `assets/locales` → `agb.s*` | nur Web — nicht mit OmniQR-App vermischen |
+
+## Bei jeder Änderung an Rechtstexten
+
+1. **Zuerst** kanonische Quelle ändern (Locale oder `agb-canonical-de.js`).
+2. **Parallel** alle Spiegel in derselben Session aktualisieren — **alle sechs Sprachen** (`de`, `en`, `th`, `pl`, `ru`, `zh`).
+3. **Kein** abweichender Wortlaut zwischen Web-Anzeige und App-Anzeige pro Sprache — **Buchstabe für Buchstabe** identisch.
+4. **Verboten:** alte 10-Punkte-Struktur, **FX-SPREAD** als eigener Punkt, Aufzählung/Aufteilung der 4,5 % (kein „3 % Bank + 1,5 % Omni“), Firmenschreibweise drift — nur **ein Satz: Frankfurter Kurs + maximal 4,5 % kombinierter Aufschlag**.
+5. Nach Änderung: `python3 -m unittest tests.test_terms_sync` im Native-Projekt.
+
+## Agent-Verhalten
+
+- Rechtstext nur in erlaubten Quellen — nie lose in UI-Code hardcoden.
+- Nur Web oder nur App geändert → **beide** synchronisieren.
+- Neue App → gleiche Key-Struktur von Anfang an.
+
+## Kein KI-Gedächtnis
+
+Dauerhaft über **diese Regel + Tests**, nicht über Chat-Erinnerung.

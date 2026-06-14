@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Ana sayfaya dön"
+  },
+  "omniqr": {
+    "btnScanLabel": "QR yükle",
+    "btnConfirmLabel": "Ödemeyi onayla",
+    "btnSpeakLabel": "Durumu oku",
+    "support": {
+      "fabLabel": "İletişim / Destek",
+      "submitBtn": "Gönder",
+      "cancelBtn": "İptal"
+    },
+    "terms": {
+      "acceptBtn": "Kapat",
+      "navLabel": "Şartlar / Yasal",
+      "navAria": "Şartlar sayfasını aç",
+      "menuAria": "Uygulama menüsü",
+      "menuHome": "Ana sayfa",
+      "menuDesc": "Açıklama",
+      "menuSupport": "İletişim / Destek",
+      "pageBadge": "Yasal · S. 3",
+      "readFullPage": "Tam şartlar",
+      "readFullPageAria": "Tam yasal metni aç",
+      "pdfDownload": "PDF indir",
+      "pdfDownloadAria": "Şartlar PDF’ini kaydet",
+      "pdfHint": "PDF cihaza kaydedildi — yazdırmaya hazır.",
+      "pdfError": "PDF indirilemedi.",
+      "readAloud": "Şartları oku",
+      "readAloudAria": "Şartları baştan sona oku",
+      "welcomeTitle": "OmniQR-AI’ye hoş geldiniz",
+      "welcomeLead": "Şartları ekranda okuyun. Ödeme için kabul gerekir.",
+      "welcomeAgbBtn": "Şartlar / Yasal",
+      "welcomeAgbAria": "Tam şartlar sayfasını aç",
+      "welcomeContinue": "Devam",
+      "welcomeContinueAria": "Uygulamaya geç"
+    }
+  }
+}

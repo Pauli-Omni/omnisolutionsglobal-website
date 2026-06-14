@@ -1,0 +1,633 @@
+/* OmniQR-AI for Tourist of Thailand — Barrierefreiheit & hoher Kontrast */
+.omniqr-pay-zone {
+  margin-top: 1.25rem;
+  padding: 1.25rem;
+  border: 2px solid #c4b5fd;
+  border-radius: 12px;
+  background: rgba(8, 8, 16, 0.92);
+  outline: none;
+}
+
+.omniqr-pay-zone:focus-within {
+  box-shadow: 0 0 0 3px #fbbf24, 0 0 0 6px rgba(251, 191, 36, 0.35);
+}
+
+.omniqr-pay-live {
+  min-height: 2.5rem;
+  font-size: clamp(1rem, 2.8vw, 1.15rem);
+  line-height: 1.5;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.omniqr-qr-stage {
+  margin: 1rem 0;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #64748b;
+  border-radius: 10px;
+  background: #0f172a;
+  color: #e2e8f0;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  text-align: center;
+  padding: 1rem;
+}
+
+.omniqr-qr-stage[data-state="ready"] {
+  border-color: #22c55e;
+  border-style: solid;
+}
+
+.omniqr-qr-stage[data-state="error"] {
+  border-color: #ef4444;
+}
+
+.omniqr-qr-canvas-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.omniqr-qr-canvas-wrap canvas {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.omniqr-qr-fallback {
+  margin: 0;
+  padding: 0.5rem;
+  color: #e2e8f0;
+}
+
+.omniqr-pay-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.omniqr-pay-btn {
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0.65rem 1rem;
+  font-size: clamp(1rem, 2.5vw, 1.05rem);
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #a78bfa;
+  background: #1e1b4b;
+  color: #fafafa;
+  cursor: pointer;
+}
+
+.omniqr-pay-btn:hover,
+.omniqr-pay-btn:focus-visible {
+  background: #312e81;
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+.omniqr-pay-btn--primary {
+  border-color: #22c55e;
+  background: #14532d;
+}
+
+.omniqr-keyboard-hint {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+@media (prefers-contrast: more) {
+  .omniqr-pay-zone {
+    border-color: #fff;
+    background: #000;
+  }
+  .omniqr-pay-live,
+  .omniqr-qr-stage,
+  .omniqr-pay-btn {
+    color: #fff;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .omniqr-pay-btn {
+    transition: none;
+  }
+}
+
+/* Support FAB & modals */
+.omniqr-support-fab {
+  position: fixed;
+  z-index: 900;
+  left: max(12px, env(safe-area-inset-left, 12px));
+  bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  min-height: 48px;
+  min-width: 48px;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: 2px solid #38bdf8;
+  background: rgba(8, 47, 73, 0.95);
+  color: #f8fafc;
+  font-size: clamp(0.85rem, 2.4vw, 0.95rem);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.omniqr-support-fab:hover,
+.omniqr-support-fab:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+  background: #0c4a6e;
+}
+
+.omniqr-modal[hidden] {
+  display: none !important;
+}
+
+.omniqr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(12px, env(safe-area-inset-top, 12px)) max(12px, env(safe-area-inset-right, 12px)) max(12px, env(safe-area-inset-bottom, 12px)) max(12px, env(safe-area-inset-left, 12px));
+}
+
+.omniqr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.72);
+}
+
+.omniqr-modal-panel {
+  position: relative;
+  width: min(100%, 520px);
+  max-height: min(92vh, 720px);
+  overflow: auto;
+  padding: 1rem 1.1rem 1.2rem;
+  border-radius: 14px;
+  border: 2px solid #64748b;
+  background: rgba(8, 8, 16, 0.97);
+}
+
+.omniqr-modal-panel--wide {
+  width: min(100%, 680px);
+}
+
+.omniqr-modal-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.omniqr-modal-title {
+  margin: 0;
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  line-height: 1.35;
+}
+
+.omniqr-modal-close {
+  min-width: 44px;
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #e2e8f0;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.omniqr-modal-close:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+.omniqr-field-label {
+  display: block;
+  margin: 0.65rem 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.omniqr-input,
+.omniqr-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.65rem 0.75rem;
+  border-radius: 10px;
+  border: 2px solid #475569;
+  background: #0f172a;
+  color: #f8fafc;
+  font: inherit;
+}
+
+.omniqr-input:focus-visible,
+.omniqr-textarea:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 1px;
+  border-color: #38bdf8;
+}
+
+.omniqr-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.omniqr-form-status {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.omniqr-form-status.is-error {
+  color: #fca5a5;
+}
+
+.omniqr-form-status.is-success {
+  color: #86efac;
+}
+
+.omniqr-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.omniqr-terms-body {
+  font-size: clamp(0.92rem, 2.4vw, 1rem);
+  line-height: 1.55;
+}
+
+.omniqr-terms-section + .omniqr-terms-section {
+  margin-top: 1rem;
+}
+
+.omniqr-terms-section h3 {
+  margin: 0 0 0.45rem;
+  font-size: clamp(0.98rem, 2.6vw, 1.08rem);
+}
+
+.omniqr-terms-section p {
+  margin: 0 0 0.55rem;
+}
+
+.app-legal-footer--omniqr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App menu */
+.omniqr-menu-btn {
+  position: fixed;
+  z-index: 910;
+  top: max(12px, env(safe-area-inset-top, 12px));
+  right: max(12px, env(safe-area-inset-right, 12px));
+  min-width: 48px;
+  min-height: 48px;
+  border-radius: 12px;
+  border: 2px solid rgba(56, 189, 248, 0.65);
+  background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.92));
+  color: #f8fafc;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(2, 6, 23, 0.45);
+}
+
+.omniqr-menu-btn__bars,
+.omniqr-menu-btn__bars::before,
+.omniqr-menu-btn__bars::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  margin: 0 auto;
+}
+
+.omniqr-menu-btn__bars {
+  position: relative;
+  top: 0;
+}
+
+.omniqr-menu-btn__bars::before,
+.omniqr-menu-btn__bars::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.omniqr-menu-btn__bars::before { top: -6px; }
+.omniqr-menu-btn__bars::after { top: 6px; }
+
+.omniqr-menu-btn:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+.omniqr-app-menu {
+  position: fixed;
+  z-index: 905;
+  top: max(68px, calc(env(safe-area-inset-top, 12px) + 56px));
+  right: max(12px, env(safe-area-inset-right, 12px));
+  min-width: min(92vw, 280px);
+  padding: 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(8, 12, 24, 0.97);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.omniqr-app-menu[hidden] {
+  display: none !important;
+}
+
+.omniqr-app-menu__link {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 0.85rem;
+  border-radius: 10px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.omniqr-app-menu__link:hover,
+.omniqr-app-menu__link:focus-visible {
+  background: rgba(56, 189, 248, 0.12);
+  outline: 3px solid #fbbf24;
+  outline-offset: 1px;
+}
+
+.omniqr-app-menu__link--legal {
+  color: #7dd3fc;
+}
+
+/* Terms page (Page 3) */
+.omniqr-terms-page {
+  max-width: 46rem;
+}
+
+.omniqr-terms-badge {
+  display: inline-block;
+  margin: 0 0 0.65rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.45);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.omniqr-page--agb .omniqr-terms-body {
+  max-height: none;
+  overflow: visible;
+}
+
+.omniqr-terms-actions {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.omniqr-agb-sticky-actions {
+  position: fixed;
+  z-index: 955;
+  right: max(12px, env(safe-area-inset-right, 12px));
+  bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: min(92vw, 240px);
+}
+
+.omniqr-agb-voice-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.65rem 0.9rem;
+  border-radius: 14px;
+  border: 2px solid rgba(56, 189, 248, 0.75);
+  background: rgba(8, 47, 73, 0.96);
+  color: #f8fafc;
+  font: inherit;
+  font-weight: 700;
+  font-size: clamp(0.88rem, 2.4vw, 0.98rem);
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(2, 6, 23, 0.45);
+}
+
+.omniqr-agb-voice-btn:hover,
+.omniqr-agb-voice-btn:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+.omniqr-agb-voice-btn__label {
+  line-height: 1.2;
+}
+
+.omniqr-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.85rem 1.1rem;
+  border: 0;
+  border-radius: 14px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  color: #0f172a;
+  background: linear-gradient(135deg, #38bdf8 0%, #22d3ee 45%, #a7f3d0 100%);
+  box-shadow: 0 12px 30px rgba(34, 211, 238, 0.28);
+}
+
+.omniqr-pdf-btn:hover,
+.omniqr-pdf-btn:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 2px;
+  filter: brightness(1.03);
+}
+
+.omniqr-pdf-btn.is-busy {
+  opacity: 0.72;
+  cursor: wait;
+}
+
+.omniqr-terms-pdf-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.88rem;
+  color: #94a3b8;
+}
+
+.omniqr-terms-back,
+.omniqr-terms-fullpage {
+  margin-top: 0.85rem;
+}
+
+.omniqr-page--agb .app-page-body {
+  padding-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* OmniQR: Security-Badge nicht über PDF/Vorlesen-Dock legen */
+body[data-app-id="omniqrAiPay"] #osg-security-container {
+  z-index: 880;
+}
+
+body[data-app-id="omniqrAiPay"].omniqr-page--agb #osg-security-container {
+  top: max(68px, calc(env(safe-area-inset-top, 12px) + 56px));
+  bottom: auto;
+  left: max(12px, env(safe-area-inset-left, 12px));
+  right: auto;
+}
+
+.omniqr-page--agb .omniqr-agb-sticky-actions {
+  pointer-events: none;
+}
+
+.omniqr-page--agb .omniqr-agb-sticky-actions > * {
+  pointer-events: auto;
+}
+
+@media (max-width: 480px) {
+  body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) #osg-security-container {
+    top: max(68px, calc(env(safe-area-inset-top, 12px) + 56px));
+    bottom: auto;
+    left: max(12px, env(safe-area-inset-left, 12px));
+    right: auto;
+  }
+
+  .omniqr-page--agb .omniqr-support-fab {
+    display: none;
+  }
+
+  .omniqr-page--agb .app-page-body {
+    padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .omniqr-page--agb .app-legal-footer--omniqr {
+    margin-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .omniqr-page--agb .omniqr-agb-sticky-actions {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.55rem max(12px, env(safe-area-inset-right, 12px))
+      max(10px, env(safe-area-inset-bottom, 10px))
+      max(12px, env(safe-area-inset-left, 12px));
+    border-top: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 16px 16px 0 0;
+    background: rgba(8, 12, 24, 0.97);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -10px 28px rgba(2, 6, 23, 0.45);
+  }
+
+  .omniqr-page--agb .omniqr-agb-voice-slot,
+  .omniqr-page--agb .omniqr-pdf-btn--sticky {
+    flex: 1 1 calc(50% - 0.25rem);
+    min-width: 0;
+    width: auto;
+  }
+
+  .omniqr-page--agb .omniqr-agb-voice-btn,
+  .omniqr-page--agb .omniqr-pdf-btn--sticky {
+    width: 100%;
+    min-height: 48px;
+    font-size: clamp(0.78rem, 3.2vw, 0.92rem);
+    padding-left: 0.55rem;
+    padding-right: 0.55rem;
+  }
+
+  .omniqr-page--agb .omniqr-pdf-btn__label,
+  .omniqr-page--agb .omniqr-agb-voice-btn__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .omniqr-support-fab {
+    left: max(12px, env(safe-area-inset-left, 12px));
+    right: auto;
+    bottom: max(12px, env(safe-area-inset-bottom, 12px));
+    max-width: min(52vw, 168px);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    z-index: 900;
+  }
+
+  .omniqr-modal-panel {
+    width: 100%;
+    max-height: 88vh;
+  }
+
+  .omniqr-modal-actions .btn,
+  .omniqr-welcome-actions .btn {
+    flex: 1 1 100%;
+    min-height: 48px;
+  }
+
+  .omniqr-app-menu {
+    left: max(12px, env(safe-area-inset-left, 12px));
+    right: max(12px, env(safe-area-inset-right, 12px));
+    min-width: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .omniqr-page--agb .omniqr-agb-sticky-actions {
+    flex-direction: column;
+  }
+
+  .omniqr-page--agb .app-page-body {
+    padding-bottom: calc(8.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .omniqr-page--agb .app-legal-footer--omniqr {
+    margin-bottom: calc(7.75rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+.omniqr-welcome-lead {
+  margin: 0 0 1rem;
+  line-height: 1.55;
+}
+
+.omniqr-welcome-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.omniqr-modal-panel--welcome {
+  width: min(100%, 440px);
+}

@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Terug naar hub"
+  },
+  "omniqr": {
+    "btnScanLabel": "QR laden",
+    "btnConfirmLabel": "Betaling bevestigen",
+    "btnSpeakLabel": "Status voorlezen",
+    "support": {
+      "fabLabel": "Contact / Support",
+      "submitBtn": "Verzenden",
+      "cancelBtn": "Annuleren"
+    },
+    "terms": {
+      "acceptBtn": "Sluiten",
+      "navLabel": "Voorwaarden / Legal",
+      "navAria": "Open voorwaardenpagina",
+      "menuAria": "App-menu",
+      "menuHome": "Start",
+      "menuDesc": "Beschrijving",
+      "menuSupport": "Contact / Support",
+      "pageBadge": "Legal · Pag. 3",
+      "readFullPage": "Volledige voorwaarden",
+      "readFullPageAria": "Open volledige juridische tekst",
+      "pdfDownload": "PDF downloaden",
+      "pdfDownloadAria": "Voorwaarden-PDF opslaan",
+      "pdfHint": "PDF opgeslagen op apparaat — klaar om te printen.",
+      "pdfError": "PDF-download mislukt.",
+      "readAloud": "Voorwaarden voorlezen",
+      "readAloudAria": "Voorwaarden van begin tot eind voorlezen",
+      "welcomeTitle": "Welkom bij OmniQR-AI",
+      "welcomeLead": "Lees de voorwaarden op het scherm. Betalen vereist acceptatie.",
+      "welcomeAgbBtn": "Voorwaarden / Legal",
+      "welcomeAgbAria": "Open volledige voorwaardenpagina",
+      "welcomeContinue": "Verder",
+      "welcomeContinueAria": "Ga naar de app"
+    }
+  }
+}

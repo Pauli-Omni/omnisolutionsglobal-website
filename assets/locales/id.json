@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Kembali ke hub"
+  },
+  "omniqr": {
+    "btnScanLabel": "Muat QR",
+    "btnConfirmLabel": "Konfirmasi bayar",
+    "btnSpeakLabel": "Baca status",
+    "support": {
+      "fabLabel": "Kontak / Dukungan",
+      "submitBtn": "Kirim",
+      "cancelBtn": "Batal"
+    },
+    "terms": {
+      "acceptBtn": "Tutup",
+      "navLabel": "Syarat / Legal",
+      "navAria": "Buka halaman syarat",
+      "menuAria": "Menu aplikasi",
+      "menuHome": "Beranda",
+      "menuDesc": "Deskripsi",
+      "menuSupport": "Kontak / Dukungan",
+      "pageBadge": "Legal · Hal. 3",
+      "readFullPage": "Syarat lengkap",
+      "readFullPageAria": "Buka teks hukum lengkap",
+      "pdfDownload": "Unduh PDF",
+      "pdfDownloadAria": "Simpan PDF syarat ke perangkat",
+      "pdfHint": "PDF disimpan di perangkat — siap cetak.",
+      "pdfError": "Unduhan PDF gagal.",
+      "readAloud": "Baca syarat",
+      "readAloudAria": "Baca syarat dari awal hingga akhir",
+      "welcomeTitle": "Selamat datang di OmniQR-AI",
+      "welcomeLead": "Baca syarat di layar. Pembayaran memerlukan persetujuan.",
+      "welcomeAgbBtn": "Syarat / Legal",
+      "welcomeAgbAria": "Buka halaman syarat lengkap",
+      "welcomeContinue": "Lanjutkan",
+      "welcomeContinueAria": "Masuk ke aplikasi"
+    }
+  }
+}

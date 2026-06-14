@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- osg-release -->
+  <meta name="osg-build-id" content="2026.06.12.2">
+  <script src="../js/release-guard.js?v=2026.06.12.2"></script>
+  <!-- /osg-release -->
+  <meta name="description" content="">
+  <meta name="theme-color" content="#060608">
+  <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=2026.06.12.2">
+  <link rel="stylesheet" href="css/omniqr-a11y.css?v=2026.06.12.2">
+</head>
+<body class="app-page app-page--front" data-page="omniqr" data-app-id="omniqrAiPay" data-app-view="front" data-i18n-title="omniqr.title" data-i18n-meta="omniqr.meta">
+
+  <div class="chrome-frame" aria-hidden="true"></div>
+  <div class="chrome-frame-inner" aria-hidden="true"></div>
+  <div class="chameleon-bg" aria-hidden="true">
+    <div class="chameleon-wave chameleon-wave--deep" aria-hidden="true"></div>
+    <div class="chameleon-wave chameleon-wave--mid" aria-hidden="true"></div>
+    <div class="chameleon-wave chameleon-wave--crest" aria-hidden="true"></div>
+  </div>
+  <a href="#main" class="skip-link" data-i18n="a11y.skipLink"></a>
+  <div class="app-page-shell">
+    <div id="app-voice-slot"></div>
+    <main class="app-page-body" id="main">
+      <section class="app-front neo-accent-box" aria-labelledby="app-front-title">
+        <div class="app-front-icon" id="app-front-icon">
+          <div class="app-front-icon-placeholder" id="app-front-icon-placeholder" aria-hidden="true"></div>
+          <img id="app-front-icon-img" class="app-front-icon-img" alt="" width="160" height="160" hidden>
+        </div>
+        <h1 id="app-front-title" class="app-front-title chrome-silver-text" data-i18n="omniqr.pageTitle"></h1>
+        <div class="app-front-werbetext chrome-silver-text" id="app-front-werbetext"></div>
+
+        <section
+          id="omniqr-pay-zone"
+          class="omniqr-pay-zone"
+          tabindex="0"
+          role="region"
+          aria-labelledby="omniqr-pay-zone-label"
+          data-i18n-aria="omniqr.payZoneAria">
+          <h2 id="omniqr-pay-zone-label" class="chrome-silver-text" data-i18n="omniqr.payZoneLabel"></h2>
+          <div id="omniqr-pay-live" class="omniqr-pay-live" aria-live="polite" aria-atomic="true"></div>
+          <div
+            id="omniqr-qr-stage"
+            class="omniqr-qr-stage"
+            role="img"
+            data-state="idle"
+            data-i18n-aria="omniqr.qrStageAria"
+            data-i18n="omniqr.qrStagePlaceholder"></div>
+          <div class="omniqr-pay-actions" role="group" data-i18n-aria="omniqr.payActionsAria">
+            <button type="button" id="omniqr-btn-scan" class="omniqr-pay-btn" role="button" data-i18n="omniqr.btnScanLabel" data-i18n-aria="omniqr.btnScanAria"></button>
+            <button type="button" id="omniqr-btn-confirm" class="omniqr-pay-btn omniqr-pay-btn--primary" role="button" data-i18n="omniqr.btnConfirmLabel" data-i18n-aria="omniqr.btnConfirmAria"></button>
+            <button type="button" id="omniqr-btn-speak" class="omniqr-pay-btn" role="button" data-i18n="omniqr.btnSpeakLabel" data-i18n-aria="omniqr.btnSpeakAria"></button>
+          </div>
+          <p class="omniqr-keyboard-hint" data-i18n="omniqr.payKeyboardHint"></p>
+        </section>
+
+        <a href="beschreibung.html" id="app-front-cta" class="btn btn-neon app-front-cta" data-i18n="app.learnMore"></a>
+      </section>
+    </main>
+
+    <footer class="app-legal-footer app-legal-footer--omniqr">
+      <a href="../impressum.html" class="app-legal-footer-link chrome-silver-text" data-i18n="legal.footer"></a>
+      <a href="agb.html" class="app-legal-footer-link chrome-silver-text" data-i18n="omniqr.terms.navLabel" data-i18n-aria="omniqr.terms.navAria"></a>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.1/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="../js/i18n-config.js?v=2026.06.12.2"></script>
+  <script src="../js/world-lang.js?v=2026.06.12.2"></script>
+  <script src="../js/i18n.js?v=2026.06.12.2"></script>
+  <script src="../js/app-registry.js?v=2026.06.12.2"></script>
+  <script src="../js/app-front-page.js?v=2026.06.12.2"></script>
+  <script src="../js/osg-voice-config.js?v=2026.06.12.2"></script>
+  <script src="../js/tts-english-terms.js?v=2026.06.12.2"></script>
+  <script src="../js/voice-mount.js?v=2026.06.12.2"></script>
+  <script src="../js/brand-tts.js?v=2026.06.12.2"></script>
+  <script src="../js/voice.js?v=2026.06.12.2"></script>
+  <script src="../js/app.js?v=2026.06.12.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script src="js/omniqr-pay-api.js?v=2026.06.12.2"></script>
+  <script src="js/omniqr-pay-hub.js?v=2026.06.12.2"></script>
+  <script src="js/omniqr-terms-view.js?v=2026.06.12.2"></script>
+  <script src="js/omniqr-chrome.js?v=2026.06.12.2"></script>
+  <link rel="stylesheet" href="../css/osg-security.css?v=2026.06.12.2" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="../css/osg-security.css?v=2026.06.12.2"></noscript>
+  <div id="osg-security-container">
+    <div id="osg-secure-badge" role="button" tabindex="0" data-i18n-aria="security.badgeAria">
+      <div class="osg-secure-badge__dot" aria-hidden="true"></div>
+      <span class="osg-secure-badge__label" data-i18n="security.badgeLabel"></span>
+    </div>
+    <div id="osg-security-modal" aria-hidden="true" role="dialog" aria-labelledby="osg-security-modal-title">
+      <div class="osg-security-modal__head">
+        <h4 id="osg-security-modal-title" class="osg-security-modal__title" data-i18n="security.modalTitle"></h4>
+        <button type="button" id="osg-security-close" class="osg-security-modal__close" data-i18n-aria="security.modalCloseAria">&times;</button>
+      </div>
+      <div class="osg-security-modal__status">
+        <div class="osg-security-modal__radar" aria-hidden="true">
+          <div class="osg-security-modal__radar-scan"></div>
+        </div>
+        <div>
+          <div class="osg-security-modal__gpu" data-i18n-html="security.gpuStatus"></div>
+          <div id="osg-security-latency" class="osg-security-modal__meta"></div>
+        </div>
+      </div>
+      <p class="osg-security-modal__text" data-i18n-html="security.architectureP1"></p>
+      <p class="osg-security-modal__text" data-i18n-html="security.architectureP2"></p>
+    </div>
+  </div>
+  <script src="../js/osg-security.js?v=2026.06.12.2" defer></script>
+</body>
+</html>

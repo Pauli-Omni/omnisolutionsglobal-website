@@ -1,0 +1,26 @@
+  <link rel="stylesheet" href="css/osg-security.css?v=2026.06.12.2" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/osg-security.css?v=2026.06.12.2"></noscript>
+  <div id="osg-security-container">
+    <div id="osg-secure-badge" role="button" tabindex="0" data-i18n-aria="security.badgeAria">
+      <div class="osg-secure-badge__dot" aria-hidden="true"></div>
+      <span class="osg-secure-badge__label" data-i18n="security.badgeLabel"></span>
+    </div>
+    <div id="osg-security-modal" aria-hidden="true" role="dialog" aria-labelledby="osg-security-modal-title">
+      <div class="osg-security-modal__head">
+        <h4 id="osg-security-modal-title" class="osg-security-modal__title" data-i18n="security.modalTitle"></h4>
+        <button type="button" id="osg-security-close" class="osg-security-modal__close" data-i18n-aria="security.modalCloseAria">&times;</button>
+      </div>
+      <div class="osg-security-modal__status">
+        <div class="osg-security-modal__radar" aria-hidden="true">
+          <div class="osg-security-modal__radar-scan"></div>
+        </div>
+        <div>
+          <div class="osg-security-modal__gpu" data-i18n-html="security.gpuStatus"></div>
+          <div id="osg-security-latency" class="osg-security-modal__meta"></div>
+        </div>
+      </div>
+      <p class="osg-security-modal__text" data-i18n-html="security.architectureP1"></p>
+      <p class="osg-security-modal__text" data-i18n-html="security.architectureP2"></p>
+    </div>
+  </div>
+  <script src="js/osg-security.js?v=2026.06.12.2" defer></script>

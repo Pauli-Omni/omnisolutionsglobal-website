@@ -1,0 +1,291 @@
+#osg-security-container {
+  position: fixed;
+  bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  right: max(12px, env(safe-area-inset-right, 12px));
+  z-index: 999999;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  pointer-events: none;
+}
+
+#osg-security-container * {
+  pointer-events: auto;
+}
+
+#osg-secure-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  padding: 10px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+#osg-secure-badge:hover,
+#osg-secure-badge:focus-visible {
+  transform: scale(1.05);
+  border-color: rgba(0, 212, 255, 0.8);
+  outline: none;
+}
+
+.osg-secure-badge__dot {
+  width: 10px;
+  height: 10px;
+  background-color: #00ffcc;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ffcc;
+  animation: osgPulseGlow 2s infinite;
+  flex-shrink: 0;
+}
+
+.osg-secure-badge__label {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#osg-security-modal {
+  display: none;
+  position: absolute;
+  bottom: 55px;
+  right: 0;
+  width: min(320px, calc(100vw - 24px));
+  background: rgba(10, 15, 30, 0.98);
+  border: 1px solid #00d4ff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  animation: osgFadeInSecure 0.2s ease-out;
+}
+
+#osg-security-modal.is-open {
+  display: block;
+}
+
+.osg-security-modal__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.osg-security-modal__title {
+  color: #00d4ff;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.osg-security-modal__close {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.osg-security-modal__close:hover,
+.osg-security-modal__close:focus-visible {
+  color: #ffffff;
+  outline: none;
+}
+
+.osg-security-modal__status {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  background: rgba(0, 212, 255, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+.osg-security-modal__radar {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #00d4ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.osg-security-modal__radar-scan {
+  width: 100%;
+  height: 2px;
+  background: #00d4ff;
+  position: absolute;
+  animation: osgRadarScan 1.5s linear infinite;
+  transform-origin: center;
+}
+
+.osg-security-modal__gpu {
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.osg-security-modal__gpu span {
+  color: #00ffcc;
+}
+
+.osg-security-modal__meta {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 9px;
+  font-family: monospace;
+}
+
+.osg-security-modal__text {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+  text-align: justify;
+}
+
+.osg-security-modal__text:last-child {
+  margin-bottom: 0;
+}
+
+#osg-intrusion-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 6, 12, 0.99);
+  z-index: 99999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', Roboto, monospace;
+  border: 4px solid #ff3333;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.osg-intrusion-modal__box {
+  width: min(480px, 100%);
+  background: #070b14;
+  border: 1px solid #ff3333;
+  border-radius: 8px;
+  padding: 35px;
+  box-shadow: 0 0 40px rgba(255, 51, 51, 0.4);
+  text-align: center;
+  color: #ffffff;
+}
+
+.osg-intrusion-modal__icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+  animation: osgFlashRed 1s infinite;
+}
+
+.osg-intrusion-modal__title {
+  color: #ff3333;
+  margin: 0 0 10px 0;
+  font-size: 15px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.osg-intrusion-modal__subtitle {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.osg-intrusion-modal__notice {
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: justify;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 15px;
+}
+
+.osg-intrusion-modal__warning {
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: justify;
+  color: #ff3333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.osg-intrusion-modal__log {
+  background: rgba(255, 51, 51, 0.03);
+  border: 1px solid rgba(255, 51, 51, 0.2);
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 10px;
+  text-align: left;
+  color: #ff9999;
+  font-family: monospace;
+  line-height: 1.4;
+}
+
+.osg-intrusion-modal__tarpit {
+  margin-top: 15px;
+  font-size: 10px;
+  color: #00ffcc;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+@keyframes osgPulseGlow {
+  0% { transform: scale(0.9); box-shadow: 0 0 4px #00ffcc; }
+  50% { transform: scale(1.1); box-shadow: 0 0 12px #00ffcc; }
+  100% { transform: scale(0.9); box-shadow: 0 0 4px #00ffcc; }
+}
+
+@keyframes osgRadarScan {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes osgFadeInSecure {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes osgFlashRed {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@media (max-width: 480px) {
+  #osg-secure-badge {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .osg-secure-badge__label {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+
+  #osg-security-modal {
+    bottom: 48px;
+    right: 0;
+    padding: 16px;
+  }
+}

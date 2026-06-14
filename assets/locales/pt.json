@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "Voltar ao hub"
+  },
+  "omniqr": {
+    "btnScanLabel": "Carregar QR",
+    "btnConfirmLabel": "Confirmar pagamento",
+    "btnSpeakLabel": "Ler estado",
+    "support": {
+      "fabLabel": "Contacto / Suporte",
+      "submitBtn": "Enviar",
+      "cancelBtn": "Cancelar"
+    },
+    "terms": {
+      "acceptBtn": "Fechar",
+      "navLabel": "Termos / Legal",
+      "navAria": "Abrir página de termos",
+      "menuAria": "Menu da app",
+      "menuHome": "Início",
+      "menuDesc": "Descrição",
+      "menuSupport": "Contacto / Suporte",
+      "pageBadge": "Legal · Pág. 3",
+      "readFullPage": "Termos completos",
+      "readFullPageAria": "Abrir texto legal completo",
+      "pdfDownload": "Descarregar PDF",
+      "pdfDownloadAria": "Guardar PDF dos termos",
+      "pdfHint": "PDF guardado no dispositivo — pronto a imprimir.",
+      "pdfError": "Falha ao descarregar PDF.",
+      "readAloud": "Ler termos",
+      "readAloudAria": "Ler termos do início ao fim",
+      "welcomeTitle": "Bem-vindo ao OmniQR-AI",
+      "welcomeLead": "Leia os termos no ecrã. O pagamento exige aceitação.",
+      "welcomeAgbBtn": "Termos / Legal",
+      "welcomeAgbAria": "Abrir página de termos completa",
+      "welcomeContinue": "Continuar",
+      "welcomeContinueAria": "Ir para a aplicação"
+    }
+  }
+}

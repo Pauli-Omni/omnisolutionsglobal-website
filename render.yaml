@@ -1,0 +1,46 @@
+# Render.com — Web Service (Node + statische Website + TTS API)
+# Dashboard: https://dashboard.render.com
+# Secrets NUR im Render Environment Tab — niemals ins Git committen.
+
+services:
+  - type: web
+    name: omnisolutionsglobal-web
+    runtime: node
+    region: frankfurt
+    # plan: free  # zum Sparen; Starter = kein Sleep, kostet monatlich
+    plan: starter
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: OMNI_DEV_MODE
+        value: "0"
+      - key: BRAND_TTS_ENGINE
+        value: xtts
+      # --- Pflicht: als „Secret“ im Render-Dashboard setzen ---
+      - key: ELEVENLABS_API_KEY
+        sync: false
+      - key: ELEVENLABS_VOICE_ID
+        sync: false
+      - key: OMNI_SECRET_KEY
+        sync: false
+      - key: OSG_OPS_CHECK_TOKEN
+        sync: false
+      # --- Optional ---
+      - key: BRAND_TTS_CORS_ORIGIN
+        sync: false
+      - key: OMNI_SUPPORT_EMAIL
+        sync: false
+      - key: OMNI_SMTP_HOST
+        sync: false
+      - key: OMNI_SMTP_PORT
+        sync: false
+      - key: OMNI_SMTP_USER
+        sync: false
+      - key: OMNI_SMTP_PASS
+        sync: false
+      - key: OMNI_SMTP_FROM
+        sync: false

@@ -1,0 +1,30 @@
+# Secrets — niemals committen
+server/elevenlabs.config.env
+server/.env
+.env
+*.pem
+
+# Dependencies & builds
+server/node_modules/
+node_modules/
+
+# Python / XTTS (lokal, zu groß für GitHub)
+.venv-xtts/
+.venv-tts/
+.venv-voice/
+.venv/
+__pycache__/
+*.pyc
+
+# Runtime / cache
+server/.brand-voice-id
+server/omniqr-ai-for-tourist-of-thailand/data/
+.DS_Store
+
+# Optional: große lokale Audio-Backups (MP3s später gezielt committen)
+assets/audio/narration/
+assets/audio/voice_reference_template.wav
+assets/audio/omni-homepage-voice.mp3
+
+# Deploy-ZIPs (lokal, nicht für GitHub)
+deploy/*.zip

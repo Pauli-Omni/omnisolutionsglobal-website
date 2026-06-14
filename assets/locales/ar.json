@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "العودة للرئيسية"
+  },
+  "omniqr": {
+    "btnScanLabel": "تحميل QR",
+    "btnConfirmLabel": "تأكيد الدفع",
+    "btnSpeakLabel": "قراءة الحالة",
+    "support": {
+      "fabLabel": "اتصال / دعم",
+      "submitBtn": "إرسال",
+      "cancelBtn": "إلغاء"
+    },
+    "terms": {
+      "acceptBtn": "إغلاق",
+      "navLabel": "الشروط / قانوني",
+      "navAria": "فتح صفحة الشروط",
+      "menuAria": "قائمة التطبيق",
+      "menuHome": "الرئيسية",
+      "menuDesc": "الوصف",
+      "menuSupport": "اتصال / دعم",
+      "pageBadge": "قانوني · ص ٣",
+      "readFullPage": "الشروط كاملة",
+      "readFullPageAria": "فتح نص الشروط الكامل",
+      "pdfDownload": "تنزيل PDF",
+      "pdfDownloadAria": "حفظ PDF الشروط على الجهاز",
+      "pdfHint": "تم حفظ PDF على الجهاز — جاهز للطباعة.",
+      "pdfError": "فشل تنزيل PDF.",
+      "readAloud": "قراءة الشروط",
+      "readAloudAria": "قراءة الشروط من البداية للنهاية",
+      "welcomeTitle": "مرحبًا بك في OmniQR-AI",
+      "welcomeLead": "اقرأ الشروط على الشاشة. الدفع يتطلب الموافقة.",
+      "welcomeAgbBtn": "الشروط / قانوني",
+      "welcomeAgbAria": "فتح صفحة الشروط الكاملة",
+      "welcomeContinue": "متابعة",
+      "welcomeContinueAria": "الانتقال إلى التطبيق"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "common": {
+    "backHomeHub": "ホームへ戻る"
+  },
+  "omniqr": {
+    "btnScanLabel": "QRを読み込む",
+    "btnConfirmLabel": "支払いを確認",
+    "btnSpeakLabel": "状態を読み上げ",
+    "support": {
+      "fabLabel": "お問い合わせ / サポート",
+      "submitBtn": "送信",
+      "cancelBtn": "キャンセル"
+    },
+    "terms": {
+      "acceptBtn": "閉じる",
+      "navLabel": "規約 / 法務",
+      "navAria": "利用規約ページを開く",
+      "menuAria": "アプリメニュー",
+      "menuHome": "ホーム",
+      "menuDesc": "説明",
+      "menuSupport": "お問い合わせ / サポート",
+      "pageBadge": "法務 · 3ページ",
+      "readFullPage": "規約全文",
+      "readFullPageAria": "規約の全文ページを開く",
+      "pdfDownload": "PDFをダウンロード",
+      "pdfDownloadAria": "規約PDFを端末に保存",
+      "pdfHint": "PDFを端末に保存 — 印刷可能。",
+      "pdfError": "PDFのダウンロードに失敗しました。",
+      "readAloud": "規約を読み上げ",
+      "readAloudAria": "規約を最初から最後まで読み上げ",
+      "welcomeTitle": "OmniQR-AIへようこそ",
+      "welcomeLead": "画面上で規約をご確認ください。決済には同意が必要です。",
+      "welcomeAgbBtn": "規約 / 法務",
+      "welcomeAgbAria": "規約全文ページを開く",
+      "welcomeContinue": "続ける",
+      "welcomeContinueAria": "アプリへ進む"
+    }
+  }
+}

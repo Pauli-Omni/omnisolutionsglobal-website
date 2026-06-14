@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- osg-release -->
+  <meta name="osg-build-id" content="2026.06.12.2">
+  <script src="../js/release-guard.js?v=2026.06.12.2"></script>
+  <!-- /osg-release -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="">
+  <meta name="theme-color" content="#060608">
+  <title></title>
+  <link rel="stylesheet" href="../css/style.css?v=2026.06.12.2">
+  <link rel="stylesheet" href="../css/ops-voice-check.css?v=2026.06.12.2">
+</head>
+<body data-page="opsVoiceCheck" data-i18n-title="opsVoiceCheck.title" data-i18n-meta="opsVoiceCheck.meta">
+  <a href="#main" class="skip-link" data-i18n="a11y.skipLink"></a>
+  <main class="ops-voice-check" id="main">
+    <header class="ops-voice-check__head">
+      <h1 class="ops-voice-check__title" data-i18n="opsVoiceCheck.heading"></h1>
+      <p class="ops-voice-check__intro" data-i18n="opsVoiceCheck.intro"></p>
+    </header>
+
+    <section class="ops-voice-check__panel neo-accent-box" aria-labelledby="ops-client-heading">
+      <h2 id="ops-client-heading" data-i18n="opsVoiceCheck.clientHeading"></h2>
+      <p><span data-i18n="opsVoiceCheck.clientApiLabel"></span> <span id="ops-client-api" class="ops-voice-check__pill">—</span></p>
+      <p><span data-i18n="opsVoiceCheck.clientEndpointLabel"></span> <code id="ops-client-endpoint">—</code></p>
+      <p id="ops-public-status" class="ops-voice-check__meta"></p>
+    </section>
+
+    <section class="ops-voice-check__panel neo-accent-box" aria-labelledby="ops-server-heading">
+      <h2 id="ops-server-heading" data-i18n="opsVoiceCheck.serverHeading"></h2>
+      <p class="ops-voice-check__hint" data-i18n="opsVoiceCheck.tokenHint"></p>
+      <label class="ops-voice-check__field" for="ops-token-input">
+        <span data-i18n="opsVoiceCheck.tokenLabel"></span>
+        <input type="password" id="ops-token-input" autocomplete="off" data-i18n-placeholder="opsVoiceCheck.tokenPlaceholder">
+      </label>
+      <div class="ops-voice-check__actions">
+        <button type="button" id="ops-run-check" class="btn btn--primary" data-i18n="opsVoiceCheck.runCheck"></button>
+        <button type="button" id="ops-run-probe" class="btn btn--ghost" data-i18n="opsVoiceCheck.runProbe"></button>
+      </div>
+      <p id="ops-voice-message" class="ops-voice-check__message" role="status" aria-live="polite"></p>
+      <p id="ops-voice-summary" class="ops-voice-check__summary"></p>
+      <ul id="ops-voice-checks" class="ops-voice-check__list"></ul>
+      <p id="ops-probe-result" class="ops-voice-check__meta"></p>
+    </section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.1/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="../js/i18n-config.js?v=2026.06.12.2"></script>
+  <script src="../js/osg-voice-config.js?v=2026.06.12.2"></script>
+  <script src="../js/brand-tts.js?v=2026.06.12.2"></script>
+  <script src="../js/i18n.js?v=2026.06.12.2"></script>
+  <script src="../js/ops-voice-check.js?v=2026.06.12.2"></script>
+</body>
+</html>
