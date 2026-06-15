@@ -1378,6 +1378,52 @@ body:has(.chrome-frame-inner) .portal-overlay {
   border-radius: calc(var(--frame-radius) - 6px);
 }
 
+/* Homepage: Enterprise Core — fixed top-left in left chrome gutter (style.css = no late-load jump) */
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter {
+  position: fixed;
+  top: calc(var(--frame-width) + 3px + env(safe-area-inset-top, 0px));
+  left: calc(var(--frame-width) + 3px + env(safe-area-inset-left, 0px));
+  bottom: auto;
+  right: auto;
+  transform: none;
+  transition: none;
+  z-index: 999999;
+}
+
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-secure-badge {
+  padding: 3px 7px;
+  gap: 5px;
+  border-radius: 999px;
+  max-height: calc(var(--frame-inset) - var(--frame-width) - 4px);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.18);
+}
+
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-secure-badge:hover,
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-secure-badge:focus-visible {
+  transform: scale(1.04);
+}
+
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter .osg-secure-badge__dot {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 5px #00ffcc;
+}
+
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter .osg-secure-badge__label {
+  font-size: 7px;
+  letter-spacing: 0.35px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-security-modal {
+  bottom: auto;
+  top: calc(100% + 8px);
+  left: 0;
+  right: auto;
+  transform: none;
+}
+
 /* ── App-Seiten (Vorderseite & Beschreibung) ── */
 body.app-page {
   overflow-x: hidden;
@@ -1561,6 +1607,26 @@ body.app-page:has(.chrome-frame-inner) .app-voice-toolbar {
 @media (max-width: 480px) {
   :root {
     --frame-inset: clamp(0.55rem, 3vw, 1cm);
+  }
+
+  body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-secure-badge {
+    padding: 2px 5px;
+    gap: 4px;
+    max-height: calc(var(--frame-inset) - var(--frame-width) - 2px);
+  }
+
+  body[data-page="home"] #osg-security-container.osg-security-container--home-gutter .osg-secure-badge__label {
+    font-size: 6px;
+    letter-spacing: 0.25px;
+  }
+
+  body[data-page="home"] #osg-security-container.osg-security-container--home-gutter .osg-secure-badge__dot {
+    width: 5px;
+    height: 5px;
+  }
+
+  body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-security-modal {
+    width: min(260px, calc(100vw - var(--frame-inset) - 2.5rem));
   }
 
   .app-page-shell {
