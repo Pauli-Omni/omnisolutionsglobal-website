@@ -1214,8 +1214,9 @@ body[data-page="home"] {
   }
 
   .portal-logo-dock {
-    max-width: min(40vw, 168px);
-    transform: translate(clamp(0.35rem, 3.5vw, 1rem), 0) scale(0.6904125);
+    min-width: 180px;
+    max-width: 200px;
+    transform: translate(clamp(0.35rem, 3.5vw, 1rem), 0) scale(1);
   }
 
   .portal-logo-dock .portal-logo-slot {
@@ -1223,14 +1224,18 @@ body[data-page="home"] {
   }
 
   .portal-logo-dock .portal-logo-slot--official {
-    max-width: 100%;
-    max-height: min(22vh, 148px);
+    max-width: 180px;
+    min-width: 150px;
+    max-height: none;
     filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.38));
   }
 
   body[data-page="home"] .portal-logo-dock .portal-logo-official {
-    width: 100%;
-    max-height: min(20vh, 136px);
+    min-width: 150px;
+    width: 180px;
+    max-width: 180px;
+    height: auto;
+    max-height: min(24vh, 160px);
     animation: none;
   }
 
@@ -1310,24 +1315,25 @@ body[data-page="home"].portal-video-phone-portrait #hero-video {
 }
 
 body[data-page="home"].portal-video-phone-landscape #hero-video {
-  inset: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
+  inset: auto;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  width: 60%;
+  max-width: 60%;
+  height: auto;
+  max-height: 92%;
+  margin: 0 auto;
   object-fit: contain;
   object-position: center center;
-  transform: none;
-  -webkit-transform: none;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   filter: saturate(1.05) brightness(0.94) contrast(1.06);
 }
 
-@media screen and (max-width: 900px) {
-  /* Mobile: Erzwinge Anpassung an den Handy-Screen */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  /* Nur Hochkant — Querformat separat (s. landscape-Regeln) */
   body[data-page="home"] #hero-video {
     width: 100% !important;
     height: auto !important;
@@ -1342,18 +1348,54 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   }
 }
 
-@media (max-width: 768px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
-  /* Querformat: vorherige Darstellung (volle Fläche, contain) */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  /* Smartphone Querformat: Video begrenzt, zentriert */
+  body[data-page="home"] .hero-video-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   body[data-page="home"] #hero-video {
-    inset: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    max-width: none;
-    max-height: none;
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 60%;
+    max-width: 60%;
+    height: auto;
+    max-height: 100%;
+    margin: 0 auto;
+    object-fit: contain;
+    object-position: center center;
+    transform: none;
+    -webkit-transform: none;
+    filter: saturate(1.05) brightness(0.94) contrast(1.06);
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  /* Touch-Querformat: gleiche 60%-Begrenzung */
+  body[data-page="home"] .hero-video-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  body[data-page="home"] #hero-video {
+    position: relative;
+    inset: auto;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 60%;
+    max-width: 60%;
+    height: auto;
+    max-height: 100%;
+    margin: 0 auto;
     object-fit: contain;
     object-position: center center;
     transform: none;
@@ -1367,17 +1409,23 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   }
 
   .portal-logo-dock {
-    max-width: min(28vw, 140px);
+    min-width: 180px;
+    max-width: 200px;
     bottom: calc(
       var(--frame-width)
       + clamp(0.45rem, 1.5vh, 0.75rem)
       + env(safe-area-inset-bottom, 0px)
       + 2.75rem
     );
+    transform: translate(clamp(0.35rem, 3.5vw, 1rem), 0) scale(1);
   }
 
   body[data-page="home"] .portal-logo-dock .portal-logo-official {
-    max-height: min(16vh, 108px);
+    min-width: 150px;
+    width: 180px;
+    max-width: 180px;
+    height: auto;
+    max-height: min(28vh, 120px);
   }
 }
 
@@ -4642,8 +4690,9 @@ a.store-badge:hover {
       + 2.35rem
       + 0.3rem
     );
-    max-width: min(34vw, 88px);
-    transform: translate(clamp(0.1rem, 1.8vw, 0.45rem), 0) scale(0.345);
+    min-width: 180px;
+    max-width: 200px;
+    transform: translate(clamp(0.1rem, 1.8vw, 0.45rem), 0) scale(1);
   }
 
   .portal-center {
@@ -4652,12 +4701,18 @@ a.store-badge:hover {
   }
 
   .portal-logo-dock .portal-logo-slot--official {
-    max-height: min(11vh, 72px);
+    min-width: 150px;
+    max-width: 180px;
+    max-height: none;
     filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.32));
   }
 
   body[data-page="home"] .portal-logo-dock .portal-logo-official {
-    max-height: min(10vh, 64px);
+    min-width: 150px;
+    width: 180px;
+    max-width: 180px;
+    height: auto;
+    max-height: min(22vh, 140px);
   }
 
   .portal-logo-slot--official {
