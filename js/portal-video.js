@@ -82,12 +82,52 @@
     syncPortalSoundButton(video);
   }
 
+  function isPhoneViewport() {
+    var w = window.innerWidth || document.documentElement.clientWidth || 0;
+    var h = window.innerHeight || document.documentElement.clientHeight || 0;
+    var minSide = Math.min(w, h);
+    var touch = navigator.maxTouchPoints > 0
+      || window.matchMedia('(pointer: coarse)').matches
+      || 'ontouchstart' in window;
+    return touch && minSide <= 520;
+  }
+
+  function syncPhoneVideoFit() {
+    if (document.body.getAttribute('data-page') !== 'home') return;
+    var w = window.innerWidth || document.documentElement.clientWidth || 0;
+    var h = window.innerHeight || document.documentElement.clientHeight || 0;
+    var phone = isPhoneViewport();
+    var portrait = h >= w;
+    document.body.classList.toggle('portal-video-phone-portrait', phone && portrait);
+    document.body.classList.toggle('portal-video-phone-landscape', phone && !portrait);
+  }
+
+  function initPhoneVideoFit() {
+    syncPhoneVideoFit();
+    window.addEventListener('resize', syncPhoneVideoFit);
+    window.addEventListener('orientationchange', syncPhoneVideoFit);
+  }
+
+  function applyMobileVideoLoadHints(video) {
+    if (!video) return;
+    var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    var saveData = conn && conn.saveData;
+    var slowNet = conn && typeof conn.effectiveType === 'string'
+      && /^(?:slow-)?2g$/i.test(conn.effectiveType);
+    if (window.matchMedia('(max-width: 768px)').matches && (saveData || slowNet)) {
+      video.preload = 'metadata';
+    }
+  }
+
   function initPortalHeroVideo() {
     if (heroVideoInited) return;
     heroVideoInited = true;
 
     var video = document.getElementById('hero-video');
     if (!video) return;
+
+    applyMobileVideoLoadHints(video);
+    initPhoneVideoFit();
 
     function onVideoError() {
       video.classList.add('hero-video--failed');
@@ -123,6 +163,8 @@
     var portal = document.getElementById('portal-overlay');
     var layer = document.getElementById('portal-sparks');
     if (!portal || !layer) return;
+
+    if (window.matchMedia('(max-width: 768px), (pointer: coarse)').matches) return;
 
     var lastSpark = 0;
 
@@ -160,5 +202,11 @@
     document.addEventListener('DOMContentLoaded', initPortalHeroVideo);
   } else {
     initPortalHeroVideo();
+  }
+
+  if (document.body) {
+    syncPhoneVideoFit();
+  } else {
+    document.addEventListener('DOMContentLoaded', syncPhoneVideoFit);
   }
 })();

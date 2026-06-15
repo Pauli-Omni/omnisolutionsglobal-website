@@ -74,6 +74,52 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Fluid media — kein max-width:100vw auf * (bricht Portal-Video & 3D-Stage) */
+img,
+picture,
+video:not(#hero-video),
+svg:not(.portal-video-sound-btn__icon):not(.sidebar-link-icon) {
+  max-width: 100%;
+  height: auto;
+}
+
+.container,
+.home-splash-core {
+  width: 95%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 8vw, 3.5rem);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (orientation: landscape) and (max-width: 900px) {
+  .content-wrapper {
+    padding: 20px;
+    flex-direction: row;
+  }
+}
+
+@media screen and (orientation: portrait) and (max-width: 600px) {
+  .content-wrapper {
+    padding: 10px;
+    flex-direction: column;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -1153,8 +1199,185 @@ body[data-page="home"] {
 }
 
 @media (max-width: 768px) {
-  #hero-video {
+  .hero-video-frame {
+    inset: var(--frame-width);
+    border-radius: calc(var(--frame-radius) - 2px);
+    clip-path: none;
+    contain: none;
+    overflow: hidden;
+  }
+
+  .portal-has-video .portal-center::before {
+    width: min(88vw, 320px);
+    max-height: min(34vh, 240px);
+    min-height: min(18vh, 120px);
+  }
+
+  .portal-logo-dock {
+    max-width: min(40vw, 168px);
+    transform: translate(clamp(0.35rem, 3.5vw, 1rem), 0) scale(0.6904125);
+  }
+
+  .portal-logo-dock .portal-logo-slot {
+    min-height: 0;
+  }
+
+  .portal-logo-dock .portal-logo-slot--official {
+    max-width: 100%;
+    max-height: min(22vh, 148px);
+    filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.38));
+  }
+
+  body[data-page="home"] .portal-logo-dock .portal-logo-official {
+    width: 100%;
+    max-height: min(20vh, 136px);
+    animation: none;
+  }
+
+  .portal-has-video .home-starfield {
+    opacity: 0.45;
+  }
+
+  .portal-sparks {
+    display: none;
+  }
+
+  .btn-portal-enter {
+    animation-duration: 3.2s;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) and (min-width: 481px) {
+  /* Tablet Hochkant: normale contain-Darstellung, nicht Handy-Zoom */
+  body[data-page="home"] #hero-video {
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
     object-position: center center;
+    transform: none;
+    -webkit-transform: none;
+    filter: saturate(1.05) brightness(0.94) contrast(1.06);
+  }
+}
+
+@media (max-width: 480px) and (orientation: portrait) and (hover: none) and (pointer: coarse) {
+  /* Fallback ohne JS — Klasse .portal-video-phone-portrait ist maßgeblich */
+  body[data-page="home"] #hero-video {
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100dvh;
+    object-fit: contain;
+    object-position: center center;
+    transform: none;
+    -webkit-transform: none;
+    filter: saturate(1.05) brightness(0.94) contrast(1.06);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* Handy Hochkant — per JS-Klasse (Safari/iPhone zuverlässig) */
+body[data-page="home"].portal-video-phone-portrait #hero-video {
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100vw;
+  max-height: 100dvh;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+  -webkit-transform: none;
+  filter: saturate(1.05) brightness(0.94) contrast(1.06);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+body[data-page="home"].portal-video-phone-landscape #hero-video {
+  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+  -webkit-transform: none;
+  filter: saturate(1.05) brightness(0.94) contrast(1.06);
+}
+
+@media screen and (max-width: 900px) {
+  /* Mobile: Erzwinge Anpassung an den Handy-Screen */
+  body[data-page="home"] #hero-video {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 50vh;
+    object-fit: contain !important;
+  }
+
+  body[data-page="home"] .home-splash-core {
+    width: 90% !important;
+    transform: scale(0.5);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 768px) and (orientation: landscape) and (hover: none) and (pointer: coarse) {
+  /* Querformat: vorherige Darstellung (volle Fläche, contain) */
+  body[data-page="home"] #hero-video {
+    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: contain;
+    object-position: center center;
+    transform: none;
+    -webkit-transform: none;
+    filter: saturate(1.05) brightness(0.94) contrast(1.06);
+  }
+
+  .portal-has-video .portal-center::before {
+    max-height: min(28vh, 160px);
+    min-height: 0;
+  }
+
+  .portal-logo-dock {
+    max-width: min(28vw, 140px);
+    bottom: calc(
+      var(--frame-width)
+      + clamp(0.45rem, 1.5vh, 0.75rem)
+      + env(safe-area-inset-bottom, 0px)
+      + 2.75rem
+    );
+  }
+
+  body[data-page="home"] .portal-logo-dock .portal-logo-official {
+    max-height: min(16vh, 108px);
   }
 }
 
@@ -4400,27 +4623,41 @@ a.store-badge:hover {
 }
 
 @media (max-width: 480px) {
+  .hero-video-frame {
+    clip-path: none;
+  }
+
   .portal-has-video .portal-center::before {
-    max-width: min(94vw, 400px);
-    max-height: min(52vh, 380px);
-    min-height: 0;
+    width: min(72vw, 160px);
+    max-height: min(14vh, 92px);
+    min-height: min(8vh, 52px);
   }
 
   .portal-logo-dock {
-    right: calc(var(--frame-width) + 0.55rem + env(safe-area-inset-right, 0px));
+    right: calc(var(--frame-width) + 0.45rem + env(safe-area-inset-right, 0px));
     bottom: calc(
       var(--frame-width)
-      + 0.55rem
-      + env(safe-area-inset-bottom, 0px)
-      + 2.85rem
       + 0.45rem
+      + env(safe-area-inset-bottom, 0px)
+      + 2.35rem
+      + 0.3rem
     );
-    max-width: min(94vw, 400px);
+    max-width: min(34vw, 88px);
+    transform: translate(clamp(0.1rem, 1.8vw, 0.45rem), 0) scale(0.345);
   }
 
   .portal-center {
-    gap: 1rem;
-    padding: 1rem 0.75rem;
+    gap: 0.55rem;
+    padding: max(0.55rem, env(safe-area-inset-top, 0px)) 0.55rem max(0.55rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .portal-logo-dock .portal-logo-slot--official {
+    max-height: min(11vh, 72px);
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.32));
+  }
+
+  body[data-page="home"] .portal-logo-dock .portal-logo-official {
+    max-height: min(10vh, 64px);
   }
 
   .portal-logo-slot--official {
@@ -4443,16 +4680,24 @@ a.store-badge:hover {
     letter-spacing: 0.08em;
   }
 
-  .btn-portal-enter {
-    width: min(100%, 18rem);
-    padding: 0.85rem 1.4rem;
+  .portal-has-video .btn-portal-enter {
+    width: min(100%, 9rem);
+    padding: 0.48rem 0.95rem;
+    font-size: clamp(0.72rem, 2.6vw, 0.92rem);
+    margin-top: clamp(0.15rem, 0.6vh, 0.35rem);
+    letter-spacing: 0.04em;
   }
 
   .portal-video-sound-btn {
-    width: 2.85rem;
-    height: 2.85rem;
-    right: calc(var(--frame-width) + 0.55rem + env(safe-area-inset-right, 0px));
-    bottom: calc(var(--frame-width) + 0.55rem + env(safe-area-inset-bottom, 0px));
+    width: 2.35rem;
+    height: 2.35rem;
+    right: calc(var(--frame-width) + 0.45rem + env(safe-area-inset-right, 0px));
+    bottom: calc(var(--frame-width) + 0.45rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .portal-video-sound-btn svg {
+    width: 18px;
+    height: 18px;
   }
 
   .presentation-splash-logo {
@@ -4490,6 +4735,10 @@ a.store-badge:hover {
   .chameleon-bg::before { opacity: 1; }
   .voice-btn--deactivated,
   .voice-btn--playing { animation: none; }
+  .portal-logo-official,
+  .portal-logo-dock .portal-logo-official { animation: none; }
+  .btn-portal-enter { animation: none; }
+  #hero-video { filter: none; }
   .refs-marquee-track { animation: none; flex-wrap: wrap; width: 100%; }
   .osg-logo-anim,
   .osg-logo-aura,

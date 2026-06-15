@@ -46,6 +46,19 @@ function stampQueryUrls(html, buildId) {
   return next;
 }
 
+var VIEWPORT_META =
+  '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
+
+function normalizeViewport(html) {
+  if (/<meta name="viewport"[^>]*>/i.test(html)) {
+    return html.replace(/<meta name="viewport"[^>]*>/i, VIEWPORT_META);
+  }
+  if (/<head>\n/i.test(html)) {
+    return html.replace(/(<head>\n)/i, '$1  ' + VIEWPORT_META + '\n');
+  }
+  return html;
+}
+
 function injectReleaseBlock(html, buildId, guardSrc) {
   var cleaned = html.replace(RELEASE_BLOCK_RE, '');
   var block =
@@ -96,7 +109,8 @@ function main() {
 
     var guardSrc = jsPrefixForHtml(htmlPath);
     var original = fs.readFileSync(htmlPath, 'utf8');
-    var updated = injectReleaseBlock(original, buildId, guardSrc);
+    var updated = normalizeViewport(original);
+    updated = injectReleaseBlock(updated, buildId, guardSrc);
     updated = stampQueryUrls(updated, buildId);
 
     if (updated !== original) {

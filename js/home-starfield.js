@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var STAR_COUNT = 58;
+  var STAR_COUNT = window.matchMedia('(max-width: 768px)').matches ? 26 : 58;
   var HIT_RADIUS = 28;
   var MAX_CHAIN = 4;
   var POINTER_COOLDOWN = 380;
@@ -64,7 +64,7 @@
 
     function resize() {
       var rect = layer.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, window.matchMedia('(max-width: 768px)').matches ? 1.5 : 2);
       width = Math.max(1, Math.floor(rect.width));
       height = Math.max(1, Math.floor(rect.height));
       canvas.width = Math.floor(width * dpr);
@@ -267,7 +267,7 @@
     var instances = [];
 
     if (splash) instances.push(mountStarfield(splash));
-    if (portal) {
+    if (portal && !window.matchMedia('(max-width: 768px)').matches) {
       var portalField = mountStarfield(portal);
       instances.push(portalField);
 
