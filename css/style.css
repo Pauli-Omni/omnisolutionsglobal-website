@@ -1119,16 +1119,10 @@ body:has(.chrome-frame-inner) .osg-site-mark {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.85rem, 2.5vh, 1.6rem);
+  gap: clamp(1.1rem, 3vh, 2rem);
   padding: clamp(1.25rem, 5vw, 3rem);
   transition: opacity 0.55s ease, transform 0.55s ease;
   pointer-events: none;
-}
-
-.portal-welcome-silver {
-  flex: 0 0 auto;
-  margin: 0;
-  text-align: center;
 }
 
 .portal-center > * {
@@ -1147,8 +1141,12 @@ body:has(.chrome-frame-inner) .osg-site-mark {
 }
 
 .portal-logo-slot--official {
-  max-height: min(72vh, 640px);
-  min-height: min(40vh, 280px);
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: min(92vw, 540px);
+  max-height: min(58vh, 560px);
+  min-height: 0;
+  margin: 0 auto;
   filter:
     drop-shadow(0 0 32px rgba(0, 229, 255, 0.42))
     drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55));
@@ -1156,9 +1154,10 @@ body:has(.chrome-frame-inner) .osg-site-mark {
 
 .portal-logo-official {
   display: block;
-  width: min(92vw, 520px);
+  width: 100%;
   height: auto;
-  max-height: min(68vh, 600px);
+  max-height: min(54vh, 520px);
+  margin: 0 auto;
   object-fit: contain;
   object-position: center center;
   user-select: none;
@@ -1227,6 +1226,7 @@ body:has(.chrome-frame-inner) .osg-site-mark {
 
 .btn-portal-enter {
   flex: 0 0 auto;
+  margin-top: clamp(0.35rem, 1.2vh, 0.85rem);
   background: linear-gradient(145deg, rgba(0, 229, 255, 0.18) 0%, rgba(10, 14, 20, 0.92) 38%, rgba(0, 229, 255, 0.12) 100%);
   color: var(--neon-cyan);
   font-family: var(--font-portal);
@@ -3729,19 +3729,23 @@ a.store-badge:hover {
 }
 
 @media (max-width: 480px) {
+  .portal-center {
+    gap: 1rem;
+    padding: 1rem 0.75rem;
+  }
+
   .portal-logo-slot--official {
-    max-height: min(64vh, 480px);
-    min-height: min(36vh, 220px);
+    max-width: min(94vw, 400px);
+    max-height: min(50vh, 400px);
   }
 
   .portal-logo-official {
-    width: min(94vw, 400px);
-    max-height: min(58vh, 440px);
+    max-height: min(48vh, 380px);
   }
 
   .portal-logo-slot {
     max-height: min(52vh, 380px);
-    min-height: min(30vh, 200px);
+    min-height: 0;
   }
 
   .portal-brand-name,
