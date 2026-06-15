@@ -1125,6 +1125,12 @@ body:has(.chrome-frame-inner) .osg-site-mark {
   pointer-events: none;
 }
 
+.portal-welcome-silver {
+  flex: 0 0 auto;
+  margin: 0;
+  text-align: center;
+}
+
 .portal-center > * {
   pointer-events: auto;
 }
@@ -1292,7 +1298,7 @@ body:has(.chrome-frame-inner) .osg-site-mark {
 }
 
 body:has(#portal-overlay:not(.portal-hidden)) .app-shell {
-  visibility: visible;
+  visibility: hidden;
 }
 
 /* ── Chrome-Silber Typografie ── */
