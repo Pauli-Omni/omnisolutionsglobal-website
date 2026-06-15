@@ -328,47 +328,65 @@ body[data-page="agb"] #osg-security-modal {
 
 /* Homepage: Enterprise Core — sole control in the left chrome gutter (between frames) */
 body[data-page="home"] #osg-security-container {
-  top: 50%;
+  top: calc((var(--frame-width) + var(--frame-inset)) / 2 + env(safe-area-inset-top, 0px));
   bottom: auto;
-  left: calc((var(--frame-width) + var(--frame-inset)) / 2);
+  left: calc((var(--frame-width) + var(--frame-inset)) / 2 + env(safe-area-inset-left, 0px));
   right: auto;
   transform: translate(-50%, -50%);
 }
 
 body[data-page="home"] #osg-secure-badge {
-  transform: rotate(-90deg);
+  padding: 3px 7px;
+  gap: 5px;
+  border-radius: 999px;
+  max-height: calc(var(--frame-inset) - var(--frame-width) - 4px);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.18);
 }
 
 body[data-page="home"] #osg-secure-badge:hover,
 body[data-page="home"] #osg-secure-badge:focus-visible {
-  transform: rotate(-90deg) scale(1.05);
+  transform: scale(1.04);
+}
+
+body[data-page="home"] .osg-secure-badge__dot {
+  width: 6px;
+  height: 6px;
+  box-shadow: 0 0 5px #00ffcc;
+}
+
+body[data-page="home"] .osg-secure-badge__label {
+  font-size: 7px;
+  letter-spacing: 0.35px;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 body[data-page="home"] #osg-security-modal {
   bottom: auto;
-  top: 50%;
-  left: calc(100% + 12px);
+  top: calc(100% + 8px);
+  left: 0;
   right: auto;
-  transform: translateY(-50%);
+  transform: none;
 }
 
 @media (max-width: 480px) {
-  body[data-page="home"] #osg-security-container {
-    left: calc((var(--frame-width) + var(--frame-inset)) / 2);
+  body[data-page="home"] #osg-secure-badge {
+    padding: 2px 5px;
+    gap: 4px;
+    max-height: calc(var(--frame-inset) - var(--frame-width) - 2px);
   }
 
   body[data-page="home"] .osg-secure-badge__label {
-    font-size: 8px;
-    letter-spacing: 0.45px;
+    font-size: 6px;
+    letter-spacing: 0.25px;
   }
 
-  body[data-page="home"] #osg-secure-badge {
-    padding: 8px 10px;
-    gap: 6px;
+  body[data-page="home"] .osg-secure-badge__dot {
+    width: 5px;
+    height: 5px;
   }
 
   body[data-page="home"] #osg-security-modal {
-    left: calc(100% + 8px);
-    width: min(280px, calc(100vw - var(--frame-inset) - 3.5rem));
+    width: min(260px, calc(100vw - var(--frame-inset) - 2.5rem));
   }
 }
