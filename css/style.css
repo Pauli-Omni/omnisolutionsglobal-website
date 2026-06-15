@@ -2488,8 +2488,7 @@ body[data-page="home"] .main-content > .page-header {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0;
-  flex: 1;
+  margin: 0 0 0.75rem;
   text-align: center;
 }
 
@@ -3348,11 +3347,6 @@ a.store-badge:hover {
     min-height: 58vh;
     padding: 1.5rem 0.75rem;
     margin: 0.5rem;
-  }
-
-  .home-splash-top {
-    max-width: 100%;
-    padding-right: 2.75rem;
   }
 
   .home-splash-logo {
