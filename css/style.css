@@ -376,8 +376,8 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   position: fixed;
   top: 0; left: 0;
   width: var(--sidebar-w);
-  height: 100vh;
-  height: 100dvh;
+  height: auto;
+  max-height: 100dvh;
   background: var(--bg-sidebar);
   border-right: 1px solid var(--border-strong);
   box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.04);
@@ -1017,18 +1017,20 @@ body[data-page="about"] .about-portfolio-list {
 
   body[data-page="home"] .home-splash-core {
     transform: none !important;
-    padding-bottom: 3rem !important;
+    padding-bottom: 0.75rem !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: stretch !important;
   }
 
   body[data-page="home"] .home-splash-logo {
-    width: 180px !important;
-    max-width: 180px !important;
+    width: min(100%, 500px) !important;
+    max-width: min(92vw, 500px) !important;
     height: auto !important;
-    margin: 0 auto 20px auto !important;
+    margin: 0.25rem 0 0.75rem !important;
+    align-self: flex-start !important;
     display: block !important;
+    transform: none !important;
   }
 
   body[data-page="home"] .home-welcome-silver,
@@ -1072,8 +1074,7 @@ body[data-page="about"] .about-portfolio-list {
 
   body[data-page="home"] .home-refs.neo-accent-box {
     flex: 1 1 auto !important;
-    transform: scale(0.85) !important;
-    transform-origin: center top !important;
+    transform: none !important;
   }
 
   body[data-page="home"] .refs-marquee {
@@ -1970,7 +1971,9 @@ body:has(.chrome-frame-inner) .sidebar {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
+  height: auto;
+  max-height: 100%;
+  align-self: flex-start;
 }
 
 body:has(.chrome-frame-inner) .main-content {
@@ -2083,8 +2086,8 @@ body[data-page="home"] .home-splash {
   min-height: 0;
   margin: 0;
   cursor: default;
-  max-height: min(38vh, 340px);
-  overflow: hidden;
+  max-height: none;
+  overflow: visible;
   padding: clamp(0.4rem, 1vw, 0.55rem) clamp(0.55rem, 1.2vw, 0.75rem);
   border-radius: calc(var(--radius) - 2px);
   box-shadow:
@@ -2124,7 +2127,7 @@ body[data-page="home"] .home-refs.neo-accent-box {
 }
 
 body[data-page="home"] .home-splash-core {
-  padding-bottom: clamp(1.85rem, 3.5vw, 2.15rem);
+  padding-bottom: clamp(0.75rem, 2vw, 1rem);
   max-width: min(100%, 440px);
 }
 
@@ -2145,9 +2148,9 @@ body[data-page="home"] .home-ai-tagline {
 }
 
 body[data-page="home"] .home-splash-foot {
-  bottom: clamp(0.75rem, 2vw, 1.15rem);
-  left: clamp(0.75rem, 2vw, 1.15rem);
-  max-width: calc(100% - (2 * clamp(0.75rem, 2vw, 1.15rem)));
+  position: static;
+  width: 100%;
+  max-width: 100%;
 }
 
 body[data-page="home"] .page-footer {
@@ -2238,7 +2241,8 @@ body.app-page:has(.chrome-frame-inner) .app-legal-footer {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border-radius: 22%;
+  border-radius: 0;
+  background: transparent;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
 }
 
@@ -2246,11 +2250,8 @@ body.app-page:has(.chrome-frame-inner) .app-legal-footer {
   width: 100%;
   height: 100%;
   border-radius: 22%;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.08) 75%, transparent 75%, transparent),
-    linear-gradient(158deg, rgba(168, 85, 247, 0.22), rgba(0, 229, 255, 0.18));
-  background-size: 18px 18px, 100% 100%;
-  border: 1px solid rgba(200, 210, 225, 0.35);
+  background: linear-gradient(158deg, rgba(168, 85, 247, 0.14), rgba(0, 229, 255, 0.1));
+  border: 1px solid rgba(200, 210, 225, 0.15);
   box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.35);
 }
 
@@ -3033,15 +3034,16 @@ body.app-page:has(.chrome-frame-inner) .app-legal-footer {
 }
 
 .home-splash-foot {
-  position: absolute;
-  bottom: clamp(0.85rem, 2.5vw, 1.35rem);
-  left: clamp(0.85rem, 2.5vw, 1.35rem);
+  position: static;
   z-index: 2;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 0.5rem 0.65rem;
-  max-width: calc(100% - 1.7rem);
+  gap: 0.65rem;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 0.75rem;
   cursor: default;
 }
 
@@ -3245,10 +3247,7 @@ body[data-page="home"] .home-right-col {
   width: 100%;
   height: 100%;
   border-radius: 7px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.08) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.08) 75%, transparent 75%, transparent),
-    linear-gradient(158deg, rgba(168, 85, 247, 0.22), rgba(0, 229, 255, 0.18));
-  background-size: 12px 12px, 100% 100%;
+  background: linear-gradient(158deg, rgba(168, 85, 247, 0.14), rgba(0, 229, 255, 0.1));
 }
 
 .portfolio-item-icon--loaded .portfolio-item-icon-placeholder {
@@ -3709,7 +3708,7 @@ body.modal-open {
   align-items: center;
   justify-content: center;
   background: #0a0a0e;
-  border: 1px dashed rgba(0, 229, 255, 0.35);
+  border: 1px solid rgba(0, 229, 255, 0.18);
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -3794,7 +3793,7 @@ body.modal-open {
   align-items: center;
   justify-content: center;
   background: #0a0a0e;
-  border: 1px dashed rgba(0, 240, 255, 0.35);
+  border: 1px solid rgba(0, 240, 255, 0.18);
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -3863,7 +3862,7 @@ a.store-badge:hover {
 
 .store-badge--missing {
   padding: 0.35rem 0.5rem;
-  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: rgba(255, 255, 255, 0.03);
 }
 
@@ -4349,7 +4348,7 @@ a.store-badge:hover {
   align-items: center;
   justify-content: center;
   background: #0a0a0e;
-  border: 1px dashed rgba(255, 215, 0, 0.45);
+  border: 1px solid rgba(255, 215, 0, 0.22);
   border-radius: var(--radius-sm);
 }
 
@@ -4600,4 +4599,157 @@ a.store-badge:hover {
   .osg-logo-aura,
   .osg-globe-lines,
   .osg-light-point { animation: none !important; }
+}
+
+/* ── MASTER-KORREKTUR: Hub + Unterseiten (Portal/Vorhang unberührt) ── */
+body[data-page="home"] #osg-security-container.osg-security-container--home-gutter {
+  display: none;
+}
+
+.home-enterprise-band {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  max-width: min(100%, 360px);
+  margin: 0.35rem auto 0.5rem;
+}
+
+.home-chrome-bar {
+  width: min(88%, 320px);
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(192, 198, 210, 0.35) 18%,
+    rgba(232, 236, 244, 0.95) 50%,
+    rgba(192, 198, 210, 0.35) 82%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(200, 210, 225, 0.25);
+}
+
+.home-enterprise-label {
+  margin: 0;
+  padding: 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(0.82rem, 2.6vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--neon-cyan);
+  line-height: 1.35;
+  max-width: 100%;
+}
+
+body[data-page="home"] .home-splash,
+body[data-page="home"] .home-splash-core {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+body[data-page="home"] .home-splash-logo {
+  position: static;
+  width: min(100%, 500px);
+  max-width: 500px;
+  height: auto;
+  margin: 0.25rem 0 0.75rem;
+  align-self: flex-start;
+  object-position: left center;
+  max-height: none;
+}
+
+body[data-page="home"] .home-splash-learn-btn,
+body[data-page="home"] .home-splash-foot .btn-neon,
+body[data-page="home"] .home-splash-foot .btn-outline-neon {
+  width: min(100%, 18rem);
+  max-width: 100%;
+  text-align: center;
+}
+
+.app-page--front .app-front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.app-page--front .app-front-werbetext {
+  width: 100%;
+  max-width: 42rem;
+}
+
+@media screen and (max-width: 900px) {
+  body:has(.chrome-frame-inner) .app-shell {
+    position: relative;
+    inset: auto;
+    min-height: 100dvh;
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  body:has(.chrome-frame-inner) .main-content {
+    height: auto;
+    min-height: 0;
+    overflow-y: visible;
+  }
+
+  body.app-page:has(.chrome-frame-inner) .app-page-shell {
+    position: relative;
+    inset: auto;
+    overflow: visible;
+    min-height: 100dvh;
+  }
+
+  body.app-page--front .app-page-body,
+  body.app-page--desc .app-page-body {
+    align-items: stretch;
+    padding-top: clamp(1.25rem, 5vw, 2.5rem);
+  }
+
+  .app-front-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body[data-page="home"] .home-splash-core {
+    padding-bottom: 0.75rem !important;
+  }
+
+  .sidebar.is-open {
+    height: auto;
+    max-height: min(100dvh, calc(100dvh - env(safe-area-inset-top, 0px)));
+    overflow-y: auto;
+  }
+}
+
+/* ── Hub: keine Debug-Gitter / Hilfslinien (Portal/Vorhang offen = unberührt) ── */
+body:has(#portal-overlay.portal-hidden) .chrome-frame-inner,
+body:has(.app-shell):not(:has(#portal-overlay)) .chrome-frame-inner {
+  display: none !important;
+}
+
+body:has(#portal-overlay.portal-hidden) .chameleon-bg::after,
+body:has(.app-shell):not(:has(#portal-overlay)) .chameleon-bg::after {
+  display: none !important;
+}
+
+body:has(.app-shell) .app-front-icon-placeholder,
+body:has(.app-shell) .portfolio-item-icon-placeholder {
+  background-image: none;
+  background: linear-gradient(158deg, rgba(168, 85, 247, 0.12), rgba(0, 229, 255, 0.08));
+}
+
+body:has(.app-shell) .product-qr-mini-frame,
+body:has(.app-shell) .product-qr-frame,
+body:has(.app-shell) .store-badge--missing {
+  border-style: solid;
+  border-color: rgba(200, 210, 225, 0.12);
+  outline: none;
+  box-shadow: none;
 }

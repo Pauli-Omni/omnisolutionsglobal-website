@@ -12,7 +12,9 @@
     "skipLink": "跳转到主要内容",
     "sidebar": "主要导航",
     "menuToggle": "打开菜单",
-    "portalLogo": "Omni Solutions Global 动画标志 — 地球仪与无限环"
+    "portalLogo": "Omni Solutions Global 动画标志 — 地球仪与无限环",
+    "navBack": "返回上一页",
+    "trilingualUiPicker": "Choose display language: German, English, or Thai"
   },
   "nav": {
     "home": "首页",
@@ -20,7 +22,8 @@
     "apps": "更多应用",
     "werbe": "视频广告区",
     "impressum": "法律声明",
-    "agb": "条款"
+    "agb": "条款",
+    "back": "返回"
   },
   "brand": {
     "sub": "AI · ML · UI Engineering"
@@ -162,7 +165,7 @@
   },
   "portfolio": {
     "omnigateAiMaster": {
-      "name": "OmniGate-AI Master",
+      "name": "Omni Gate Master",
       "desc": "面向自主屏障与门禁系统的高端自主接口控制。"
     },
     "omniqrAiPay": {
@@ -217,7 +220,7 @@
     "tag1": "Barrier 系统",
     "tag2": "访问控制",
     "tag3": "接口控制",
-    "descTitle": "OmniGate-AI Master — 说明",
+    "descTitle": "Omni Gate Master — 说明",
     "frontWerbetext": "<p>安全与舒适达到全新高度——这就是 OmniGate-AI Master！为什么还要为复杂的遥控器、易出故障的密码锁或不可靠的网络而烦恼？这款应用是唯一正确的选择，因为它将您对自动化大门和整个路由器基础设施的完全控制权整合在一个高度安全的平台中。您再也不必寻找按钮或费力输入密码。只需与您的应用对话！它经过专门设计，可通过语音指令实现完全无障碍操作——既适合追求最大便利的用户，也是身体受限人士不可或缺的工具。信赖德国工程品质与智能 AI 安全技术的结合，守护您的家园。立即通过通用二维码在 Play Store 或 Aptoide 获取 Master 级控制！</p>"
   },
   "omnifix": {
@@ -558,5 +561,11 @@
       "opsTokenNotConfigured": "缺少 OSG_OPS_CHECK_TOKEN — Ops 页已禁用。",
       "unauthorized": "令牌无效。"
     }
+  },
+  "maintenance": {
+    "voiceLangTitle": "Maintenance notice",
+    "voiceLangClose": "OK",
+    "voiceLangCloseAria": "Close maintenance notice",
+    "speakerNotice": "Maintenance until 18:00."
   }
 }

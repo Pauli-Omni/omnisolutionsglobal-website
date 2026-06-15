@@ -12,7 +12,9 @@
     "skipLink": "Przejdź do treści głównej",
     "sidebar": "Nawigacja główna",
     "menuToggle": "Otwórz menu",
-    "portalLogo": "Animowane logo Omni Solutions Global z globusami i pętlą nieskończoności"
+    "portalLogo": "Animowane logo Omni Solutions Global z globusami i pętlą nieskończoności",
+    "navBack": "Wróć o jedną stronę",
+    "trilingualUiPicker": "Choose display language: German, English, or Thai"
   },
   "nav": {
     "home": "Strona główna",
@@ -20,7 +22,8 @@
     "apps": "Więcej aplikacji",
     "werbe": "Reklama wideo",
     "impressum": "Informacje prawne",
-    "agb": "Regulamin"
+    "agb": "Regulamin",
+    "back": "Wstecz"
   },
   "brand": {
     "sub": "AI · ML · UI Engineering"
@@ -165,7 +168,7 @@
   },
   "portfolio": {
     "omnigateAiMaster": {
-      "name": "OmniGate-AI Master",
+      "name": "Omni Gate Master",
       "desc": "Autonomiczne sterowanie interfejsami high-end dla systemów barier i dostępu."
     },
     "omniqrAiPay": {
@@ -220,7 +223,7 @@
     "tag1": "Systemy barier",
     "tag2": "Kontrola dostępu",
     "tag3": "Sterowanie interfejsami",
-    "descTitle": "OmniGate-AI Master — Opis",
+    "descTitle": "Omni Gate Master — Opis",
     "frontWerbetext": "<p>Bezpieczeństwo i komfort na zupełnie nowym poziomie – to OmniGate-AI Master! Dlaczego miałbyś dalej zmagać się ze skomplikowanymi pilotami, podatnymi na awarie zamkami kodowymi lub zawodnymi sieciami? Ta aplikacja to jedyny słuszny wybór, ponieważ łączy pełną kontrolę nad zautomatyzowanymi bramami i całą infrastrukturą routerów w jednej, wysoce bezpiecznej platformie. Nigdy więcej nie musisz szukać przycisków ani żmudnie wpisywać haseł. Po prostu porozmawiaj z aplikacją! Została zaprojektowana specjalnie tak, aby działać w pełni dostępnie za pomocą poleceń głosowych – idealnie dla maksymalnej wygody i niezbędna dla osób z ograniczeniami ruchowymi. Zaufaj niemieckiej jakości inżynieryjnej połączonej ze smart bezpieczeństwem opartym na sztucznej inteligencji dla Twojego domu. Pobierz teraz kontrolę Master przez uniwersalny kod QR w Play Store lub na Aptoide!</p>"
   },
   "omnifix": {
@@ -561,5 +564,11 @@
       "opsTokenNotConfigured": "Brak OSG_OPS_CHECK_TOKEN — strona ops wyłączona.",
       "unauthorized": "Nieprawidłowy token."
     }
+  },
+  "maintenance": {
+    "voiceLangTitle": "Maintenance notice",
+    "voiceLangClose": "OK",
+    "voiceLangCloseAria": "Close maintenance notice",
+    "speakerNotice": "Maintenance until 18:00."
   }
 }

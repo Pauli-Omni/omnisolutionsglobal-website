@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap');
+
+/* ── Drei-Sprachen-Visual-Stabilisierung (DE / EN / TH) ── */
+
+html.osg-trilingual-stable {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* Logo: transparent, linksbündig, feste Breite bis 500px */
+body[data-page="home"] .home-splash-core {
+  align-items: stretch;
+}
+
+body[data-page="home"] .home-splash-core > :not(.home-splash-logo) {
+  align-self: center;
+  width: 100%;
+  max-width: min(100%, 440px);
+}
+
+body[data-page="home"] .home-welcome-silver,
+body[data-page="home"] .home-ai-tagline,
+body[data-page="home"] .home-splash-foot,
+body[data-page="home"] .hub-voice-lang-tools {
+  text-align: center;
+}
+
+body[data-page="home"] .home-splash-logo {
+  display: block;
+  width: min(100%, 500px);
+  max-width: 500px;
+  height: auto;
+  margin: 0.25rem 0 0.75rem;
+  align-self: flex-start;
+  object-fit: contain;
+  object-position: left center;
+  background: transparent;
+}
+
+.home-enterprise-band {
+  align-self: center;
+  margin-inline: auto;
+}
+
+/* Enterprise Core: immer zwischen den silbernen Leisten zentriert */
+.home-enterprise-label {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Deutsch / Englisch: sauber im Rahmen, kein Überlauf */
+html[lang="de"] .home-enterprise-label,
+html[lang="en"] .panel,
+html[lang="en"] .home-enterprise-label,
+html[lang="de"] .panel,
+html[lang="de"] .page-body,
+html[lang="en"] .page-body,
+html[lang="de"] .app-front-werbetext,
+html[lang="en"] .app-front-werbetext,
+html[lang="de"] .app-desc-body,
+html[lang="en"] .app-desc-body,
+html[lang="de"] .legal-section,
+html[lang="en"] .legal-section {
+  text-align: left;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+html[lang="de"] .home-ai-tagline,
+html[lang="en"] .home-ai-tagline {
+  text-align: left;
+  max-width: 100%;
+}
+
+/* Thai: Lesbarkeit + Zentrierung in silbernen Leisten */
+html[lang="th"] body,
+html[lang="th"] .panel,
+html[lang="th"] .page-body,
+html[lang="th"] .app-front-werbetext,
+html[lang="th"] .app-desc-body,
+html[lang="th"] .legal-section {
+  font-family: 'Inter', 'Noto Sans Thai', system-ui, sans-serif;
+  line-height: 1.65;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+
+html[lang="th"] .home-enterprise-label {
+  font-family: 'Inter', 'Noto Sans Thai', system-ui, sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: 1.6;
+  font-size: clamp(0.78rem, 2.5vw, 0.98rem);
+  font-weight: 600;
+  text-align: center;
+  padding: 0.15rem 0.35rem;
+}
+
+html[lang="th"] .home-ai-tagline,
+html[lang="th"] .page-title,
+html[lang="th"] .home-section-title {
+  font-family: 'Inter', 'Noto Sans Thai', system-ui, sans-serif;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+html[lang="th"] .home-chrome-bar {
+  width: min(92%, 340px);
+}
+
+/* Back-Navigation (alle Hub-Seiten) */
+.hub-back-btn {
+  position: fixed;
+  z-index: 640;
+  top: calc(var(--frame-inset, 0.75rem) + env(safe-area-inset-top, 0px) + 0.35rem);
+  left: calc(var(--frame-inset, 0.75rem) + env(safe-area-inset-left, 0px) + 3.35rem);
+  min-height: 2.25rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: rgba(8, 10, 14, 0.88);
+  color: var(--silver);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.hub-back-btn:hover,
+.hub-back-btn:focus-visible {
+  border-color: rgba(0, 212, 255, 0.55);
+  color: #fff;
+  outline: none;
+}
+
+/* Statische UI-Sprachwahl DE | EN | TH (nur Anzeige, kein TTS) */
+.trilingual-ui-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.trilingual-ui-picker__btn {
+  min-width: 2.5rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(14, 18, 26, 0.55);
+  color: var(--silver);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.trilingual-ui-picker__btn:hover,
+.trilingual-ui-picker__btn:focus-visible {
+  border-color: rgba(0, 212, 255, 0.65);
+  color: #fff;
+  outline: none;
+}
+
+.trilingual-ui-picker__btn.is-active {
+  border-color: rgba(0, 212, 255, 0.9);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.18);
+}
+
+.osg-maint-modal__body--speaker {
+  text-align: center;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  line-height: 1.5;
+  padding: 0.25rem 0;
+}
+
+@media screen and (max-width: 900px) {
+  body[data-page="home"] .home-splash-logo {
+    width: min(100%, 500px);
+    max-width: min(92vw, 500px);
+  }
+
+  .hub-back-btn {
+    top: calc(env(safe-area-inset-top, 0px) + 0.35rem);
+    left: calc(env(safe-area-inset-left, 0px) + 3.25rem);
+    font-size: 0.72rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  html[lang="th"] .home-enterprise-label {
+    font-size: clamp(0.72rem, 3.2vw, 0.92rem);
+    line-height: 1.65;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body[data-page="home"] .home-splash-logo {
+    width: min(92vw, 500px);
+  }
+
+  .hub-back-btn {
+    left: calc(env(safe-area-inset-left, 0px) + 2.85rem);
+    min-height: 2rem;
+  }
+}

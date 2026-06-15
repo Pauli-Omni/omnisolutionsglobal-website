@@ -126,13 +126,48 @@
       initSidebar();
       initPortal();
       initModules();
+      initVoiceLangMaintenance();
       document.dispatchEvent(new CustomEvent('osg:i18nReady'));
     }).catch(function (err) {
       console.error('i18n init failed', err);
       initSidebar();
       initPortal();
       initModules();
+      initVoiceLangMaintenance();
       document.dispatchEvent(new CustomEvent('osg:i18nReady'));
+    });
+  }
+
+  function initVoiceLangMaintenance() {
+    if (document.body.getAttribute('data-page') === 'opsVoiceCheck') return;
+
+    function bootMaintenance() {
+      if (window.OSGVoiceLangMaintenance) {
+        OSGVoiceLangMaintenance.init();
+      }
+    }
+
+    function loadScript(name, cb) {
+      if (name === 'voice-lang-maintenance.js' && window.OSGVoiceLangMaintenance) {
+        cb();
+        return;
+      }
+      if (name === 'hub-back-nav.js' && window.OSGHubBackNav) {
+        cb();
+        return;
+      }
+      var scripts = document.querySelectorAll('script[src*="app.js"]');
+      var src = scripts.length ? scripts[scripts.length - 1].getAttribute('src') : 'js/app.js';
+      var base = src.replace(/js\/app\.js.*$/, '');
+      var tag = document.createElement('script');
+      tag.src = base + 'js/' + name + '?v=' +
+        encodeURIComponent(window.OSG_BUILD_ID || '2026.06.15.48');
+      tag.onload = cb;
+      document.body.appendChild(tag);
+    }
+
+    loadScript('hub-back-nav.js', function () {
+      loadScript('voice-lang-maintenance.js', bootMaintenance);
     });
   }
 

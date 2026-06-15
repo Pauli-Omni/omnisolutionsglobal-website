@@ -13,7 +13,9 @@
     "sidebar": "Hauptnavigation",
     "menuToggle": "Menü öffnen",
     "portalLogo": "Animiertes Omni Solutions Global Logo mit Globus und Unendlichkeitsschleife",
-    "siteMarkHome": "Omni Solutions Global — zur Startseite"
+    "siteMarkHome": "Omni Solutions Global — zur Startseite",
+    "navBack": "Eine Seite zurück",
+    "trilingualUiPicker": "Anzeigesprache wählen: Deutsch, Englisch oder Thai"
   },
   "nav": {
     "home": "Home",
@@ -21,7 +23,8 @@
     "apps": "Weitere Apps",
     "werbe": "Werbe-Ecke",
     "impressum": "Impressum",
-    "agb": "AGB"
+    "agb": "AGB",
+    "back": "Zurück"
   },
   "brand": {
     "sub": "KI · UI Engineering"
@@ -137,7 +140,7 @@
     "portfolioTitle": "High-End Portfolio",
     "portfolio1Name": "Pauli BestPrice Thailand",
     "portfolio1Desc": "Proprietäres Preisvergleichsportal mit algorithmischer Steuerung auf höchstem Niveau.",
-    "portfolio2Name": "OmniGate-AI Master",
+    "portfolio2Name": "Omni Gate Master",
     "portfolio2Desc": "Schnittstellensteuerung für autonome und eigenständige Barrieresysteme.",
     "portfolio3Name": "OmniFix AI-Dokument",
     "portfolio3Desc": "Vollautomatische, autarke KI-Strukturierung komplexer Datenströme.",
@@ -176,7 +179,7 @@
   },
   "portfolio": {
     "omnigateAiMaster": {
-      "name": "OmniGate-AI Master",
+      "name": "Omni Gate Master",
       "desc": "Eigengesteuerte High-End-Schnittstellensteuerung für autonome Barriere- und Zugangssysteme."
     },
     "omniqrAiPay": {
@@ -223,15 +226,15 @@
     "frontWerbetext": "<p>Finden Sie immer und überall den absolut besten Preis in ganz Thailand – ohne jemals wieder ein einziges Wort tippen zu müssen! Pauli BestPrice Thailand ist das revolutionäre Flaggschiff unter den Preisvergleichsportalen. Warum diese App die einzig richtige Wahl für Sie ist? Weil sie mit maximaler Barrierefreiheit das Einkaufen und Sparen komplett neu definiert. Diese App wurde speziell für die Bedürfnisse aller Menschen entwickelt und ist durch ihre vollständige Sprachsteuerung die perfekte Lösung für Menschen mit Behinderungen oder körperlichen Einschränkungen. Sprechen Sie einfach mit der App! Die integrierte KI durchsucht den gesamten thailändischen Markt in Echtzeit, vergleicht Angebote blitzschnell und zeigt Ihnen sofort, wo Sie am meisten sparen können. Das System erkennt die Sprache Ihres Smartphones vollautomatisch, sodass Sie sich um nichts kümmern müssen. Machen Sie Schluss mit teuren Preisen und komplizierter Suche. Scannen Sie den universellen QR-Code und holen Sie sich das cleverste Spar-Tool Thailands über den Google Play Store oder direkt via Aptoide!</p>"
   },
   "omnigate": {
-    "meta": "OmniGate-AI Master — Omni Solutions Global® Co. Ltd.",
-    "title": "OmniGate-AI Master — Omni Solutions Global® Co. Ltd.",
+    "meta": "Omni Gate Master — Omni Solutions Global® Co. Ltd.",
+    "title": "Omni Gate Master — Omni Solutions Global® Co. Ltd.",
     "subtitle": "Schnittstellensteuerung für Barriere-Systeme",
-    "pageTitle": "OmniGate-AI Master",
+    "pageTitle": "Omni Gate Master",
     "pageDesc": "<p>OmniGate-AI Master ist die professionelle, intelligente High-End-Schaltzentrale zur synchronisierten Steuerung und Überwachung von automatisierten Toranlagen, Sicherheitszäunen und Router-Netzwerken. Die App verbindet sich über verschlüsselte Protokolle direkt mit der Steuerungselektronik Ihrer Zugänge und der Firmware Ihrer Netzwerk-Router.</p><p>Über die integrierte, hochentwickelte KI-Sprachverarbeitung versteht die App natürliche Sprachbefehle direkt und setzt diese in Millisekunden um. Das bedeutet maximale Barrierefreiheit: Ein einfacher gesprochener Satz genügt, um schwere Werkstore, Garagentore oder Sicherheits-Flügeltore zu öffnen, zu schließen oder zu verriegeln.</p><p>Im Netzwerkbereich überwacht der integrierte KI-Master die Router-Aktivitäten, sichert das WLAN gegen unbefugte Zugriffe ab und optimiert die Datenströme vollautomatisch. Die App erfordert keinerlei manuelle Spracheinstellungen; sie erkennt die Systemsprache des Smartphones beim Start und passt die gesamte Benutzeroberfläche sowie das Sprachfeedback nahtlos an. Der Download erfolgt barrierefrei über den universellen QR-Code mit automatischer Routing-Weiche für iOS- und Android-Systeme, inklusive Google Play und der alternativen Plattform Aptoide.</p>",
     "tag1": "Barrieresysteme",
     "tag2": "Zugangskontrolle",
     "tag3": "Schnittstellensteuerung",
-    "descTitle": "OmniGate-AI Master — Beschreibung",
+    "descTitle": "Omni Gate Master — Beschreibung",
     "frontWerbetext": "<p>Sicherheit und Komfort auf einem völlig neuen Niveau – das ist OmniGate-AI Master! Warum sollten Sie sich mit komplizierten Fernbedienungen, anfälligen Codeschlössern oder unzuverlässigen Netzwerken herumärgern? Diese App ist die einzig richtige Wahl, weil sie die volle Kontrolle über Ihre automatisierten Toranlagen und Ihre gesamte Router-Infrastruktur in einer einzigen, hochsicheren Plattform vereint. Sie müssen nie wieder nach Knöpfen suchen oder mühsam Passwörter eintippen. Sprechen Sie einfach mit Ihrer App! Sie wurde speziell so entwickelt, dass sie vollkommen barrierefrei per Sprachbefehl funktioniert – ideal für maximale Bequemlichkeit und unverzichtbar für Menschen mit körperlichen Einschränkungen. Vertrauen Sie auf deutsche Ingenieursqualität, kombiniert mit smarter KI-Sicherheit für Ihr Zuhause. Holen Sie sich jetzt die Master-Steuerung über den universellen QR-Code im Play Store oder bei Aptoide!</p>"
   },
   "omnifix": {
@@ -572,5 +575,11 @@
       "opsTokenNotConfigured": "OSG_OPS_CHECK_TOKEN fehlt auf dem Server — Ops-Seite deaktiviert.",
       "unauthorized": "Token ungültig."
     }
+  },
+  "maintenance": {
+    "voiceLangTitle": "Wartungshinweis",
+    "voiceLangClose": "Verstanden",
+    "voiceLangCloseAria": "Wartungshinweis schließen",
+    "speakerNotice": "Wartungsarbeiten bis 18:00 Uhr."
   }
 }

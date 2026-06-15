@@ -13,7 +13,9 @@
     "sidebar": "Main navigation",
     "menuToggle": "Open menu",
     "portalLogo": "Animated Omni Solutions Global logo with globes and infinity loop",
-    "siteMarkHome": "Omni Solutions Global — back to home"
+    "siteMarkHome": "Omni Solutions Global — back to home",
+    "navBack": "Go back one page",
+    "trilingualUiPicker": "Choose display language: German, English, or Thai"
   },
   "nav": {
     "home": "Home",
@@ -21,7 +23,8 @@
     "apps": "More Apps",
     "werbe": "Video Ads",
     "impressum": "Legal Notice",
-    "agb": "Terms"
+    "agb": "Terms",
+    "back": "Back"
   },
   "brand": {
     "sub": "AI · ML · UI Engineering"
@@ -178,7 +181,7 @@
   },
   "portfolio": {
     "omnigateAiMaster": {
-      "name": "OmniGate-AI Master",
+      "name": "Omni Gate Master",
       "desc": "Self-managed high-end interface control for autonomous barrier and access systems."
     },
     "omniqrAiPay": {
@@ -225,15 +228,15 @@
     "frontWerbetext": "<p>Find the absolute best price anywhere in Thailand — without ever typing a single word again! Pauli BestPrice Thailand is the revolutionary flagship among price comparison portals. Why is this app the right choice for you? Because it completely redefines shopping and saving with maximum accessibility. This app was purpose-built for the needs of all users and, through full voice control, is the perfect solution for people with disabilities or physical limitations. Simply speak to the app! The integrated AI searches the entire Thai market in real time, compares offers in a flash, and instantly shows you where you can save the most. The system automatically detects your smartphone language, so you do not have to worry about a thing. End overpriced purchases and complicated searching. Scan the universal QR code and get Thailand's smartest savings tool via the Google Play Store or directly via Aptoide!</p>"
   },
   "omnigate": {
-    "meta": "OmniGate-AI Master — Omni Solutions Global® Co. Ltd.",
-    "title": "OmniGate-AI Master — Omni Solutions Global® Co. Ltd.",
+    "meta": "Omni Gate Master — Omni Solutions Global® Co. Ltd.",
+    "title": "Omni Gate Master — Omni Solutions Global® Co. Ltd.",
     "subtitle": "Interface control for barrier systems",
-    "pageTitle": "OmniGate-AI Master",
+    "pageTitle": "Omni Gate Master",
     "pageDesc": "<p>OmniGate-AI Master is the professional, intelligent high-end control center for synchronized management and monitoring of automated gate systems, security fences, and router networks. The app connects via encrypted protocols directly to the control electronics of your access points and the firmware of your network routers.</p><p>Through integrated, advanced AI speech processing, the app understands natural voice commands instantly and executes them in milliseconds. That means maximum accessibility: a simple spoken sentence is enough to open, close, or lock heavy industrial gates, garage doors, or security swing gates.</p><p>In the network domain, the integrated AI master monitors router activity, secures Wi-Fi against unauthorized access, and optimizes data flows fully automatically. The app requires no manual language settings; it detects the smartphone system language at startup and seamlessly adapts the entire user interface and voice feedback. Download is accessible via the universal QR code with automatic routing for iOS and Android systems, including Google Play and the alternative Aptoide platform.</p>",
     "tag1": "Barrier systems",
     "tag2": "Access control",
     "tag3": "Interface control",
-    "descTitle": "OmniGate-AI Master — Description",
+    "descTitle": "Omni Gate Master — Description",
     "frontWerbetext": "<p>Security and convenience on an entirely new level — that is OmniGate-AI Master! Why struggle with complicated remotes, vulnerable keypad locks, or unreliable networks? This app is the right choice because it unites full control over your automated gate systems and your entire router infrastructure in a single, highly secure platform. You never have to hunt for buttons or painstakingly type passwords again. Simply speak to your app! It was purpose-built to work fully accessibly via voice command — ideal for maximum convenience and essential for people with physical limitations. Trust German engineering quality combined with smart AI security for your home. Get master control now via the universal QR code on the Play Store or Aptoide!</p>"
   },
   "omnifix": {
@@ -574,5 +577,11 @@
       "opsTokenNotConfigured": "OSG_OPS_CHECK_TOKEN missing on server — ops page disabled.",
       "unauthorized": "Invalid token."
     }
+  },
+  "maintenance": {
+    "voiceLangTitle": "Maintenance notice",
+    "voiceLangClose": "OK",
+    "voiceLangCloseAria": "Close maintenance notice",
+    "speakerNotice": "Maintenance until 18:00."
   }
 }

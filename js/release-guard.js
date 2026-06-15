@@ -15,21 +15,6 @@
       .catch(function () { return null; });
   }
 
-  function hardReload(release) {
-    var onceKey = 'osg-release-reload-' + release.buildId;
-    try {
-      if (sessionStorage.getItem(onceKey) === '1') {
-        return false;
-      }
-      sessionStorage.setItem(onceKey, '1');
-    } catch (e) { /* ignore */ }
-    try {
-      localStorage.setItem(STORAGE_KEY, release.buildId);
-    } catch (e2) { /* ignore */ }
-    window.location.reload();
-    return true;
-  }
-
   fetchRelease().then(function (release) {
     if (!release || !release.buildId) {
       return;
@@ -38,12 +23,6 @@
     window.OSG_RELEASE = release;
     if (!pageBuild) {
       window.OSG_BUILD_ID = release.buildId;
-    }
-
-    var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-    if (!isLocal && pageBuild && release.buildId !== pageBuild) {
-      hardReload(release);
-      return;
     }
 
     try {
