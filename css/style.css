@@ -77,6 +77,8 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   background: #040208;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -86,7 +88,8 @@ body {
   line-height: 1.65;
   min-height: 100vh;
   min-height: 100dvh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
   border-radius: var(--frame-radius);
   margin: var(--frame-width);
   width: calc(100% - var(--frame-width) * 2);
@@ -1361,7 +1364,11 @@ body:has(.chrome-frame-inner) .main-content {
   flex: 1;
   min-height: 0;
   height: 100%;
+  overflow-x: clip;
   overflow-y: auto;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+  max-width: 100%;
 }
 
 body:has(.chrome-frame-inner) .sidebar-toggle {
@@ -1414,6 +1421,20 @@ body[data-page="home"] #osg-security-container.osg-security-container--home-gutt
   letter-spacing: 0.35px;
   line-height: 1;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 9.5rem;
+}
+
+body[data-page="home"] .main-content,
+body[data-page="home"] .page-body--home,
+body[data-page="home"] .home-main-grid {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body[data-page="home"] .portal-logo-official {
+  width: min(100%, 520px);
 }
 
 body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-security-modal {
@@ -1626,7 +1647,7 @@ body.app-page:has(.chrome-frame-inner) .app-voice-toolbar {
   }
 
   body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-security-modal {
-    width: min(260px, calc(100vw - var(--frame-inset) - 2.5rem));
+    width: min(260px, calc(100% - 0.5rem));
   }
 
   .app-page-shell {
@@ -2436,7 +2457,7 @@ body.app-page:has(.chrome-frame-inner) .app-voice-toolbar {
   justify-content: center;
   gap: 1rem;
   width: 100%;
-  max-width: min(92vw, 520px);
+  max-width: min(100%, 520px);
   margin-bottom: 0.75rem;
   position: relative;
 }
@@ -2474,7 +2495,7 @@ body[data-page="home"] .main-content > .page-header {
 
 .home-splash-logo {
   display: block;
-  width: min(92vw, 480px);
+  width: min(100%, 480px);
   height: auto;
   max-height: min(52vh, 520px);
   object-fit: contain;
@@ -3335,7 +3356,7 @@ a.store-badge:hover {
   }
 
   .home-splash-logo {
-    width: min(94vw, 360px);
+    width: min(100%, 360px);
     max-height: min(48vh, 400px);
   }
 
