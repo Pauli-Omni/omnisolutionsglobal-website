@@ -80,7 +80,6 @@
   function boot() {
     init();
     bindLangRefresh();
-    if (window.OSGVoiceMount) OSGVoiceMount.mount();
   }
 
   window.OSGAppFrontPage = { init: init, boot: boot };

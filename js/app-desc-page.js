@@ -24,7 +24,6 @@
 
   function boot() {
     if (!document.body.classList.contains('app-page--desc')) return;
-    if (window.OSGVoiceMount) OSGVoiceMount.mount();
     mountStoreBadges();
   }
 
