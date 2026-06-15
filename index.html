@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="/assets/images/omni-solutions-global-logo.png?v=2026.06.15.35">
   <link rel="preload" as="video" href="/assets/video/master.mp4?v=2026.06.15.45" type="video/mp4">
-  <link rel="stylesheet" href="css/style.css?v=2026.06.15.46">
+  <link rel="stylesheet" href="css/style.css?v=2026.06.15.59">
   <link rel="stylesheet" href="css/osg-security.css?v=2026.06.15.26">
 </head>
 <body data-page="home" data-i18n-title="home.title" data-i18n-meta="home.meta">
@@ -40,7 +40,7 @@
   <!-- Portal / Vorschaltseite (nur index.html) -->
   <div id="portal-overlay" class="portal-overlay portal-has-video" aria-hidden="false">
     <div id="portal-sparks" class="portal-sparks" aria-hidden="true"></div>
-    <div class="portal-center">
+    <div id="portal-logo-dock" class="portal-logo-dock">
       <div id="portal-logo-slot" class="portal-logo-slot portal-logo-slot--official" data-i18n-aria="a11y.portalLogo">
         <img
           class="portal-logo-official"
@@ -52,6 +52,8 @@
           alt=""
         >
       </div>
+    </div>
+    <div class="portal-center">
       <button type="button" id="portal-enter-btn" class="btn btn-portal-enter" data-i18n="home.welcomeDeck" data-i18n-aria="portal.enterAria">WELCOME</button>
     </div>
     <button
@@ -204,7 +206,7 @@
   <script src="js/hub-sidebar.js?v=2026.06.12.2"></script>
   <script src="js/home.js?v=2026.06.15.26"></script>
   <script src="js/home-starfield.js?v=2026.06.15.28"></script>
-  <script src="js/portal-video.js?v=2026.06.15.46"></script>
+  <script src="js/portal-video.js?v=2026.06.15.48"></script>
   <script src="js/app.js?v=2026.06.15.43"></script>
   <div id="osg-security-container" class="osg-security-container--home-gutter">
     <div id="osg-secure-badge" role="button" tabindex="0" data-i18n-aria="security.badgeAria">

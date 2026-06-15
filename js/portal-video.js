@@ -3,8 +3,16 @@
 
   var heroVideoInited = false;
   var portalInited = false;
+  var PORTAL_VIDEO_PLAYBACK_RATE = 0.72;
+
+  function applyPortalVideoPlayback(video) {
+    if (!video) return;
+    video.defaultPlaybackRate = PORTAL_VIDEO_PLAYBACK_RATE;
+    video.playbackRate = PORTAL_VIDEO_PLAYBACK_RATE;
+  }
 
   function tryPlay(video) {
+    applyPortalVideoPlayback(video);
     var p = video.play();
     if (p && typeof p.catch === 'function') {
       p.catch(function () { /* autoplay policy */ });

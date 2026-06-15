@@ -1338,6 +1338,38 @@ body[data-page="home"] {
   pointer-events: none;
 }
 
+.portal-has-video .portal-center::before {
+  content: "";
+  flex: 0 1 auto;
+  width: min(92vw, 540px);
+  max-height: min(48vh, 440px);
+  min-height: min(28vh, 200px);
+  pointer-events: none;
+}
+
+.portal-logo-dock {
+  position: absolute;
+  z-index: 6;
+  right: calc(var(--frame-width) + clamp(0.65rem, 2vw, 1.1rem) + env(safe-area-inset-right, 0px));
+  bottom: calc(
+    var(--frame-width)
+    + clamp(0.65rem, 2vh, 1.1rem)
+    + env(safe-area-inset-bottom, 0px)
+    + 2.75rem
+    + clamp(0.45rem, 1vh, 0.75rem)
+  );
+  max-width: min(92vw, 540px);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  transform: translate(calc(10mm + 2cm), 0) scale(0.6904125);
+  transform-origin: center bottom;
+}
+
+.portal-logo-dock .portal-logo-slot {
+  pointer-events: auto;
+}
+
 .portal-center > * {
   pointer-events: auto;
 }
@@ -1363,6 +1395,11 @@ body[data-page="home"] {
   filter:
     drop-shadow(0 0 32px rgba(0, 229, 255, 0.42))
     drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55));
+}
+
+.portal-logo-dock .portal-logo-slot {
+  min-height: 0;
+  width: 100%;
 }
 
 .portal-logo-official {
@@ -1529,7 +1566,9 @@ body[data-page="home"] {
 }
 
 .portal-overlay.portal-hidden .portal-video-sound-btn,
-.portal-overlay.portal-reveal .portal-video-sound-btn {
+.portal-overlay.portal-reveal .portal-video-sound-btn,
+.portal-overlay.portal-hidden .portal-logo-dock,
+.portal-overlay.portal-reveal .portal-logo-dock {
   pointer-events: none;
   opacity: 0;
 }
@@ -4361,6 +4400,24 @@ a.store-badge:hover {
 }
 
 @media (max-width: 480px) {
+  .portal-has-video .portal-center::before {
+    max-width: min(94vw, 400px);
+    max-height: min(52vh, 380px);
+    min-height: 0;
+  }
+
+  .portal-logo-dock {
+    right: calc(var(--frame-width) + 0.55rem + env(safe-area-inset-right, 0px));
+    bottom: calc(
+      var(--frame-width)
+      + 0.55rem
+      + env(safe-area-inset-bottom, 0px)
+      + 2.85rem
+      + 0.45rem
+    );
+    max-width: min(94vw, 400px);
+  }
+
   .portal-center {
     gap: 1rem;
     padding: 1rem 0.75rem;
