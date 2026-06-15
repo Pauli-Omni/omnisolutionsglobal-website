@@ -47,4 +47,54 @@
       localStorage.setItem(STORAGE_KEY, release.buildId);
     } catch (e) { /* ignore */ }
   });
+
+  function mountSiteMark() {
+    if (document.getElementById('osg-site-mark')) return;
+    if (document.body && document.body.getAttribute('data-page') === 'home' &&
+        document.getElementById('portal-overlay')) {
+      return;
+    }
+
+    var path = location.pathname;
+    var inSubfolder = path.indexOf('/omniqr-ai-for-tourist-of-thailand/') >= 0 ||
+      path.indexOf('/ops/') >= 0;
+    var homeHref = inSubfolder ? '../index.html' : '/index.html';
+    var imgSrc = (inSubfolder ? '../assets/images/omni-infinity-mark.png' : '/assets/images/omni-infinity-mark.png');
+    if (window.OSG_BUILD_ID) {
+      imgSrc += '?v=' + encodeURIComponent(window.OSG_BUILD_ID);
+    }
+
+    var link = document.createElement('a');
+    link.id = 'osg-site-mark';
+    link.className = 'osg-site-mark';
+    link.href = homeHref;
+    link.setAttribute('data-i18n-aria', 'a11y.siteMarkHome');
+
+    var img = document.createElement('img');
+    img.className = 'osg-site-mark__img';
+    img.src = imgSrc;
+    img.alt = '';
+    img.width = 72;
+    img.height = 72;
+    img.decoding = 'async';
+    img.loading = 'lazy';
+    link.appendChild(img);
+    document.body.appendChild(link);
+
+    if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
+      OSGI18n.applyToDom();
+    }
+  }
+
+  function bootSiteMark() {
+    if (document.body) mountSiteMark();
+    else document.addEventListener('DOMContentLoaded', mountSiteMark);
+    document.addEventListener('osg:i18nReady', function () {
+      if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
+        OSGI18n.applyToDom();
+      }
+    });
+  }
+
+  bootSiteMark();
 })();

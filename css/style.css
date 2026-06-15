@@ -875,13 +875,76 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   }
 }
 
+/* ── Site mark (∞) — top center on all subpages ── */
+.osg-site-mark {
+  position: fixed;
+  top: calc(var(--frame-width, 8px) + 0.35rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 520;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(44px, 10vw, 68px);
+  height: clamp(44px, 10vw, 68px);
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-decoration: none;
+  opacity: 0.94;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.osg-site-mark:hover,
+.osg-site-mark:focus-visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1.04);
+  outline: none;
+}
+
+.osg-site-mark__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.38));
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+body:has(#portal-overlay:not(.portal-hidden)) .osg-site-mark {
+  display: none;
+}
+
+body:has(.chrome-frame-inner) .osg-site-mark {
+  top: calc(var(--frame-inset, 12px) + 0.25rem);
+}
+
+@media (max-width: 480px) {
+  .osg-site-mark {
+    width: 42px;
+    height: 42px;
+    top: calc(var(--frame-width, 6px) + 0.2rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .osg-site-mark { transition: none; }
+}
+
 /* ── Portal: Epoxidharz-Sternenhimmel (eigene Welt, heller als Innenseite) ── */
 .portal-overlay {
   position: fixed;
   inset: var(--frame-width);
   z-index: 600;
   overflow: hidden;
-  background: #060608;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 42%, rgba(0, 229, 255, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(20, 40, 80, 0.45) 0%, transparent 70%),
+    #060608;
   border-radius: calc(var(--frame-radius) - 2px);
   transition: opacity 0.42s ease;
 }
@@ -900,7 +963,12 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
 }
 
 .portal-has-video .portal-brand-video {
-  opacity: 1;
+  opacity: 0.38;
+  filter: saturate(0.85) brightness(0.72);
+}
+
+.portal-has-video .portal-logo-slot--fallback {
+  display: flex;
 }
 
 .portal-sparks {
@@ -937,11 +1005,6 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   }
 }
 
-.portal-has-video .portal-logo-slot--fallback {
-  display: none;
-}
-
-.portal-epoxy-base,
 .portal-stars,
 .portal-epoxy-gloss,
 .portal-curtain {
@@ -1055,10 +1118,9 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   gap: clamp(0.85rem, 2.5vh, 1.6rem);
   padding: clamp(1.25rem, 5vw, 3rem);
-  padding-bottom: clamp(2rem, 8vh, 4.5rem);
   transition: opacity 0.55s ease, transform 0.55s ease;
   pointer-events: none;
 }
@@ -1067,36 +1129,45 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
   pointer-events: auto;
 }
 
-.portal-has-video .portal-center {
-  justify-content: flex-end;
-  background: linear-gradient(180deg, transparent 0%, transparent 45%, rgba(6, 6, 8, 0.25) 70%, rgba(6, 6, 8, 0.78) 100%);
+.portal-logo-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  width: 100%;
+  max-height: min(48vh, 440px);
+  min-height: min(28vh, 200px);
+  filter: drop-shadow(0 0 28px rgba(0, 229, 255, 0.35));
 }
 
-.portal-has-video .portal-logo-slot {
-  display: none;
+.portal-logo-slot--official {
+  max-height: min(72vh, 640px);
+  min-height: min(40vh, 280px);
+  filter:
+    drop-shadow(0 0 32px rgba(0, 229, 255, 0.42))
+    drop-shadow(0 12px 40px rgba(0, 0, 0, 0.55));
 }
 
-.portal-has-video .portal-brand-name--chrome {
-  animation: portal-brand-glow 4.5s ease-in-out infinite;
+.portal-logo-official {
+  display: block;
+  width: min(92vw, 520px);
+  height: auto;
+  max-height: min(68vh, 600px);
+  object-fit: contain;
+  object-position: center center;
+  user-select: none;
+  -webkit-user-drag: none;
+  animation: portal-logo-float 5s ease-in-out infinite;
+}
+
+@keyframes portal-logo-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.01); }
 }
 
 @keyframes portal-brand-glow {
   0%, 100% { filter: drop-shadow(0 0 12px rgba(0, 229, 255, 0.35)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.65)); }
   50% { filter: drop-shadow(0 0 22px rgba(0, 229, 255, 0.55)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55)); }
-}
-
-.portal-overlay:not(.portal-has-video) .portal-center {
-  justify-content: center;
-}
-
-.portal-logo-slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
-  width: 100%;
-  max-height: min(62vh, 520px);
-  min-height: min(38vh, 280px);
 }
 
 .portal-brand-name {
@@ -1113,9 +1184,10 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
 }
 
 .portal-brand-name--chrome {
-  font-size: clamp(0.85rem, 3.2vw, 1.35rem);
+  font-size: clamp(0.95rem, 3.8vw, 1.55rem);
   font-weight: 800;
   letter-spacing: 0.14em;
+  animation: portal-brand-glow 4.5s ease-in-out infinite;
   background: linear-gradient(165deg,
     #ffffff 0%,
     #f0f4fa 12%,
@@ -2279,10 +2351,38 @@ body.app-page:has(.chrome-frame-inner) .app-voice-toolbar {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 3rem 1.5rem;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 1.5rem);
+  margin: clamp(0.75rem, 2vw, 1.25rem);
   cursor: pointer;
   scroll-snap-align: start;
   background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0, 229, 255, 0.06) 0%, transparent 60%), var(--bg-surface);
+}
+
+.home-splash-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: min(92vw, 520px);
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.home-splash-voice {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.home-splash-voice .app-voice-toolbar {
+  position: static;
+  margin: 0;
+}
+
+body[data-page="home"] .main-content > .page-header {
+  display: none;
 }
 
 .home-welcome-silver {
@@ -2295,7 +2395,24 @@ body.app-page:has(.chrome-frame-inner) .app-voice-toolbar {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin-bottom: 1rem;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.home-splash-logo {
+  display: block;
+  width: min(92vw, 480px);
+  height: auto;
+  max-height: min(52vh, 520px);
+  object-fit: contain;
+  object-position: center center;
+  margin: 0.25rem auto 0.75rem;
+  filter:
+    drop-shadow(0 0 28px rgba(0, 229, 255, 0.38))
+    drop-shadow(0 10px 32px rgba(0, 0, 0, 0.45));
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .home-brand-title {
@@ -3136,7 +3253,18 @@ a.store-badge:hover {
 
   .home-splash {
     min-height: 58vh;
-    padding: 2rem 1rem;
+    padding: 1.5rem 0.75rem;
+    margin: 0.5rem;
+  }
+
+  .home-splash-top {
+    max-width: 100%;
+    padding-right: 2.75rem;
+  }
+
+  .home-splash-logo {
+    width: min(94vw, 360px);
+    max-height: min(48vh, 400px);
   }
 
   .home-cta-row {
@@ -3595,12 +3723,23 @@ a.store-badge:hover {
 }
 
 @media (max-width: 480px) {
-  .portal-logo-slot {
-    max-height: min(56vh, 420px);
-    min-height: min(34vh, 220px);
+  .portal-logo-slot--official {
+    max-height: min(64vh, 480px);
+    min-height: min(36vh, 220px);
   }
 
-  .portal-brand-name {
+  .portal-logo-official {
+    width: min(94vw, 400px);
+    max-height: min(58vh, 440px);
+  }
+
+  .portal-logo-slot {
+    max-height: min(52vh, 380px);
+    min-height: min(30vh, 200px);
+  }
+
+  .portal-brand-name,
+  .portal-brand-name--chrome {
     font-size: clamp(0.62rem, 3.2vw, 0.88rem);
     letter-spacing: 0.08em;
   }

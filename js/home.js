@@ -63,6 +63,7 @@
     document.querySelectorAll('.osg-logo-mount').forEach(function (mount) {
       if (mount.firstElementChild) return;
       if (mount.classList.contains('osg-logo-mount--portal')) return;
+      if (mount.classList.contains('osg-logo-mount--splash')) return;
       mount.innerHTML = buildAnimatedLogoHTML();
     });
   }
