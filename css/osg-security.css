@@ -325,3 +325,50 @@ body[data-page="agb"] #osg-security-modal {
     top: max(4.5rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
   }
 }
+
+/* Homepage: Enterprise Core — sole control in the left chrome gutter (between frames) */
+body[data-page="home"] #osg-security-container {
+  top: 50%;
+  bottom: auto;
+  left: calc((var(--frame-width) + var(--frame-inset)) / 2);
+  right: auto;
+  transform: translate(-50%, -50%);
+}
+
+body[data-page="home"] #osg-secure-badge {
+  transform: rotate(-90deg);
+}
+
+body[data-page="home"] #osg-secure-badge:hover,
+body[data-page="home"] #osg-secure-badge:focus-visible {
+  transform: rotate(-90deg) scale(1.05);
+}
+
+body[data-page="home"] #osg-security-modal {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 12px);
+  right: auto;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 480px) {
+  body[data-page="home"] #osg-security-container {
+    left: calc((var(--frame-width) + var(--frame-inset)) / 2);
+  }
+
+  body[data-page="home"] .osg-secure-badge__label {
+    font-size: 8px;
+    letter-spacing: 0.45px;
+  }
+
+  body[data-page="home"] #osg-secure-badge {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  body[data-page="home"] #osg-security-modal {
+    left: calc(100% + 8px);
+    width: min(280px, calc(100vw - var(--frame-inset) - 3.5rem));
+  }
+}
