@@ -289,6 +289,35 @@
   align-items: center;
 }
 
+/* OmniQR: Lautsprecher-Leiste nicht unter Hamburger/AGB-Menü (oben rechts) */
+body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) .app-voice-toolbar {
+  top: auto;
+  left: auto;
+  right: max(12px, env(safe-area-inset-right, 12px));
+  bottom: calc(max(12px, env(safe-area-inset-bottom, 12px)) + 3.35rem);
+  z-index: 960;
+  align-items: flex-end;
+  max-width: min(92vw, 11rem);
+}
+
+body.app-page:has(.chrome-frame-inner)[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) .app-voice-toolbar {
+  top: auto;
+  bottom: calc(var(--frame-inset) + max(12px, env(safe-area-inset-bottom, 12px)) + 3.35rem);
+  right: calc(var(--frame-inset) + max(12px, env(safe-area-inset-right, 12px)));
+}
+
+body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) .app-page-shell {
+  padding-bottom: calc(clamp(4.5rem, 10vw, 5.5rem) + 4.5rem);
+}
+
+body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) .app-legal-footer--omniqr {
+  margin-bottom: 0.5rem;
+}
+
+body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) #osg-security-container {
+  z-index: 880;
+}
+
 /* App menu */
 .omniqr-menu-btn {
   position: fixed;
@@ -493,6 +522,10 @@
   padding-bottom: calc(9.5rem + env(safe-area-inset-bottom, 0px));
 }
 
+.omniqr-page--agb .app-legal-footer--omniqr {
+  margin-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+}
+
 /* OmniQR: Security-Badge nicht über PDF/Vorlesen-Dock legen */
 body[data-app-id="omniqrAiPay"] #osg-security-container {
   z-index: 880;
@@ -514,6 +547,14 @@ body[data-app-id="omniqrAiPay"].omniqr-page--agb #osg-security-container {
 }
 
 @media (max-width: 480px) {
+  body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) .app-voice-toolbar {
+    bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  }
+
+  body.app-page:has(.chrome-frame-inner)[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) .app-voice-toolbar {
+    bottom: calc(var(--frame-inset) + max(12px, env(safe-area-inset-bottom, 12px)));
+  }
+
   body[data-app-id="omniqrAiPay"]:not(.omniqr-page--agb) #osg-security-container {
     top: max(68px, calc(env(safe-area-inset-top, 12px) + 56px));
     bottom: auto;
@@ -578,7 +619,7 @@ body[data-app-id="omniqrAiPay"].omniqr-page--agb #osg-security-container {
   .omniqr-support-fab {
     left: max(12px, env(safe-area-inset-left, 12px));
     right: auto;
-    bottom: max(12px, env(safe-area-inset-bottom, 12px));
+    bottom: max(calc(12px + 4.25rem), calc(env(safe-area-inset-bottom, 12px) + 4.25rem));
     max-width: min(52vw, 168px);
     padding-left: 0.75rem;
     padding-right: 0.75rem;

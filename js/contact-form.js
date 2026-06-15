@@ -2,8 +2,10 @@
   'use strict';
 
   var RECOGNITION = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var RECIPIENT = (window.OSG_CONTACT_CONFIG && OSG_CONTACT_CONFIG.recipient)
+    || 'omnisolutionsglobal.co.ltd@gmail.com';
   var ENDPOINT = (window.OSG_CONTACT_CONFIG && OSG_CONTACT_CONFIG.endpoint)
-    || 'https://formsubmit.co/ajax/info@omnisolutionsglobal.com';
+    || ('https://formsubmit.co/ajax/' + RECIPIENT);
 
   function t(key) {
     return window.OSGI18n ? OSGI18n.t(key) : key;
@@ -50,7 +52,7 @@
           '<p id="contact-status" class="contact-status chrome-silver-text" hidden></p>' +
           '<div class="contact-modal-actions">' +
             '<button type="button" class="btn btn-outline-neon" id="contact-cancel" data-i18n="contact.cancelBtn"></button>' +
-            '<button type="submit" class="btn btn-neon" id="contact-send" data-i18n="contact.sendBtn"></button>' +
+            '<button type="submit" class="btn btn-neon btn-neon--compact" id="contact-send" data-i18n="contact.sendBtn"></button>' +
           '</div>' +
         '</form>' +
       '</div>';
@@ -285,7 +287,7 @@
     document.querySelectorAll('[data-contact-trigger]').forEach(function (el) {
       if (el.getAttribute('data-contact-bound')) return;
       el.setAttribute('data-contact-bound', '1');
-      el.setAttribute('href', '#');
+      if (el.tagName === 'A') el.setAttribute('href', '#');
       el.addEventListener('click', function (e) {
         e.preventDefault();
         openModal();

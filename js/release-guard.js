@@ -65,6 +65,8 @@
     var imgSrc = (inSubfolder ? '../assets/images/omni-infinity-mark.png' : '/assets/images/omni-infinity-mark.png');
     if (window.OSG_BUILD_ID) {
       imgSrc += '?v=' + encodeURIComponent(window.OSG_BUILD_ID);
+    } else {
+      imgSrc += '?v=2026.06.15.35';
     }
 
     var link = document.createElement('a');

@@ -1,57 +1,114 @@
 (function () {
   'use strict';
 
-  var PORTAL_VIDEO_SRC = '/assets/video/portal-loop.mp4';
+  var heroVideoInited = false;
+  var portalInited = false;
 
-  function initPortalVideo() {
-    var portal = document.getElementById('portal-overlay');
-    var video = document.getElementById('portal-brand-video');
-    var fallback = document.getElementById('portal-logo-slot');
-    if (!portal || !video) return;
+  function tryPlay(video) {
+    var p = video.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(function () { /* autoplay policy */ });
+    }
+  }
 
+  function syncPortalSoundButton(video) {
+    var btn = document.getElementById('portal-video-sound-btn');
+    if (!btn || !video) return;
+
+    var on = !video.muted;
+    var ariaKey = on ? 'portal.videoSoundMuteAria' : 'portal.videoSoundUnmuteAria';
+
+    btn.classList.toggle('portal-video-sound-btn--on', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    btn.setAttribute('data-i18n-aria', ariaKey);
+    if (window.OSGI18n && typeof OSGI18n.t === 'function') {
+      btn.setAttribute('aria-label', OSGI18n.t(ariaKey));
+    }
+  }
+
+  function resetPortalVideoSound(video) {
+    if (!video) return;
     video.muted = true;
-    video.loop = true;
-    video.autoplay = true;
-    video.playsInline = true;
-    video.setAttribute('playsinline', '');
-    video.controls = false;
-    video.disablePictureInPicture = true;
-    video.setAttribute('controlsList', 'nodownload nofullscreen noremoteplayback');
-    video.setAttribute('aria-hidden', 'true');
+    syncPortalSoundButton(video);
+  }
 
-    function showVideo() {
-      portal.classList.add('portal-has-video');
-      if (fallback) fallback.setAttribute('hidden', '');
-      video.removeAttribute('hidden');
-      var playPromise = video.play();
-      if (playPromise && playPromise.catch) {
-        playPromise.catch(function () { /* autoplay policy */ });
+  function syncHeroVideoVisibility() {
+    var portal = document.getElementById('portal-overlay');
+    var video = document.getElementById('hero-video');
+    if (!video) return;
+
+    var portalOpen = portal
+      && !portal.classList.contains('portal-hidden')
+      && !portal.classList.contains('portal-reveal');
+
+    if (portalOpen) {
+      video.classList.remove('hero-video--hidden');
+      tryPlay(video);
+    } else {
+      video.classList.add('hero-video--hidden');
+      resetPortalVideoSound(video);
+      video.pause();
+    }
+  }
+
+  function initPortalVideoSound() {
+    var btn = document.getElementById('portal-video-sound-btn');
+    var video = document.getElementById('hero-video');
+    if (!btn || !video) return;
+
+    btn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      if (!video.muted) {
+        video.volume = 1;
+        tryPlay(video);
       }
+      syncPortalSoundButton(video);
+    });
+
+    if (window.i18next) {
+      i18next.on('languageChanged', function () {
+        syncPortalSoundButton(video);
+      });
     }
 
-    function showFallback() {
-      portal.classList.remove('portal-has-video');
-      video.setAttribute('hidden', '');
-      video.setAttribute('data-fallback', '1');
-      if (fallback) fallback.removeAttribute('hidden');
-      if (window.OSGHome && window.OSGHome.initPortalFallbackLogo) {
-        OSGHome.initPortalFallbackLogo();
-      }
+    syncPortalSoundButton(video);
+  }
+
+  function initPortalHeroVideo() {
+    if (heroVideoInited) return;
+    heroVideoInited = true;
+
+    var video = document.getElementById('hero-video');
+    if (!video) return;
+
+    function onVideoError() {
+      video.classList.add('hero-video--failed');
+      video.pause();
     }
 
-    video.addEventListener('loadeddata', showVideo);
-    video.addEventListener('error', showFallback);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      video.pause();
+      video.removeAttribute('autoplay');
+      video.classList.add('hero-video--hidden');
+      var soundBtnReduced = document.getElementById('portal-video-sound-btn');
+      if (soundBtnReduced) soundBtnReduced.hidden = true;
+      return;
+    }
 
-    fetch(PORTAL_VIDEO_SRC, { method: 'HEAD' })
-      .then(function (res) {
-        if (!res.ok) {
-          showFallback();
-          return;
-        }
-        video.src = PORTAL_VIDEO_SRC;
-        video.load();
-      })
-      .catch(showFallback);
+    initPortalVideoSound();
+
+    video.addEventListener('loadeddata', function () { tryPlay(video); });
+    video.addEventListener('canplay', function () { tryPlay(video); });
+    video.addEventListener('canplaythrough', function () { tryPlay(video); });
+    video.addEventListener('error', onVideoError);
+    tryPlay(video);
+    syncHeroVideoVisibility();
+
+    var portal = document.getElementById('portal-overlay');
+    if (portal && typeof MutationObserver !== 'undefined') {
+      var obs = new MutationObserver(syncHeroVideoVisibility);
+      obs.observe(portal, { attributes: true, attributeFilter: ['class'] });
+    }
   }
 
   function initPortalSparks() {
@@ -84,8 +141,16 @@
 
   window.OSGPortalVideo = {
     init: function () {
-      initPortalVideo();
+      if (portalInited) return;
+      portalInited = true;
+      initPortalHeroVideo();
       initPortalSparks();
     }
   };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortalHeroVideo);
+  } else {
+    initPortalHeroVideo();
+  }
 })();

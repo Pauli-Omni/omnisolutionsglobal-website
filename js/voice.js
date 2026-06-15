@@ -134,6 +134,14 @@
         return (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim();
       }
 
+      if (document.body.getAttribute('data-page') === 'home') {
+        var splash = document.getElementById('home-splash');
+        if (splash) {
+          var splashText = (splash.innerText || splash.textContent || '').replace(/\s+/g, ' ').trim();
+          if (splashText) return splashText;
+        }
+      }
+
       var main = document.getElementById('main');
       if (main) {
         return (main.innerText || main.textContent || '').replace(/\s+/g, ' ').trim();
@@ -206,12 +214,11 @@
       if (code === 'elevenlabs_key_missing') {
         return isLocalDev() ? 'voice.brandVoiceCloudLangLocal' : 'voice.brandVoiceElevenLabsMissing';
       }
+      if (code === 'playback-failed') return 'voice.brandVoicePlaybackFailed';
       if (code === 'no-brand-voice') {
-        if (isLocalDev() && isCloudSpeechLang()) return 'voice.brandVoiceCloudLangLocal';
         return isLocalDev() ? 'voice.brandVoiceRequired' : 'voice.brandVoiceServerConfig';
       }
       if (code === 'failed') {
-        if (isLocalDev() && isCloudSpeechLang()) return 'voice.brandVoiceCloudLangLocal';
         return isLocalDev() ? 'voice.brandVoiceRetry' : 'voice.brandVoiceServerError';
       }
       return isLocalDev() ? 'voice.brandVoiceRetry' : 'voice.brandVoiceServerError';
@@ -224,7 +231,22 @@
 
     _prefetchServerStatus: function () {
       var self = this;
-      if (isLocalDev() || isFileProtocol() || !this._btn) return;
+      if (!this._btn) return;
+      if (isFileProtocol()) return;
+
+      if (isLocalDev() && isCloudSpeechLang()) {
+        fetch('/health', { cache: 'no-store' })
+          .then(function (res) { return res.ok ? res.json() : null; })
+          .then(function (health) {
+            if (!self._btn || !health) return;
+            if (health.elevenlabsKeyPresent) return;
+            self._btn.setAttribute('data-i18n-title', 'voice.brandVoiceCloudLangLocal');
+            if (window.OSGI18n) OSGI18n.applyToDom();
+          })
+          .catch(function () { /* ignore */ });
+      }
+
+      if (isLocalDev()) return;
       if (!window.OSGBrandTts || !OSGBrandTts.hasApi || !OSGBrandTts.hasApi()) {
         this._btn.setAttribute('data-i18n-title', 'voice.brandVoiceServerNotReadyTitle');
         if (window.OSGI18n) OSGI18n.applyToDom();

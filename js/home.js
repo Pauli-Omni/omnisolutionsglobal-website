@@ -130,31 +130,12 @@
     });
   }
 
-  function initSplashScroll() {
-    var splash = document.getElementById('home-splash');
-    var target = document.getElementById('home-content');
-    if (!splash || !target) return;
-
-    function scrollToContent() {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    splash.addEventListener('click', scrollToContent);
-    splash.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        scrollToContent();
-      }
-    });
-  }
-
   window.OSGHome = {
     initAnimatedLogo: initAnimatedLogo,
     initPortalFallbackLogo: initPortalFallbackLogo,
     init: function () {
       if (document.body.getAttribute('data-page') !== 'home') return;
       initContactModal();
-      initSplashScroll();
     }
   };
 })();

@@ -175,7 +175,9 @@
         audio.onerror = function () {
           if (settled) return;
           settled = true;
-          reject(new Error('audio'));
+          var err = new Error('audio');
+          err.code = 'playback-failed';
+          reject(err);
         };
 
         function startPlayback() {
@@ -209,25 +211,32 @@
         return Promise.resolve(_sessionCache[cacheKey]);
       }
 
-      return fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'audio/mpeg' },
-        cache: 'no-store',
-        body: JSON.stringify({
-          text: text,
-          lang: langTag,
-          pageKey: ctx.pageKey,
-          view: ctx.view,
-          stream: !!useStream
-        })
-      }).then(function (res) {
-        if (res.ok) return res.blob();
-        return res.json().catch(function () { return {}; }).then(function (body) {
-          var code = body && body.error ? body.error : 'api';
-          var err = new Error(code);
-          err.code = code;
-          throw err;
+      function postSpeak(stream) {
+        return fetch(stream ? resolveSpeakEndpoint(true) : resolveSpeakEndpoint(false), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'audio/mpeg' },
+          cache: 'no-store',
+          body: JSON.stringify({
+            text: text,
+            lang: langTag,
+            pageKey: ctx.pageKey,
+            view: ctx.view,
+            stream: !!stream
+          })
+        }).then(function (res) {
+          if (res.ok) return res.blob();
+          return res.json().catch(function () { return {}; }).then(function (body) {
+            var code = body && body.error ? body.error : 'api';
+            var err = new Error(code);
+            err.code = code;
+            throw err;
+          });
         });
+      }
+
+      return postSpeak(!!useStream).catch(function (err) {
+        if (!useStream) throw err;
+        return postSpeak(false);
       }).then(function (blob) {
         var url = URL.createObjectURL(blob);
         _sessionCache[cacheKey] = url;
@@ -350,9 +359,12 @@
             hooks.onError('lang');
           } else if (/failed to fetch|networkerror|load failed|network request failed/i.test(msg)) {
             hooks.onError('connect-failed');
-          } else if (code === 'elevenlabs_key_missing' || code === 'elevenlabs_upstream' ||
-              code === 'elevenlabs_quota_exceeded') {
+          } else if (code === 'playback-failed' || err.message === 'audio') {
+            hooks.onError('playback-failed');
+          } else if (code === 'elevenlabs_key_missing') {
             hooks.onError('elevenlabs_key_missing');
+          } else if (code === 'elevenlabs_upstream' || code === 'elevenlabs_quota_exceeded') {
+            hooks.onError('failed');
           } else if (code === 'xtts_unavailable' || code === 'tts_engine_unavailable' ||
               code === 'no_tts_engine' || code === 'local_reference_missing') {
             hooks.onError('no-brand-voice');

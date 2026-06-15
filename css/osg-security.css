@@ -292,7 +292,8 @@
 
 /* Legal pages: badge oben rechts — innerhalb des inneren Chrom-Rahmens */
 body:has(.chrome-frame-inner)[data-page="impressum"] #osg-security-container,
-body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container {
+body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container,
+body:has(.chrome-frame-inner)[data-page="about"] #osg-security-container {
   top: calc(var(--frame-inset) + max(12px, env(safe-area-inset-top, 12px)));
   bottom: auto;
   right: calc(var(--frame-inset) + max(12px, env(safe-area-inset-right, 12px)));
@@ -300,7 +301,8 @@ body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container {
 }
 
 body[data-page="impressum"] #osg-security-container,
-body[data-page="agb"] #osg-security-container {
+body[data-page="agb"] #osg-security-container,
+body[data-page="about"] #osg-security-container {
   top: max(12px, env(safe-area-inset-top, 12px));
   bottom: auto;
   right: max(12px, env(safe-area-inset-right, 12px));
@@ -308,7 +310,8 @@ body[data-page="agb"] #osg-security-container {
 }
 
 body[data-page="impressum"] #osg-security-modal,
-body[data-page="agb"] #osg-security-modal {
+body[data-page="agb"] #osg-security-modal,
+body[data-page="about"] #osg-security-modal {
   bottom: auto;
   top: calc(100% + 8px);
   right: 0;
@@ -316,12 +319,14 @@ body[data-page="agb"] #osg-security-modal {
 
 @media (max-width: 480px) {
   body:has(.chrome-frame-inner)[data-page="impressum"] #osg-security-container,
-  body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container {
+  body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container,
+  body:has(.chrome-frame-inner)[data-page="about"] #osg-security-container {
     top: calc(var(--frame-inset) + max(4.5rem, env(safe-area-inset-top, 0px) + 4.5rem));
   }
 
   body[data-page="impressum"] #osg-security-container,
-  body[data-page="agb"] #osg-security-container {
+  body[data-page="agb"] #osg-security-container,
+  body[data-page="about"] #osg-security-container {
     top: max(4.5rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
   }
 }

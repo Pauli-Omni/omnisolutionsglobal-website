@@ -12,7 +12,8 @@
     "skipLink": "Zum Hauptinhalt springen",
     "sidebar": "Hauptnavigation",
     "menuToggle": "Menü öffnen",
-    "portalLogo": "Animiertes Omni Solutions Global Logo mit Globus und Unendlichkeitsschleife"
+    "portalLogo": "Animiertes Omni Solutions Global Logo mit Globus und Unendlichkeitsschleife",
+    "siteMarkHome": "Omni Solutions Global — zur Startseite"
   },
   "nav": {
     "home": "Home",
@@ -78,7 +79,9 @@
   },
   "portal": {
     "welcomeBtn": "Willkommen",
-    "enterAria": "Willkommen — Hauptseite öffnen"
+    "enterAria": "Willkommen — Hauptseite öffnen",
+    "videoSoundUnmuteAria": "Portal-Video-Ton einschalten",
+    "videoSoundMuteAria": "Portal-Video stummschalten"
   },
   "voice": {
     "ariaInactive": "Vorlesen nicht verfügbar",
@@ -111,6 +114,7 @@
     "brandVoiceRetry": "Vorlesen fehlgeschlagen. Seite neu laden und erneut versuchen. Bei anhaltenden Fehlern: http://localhost:8080/health prüfen — für Thai/Vietnamesisch nutzt das System ElevenLabs (XTTS nicht nötig).",
     "brandVoiceConnectFailed": "Sprach-Server nicht erreichbar. Website unter http://localhost:8080/ starten (./scripts/start-preview.sh oder ./scripts/start-local-with-voice.sh) — HTML-Datei nicht direkt öffnen.",
     "brandVoiceCloudLangLocal": "Thai und ähnliche Sprachen nutzen den Cloud-Stimmenklon (ElevenLabs) aus Ihrer lokalen Referenz-MP3 — XTTS ist nicht nötig. ./scripts/start-preview.sh reicht, wenn ELEVENLABS_API_KEY in server/elevenlabs.config.env steht. http://localhost:8080/ öffnen.",
+    "brandVoicePlaybackFailed": "Audio konnte nicht abgespielt werden. Lautsprecher erneut klicken oder Seite neu laden. Website muss unter http://localhost:8080/ laufen.",
     "brandVoiceLocalHost": "Vorlesen nur über http://localhost:8080 — bitte ./scripts/start-preview.sh oder ./scripts/start-local-with-voice.sh starten und die Seite dort öffnen (nicht als Datei).",
     "brandVoiceLangUnsupported": "Diese Sprache wird von der Marken-Stimme noch nicht unterstützt. Bitte eine andere Sprache wählen oder den Support kontaktieren.",
     "brandVoiceNoApi": "Vorlesen funktioniert nicht beim direkten Öffnen der HTML-Datei. Bitte die Seite über den Webserver aufrufen (https://…).",
@@ -124,11 +128,12 @@
     "meta": "Omni Solutions Global® Co. Ltd. — High-End KI-Softwareentwicklung & Premium UI.",
     "title": "Home — Omni Solutions Global® Co. Ltd.",
     "lead": "High-End KI-Softwareentwicklung mit internationalen Premium-Referenzen.",
-    "welcomeTo": "Welcome to",
+    "welcomeTo": "Willkommen bei",
+    "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "KI · UI — Enterprise Intelligence",
+    "aiTagline": "KI · UI — Intelligenz auf Enterprise-Niveau",
     "scrollHint": "Klicken oder Scrollen zum Eintreten",
-    "splashAria": "Willkommensbereich — zum Hauptinhalt scrollen",
+    "splashAria": "Willkommensbereich",
     "portfolioTitle": "High-End Portfolio",
     "portfolio1Name": "Pauli BestPrice Thailand",
     "portfolio1Desc": "Proprietäres Preisvergleichsportal mit algorithmischer Steuerung auf höchstem Niveau.",
@@ -154,6 +159,8 @@
     "ref6Text": "Broadcast-nahe Systemlösungen für Sendebetriebe — stabile Steuerung, Monitoring und skalierbare Medienarchitektur.",
     "ctaProject": "Projekt anfragen",
     "ctaAbout": "Impressum",
+    "ctaLearnMoreAria": "Mehr über unser Unternehmen erfahren",
+    "splashActionsAria": "Schnellaktionen auf der Willkommens-Kachel",
     "modalTitle": "Projektübermittlung",
     "modalIntro": "Geschützte Anfrage — ohne Adressangabe. Ihre Daten werden verschlüsselt übermittelt.",
     "modalCloseAria": "Dialog schließen",
@@ -401,8 +408,15 @@
     "directorLabel": "Geschäftsführung",
     "directorValue": "Frau Chatchadapha Hausser — Managing Director, Geschäftsführerin & Inhaberin (mit mehrjähriger gesammelter Berufserfahrung in Deutschland)",
     "locationLabel": "Standort",
-    "emailLabel": "Kontakt-E-Mail",
-    "note": "Für geschäftliche Anfragen nutzen Sie ausschließlich die oben genannte E-Mail-Adresse."
+    "contactLabel": "Contact",
+    "contactBtn": "Contact",
+    "note": "Für geschäftliche Anfragen nutzen Sie bitte den Button „Contact“ oben. Ihre Nachricht wird mit Ihrer E-Mail-Adresse als Antwortadresse an uns übermittelt."
+  },
+  "about": {
+    "meta": "Über uns — Omni Solutions Global Co., Ltd.®",
+    "title": "Über uns",
+    "subtitle": "Die architektonische Spitze der Technologie der nächsten Generation",
+    "body": "<p>Wir bauen nicht einfach Software. Wir erschaffen die digitalen Nervensysteme für die Märkte von morgen.</p><p><strong>Omni Solutions Global&nbsp;Co., Ltd.®</strong> ist eine hochspezialisierte, technologische Elite-Schmiede, die an der Schnittstelle von hyper-skalierbarer Systemarchitektur, dezentraler Datenverarbeitung und disruptiver künstlicher Intelligenz operiert. Wir entwickeln und betreiben unternehmenseigene Flaggschiff-Plattformen in den Bereichen globaler E-Commerce, automatisierte Marktanalyse und KI-gestützte Computervision. Diese internen Großprojekte dienen uns als technologischer Machbarkeitsbeweis: Was wir für unsere eigenen Flaggschiffe realisieren, transferieren wir als maßgeschneiderte High-End-Architektur in die Systeme unserer Kunden.</p><p>Wer mit uns arbeitet, sucht keine Standard-Lösung. Wer uns beauftragt, will die absolute technologische Dominanz in seinem Sektor.</p><hr /><h2>Unsere technologischen Leistungsbereiche für Ihr Unternehmen</h2><div class=\"about-services-grid\"><h3>1. Disruptive Hyper-AI &amp; Prädiktive Daten-Analyse</h3><p>Künstliche Intelligenz ist in unseren Architekturen kein nachträglich angeflanschtes Werkzeug, sondern die fundamentale Logikschicht. Wir konzipieren neuronale Netze und Machine-Learning-Modelle für die Verarbeitung massiver, unstrukturierter Big-Data-Ströme.</p><ul><li><strong>Neuronale Filter &amp; Echtzeit-Validierung:</strong> Wir entwickeln KI-Systeme, die in Mikrosekunden globale Markt- und Preisdaten scannen, mathematische Anomalien berechnen und manipulierte Datenstrukturen oder Fake-Anbieter mit einer Präzision von 99,9&nbsp;% vollautomatisch eliminieren.</li><li><strong>Multimodale KI-Interfaces &amp; Autonome Sprach-Schnittstellen:</strong> Wir brechen die Barriere zwischen Mensch und Maschine. Durch hochentwickelte, KI-gesteuerte Sprach- und Audio-Engines erschaffen wir barrierefreie High-End-Interfaces, die komplexe Datenmuster visuell und akustisch in Echtzeit übersetzen.</li><li><strong>Intelligente Computervision:</strong> Durch den Einsatz fortschrittlicher Bilderkennungs-Algorithmen realisieren wir videobasierte Echtzeit-Raumerfassungen und automatisierte CAD-Datenkonvertierungen direkt über mobile Endgeräte.</li></ul><h3>2. High-Performance Cross-Plattform-Engineering</h3><p>Unsere Softwarearchitekturen kennen keine Systemgrenzen. Wir entwickeln plattformübergreifende Ökosysteme (iOS, Android, Web), die auf maximalen Datendurchsatz und extreme Ausfallsicherheit unter Volllast getrimmt sind.</p><ul><li><strong>Clean-Code-Exzellenz:</strong> Jede Codezeile wird auf minimale Latenz und maximale Ausführungsgeschwindigkeit optimiert. Unsere Systeme performen auch bei massiven globalen Server-Anfragen ohne jegliche Verzögerung.</li><li><strong>Dynamic Legal &amp; Localization Engines:</strong> Wir konstruieren intelligente Lokalisierungsmodule, die beim Systemstart vollautomatisch die Umgebung des Endgeräts analysieren. In Mikrosekunden werden komplexe rechtliche Strukturen (<a href=\"agb.html\" class=\"about-inline-link\">AGB</a>, <a href=\"impressum.html\" class=\"about-inline-link\">Impressum</a>), Währungssysteme und Benutzeroberflächen in den globalen Hauptsprachen (Deutsch, Thailändisch, Englisch, Russisch, Polnisch, Chinesisch) dynamisch eingespielt.</li><li><strong>Sichere API- &amp; Payment-Infrastrukturen:</strong> Wir integrieren hochkomplexe Schnittstellen (wie Krypto-Siegel, PromptPay-Strukturen oder internationale Kreditkarten-Gateways) nahtlos und absolut manipulationssicher in die bestehende Firmenstruktur von Omni Solutions Global&nbsp;Co., Ltd.®</li></ul><h3>3. Monetarisierungs-Architekturen &amp; Skalierbare Marktplätze</h3><p>Wir konzipieren und realisieren digitale Plattformen, die darauf ausgerichtet sind, Märkte transparent zu machen, Konsumströme komplett neu zu lenken und maximale Conversion-Rates zu generieren. Durch die Kombination aus intelligenter Vergleichs-Logik, Echtzeit-Gutschein-Management und automatisierten Affiliate-Schnittstellen erschaffen wir hochprofitable digitale Ökosysteme für globale Partner.</p></div><hr /><h2>High-End KI-Portfolio</h2><ul class=\"about-portfolio-list\"><li><a href=\"pauli-bestprice-beschreibung.html\" class=\"about-inline-link\">Pauli BestPrice Thailand</a></li><li><a href=\"omnicad-ai-cam-beschreibung.html\" class=\"about-inline-link\">OmniCAD-AI CAM</a></li><li><a href=\"omnigate-master-beschreibung.html\" class=\"about-inline-link\">OmniGate-AI Master</a></li><li><a href=\"/omniqr-ai-for-tourist-of-thailand/beschreibung.html\" class=\"about-inline-link\">OmniQR-AI for Tourist of Thailand</a></li><li><a href=\"omnifix-ai-beschreibung.html\" class=\"about-inline-link\">OmniFix AI-Dokument</a></li><li><a href=\"omnibot-ki-profit-beschreibung.html\" class=\"about-inline-link\">OmniBot - KI Profit</a></li><li><a href=\"omniai-qr-generator-beschreibung.html\" class=\"about-inline-link\">OmniAI-QR Code Generator</a></li><li><a href=\"omnitalk-ai-live-beschreibung.html\" class=\"about-inline-link\">OmniTalk-AI Live</a></li></ul><hr /><h2>Unsere Philosophie: Absolute Fokussierung</h2><p>Omni Solutions Global&nbsp;Co., Ltd.® arbeitet im Verborgenen, um im Vordergrund Gigantisches zu bewegen. Unsere Kapazitäten für externe Mandate sind streng limitiert. Wir verzichten bewusst auf Massengeschäfte, öffentliche Repräsentanz oder klassische Agenturdienstleistungen. Unsere Entwicklungsschmiede ist komplett abgeriegelt und arbeitet im absoluten Fokus-Modus ausschließlich für Akteure, die das Budget und den Willen haben, Industrie-Standards in ihrer Branche neu zu definieren.</p><p>Wenn Sie Standard-Software suchen, sind wir der falsche Partner. Wenn Sie die technologische Speerspitze wollen, sind wir Ihre einzige Option.</p><hr /><h2>Unternehmensstruktur</h2><ul><li><strong>Rechtsform:</strong> Company Limited (Co., Ltd.)</li><li><strong>Inhaberin &amp; Geschäftsführerin (Managing Director):</strong> Chatchadapha Hausser</li><li><strong>Fokus:</strong> Künstliche Intelligenz, High-End Softwareentwicklung, Cross-Plattform-Ökosysteme &amp; Skalierbare API-Infrastruktur</li></ul>"
   },
   "agb": {
     "meta": "AGB — Omni Solutions Global® Co. Ltd.",
