@@ -6,7 +6,7 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const PAULI_ENV = path.join(ROOT, '..', 'Pauli Best Price', '.env');
-const SERVER_ENV = path.join(ROOT, 'server', '.env');
+const SERVER_ENV = path.join(ROOT, '02_Quellcode', 'Core_Logik', '.env');
 
 function parseEnv(text) {
   const out = Object.create(null);
@@ -47,7 +47,7 @@ function main() {
   ];
 
   fs.writeFileSync(SERVER_ENV, lines.join('\n') + '\n', 'utf8');
-  console.log('server/.env aktualisiert (Marken-Stimme aus Pauli).');
+  console.log('02_Quellcode/Core_Logik/.env aktualisiert (Marken-Stimme aus Pauli).');
 }
 
 main();

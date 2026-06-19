@@ -1,0 +1,5 @@
+node_modules/
+.brand-voice-id
+.env
+elevenlabs.config.env
+omniqr-ai-for-tourist-of-thailand/data/

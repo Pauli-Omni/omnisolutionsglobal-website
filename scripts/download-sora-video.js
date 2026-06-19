@@ -24,7 +24,7 @@ async function main() {
 
   const apiKey = loadOpenAiKey();
   if (!apiKey) {
-    console.error('OPENAI_API_KEY fehlt (server/.env oder scripts/visual-ai.local.env).');
+    console.error('OPENAI_API_KEY fehlt (02_Quellcode/Core_Logik/.env oder scripts/visual-ai.local.env).');
     process.exit(1);
   }
 

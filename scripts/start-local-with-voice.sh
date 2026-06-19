@@ -6,8 +6,10 @@ LOCAL_PORT="${LOCAL_WEB_PORT:-8080}"
 XTTS_PORT="${XTTS_PORT:-8788}"
 VENV="$ROOT/.venv-xtts"
 
+CORE_LOGIK="$ROOT/02_Quellcode/Core_Logik"
+
 # shellcheck disable=SC1090
-[ -f "$ROOT/server/.env" ] && source "$ROOT/server/.env"
+[ -f "$CORE_LOGIK/.env" ] && source "$CORE_LOGIK/.env"
 
 export PORT="$LOCAL_PORT"
 export LOCAL_WEB_PORT="$LOCAL_PORT"
@@ -33,7 +35,7 @@ fi
 
 XTTS_PID=""
 echo "Starte lokalen XTTS Voice-Clone (Port $XTTS_PORT) …"
-"$VENV/bin/python" "$ROOT/server/xtts/xtts_daemon.py" \
+"$VENV/bin/python" "$CORE_LOGIK/xtts/xtts_daemon.py" \
   --reference "$ROOT/assets/audio/voice_reference_template.wav" &
 XTTS_PID=$!
 
@@ -53,5 +55,5 @@ echo "Website + lokales Vorlesen: http://localhost:$LOCAL_PORT"
 echo "Health-Check:               http://localhost:$LOCAL_PORT/health"
 echo "Referenz-Stimme (lokal):    $ROOT/assets/audio/omni-homepage-voice.mp3"
 
-cd "$ROOT/server"
+cd "$CORE_LOGIK"
 npm start

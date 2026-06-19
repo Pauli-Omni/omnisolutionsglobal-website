@@ -9,7 +9,7 @@ services:
     region: frankfurt
     # plan: free  # zum Sparen; Starter = kein Sleep, kostet monatlich
     plan: starter
-    rootDir: server
+    rootDir: 02_Quellcode/Core_Logik
     buildCommand: npm install
     startCommand: npm start
     healthCheckPath: /health
@@ -48,3 +48,13 @@ services:
         sync: false
       - key: OMNI_SMTP_FROM
         sync: false
+      - key: INVOLVE_ASIA_AFFILIATE_ID
+        value: "1085689"
+      - key: OSG_AFFILIATE_PUBLISHER
+        value: Omni Solutions Global
+      - key: INVOLVE_ASIA_API_KEY
+        sync: false
+      - key: INVOLVE_ASIA_API_SECRET
+        sync: false
+      - key: INVOLVE_ASIA_OFFER_LOTUS_TH
+        value: "4760"

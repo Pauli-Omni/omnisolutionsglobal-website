@@ -1,0 +1,345 @@
+================================================================================
+OMNI SOLUTIONS GLOBAL — CORPORATE HOMEPAGE (WEB)
+ARCHITEKTUR-DOKUMENTATION
+================================================================================
+Omni Solutions Global® Co. Ltd.
+Stand: 16. Juni 2026
+Repository: OmniSolutionsGlobal WEBSEITE (GitHub: origin/main)
+Live-Ziel: https://omnisolutionsglobal.com
+
+Hinweis: Dieses Dokument beschreibt die Unternehmens-Homepage (Hub + Produktseiten).
+Die App „Pauli Best Price Thailand“ ist ein separates Repository mit eigener
+Architektur_Dokumentation.txt — Strukturprinzipien werden hier übernommen, nicht
+der Quellcode.
+
+Legende Status:
+  [FERTIG]     = produktiv nutzbar
+  [TEILWEISE]  = Kern vorhanden, Anbindung/Deploy offen
+  [GERÜST]     = Struktur/Dateien da, nicht voll gekoppelt
+  [FEHLT]      = geplant, nicht implementiert
+  [ANALYSE]    = nur dokumentiert, keine Code-Änderung
+
+================================================================================
+1. SYSTEMÜBERBLICK (KURZ)
+================================================================================
+
+1.1 Architektur-Typ
+-------------------
+  Multi-Page-Website (MPA) — ~25 HTML-Seiten im Repo-Root
+  + Node/Express-Server unter server/ (TTS-API, OmniQR-API, i18n-API, Ops)
+  + statische Auslieferung des gesamten SITE_ROOT via express.static
+
+1.2 Datenfluss (vereinfacht)
+----------------------------
+  Browser → HTML/CSS/JS (Root) → i18next lädt assets/locales/*.json
+  Vorlesen  → POST /api/speak → server/tts-router.js → XTTS | ElevenLabs | OpenAI
+  OmniQR    → /omniqr-ai-for-tourist-of-thailand/api/* → server/omniqr-…/router.js
+  Release   → GET /api/release/* → server/release/
+
+1.3 Abgrenzung zu Pauli Best Price
+----------------------------------
+  | Aspekt              | OSG Homepage                    | Pauli Best Price        |
+  |---------------------|---------------------------------|-------------------------|
+  | Frontend            | Viele HTML + js/*.js            | Eine index.html SPA     |
+  | Server-Einstieg     | server/index.js                 | 02_Quellcode/Core_Logik/server.js |
+  | Preis-/Shop-Logik   | Nur OmniQR (Zahlungs-QR)        | Vergleich, Affiliate, VIP |
+  | Avatar / Live-Chat  | Marken-Vorlesen (TTS)           | Pauli Live-Konversation |
+  | i18n                | assets/locales/*.json (i18next)| i18n-locales.js (T-Objekt)|
+
+================================================================================
+2. SERVER-STARTPUNKT (IST-ZUSTAND)
+================================================================================
+
+2.1 Primärer Einstieg — NICHT im Repo-Root
+------------------------------------------
+  Datei:     server/index.js
+  Package:   server/package.json  →  "start": "node index.js"
+  Deploy:    render.yaml → rootDir: server, startCommand: npm start
+  Port:      process.env.PORT || LOCAL_WEB_PORT || 8080
+
+2.2 SITE_ROOT-Auflösung
+-----------------------
+  const SITE_ROOT = path.join(__dirname, '..');
+  → Statische Dateien (HTML, css/, js/, assets/) werden aus dem Repo-Root
+    ausgeliefert, während die Server-Logik in server/ liegt.
+
+  Bewertung: [TEILWEISE strukturiert]
+  • Server ist bereits aus dem Root getrennt (besser als Pauli vor Welle 1).
+  • package.json liegt nur unter server/, nicht im Repo-Root.
+  • render.yaml rootDir: server erzwingt korrekten Startpfad auf Render.
+
+2.3 Registrierte API-Routen (server/index.js)
+---------------------------------------------
+  GET  /health
+  POST /api/speak, /api/speak/stream     — Marken-TTS (tts-router)
+  USE  /api                                — release-Router
+  USE  /api/ops                            — Ops/Diagnostik
+  USE  /api/i18n                           — Locale-Merge/Build
+  USE  /omniqr-ai-for-tourist-of-thailand/api/*  — Zahlungs-QR-Modul
+  USE  express.static(SITE_ROOT)           — gesamte Homepage
+
+================================================================================
+3. ORDNER-INVENTAR — STRUKTURIERT VS. UNSTRUKTURIERT
+================================================================================
+
+3.1 Bereits sinnvoll gruppiert [FERTIG / TEILWEISE]
+---------------------------------------------------
+  server/                  — Express-App, TTS, OmniQR-Backend, Ops, i18n-API
+  server/i18n/             — Locale-Merge-Serverlogik
+  server/release/          — Release-Stamp / Build-ID
+  server/ops/              — Voice-Diagnostics, Ops-Router
+  server/omniqr-ai-for-tourist-of-thailand/  — Zahlungs-API (EMVCo, HMAC, Router)
+  assets/                  — audio, config, content, icons, images, locales, qr, video
+  css/                     — Globale Styles (+ voice-lang-maintenance, trilingual)
+  js/                      — Client-Module (siehe 3.3)
+  partials/                — osg-security-mount.html
+  ops/                     — voice-check.html (Admin-UI)
+  deploy/                  — Deploy-Hinweise
+  omniqr-ai-for-tourist-of-thailand/  — Frontend-Mini-App (HTML + eigenes css/js)
+
+3.2 Unstrukturiert / Root-Chaos [ANALYSE — Migrationskandidaten]
+---------------------------------------------------------------
+  A) Flache HTML-Fläche (Repo-Root, ~25 Dateien)
+     index.html, impressum.html, agb.html, ueber-uns.html, presentation.html,
+     werbe-ecke.html, weitere-apps.html,
+     pauli-bestprice.html, pauli-bestprice-beschreibung.html,
+     omniai-qr-generator.html, omniai-qr-generator-beschreibung.html,
+     omnibot-ki-profit.html, … (je App: front + beschreibung)
+     → Kein 02_Quellcode/Frontend_* Zielordner; keine Template-Partials
+
+  B) scripts/ (Repo-Root, ~28 Skripte)
+     Mischung aus: XTTS-Setup, Render-Deploy, Cloudflare-DNS, OpenAI-Visual-AI,
+     Voice-Tests, env-Sync mit Pauli — operativ, nicht nach Domäne sortiert
+     → Entspricht Paulis losem scripts/-Ordner vor Welle 1
+
+  C) Python-Virtualenvs im Repo-Root
+     .venv-tts/, .venv-voice/, .venv-xtts/
+     → Laufzeit-Artefakte; sollten nur lokal existieren (.gitignore prüfen)
+
+  D) Doppelte OmniQR-Struktur
+     omniqr-ai-for-tourist-of-thailand/          (Frontend, Root)
+     server/omniqr-ai-for-tourist-of-thailand/   (Backend, Server)
+     → Fachlich korrekt getrennt (FE/BE), aber Pfadname lang und dupliziert
+
+  E) Fehlende Pauli-Zielordner (noch nicht angelegt)
+     01_Design_und_Branding/
+     02_Quellcode/  (mit Core_Logik, Frontend_Responsive, Voice_Modul)
+     03_Datenbank_und_Preise/
+     04_Marketing_und_Texte/
+     05_Dokumente_und_Rechtliches/
+
+  F) Konfiguration verstreut
+     render.yaml (Root), server/.env, server/elevenlabs.config.env,
+     scripts/*.local.env*, assets/config/release.json
+     → Kein zentraler 05_Dokumente_und_Rechtliches/API_Keys_Secrets/
+
+3.3 Client-JS — funktionale Schichten (noch alles unter js/)
+-----------------------------------------------------------
+  Hub / Shell:        app.js, hub-sidebar.js, hub-back-nav.js, home.js,
+                      home-starfield.js, portal-video.js, portfolio.js
+  i18n:               i18n-config.js, i18n.js, world-lang.js
+  App-Seiten:         app-front-page.js, app-desc-page.js, app-registry.js,
+                      product-page.js, presentation.js
+  Voice / TTS (UI):   voice-lang-maintenance.js, tts-speech-prep.js,
+                      tts-english-terms.js, ops-voice-check.js
+  Sonstiges:          osg-security.js, release-guard.js, contact-form.js,
+                      chameleon-bg.js, about-*.js, store-badges.js
+
+  Kollisionrisiko: app.js bootet OSGVoiceLangMaintenance global; Speaker-Buttons
+  werden derzeit auf Wartungs-Modal umgeleitet (voice-btn--deactivated).
+
+================================================================================
+4. VERGLEICH MIT PAULI — WELLE-1-STATUS
+================================================================================
+
+Pauli Best Price (Referenz, Stand 16.06.2026):
+  [ABGESCHLOSSEN] data/           → 03_Datenbank_und_Preise/data/
+  [ABGESCHLOSSEN] server.js       → 02_Quellcode/Core_Logik/server.js
+  [ABGESCHLOSSEN] services/       → 02_Quellcode/Core_Logik/services/
+  [ABGESCHLOSSEN] commerce-constants.js → 03_Datenbank_und_Preise/
+  [OFFEN]         index.html, style.css, i18n-locales.js, public/ (Welle 2)
+
+OSG Homepage (dieses Repo):
+  [BEREITS OK]    Server nicht im Root (server/index.js)
+  [OFFEN]         Keine nummerierten Sammelordner 01–05
+  [OFFEN]         HTML/JS/CSS noch vollständig im Root
+  [OFFEN]         Kein deploy-check.sh analog Pauli
+
+================================================================================
+7.0 STRUKTUR-ANALYSE & MIGRATIONSPLAN (WELLE 1)
+================================================================================
+Stand: 16. Juni 2026 | Nur Dokumentation — kein Code verschoben.
+
+7.0.1 Zielbild (angelehnt an Pauli Best Price)
+----------------------------------------------
+  Repo-Root = Tooling + render.yaml + README + Architektur_Dokumentation.txt
+  01_Design_und_Branding/     → css/, assets/images|video|icons|audio, app-icons
+  02_Quellcode/
+    Core_Logik/               → server/index.js + alle server/*.js Module
+    Frontend_Pages/           → alle *.html (oder beibehalten als Symlink-Quelle)
+    Frontend_Scripts/         → js/ (später Unterordner voice/, hub/, i18n/)
+    Voice_Modul/              → dedizierte Voice-Client-Bundle (siehe 7.0.4)
+  03_Datenbank_und_Preise/    → OmniQR-Daten + Preis-/Limit-Konstanten
+  04_Marketing_und_Texte/     → assets/locales/, assets/content/, Werbetexte
+  05_Dokumente_und_Rechtliches/ → impressum/agb-Inhalte, .env-Vorlagen, deploy/
+
+7.0.2 Welle 1 — Core-Logik (Priorität 1, risikoarm)
+---------------------------------------------------
+  Analog Pauli Welle 1 — nur Backend + Daten, Frontend-Pfade vorerst unverändert.
+
+  | Quelle (heute)                    | Ziel (Welle 1)                          | Abhängigkeiten |
+  |-----------------------------------|-----------------------------------------|----------------|
+  | server/index.js                   | 02_Quellcode/Core_Logik/index.js        | SITE_ROOT → cwd('..') anpassen; render.yaml startCommand |
+  | server/tts-router.js              | 02_Quellcode/Core_Logik/tts-router.js   | Pfade zu assets/audio/ |
+  | server/elevenlabs-speak.js        | 02_Quellcode/Core_Logik/                | elevenlabs.config.env |
+  | server/local-openai-speak.js      | 02_Quellcode/Core_Logik/                | — |
+  | server/xtts-bridge.js + xtts/     | 02_Quellcode/Core_Logik/xtts/           | Python XTTS optional |
+  | server/i18n/, release/, ops/      | 02_Quellcode/Core_Logik/                | SITE_ROOT-Referenzen |
+  | server/omniqr-ai-for-tourist-of-thailand/ | 02_Quellcode/Core_Logik/omniqr/ | BASE-Pfad, armor middleware |
+  | server/package.json               | Root ODER 02_Quellcode/Core_Logik/      | render rootDir Entscheidung |
+  | scripts/ (nur server-nahe)        | 02_Quellcode/Core_Logik/scripts/        | npm test Pfade |
+
+  Startbefehl nach Migration (Option A — empfohlen):
+    render.yaml: rootDir: . (Repo-Root)
+    startCommand: node 02_Quellcode/Core_Logik/index.js
+    buildCommand: cd 02_Quellcode/Core_Logik && npm install
+
+  Startbefehl (Option B — minimaler Diff):
+    server/ bleibt physisch, wird logisch als Core_Logik dokumentiert;
+    nur Daten/Preise-Konstanten auslagern (7.0.3).
+
+7.0.3 Welle 1 — Datenbank / Preise (Priorität 1)
+------------------------------------------------
+  Die OSG-Homepage hat KEINE Pauli-Vergleichstabelle oder commerce-constants.js.
+  Preis-/Betragslogik existiert ausschließlich im OmniQR-Zahlungsmodul:
+
+  | Quelle (heute)                              | Ziel (Welle 1)                    |
+  |---------------------------------------------|-----------------------------------|
+  | server/omniqr-…/emvco.js (THB_CURRENCY, TLV) | 03_Datenbank_und_Preise/omniqr/  |
+  | server/omniqr-…/router.js (OMNI_MAX_AMOUNT_THB) | 03_Datenbank_und_Preise/limits.json |
+  | server/omniqr-…/data/ (falls persistent)    | 03_Datenbank_und_Preise/data/     |
+  | assets/config/release.json                  | 03_Datenbank_und_Preise/config/   |
+
+  Pauli-spezifische Preislogik (OSG_COMPARE_ROWS, Involve Asia, VIP) bleibt im
+  Pauli-Repo — nur scripts/sync-env-from-pauli.js koppelt optional Env-Variablen.
+
+  Empfehlung: 03_Datenbank_und_Preise/omniqr-limits.js als einzige Quelle für
+  OMNI_MAX_AMOUNT_THB und Währungscode — emvco.js und router.js importieren daraus.
+
+7.0.4 Welle 1 — Design-Module (Priorität 2, nach Core stabil)
+-------------------------------------------------------------
+  | Quelle (heute)        | Ziel (Welle 1/2)                    | Anmerkung |
+  |-----------------------|-------------------------------------|-----------|
+  | css/                  | 01_Design_und_Branding/css/         | HTML <link>-Pfade |
+  | assets/images,video   | 01_Design_und_Branding/assets/      | express.static |
+  | assets/audio/         | 01_Design_und_Branding/audio/       | TTS-Referenz MP3 |
+  | assets/icons/         | 01_Design_und_Branding/icons/       | App-Registry |
+  | assets/locales/       | 04_Marketing_und_Texte/locales/     | i18n-API liest Pfad |
+  | partials/             | 01_Design_und_Branding/partials/    | — |
+
+  HTML-Dateien (Welle 2): erst Core+Pfade stabil, dann nach
+  02_Quellcode/Frontend_Pages/ — oder Hub-Templates extrahieren.
+
+7.0.5 Migrations-Reihenfolge (empfohlen)
+----------------------------------------
+  Phase 1 — Dokumentation & Checks (JETZT) [ABGESCHLOSSEN mit diesem Abschnitt]
+  Phase 2 — 03_Datenbank_und_Preise anlegen; OmniQR-Limits extrahieren
+  Phase 3 — server/ → 02_Quellcode/Core_Logik/; render.yaml + SITE_ROOT anpassen
+  Phase 4 — deploy-check.sh (Pflichtpfade + Schreibtest data/)
+  Phase 5 — Voice-Client-Bundle (7.0.6) + css/assets nach 01_
+  Phase 6 — HTML-Aufräumen (Welle 2, gemeinsame Header/Footer-Partials)
+
+7.0.6 Isolation: Sprachausgabe-Komponente
+-----------------------------------------
+  FRAGE: Kann Voice physisch isoliert werden, ohne mit dem restlichen Frontend
+  zu kollidieren?
+
+  ERGEBNIS: [JA — mit klaren Modulgrenzen]
+
+  Server-Seite (bereits isolierbar):
+    • server/tts-router.js — einziger Einstieg für TTS-Engines
+    • server/elevenlabs-speak.js, local-openai-speak.js, xtts-bridge.js
+    • Endpunkte nur: POST /api/speak, /api/speak/stream, GET /health
+    → Kann als Paket 02_Quellcode/Voice_Modul/server/ ausgelagert werden;
+      index.js bindet nur tts-router ein.
+
+  Client-Seite (heute vermischt — Isolation empfohlen):
+    | Datei                         | Rolle                          | Kollision |
+    |-------------------------------|--------------------------------|-----------|
+    | js/voice-lang-maintenance.js  | Speaker-UI, Toolbar, Modal     | Hängt an app.js boot; intercepts alle .voice-btn Klicks |
+    | js/tts-speech-prep.js         | Pauli-Abkürzungs-Expansion     | Nur window.OSGTtsSpeechPrep |
+    | js/tts-english-terms.js       | EN-TTS-Normalisierung          | Cache invalidiert bei i18n |
+    | js/ops-voice-check.js         | Admin-Diagnostik               | Nur ops/voice-check.html |
+    | css/voice-lang-maintenance.css| Speaker-Styles                 | — |
+    | assets/locales/*.json (voice.*)| UI-Strings                    | 6+ Sprachen |
+
+  Ziel-Schnittstelle (nach Isolation):
+    window.OSGBrandVoice.speak(text, lang)  — einzige öffentliche Client-API
+    Intern: fetch('/api/speak') + Audio-Playback + OSGTtsSpeechPrep.pauliExpand
+
+  Aktueller Blocker:
+    voice-lang-maintenance.js ist im Wartungsmodus — ersetzt echtes Vorlesen durch
+    Modal. Vor Isolation: echten speak-Flow aus Pauli oder historischem Branch
+    in OSGBrandVoice kapseln, Maintenance nur als Feature-Flag.
+
+  Referenz-Audio:
+    assets/audio/omni-homepage-voice.mp3 (und optional voice_reference_template.wav)
+    → gehört zu 01_Design_und_Branding/audio/, nicht zu js/.
+
+  Fazit Isolation Voice:
+    Server: [FERTIG isolierbar] — wenige Dateien, klare API
+    Client: [TEILWEISE] — Dateien benennbar, aber app.js-Init und globale
+            Speaker-Selektoren müssen auf ein Modul umgestellt werden
+    Kein Konflikt mit Pauli-Voice (separates Repo, /api/tts vs. /api/speak)
+
+7.0.7 Isolation: Preis-Logik
+----------------------------
+  FRAGE: Kann Preis-Logik physisch isoliert werden?
+
+  ERGEBNIS: [JA auf Homepage — mit Einschränkung]
+
+  OSG-Homepage (dieses Repo):
+    • Keine zentrale Preisvergleichs-Engine wie Pauli OSG_COMPARE_ROWS
+    • Marketing-Texte erwähnen „Preisvergleich“ nur in assets/locales (Pauli-App)
+    • Einzige echte Preis-/Betragslogik: OmniQR EMVCo-QR
+      - server/omniqr-ai-for-tourist-of-thailand/emvco.js
+      - server/omniqr-ai-for-tourist-of-thailand/router.js (OMNI_MAX_AMOUNT_THB)
+    → Isolation in 03_Datenbank_und_Preise/omniqr/ ist trivial und kollisionsfrei
+
+  Pauli Best Price (anderes Repo):
+    • commerce-constants.js, /api/prices/search, Vergleichstabelle
+    • Darf NICHT in OSG-Homepage gemischt werden
+    • Verlinkung nur über pauli-bestprice.html → externes Deployment
+
+  Fazit Isolation Preise:
+    Homepage-Frontend: [KEINE Kollision] — keine Preis-JS im Hub
+    OmniQR-Modul:    [ISOLIERBAR] — eigenes FE+BE-Paar, Limits in 03_
+    Pauli:           [GETRENNT] — eigenes Repo, nur Marketing-Link auf Homepage
+
+7.0.8 Risiken & offene Entscheidungen
+-------------------------------------
+  1. render.yaml rootDir: server vs. Repo-Root nach Core-Verschiebung
+  2. SITE_ROOT: express.static muss nach Migration weiter auf HTML/css/js zeigen
+  3. Doppelpfad omniqr-ai-for-tourist-of-thailand/ (lang) — Umbenennung optional
+  4. .venv-* im Root — aus Git fernhalten, in Doku als lokales Setup markieren
+  5. Voice Wartungsmodus — vor Live-TTS-Reaktivierung Isolation planen
+  6. sync-env-from-pauli.js — dokumentieren als Ops-Hilfe, nicht als Code-Kopplung
+
+================================================================================
+8. SCHNELLREFERENZ PFADE
+================================================================================
+
+  server/index.js              — Server-Start (nicht Repo-Root)
+  server/tts-router.js         — TTS-Engine-Routing
+  server/omniqr-…/emvco.js     — THB / QR-Preislogik
+  js/voice-lang-maintenance.js — Speaker-UI (aktuell Wartung)
+  js/tts-speech-prep.js        — TTS-Textvorbereitung
+  assets/locales/de.json       — i18n (i18next)
+  assets/audio/omni-homepage-voice.mp3 — TTS-Referenzstimme
+  render.yaml                  — Render Deploy (rootDir: server)
+  scripts/start-preview.sh     — Lokaler Dev-Start
+  ops/voice-check.html         — TTS-Diagnostik-UI
+
+================================================================================
+ENDE DER ARCHITEKTUR-DOKUMENTATION (Abschnitt 7.0 ausstehend in keinem Code)
+================================================================================

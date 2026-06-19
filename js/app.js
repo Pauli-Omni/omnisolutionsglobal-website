@@ -120,6 +120,9 @@
   }
 
   function boot() {
+    if (window.osgAffiliateCheckOnce) {
+      window.osgAffiliateCheckOnce();
+    }
     initPortalBranding();
     initChameleonVideoBg();
     OSGI18n.init().then(function () {

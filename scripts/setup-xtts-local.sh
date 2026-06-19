@@ -2,6 +2,7 @@
 # Einmalig: Lokaler Voice-Clone (XTTS) — nutzt Ihre Referenz-MP3 nur auf diesem Computer.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+CORE_LOGIK="$ROOT/02_Quellcode/Core_Logik"
 VENV="$ROOT/.venv-xtts"
 
 "$ROOT/scripts/prepare-voice-reference.sh"
@@ -44,6 +45,6 @@ fi
 
 echo "Installiere XTTS-Abhängigkeiten (kann einige Minuten dauern) …"
 "$VENV/bin/pip" install --upgrade pip
-"$VENV/bin/pip" install -r "$ROOT/server/xtts/requirements.txt"
+"$VENV/bin/pip" install -r "$CORE_LOGIK/xtts/requirements.txt"
 
 echo "Fertig. Starten mit: ./scripts/start-local-with-voice.sh"

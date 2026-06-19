@@ -1,0 +1,27 @@
+{
+  "name": "osg-brand-tts",
+  "version": "1.0.0",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test:omniqr": "node --test omniqr-ai-for-tourist-of-thailand/smoke.test.js omniqr-ai-for-tourist-of-thailand/support.test.js i18n/merge.test.js release/release.test.js ops/voice-diagnostics.test.js tts-router.test.js elevenlabs-key.test.js",
+    "release:stamp": "node scripts/stamp-release.js",
+    "release:bump": "node scripts/stamp-release.js --bump",
+    "check:go-live": "node scripts/go-live-check.js",
+    "generate:omniqr-agb-pdf": "node omniqr-ai-for-tourist-of-thailand/legal/generate-pdf.js",
+    "tresor:snapshot": "node ../../../OSG-Master-Tresor/scripts/osg-master-tresor-archive.mjs snapshot web",
+    "tresor:status": "node ../../../OSG-Master-Tresor/scripts/osg-master-tresor-archive.mjs status"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.1",
+    "helmet": "^8.2.0",
+    "nodemailer": "^6.10.1"
+  }
+}

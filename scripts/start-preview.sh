@@ -3,7 +3,8 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 LOCAL_PORT="${LOCAL_WEB_PORT:-8080}"
-ELEVEN_ENV="$ROOT/server/elevenlabs.config.env"
+CORE_LOGIK="$ROOT/02_Quellcode/Core_Logik"
+ELEVEN_ENV="$CORE_LOGIK/elevenlabs.config.env"
 
 if [[ -f "$ELEVEN_ENV" ]]; then
   set -a
@@ -33,10 +34,10 @@ echo "Starte Vorschau-Server …"
 echo "Öffnen: http://localhost:$LOCAL_PORT/index.html?lang=th"
 echo ""
 echo "Vorlesen:"
-echo "  • Thai: ElevenLabs (server/elevenlabs.config.env)"
+echo "  • Thai: ElevenLabs (02_Quellcode/Core_Logik/elevenlabs.config.env)"
 echo "  • DE/PL/…: optional ./scripts/start-local-with-voice.sh (XTTS)"
 echo "  • Immer http://localhost:$LOCAL_PORT/ — nicht HTML-Datei direkt"
 echo ""
 
-cd "$ROOT/server"
+cd "$CORE_LOGIK"
 exec npm start
