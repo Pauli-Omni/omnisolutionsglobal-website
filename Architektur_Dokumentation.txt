@@ -8,7 +8,7 @@ Repository: OmniSolutionsGlobal WEBSEITE (GitHub: origin/main)
 Live-Ziel: https://omnisolutionsglobal.com
 
 Hinweis: Dieses Dokument beschreibt die Unternehmens-Homepage (Hub + Produktseiten).
-Die App „Pauli Best Price Thailand“ ist ein separates Repository mit eigener
+Die App „Pauli BestPrice Thailand“ ist ein separates Repository mit eigener
 Architektur_Dokumentation.txt — Strukturprinzipien werden hier übernommen, nicht
 der Quellcode.
 
@@ -36,9 +36,9 @@ Legende Status:
   OmniQR    → /omniqr-ai-for-tourist-of-thailand/api/* → server/omniqr-…/router.js
   Release   → GET /api/release/* → server/release/
 
-1.3 Abgrenzung zu Pauli Best Price
+1.3 Abgrenzung zu Pauli BestPrice Thailand
 ----------------------------------
-  | Aspekt              | OSG Homepage                    | Pauli Best Price        |
+  | Aspekt              | OSG Homepage                    | Pauli BestPrice Thailand |
   |---------------------|---------------------------------|-------------------------|
   | Frontend            | Viele HTML + js/*.js            | Eine index.html SPA     |
   | Server-Einstieg     | server/index.js                 | 02_Quellcode/Core_Logik/server.js |
@@ -102,7 +102,7 @@ Legende Status:
   A) Flache HTML-Fläche (Repo-Root, ~25 Dateien)
      index.html, impressum.html, agb.html, ueber-uns.html, presentation.html,
      werbe-ecke.html, weitere-apps.html,
-     pauli-bestprice.html, pauli-bestprice-beschreibung.html,
+     pauli-bestprice-thailand.html, pauli-bestprice-thailand-beschreibung.html,
      omniai-qr-generator.html, omniai-qr-generator-beschreibung.html,
      omnibot-ki-profit.html, … (je App: front + beschreibung)
      → Kein 02_Quellcode/Frontend_* Zielordner; keine Template-Partials
@@ -152,7 +152,7 @@ Legende Status:
 4. VERGLEICH MIT PAULI — WELLE-1-STATUS
 ================================================================================
 
-Pauli Best Price (Referenz, Stand 16.06.2026):
+Pauli BestPrice Thailand (Referenz, Stand 16.06.2026):
   [ABGESCHLOSSEN] data/           → 03_Datenbank_und_Preise/data/
   [ABGESCHLOSSEN] server.js       → 02_Quellcode/Core_Logik/server.js
   [ABGESCHLOSSEN] services/       → 02_Quellcode/Core_Logik/services/
@@ -170,7 +170,7 @@ OSG Homepage (dieses Repo):
 ================================================================================
 Stand: 16. Juni 2026 | Nur Dokumentation — kein Code verschoben.
 
-7.0.1 Zielbild (angelehnt an Pauli Best Price)
+7.0.1 Zielbild (angelehnt an Pauli BestPrice Thailand)
 ----------------------------------------------
   Repo-Root = Tooling + render.yaml + README + Architektur_Dokumentation.txt
   01_Design_und_Branding/     → css/, assets/images|video|icons|audio, app-icons
@@ -306,10 +306,10 @@ Stand: 16. Juni 2026 | Nur Dokumentation — kein Code verschoben.
       - server/omniqr-ai-for-tourist-of-thailand/router.js (OMNI_MAX_AMOUNT_THB)
     → Isolation in 03_Datenbank_und_Preise/omniqr/ ist trivial und kollisionsfrei
 
-  Pauli Best Price (anderes Repo):
+  Pauli BestPrice Thailand (anderes Repo):
     • commerce-constants.js, /api/prices/search, Vergleichstabelle
     • Darf NICHT in OSG-Homepage gemischt werden
-    • Verlinkung nur über pauli-bestprice.html → externes Deployment
+    • Verlinkung nur über pauli-bestprice-thailand.html → externes Deployment
 
   Fazit Isolation Preise:
     Homepage-Frontend: [KEINE Kollision] — keine Preis-JS im Hub

@@ -44,12 +44,20 @@ app.get('/health', async function (_req, res) {
   }
 });
 
-/** Legacy/marketing URLs → canonical static pages (avoid 404 after DNS/domain fixes). */
-app.get('/pauli-bestpreis-thailand', function (_req, res) {
-  res.redirect(301, '/pauli-bestprice.html');
+/** Legacy URLs → canonical Pauli BestPrice Thailand marketing page. */
+var PAULI_MARKETING_PAGE = '/pauli-bestprice-thailand.html';
+var PAULI_MARKETING_DESC = '/pauli-bestprice-thailand-beschreibung.html';
+[
+  '/pauli-bestprice.html',
+  '/pauli-bestpreis-thailand',
+  '/pauli-bestpreis-thailand/',
+].forEach(function (legacy) {
+  app.get(legacy, function (_req, res) {
+    res.redirect(301, PAULI_MARKETING_PAGE);
+  });
 });
-app.get('/pauli-bestpreis-thailand/', function (_req, res) {
-  res.redirect(301, '/pauli-bestprice.html');
+app.get('/pauli-bestprice-beschreibung.html', function (_req, res) {
+  res.redirect(301, PAULI_MARKETING_DESC);
 });
 
 async function handleSpeak(req, res) {

@@ -14,7 +14,7 @@ const OSG_AFFILIATE_STATUS_INACTIVE = "Affiliate-API: INACTIVE";
 const OSG_AFFILIATE_APPS = [
   {
     appId: "pauli_best_price_thailand",
-    display: "Pauli Best Price Thailand",
+    display: "Pauli BestPrice Thailand",
     affSubKey: "paoli_best_price",
   },
   {

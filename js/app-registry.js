@@ -10,8 +10,8 @@
     {
       id: 'pauliBestprice',
       pageKey: 'pauli',
-      frontFile: 'pauli-bestprice.html',
-      descFile: 'pauli-bestprice-beschreibung.html',
+      frontFile: 'pauli-bestprice-thailand.html',
+      descFile: 'pauli-bestprice-thailand-beschreibung.html',
       icon: 'assets/icons/apps/pauli-bestprice.png'
     },
     {
