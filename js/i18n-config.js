@@ -4,14 +4,19 @@
   // CRITICAL: DO NOT HARDCODE LANGUAGES. ALWAYS USE GLOBAL I18N SYSTEM. PARSE ABBREVIATIONS VIA PAULI-METHOD ONLY.
 
   /**
-   * Global i18n registry — single source of truth for all apps (18 UI locales).
-   * Translations load dynamically via i18next + /api/i18n/:lng.json (deep-merge + fallback).
+   * OSG Homepage hub: 6 UI locales (assets/locales/{de,en,th,pl,ru,zh}.json).
+   * Extended apps (e.g. OmniQR) may use SUPPORTED_LOCALES (18).
    */
-  var SUPPORTED_LOCALES = [
-    'de', 'en', 'th', 'pl', 'ru', 'zh',
+  var UI_PICKER_LOCALES = ['de', 'en', 'th', 'pl', 'ru', 'zh'];
+
+  var UI_PICKER_SHORT_LABELS = {
+    de: 'DE', en: 'EN', th: 'TH', pl: 'PL', ru: 'RU', zh: 'ZH'
+  };
+
+  var SUPPORTED_LOCALES = UI_PICKER_LOCALES.concat([
     'fr', 'es', 'it', 'pt', 'nl',
     'ar', 'ja', 'ko', 'vi', 'tr', 'hi', 'id'
-  ];
+  ]);
 
   var HTML_LANG = {
     de: 'de', en: 'en', th: 'th', pl: 'pl', ru: 'ru', zh: 'zh-CN',
@@ -74,7 +79,18 @@
     return ASSET_ROOT + relativePath.replace(/^\.\//, '');
   }
 
+  function isUiPickerLocale(locale) {
+    return UI_PICKER_LOCALES.indexOf(locale) >= 0;
+  }
+
+  function uiPickerBase(locale) {
+    var base = normalizeLocale(locale);
+    return isUiPickerLocale(base) ? base : FALLBACK_LOCALES[0];
+  }
+
   window.OSGI18nConfig = {
+    UI_PICKER_LOCALES: UI_PICKER_LOCALES,
+    UI_PICKER_SHORT_LABELS: UI_PICKER_SHORT_LABELS,
     SUPPORTED_LOCALES: SUPPORTED_LOCALES,
     HTML_LANG: HTML_LANG,
     LOCALE_BCP47: LOCALE_BCP47,
@@ -84,6 +100,8 @@
     LOCALE_LOAD_PATH: LOCALE_LOAD_PATH,
     ASSET_ROOT: ASSET_ROOT,
     isSupported: isSupported,
+    isUiPickerLocale: isUiPickerLocale,
+    uiPickerBase: uiPickerBase,
     normalizeLocale: normalizeLocale,
     htmlLangFor: htmlLangFor,
     speechTagFor: speechTagFor,

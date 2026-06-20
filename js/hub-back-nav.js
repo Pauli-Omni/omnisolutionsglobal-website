@@ -1,8 +1,6 @@
 (function () {
   'use strict';
 
-  var TRILINGUAL = ['de', 'en', 'th'];
-
   function homeHref() {
     var scripts = document.querySelectorAll('script[src*="app.js"], script[src*="hub-back-nav.js"]');
     var src = scripts.length ? scripts[scripts.length - 1].getAttribute('src') : 'js/app.js';

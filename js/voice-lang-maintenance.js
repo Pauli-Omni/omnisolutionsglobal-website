@@ -1,8 +1,6 @@
 (function () {
   'use strict';
 
-  var TRILINGUAL = ['de', 'en', 'th'];
-
   var SPEAKER_SVG =
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
       '<path d="M11 5 6 9H3v6h3l5 4V5z"/>' +
@@ -32,9 +30,14 @@
     document.head.appendChild(link);
   }
 
-  function trilingualBase(lng) {
-    var base = String(lng || 'de').split('-')[0].toLowerCase();
-    return TRILINGUAL.indexOf(base) >= 0 ? base : 'en';
+  function pickerLocales() {
+    return window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_LOCALES : ['de', 'en', 'th', 'pl', 'ru', 'zh'];
+  }
+
+  function pickerBase(lng) {
+    return window.OSGI18nConfig
+      ? OSGI18nConfig.uiPickerBase(lng)
+      : 'en';
   }
 
   function ensureModal() {
@@ -110,17 +113,18 @@
 
   function pickUiLocale(locale) {
     if (!window.i18next || !window.OSGI18nConfig) return;
-    if (TRILINGUAL.indexOf(locale) < 0) return;
+    if (!OSGI18nConfig.isUiPickerLocale(locale)) return;
     try {
       localStorage.setItem(OSGI18nConfig.STORAGE_KEY, locale);
+      localStorage.setItem('osg-lang-user-picked', '1');
     } catch (err) { /* ignore */ }
     i18next.changeLanguage(locale);
     updateTrilingualPickerState();
-    document.documentElement.classList.add('osg-trilingual-stable');
+    document.documentElement.classList.add('osg-hub-lang-stable');
   }
 
   function updateTrilingualPickerState() {
-    var lng = window.i18next ? trilingualBase(i18next.language) : 'de';
+    var lng = window.i18next ? pickerBase(i18next.language) : 'de';
     document.querySelectorAll('.trilingual-ui-picker__btn').forEach(function (btn) {
       var active = btn.getAttribute('data-ui-locale') === lng;
       btn.classList.toggle('is-active', active);
@@ -129,6 +133,12 @@
   }
 
   function buildToolbar() {
+    var labels = window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_SHORT_LABELS : {};
+    var buttons = pickerLocales().map(function (locale) {
+      var label = labels[locale] || locale.toUpperCase();
+      return '<button type="button" class="trilingual-ui-picker__btn" data-ui-locale="' + locale +
+        '" aria-pressed="false">' + label + '</button>';
+    }).join('');
     var wrap = document.createElement('div');
     wrap.className = 'hub-voice-lang-tools page-header-tools';
     wrap.innerHTML =
@@ -139,9 +149,7 @@
             SPEAKER_SVG +
           '</button>' +
           '<div class="trilingual-ui-picker" role="group" data-i18n-aria="a11y.trilingualUiPicker">' +
-            '<button type="button" class="trilingual-ui-picker__btn" data-ui-locale="de" aria-pressed="false">DE</button>' +
-            '<button type="button" class="trilingual-ui-picker__btn" data-ui-locale="en" aria-pressed="false">EN</button>' +
-            '<button type="button" class="trilingual-ui-picker__btn" data-ui-locale="th" aria-pressed="false">TH</button>' +
+            buttons +
           '</div>' +
         '</div>' +
       '</div>';
@@ -196,7 +204,7 @@
   function init() {
     if (document.body.getAttribute('data-page') === 'opsVoiceCheck') return;
 
-    document.documentElement.classList.add('osg-trilingual-stable');
+    document.documentElement.classList.add('osg-hub-lang-stable');
     loadStylesheet('css/voice-lang-maintenance.css');
     loadStylesheet('css/trilingual-visual.css');
 
@@ -205,9 +213,9 @@
     document.addEventListener('click', interceptSpeakerClick, true);
 
     if (window.i18next) {
-      var current = String(i18next.language || 'de').split('-')[0].toLowerCase();
-      if (TRILINGUAL.indexOf(current) < 0) {
-        pickUiLocale('en');
+      var current = pickerBase(i18next.language);
+      if (current !== i18next.language) {
+        pickUiLocale(current);
       } else {
         updateTrilingualPickerState();
       }

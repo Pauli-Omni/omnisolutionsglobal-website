@@ -6,6 +6,20 @@
     throw new Error('OSGI18nConfig missing — load js/i18n-config.js before js/i18n.js');
   }
 
+  function isOmniQrHubPage() {
+    return document.body && document.body.getAttribute('data-page') === 'omniqr';
+  }
+
+  function activeUiLocales() {
+    return isOmniQrHubPage() ? cfg.SUPPORTED_LOCALES : cfg.UI_PICKER_LOCALES;
+  }
+
+  function normalizeActiveLocale(code) {
+    var locale = cfg.normalizeLocale(code);
+    if (activeUiLocales().indexOf(locale) >= 0) return locale;
+    return cfg.uiPickerBase(locale);
+  }
+
   function applyToDom() {
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
@@ -75,21 +89,21 @@
     init: function () {
       var initialLng = window.OSGWorldLang
         ? OSGWorldLang.getInitialUiLocale()
-        : cfg.normalizeLocale(navigator.language);
+        : normalizeActiveLocale(navigator.language);
 
       try {
         var urlLang = new URLSearchParams(window.location.search).get('lang');
-        if (urlLang && cfg.isSupported(cfg.normalizeLocale(urlLang))) {
-          initialLng = cfg.normalizeLocale(urlLang);
-        }
+        if (urlLang) initialLng = normalizeActiveLocale(urlLang);
       } catch (e) { /* ignore */ }
+
+      initialLng = normalizeActiveLocale(initialLng);
 
       return new Promise(function (resolve, reject) {
         i18next
           .use(i18nextHttpBackend)
           .init({
             lng: initialLng,
-            supportedLngs: cfg.SUPPORTED_LOCALES,
+            supportedLngs: activeUiLocales(),
             fallbackLng: cfg.FALLBACK_LOCALES,
             ns: ['translation'],
             defaultNS: 'translation',

@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap');
 
-/* ── Drei-Sprachen-Visual-Stabilisierung (DE / EN / TH) ── */
+/* ── Hub UI language picker (DE / EN / TH / PL / RU / ZH) ── */
 
+html.osg-hub-lang-stable,
 html.osg-trilingual-stable {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -139,7 +140,7 @@ html[lang="th"] .home-chrome-bar {
   outline: none;
 }
 
-/* Statische UI-Sprachwahl DE | EN | TH (nur Anzeige, kein TTS) */
+/* Statische UI-Sprachwahl DE | EN | TH | PL | RU | ZH (nur OSG-Homepage) */
 .trilingual-ui-picker {
   display: flex;
   flex-wrap: wrap;

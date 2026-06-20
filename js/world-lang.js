@@ -80,10 +80,25 @@
     return base === 'zh' ? 'zh' : base;
   }
 
+  function isOmniQrHubPage() {
+    return typeof document !== 'undefined'
+      && document.body
+      && document.body.getAttribute('data-page') === 'omniqr';
+  }
+
+  function hubUiLocales() {
+    return isOmniQrHubPage() ? cfg.SUPPORTED_LOCALES : cfg.UI_PICKER_LOCALES;
+  }
+
+  function isUiLocale(locale) {
+    return hubUiLocales().indexOf(locale) >= 0;
+  }
+
   function mapTagToUiLocale(tag) {
     var base = localeBaseFromTag(tag);
-    if (cfg.isSupported(base)) return base;
-    return cfg.FALLBACK_LOCALES[0];
+    if (cfg.isUiPickerLocale(base)) return base;
+    if (isOmniQrHubPage() && cfg.isSupported(base)) return base;
+    return cfg.uiPickerBase(base);
   }
 
   function hasUserSpeechPick() {
@@ -100,10 +115,6 @@
       if (stored) return stored;
     }
     return getSystemLanguageTag();
-  }
-
-  function isUiLocale(locale) {
-    return cfg.isSupported(locale);
   }
 
   function getEffectiveSpeechTag() {
