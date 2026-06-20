@@ -11,8 +11,6 @@
   var SPEAKER_SELECTOR =
     '.voice-btn:not(.hub-lang-picker__btn), [data-osg-speaker-trigger]';
 
-  var modal;
-  var lastFocus;
   var toolbarUid = 0;
 
   function assetBase() {
@@ -27,8 +25,14 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.06.15.48');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.06.15.50');
     document.head.appendChild(link);
+  }
+
+  function t(key) {
+    if (window.OSGI18n && typeof OSGI18n.t === 'function') return OSGI18n.t(key);
+    if (window.i18next) return i18next.t(key);
+    return '';
   }
 
   function pickerLocales() {
@@ -39,75 +43,48 @@
     return window.OSGI18nConfig ? OSGI18nConfig.uiPickerBase(lng) : 'en';
   }
 
-  function ensureModal() {
-    if (modal) return modal;
-
-    modal = document.createElement('div');
-    modal.id = 'osg-voice-lang-maintenance';
-    modal.className = 'osg-maint-modal';
-    modal.hidden = true;
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-labelledby', 'osg-maint-modal-title');
-    modal.innerHTML =
-      '<div class="osg-maint-modal__backdrop" data-osg-maint-close></div>' +
-      '<div class="osg-maint-modal__panel neo-accent-box">' +
-        '<button type="button" class="osg-maint-modal__close" data-osg-maint-close data-i18n-aria="maintenance.voiceLangCloseAria">&times;</button>' +
-        '<h2 id="osg-maint-modal-title" class="osg-maint-modal__title chrome-silver-text" data-i18n="maintenance.voiceLangTitle"></h2>' +
-        '<p class="osg-maint-modal__body osg-maint-modal__body--speaker chrome-silver-text" id="osg-maint-speaker-notice"></p>' +
-        '<button type="button" class="btn btn-neon osg-maint-modal__ok" data-osg-maint-close data-i18n="maintenance.voiceLangClose"></button>' +
-      '</div>';
-    document.body.appendChild(modal);
-
-    modal.querySelectorAll('[data-osg-maint-close]').forEach(function (el) {
-      el.addEventListener('click', closeModal);
+  function updateSpeakerButtons() {
+    var active = window.OSGBrandTts && OSGBrandTts.isPlaying && OSGBrandTts.isPlaying();
+    document.querySelectorAll(SPEAKER_SELECTOR).forEach(function (btn) {
+      btn.classList.toggle('voice-btn--playing', !!active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      var ariaKey = active ? 'voice.ariaPlaying' : 'voice.ariaReady';
+      btn.setAttribute('aria-label', t(ariaKey));
     });
-
-    modal.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeModal();
-    });
-
-    return modal;
   }
 
-  function refreshModalCopy() {
-    ensureModal();
-    var notice = modal.querySelector('#osg-maint-speaker-notice');
-    if (notice && window.i18next) {
-      notice.textContent = i18next.t('maintenance.speakerNotice');
-    }
-    if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
-      OSGI18n.applyToDom(modal);
+  function showSpeakError() {
+    var msg = t('voice.ttsError');
+    if (msg && typeof window.alert === 'function') {
+      window.alert(msg);
     }
   }
 
-  function openSpeakerMaintenance() {
-    ensureModal();
-    refreshModalCopy();
-    lastFocus = document.activeElement;
-    modal.hidden = false;
-    document.body.classList.add('osg-maint-modal-open');
-    var ok = modal.querySelector('.osg-maint-modal__ok');
-    if (ok) ok.focus();
-  }
-
-  function closeModal() {
-    if (!modal || modal.hidden) return;
-    modal.hidden = true;
-    document.body.classList.remove('osg-maint-modal-open');
-    if (lastFocus && typeof lastFocus.focus === 'function') {
-      lastFocus.focus();
-    }
-  }
-
-  function interceptSpeakerClick(e) {
+  function handleSpeakerClick(e) {
     if (document.body.getAttribute('data-page') === 'opsVoiceCheck') return;
     var trigger = e.target.closest(SPEAKER_SELECTOR);
     if (!trigger) return;
     e.preventDefault();
     e.stopPropagation();
-    e.stopImmediatePropagation();
-    openSpeakerMaintenance();
+
+    if (!window.OSGBrandTts || typeof OSGBrandTts.playPageNarration !== 'function') {
+      showSpeakError();
+      return;
+    }
+
+    if (OSGBrandTts.isPlaying && OSGBrandTts.isPlaying()) {
+      OSGBrandTts.stop();
+      updateSpeakerButtons();
+      return;
+    }
+
+    OSGBrandTts.playPageNarration().then(function () {
+      updateSpeakerButtons();
+    }).catch(function () {
+      OSGBrandTts.stop();
+      updateSpeakerButtons();
+      showSpeakError();
+    });
   }
 
   function setPanelOpen(toolbar, open) {
@@ -133,12 +110,16 @@
   function pickUiLocale(locale, toolbar) {
     if (!window.i18next || !window.OSGI18nConfig) return;
     if (!OSGI18nConfig.isUiPickerLocale(locale)) return;
+    if (window.OSGBrandTts && OSGBrandTts.isPlaying && OSGBrandTts.isPlaying()) {
+      OSGBrandTts.stop();
+    }
     try {
       localStorage.setItem(OSGI18nConfig.STORAGE_KEY, locale);
       localStorage.setItem('osg-lang-user-picked', '1');
     } catch (err) { /* ignore */ }
     i18next.changeLanguage(locale);
     updatePickerState();
+    updateSpeakerButtons();
     document.documentElement.classList.add('osg-hub-lang-stable');
     if (toolbar) setPanelOpen(toolbar, false);
   }
@@ -166,8 +147,8 @@
     wrap.innerHTML =
       '<div id="app-voice-slot" class="app-voice-slot">' +
         '<div class="app-voice-toolbar hub-lang-toolbar">' +
-          '<button type="button" id="' + voiceId + '" class="voice-btn voice-btn--deactivated" ' +
-            'data-osg-speaker-trigger data-i18n-aria="voice.ariaDeactivated" aria-pressed="false">' +
+          '<button type="button" id="' + voiceId + '" class="voice-btn" ' +
+            'data-osg-speaker-trigger data-i18n-aria="voice.ariaReady" aria-pressed="false">' +
             SPEAKER_SVG +
           '</button>' +
           '<button type="button" class="hub-lang-toggle" aria-expanded="false" aria-controls="' + panelId + '" ' +
@@ -201,6 +182,7 @@
     });
 
     updatePickerState();
+    updateSpeakerButtons();
     if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
       OSGI18n.applyToDom(toolbar);
     }
@@ -252,15 +234,21 @@
     loadStylesheet('css/voice-lang-maintenance.css');
     loadStylesheet('css/trilingual-visual.css');
 
-    ensureModal();
     mountToolbars();
-    document.addEventListener('click', interceptSpeakerClick, true);
+    document.addEventListener('click', handleSpeakerClick, true);
     document.addEventListener('click', onDocumentClick);
+    document.addEventListener('osg:ttsEnded', updateSpeakerButtons);
+    document.addEventListener('osg:ttsPlaying', updateSpeakerButtons);
 
     if (window.i18next) {
       updatePickerState();
+      updateSpeakerButtons();
       i18next.on('languageChanged', function () {
+        if (window.OSGBrandTts && OSGBrandTts.isPlaying && OSGBrandTts.isPlaying()) {
+          OSGBrandTts.stop();
+        }
         updatePickerState();
+        updateSpeakerButtons();
         if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
           OSGI18n.applyToDom(document);
         }
@@ -274,7 +262,6 @@
 
   window.OSGVoiceLangMaintenance = {
     init: init,
-    openSpeakerMaintenance: openSpeakerMaintenance,
-    close: closeModal
+    updateSpeakerButtons: updateSpeakerButtons
   };
 })();

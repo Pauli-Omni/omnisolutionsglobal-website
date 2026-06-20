@@ -151,6 +151,10 @@
     }
 
     function loadScript(name, cb) {
+      if (name === 'osg-brand-tts.js' && window.OSGBrandTts) {
+        cb();
+        return;
+      }
       if (name === 'voice-lang-maintenance.js' && window.OSGVoiceLangMaintenance) {
         cb();
         return;
@@ -169,8 +173,10 @@
       document.body.appendChild(tag);
     }
 
-    loadScript('hub-back-nav.js', function () {
-      loadScript('voice-lang-maintenance.js', bootMaintenance);
+    loadScript('osg-brand-tts.js', function () {
+      loadScript('hub-back-nav.js', function () {
+        loadScript('voice-lang-maintenance.js', bootMaintenance);
+      });
     });
   }
 

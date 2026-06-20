@@ -116,10 +116,17 @@
   transition: border-color var(--transition), box-shadow var(--transition), color var(--transition);
 }
 
-.voice-btn--deactivated {
-  color: #ff8c32;
-  border-color: rgba(255, 140, 50, 0.55);
-  box-shadow: 0 0 18px rgba(255, 120, 40, 0.35);
+.voice-btn:hover,
+.voice-btn:focus-visible {
+  border-color: rgba(0, 212, 255, 0.55);
+  color: #fff;
+  outline: none;
+}
+
+.voice-btn--playing {
+  color: #fff;
+  border-color: rgba(0, 212, 255, 0.9);
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.35);
 }
 
 .osg-maint-modal {
@@ -220,10 +227,6 @@ body[data-page="home"] .home-splash-core .hub-voice-lang-tools {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .voice-btn--deactivated {
-    animation: none;
-  }
-
   .hub-lang-picker {
     transition: none;
   }

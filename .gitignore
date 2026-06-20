@@ -23,8 +23,7 @@ __pycache__/
 02_Quellcode/Core_Logik/omniqr-ai-for-tourist-of-thailand/data/
 .DS_Store
 
-# Optional: große lokale Audio-Backups (MP3s später gezielt committen)
-assets/audio/narration/
+# Lokale Referenz-Stimme (nicht deployen)
 assets/audio/voice_reference_template.wav
 assets/audio/omni-homepage-voice.mp3
 
