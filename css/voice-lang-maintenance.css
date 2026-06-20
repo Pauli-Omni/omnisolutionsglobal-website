@@ -12,13 +12,89 @@
 
 .app-voice-toolbar {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem 0.75rem;
+  gap: 0.5rem;
   width: 100%;
   max-width: 100%;
+}
+
+.hub-lang-toolbar {
+  position: relative;
+}
+
+.hub-lang-toggle {
+  min-height: 2.25rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: rgba(14, 18, 26, 0.55);
+  color: var(--silver);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  line-height: 1.3;
+  max-width: min(100%, 18rem);
+}
+
+.hub-lang-toggle:hover,
+.hub-lang-toggle:focus-visible {
+  border-color: rgba(0, 212, 255, 0.65);
+  color: #fff;
+  outline: none;
+}
+
+.hub-lang-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.35rem;
+  width: min(100%, 18rem);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-0.65rem);
+  transition: max-height 0.35s ease, opacity 0.28s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.hub-lang-picker.is-open {
+  max-height: 24rem;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.hub-lang-picker__btn {
+  width: 100%;
+  min-height: 2.35rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-strong);
+  background: rgba(14, 18, 26, 0.72);
+  color: var(--silver);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.hub-lang-picker__btn:hover,
+.hub-lang-picker__btn:focus-visible {
+  border-color: rgba(0, 212, 255, 0.65);
+  color: #fff;
+  outline: none;
+}
+
+.hub-lang-picker__btn.is-active {
+  border-color: rgba(0, 212, 255, 0.9);
+  color: #fff;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.18);
 }
 
 .voice-lang-switch {
@@ -130,22 +206,25 @@ body[data-page="home"] .home-splash-core .hub-voice-lang-tools {
   }
 
   .app-voice-toolbar {
-    flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
   .voice-btn {
     margin: 0 auto;
   }
 
-  .voice-lang-switch {
+  .hub-lang-toggle,
+  .hub-lang-picker {
     width: min(100%, 18rem);
-    text-align: center;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .voice-btn--deactivated {
     animation: none;
+  }
+
+  .hub-lang-picker {
+    transition: none;
   }
 }

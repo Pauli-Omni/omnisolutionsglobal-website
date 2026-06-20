@@ -9,10 +9,11 @@
     '</svg>';
 
   var SPEAKER_SELECTOR =
-    '#voice-btn, .voice-btn:not(.trilingual-ui-picker__btn), [data-osg-speaker-trigger]';
+    '.voice-btn:not(.hub-lang-picker__btn), [data-osg-speaker-trigger]';
 
   var modal;
   var lastFocus;
+  var toolbarUid = 0;
 
   function assetBase() {
     var scripts = document.querySelectorAll('script[src*="app.js"], script[src*="voice-lang-maintenance.js"]');
@@ -31,13 +32,11 @@
   }
 
   function pickerLocales() {
-    return window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_LOCALES : ['de', 'en', 'th', 'pl', 'ru', 'zh'];
+    return window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_LOCALES : ['th', 'en', 'ru', 'de', 'pl', 'zh'];
   }
 
   function pickerBase(lng) {
-    return window.OSGI18nConfig
-      ? OSGI18nConfig.uiPickerBase(lng)
-      : 'en';
+    return window.OSGI18nConfig ? OSGI18nConfig.uiPickerBase(lng) : 'en';
   }
 
   function ensureModal() {
@@ -111,7 +110,27 @@
     openSpeakerMaintenance();
   }
 
-  function pickUiLocale(locale) {
+  function setPanelOpen(toolbar, open) {
+    if (!toolbar) return;
+    var panel = toolbar.querySelector('.hub-lang-picker');
+    var toggle = toolbar.querySelector('.hub-lang-toggle');
+    if (!panel || !toggle) return;
+    panel.classList.toggle('is-open', open);
+    panel.hidden = !open;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  function anyPanelOpen() {
+    return !!document.querySelector('.hub-lang-picker.is-open');
+  }
+
+  function closeAllPanels() {
+    document.querySelectorAll('.hub-voice-lang-tools').forEach(function (toolbar) {
+      setPanelOpen(toolbar, false);
+    });
+  }
+
+  function pickUiLocale(locale, toolbar) {
     if (!window.i18next || !window.OSGI18nConfig) return;
     if (!OSGI18nConfig.isUiPickerLocale(locale)) return;
     try {
@@ -119,13 +138,14 @@
       localStorage.setItem('osg-lang-user-picked', '1');
     } catch (err) { /* ignore */ }
     i18next.changeLanguage(locale);
-    updateTrilingualPickerState();
+    updatePickerState();
     document.documentElement.classList.add('osg-hub-lang-stable');
+    if (toolbar) setPanelOpen(toolbar, false);
   }
 
-  function updateTrilingualPickerState() {
+  function updatePickerState() {
     var lng = window.i18next ? pickerBase(i18next.language) : 'de';
-    document.querySelectorAll('.trilingual-ui-picker__btn').forEach(function (btn) {
+    document.querySelectorAll('.hub-lang-picker__btn').forEach(function (btn) {
       var active = btn.getAttribute('data-ui-locale') === lng;
       btn.classList.toggle('is-active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
@@ -133,22 +153,27 @@
   }
 
   function buildToolbar() {
-    var labels = window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_SHORT_LABELS : {};
+    toolbarUid += 1;
+    var uid = 'hub-lang-' + toolbarUid;
+    var panelId = uid + '-panel';
+    var voiceId = uid + '-voice';
     var buttons = pickerLocales().map(function (locale) {
-      var label = labels[locale] || locale.toUpperCase();
-      return '<button type="button" class="trilingual-ui-picker__btn" data-ui-locale="' + locale +
-        '" aria-pressed="false">' + label + '</button>';
+      return '<button type="button" class="hub-lang-picker__btn trilingual-ui-picker__btn" data-ui-locale="' +
+        locale + '" data-i18n="langPicker.' + locale + '" aria-pressed="false"></button>';
     }).join('');
     var wrap = document.createElement('div');
     wrap.className = 'hub-voice-lang-tools page-header-tools';
     wrap.innerHTML =
       '<div id="app-voice-slot" class="app-voice-slot">' +
-        '<div class="app-voice-toolbar">' +
-          '<button type="button" id="voice-btn" class="voice-btn voice-btn--deactivated" ' +
+        '<div class="app-voice-toolbar hub-lang-toolbar">' +
+          '<button type="button" id="' + voiceId + '" class="voice-btn voice-btn--deactivated" ' +
             'data-osg-speaker-trigger data-i18n-aria="voice.ariaDeactivated" aria-pressed="false">' +
             SPEAKER_SVG +
           '</button>' +
-          '<div class="trilingual-ui-picker" role="group" data-i18n-aria="a11y.trilingualUiPicker">' +
+          '<button type="button" class="hub-lang-toggle" aria-expanded="false" aria-controls="' + panelId + '" ' +
+            'data-i18n="langPicker.toggle" data-i18n-aria="langPicker.toggleAria"></button>' +
+          '<div id="' + panelId + '" class="hub-lang-picker trilingual-ui-picker" role="group" hidden ' +
+            'data-i18n-aria="a11y.trilingualUiPicker">' +
             buttons +
           '</div>' +
         '</div>' +
@@ -157,12 +182,25 @@
   }
 
   function wireToolbar(toolbar) {
-    toolbar.querySelectorAll('.trilingual-ui-picker__btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        pickUiLocale(btn.getAttribute('data-ui-locale'));
+    var toggle = toolbar.querySelector('.hub-lang-toggle');
+    if (toggle) {
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var panel = toolbar.querySelector('.hub-lang-picker');
+        var willOpen = !(panel && panel.classList.contains('is-open'));
+        closeAllPanels();
+        if (willOpen) setPanelOpen(toolbar, true);
+      });
+    }
+
+    toolbar.querySelectorAll('.hub-lang-picker__btn').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        pickUiLocale(btn.getAttribute('data-ui-locale'), toolbar);
       });
     });
-    updateTrilingualPickerState();
+
+    updatePickerState();
     if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
       OSGI18n.applyToDom(toolbar);
     }
@@ -201,6 +239,12 @@
     });
   }
 
+  function onDocumentClick(e) {
+    if (!anyPanelOpen()) return;
+    if (e.target.closest('.hub-lang-toolbar')) return;
+    closeAllPanels();
+  }
+
   function init() {
     if (document.body.getAttribute('data-page') === 'opsVoiceCheck') return;
 
@@ -211,16 +255,12 @@
     ensureModal();
     mountToolbars();
     document.addEventListener('click', interceptSpeakerClick, true);
+    document.addEventListener('click', onDocumentClick);
 
     if (window.i18next) {
-      var current = pickerBase(i18next.language);
-      if (current !== i18next.language) {
-        pickUiLocale(current);
-      } else {
-        updateTrilingualPickerState();
-      }
+      updatePickerState();
       i18next.on('languageChanged', function () {
-        updateTrilingualPickerState();
+        updatePickerState();
         if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
           OSGI18n.applyToDom(document);
         }

@@ -14,7 +14,7 @@
     "menuToggle": "Otwórz menu",
     "portalLogo": "Animowane logo Omni Solutions Global z globusami i pętlą nieskończoności",
     "navBack": "Wróć o jedną stronę",
-    "trilingualUiPicker": "Wybierz język interfejsu: niemiecki, angielski, tajski, polski, rosyjski lub chiński"
+    "trilingualUiPicker": "Ręczny wybór języka: tajski, angielski, rosyjski, niemiecki, polski lub chiński"
   },
   "nav": {
     "home": "Strona główna",
@@ -570,5 +570,15 @@
     "voiceLangClose": "OK",
     "voiceLangCloseAria": "Close maintenance notice",
     "speakerNotice": "Maintenance until 18:00."
+  },
+  "langPicker": {
+    "toggle": "Wybierz język",
+    "toggleAria": "Pokaż lub ukryj wybór języka",
+    "th": "Tajski",
+    "en": "Angielski",
+    "ru": "Rosyjski",
+    "de": "Niemiecki",
+    "pl": "Polski",
+    "zh": "Chiński"
   }
 }

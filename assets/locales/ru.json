@@ -14,7 +14,7 @@
     "menuToggle": "Открыть меню",
     "portalLogo": "Анимированный логотип Omni Solutions Global с глобусами и петлёй бесконечности",
     "navBack": "Вернуться на одну страницу",
-    "trilingualUiPicker": "Выберите язык интерфейса: немецкий, английский, тайский, польский, русский или китайский"
+    "trilingualUiPicker": "Ручной выбор языка: тайский, английский, русский, немецкий, польский или китайский"
   },
   "nav": {
     "home": "Главная",
@@ -567,5 +567,15 @@
     "voiceLangClose": "OK",
     "voiceLangCloseAria": "Close maintenance notice",
     "speakerNotice": "Maintenance until 18:00."
+  },
+  "langPicker": {
+    "toggle": "Выбрать язык",
+    "toggleAria": "Показать или скрыть выбор языка",
+    "th": "Тайский",
+    "en": "Английский",
+    "ru": "Русский",
+    "de": "Немецкий",
+    "pl": "Польский",
+    "zh": "Китайский"
   }
 }

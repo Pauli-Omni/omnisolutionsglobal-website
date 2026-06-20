@@ -7,11 +7,7 @@
    * OSG Homepage hub: 6 UI locales (assets/locales/{de,en,th,pl,ru,zh}.json).
    * Extended apps (e.g. OmniQR) may use SUPPORTED_LOCALES (18).
    */
-  var UI_PICKER_LOCALES = ['de', 'en', 'th', 'pl', 'ru', 'zh'];
-
-  var UI_PICKER_SHORT_LABELS = {
-    de: 'DE', en: 'EN', th: 'TH', pl: 'PL', ru: 'RU', zh: 'ZH'
-  };
+  var UI_PICKER_LOCALES = ['th', 'en', 'ru', 'de', 'pl', 'zh'];
 
   var SUPPORTED_LOCALES = UI_PICKER_LOCALES.concat([
     'fr', 'es', 'it', 'pt', 'nl',
@@ -90,7 +86,6 @@
 
   window.OSGI18nConfig = {
     UI_PICKER_LOCALES: UI_PICKER_LOCALES,
-    UI_PICKER_SHORT_LABELS: UI_PICKER_SHORT_LABELS,
     SUPPORTED_LOCALES: SUPPORTED_LOCALES,
     HTML_LANG: HTML_LANG,
     LOCALE_BCP47: LOCALE_BCP47,

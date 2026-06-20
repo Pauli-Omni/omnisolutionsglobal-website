@@ -15,7 +15,7 @@
     "portalLogo": "Animiertes Omni Solutions Global Logo mit Globus und Unendlichkeitsschleife",
     "siteMarkHome": "Omni Solutions Global — zur Startseite",
     "navBack": "Eine Seite zurück",
-    "trilingualUiPicker": "Anzeigesprache wählen: Deutsch, Englisch, Thai, Polnisch, Russisch oder Chinesisch"
+    "trilingualUiPicker": "Manuelle Sprachauswahl: Thai, Englisch, Russisch, Deutsch, Polnisch oder Chinesisch"
   },
   "nav": {
     "home": "Home",
@@ -581,5 +581,15 @@
     "voiceLangClose": "Verstanden",
     "voiceLangCloseAria": "Wartungshinweis schließen",
     "speakerNotice": "Wartungsarbeiten bis 18:00 Uhr."
+  },
+  "langPicker": {
+    "toggle": "Sprache wählen",
+    "toggleAria": "Sprachauswahl ein- oder ausblenden",
+    "th": "Thai",
+    "en": "Englisch",
+    "ru": "Russisch",
+    "de": "Deutsch",
+    "pl": "Polnisch",
+    "zh": "Chinesisch"
   }
 }

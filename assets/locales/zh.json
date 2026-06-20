@@ -14,7 +14,7 @@
     "menuToggle": "打开菜单",
     "portalLogo": "Omni Solutions Global 动画标志 — 地球仪与无限环",
     "navBack": "返回上一页",
-    "trilingualUiPicker": "选择界面语言：德语、英语、泰语、波兰语、俄语或中文"
+    "trilingualUiPicker": "手动选择语言：泰语、英语、俄语、德语、波兰语或中文"
   },
   "nav": {
     "home": "首页",
@@ -567,5 +567,15 @@
     "voiceLangClose": "OK",
     "voiceLangCloseAria": "Close maintenance notice",
     "speakerNotice": "Maintenance until 18:00."
+  },
+  "langPicker": {
+    "toggle": "选择语言",
+    "toggleAria": "显示或隐藏语言选择",
+    "th": "泰语",
+    "en": "英语",
+    "ru": "俄语",
+    "de": "德语",
+    "pl": "波兰语",
+    "zh": "中文"
   }
 }
