@@ -44,6 +44,14 @@ app.get('/health', async function (_req, res) {
   }
 });
 
+/** Legacy/marketing URLs → canonical static pages (avoid 404 after DNS/domain fixes). */
+app.get('/pauli-bestpreis-thailand', function (_req, res) {
+  res.redirect(301, '/pauli-bestprice.html');
+});
+app.get('/pauli-bestpreis-thailand/', function (_req, res) {
+  res.redirect(301, '/pauli-bestprice.html');
+});
+
 async function handleSpeak(req, res) {
   const text = String(req.body && req.body.text || '').trim();
   const lang = String(req.body && req.body.lang || 'de-DE').trim();

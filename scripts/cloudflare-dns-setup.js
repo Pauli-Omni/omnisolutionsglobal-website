@@ -58,7 +58,7 @@ async function upsertCname(zoneId, name, content) {
     type: 'CNAME',
     name: name,
     content: content,
-    proxied: false,
+    proxied: true,
     ttl: 1
   };
   if (hit) {
