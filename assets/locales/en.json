@@ -166,6 +166,9 @@
     "ctaAbout": "Legal Notice",
     "ctaLearnMoreAria": "Learn more about our company",
     "splashActionsAria": "Quick actions on the welcome tile",
+    "pauliDownloadTitle": "Pauli BestPrice Thailand — Download hub",
+    "pauliDownloadLead": "Scan the QR code or open the download hub — app for iPhone, iPad, Android, Mac, Windows, and Linux without store lock-in.",
+    "pauliDownloadSectionAria": "Pauli BestPrice download and QR code",
     "modalTitle": "Project submission",
     "modalIntro": "Secure inquiry — no address required. Your data is transmitted encrypted.",
     "modalCloseAria": "Close dialog",
@@ -225,6 +228,12 @@
     "tag2": "Vouchers",
     "tag3": "Thailand market",
     "descTitle": "Pauli BestPrice Thailand — Description",
+    "downloadHubTitle": "Install the app — no store required",
+    "downloadHubLead": "PWA, APK, and desktop packages — straight from the web.",
+    "downloadOpenLink": "Open download hub",
+    "downloadQrTag": "Universal QR — all platforms",
+    "downloadQrAria": "QR code for the Pauli download hub",
+    "downloadSectionAria": "Pauli download and QR code",
     "frontWerbetext": "<p>Find the absolute best price anywhere in Thailand — without ever typing a single word again! Pauli BestPrice Thailand is the revolutionary flagship among price comparison portals. Why is this app the right choice for you? Because it completely redefines shopping and saving with maximum accessibility. This app was purpose-built for the needs of all users and, through full voice control, is the perfect solution for people with disabilities or physical limitations. Simply speak to the app! The integrated AI searches the entire Thai market in real time, compares offers in a flash, and instantly shows you where you can save the most. The system automatically detects your smartphone language, so you do not have to worry about a thing. End overpriced purchases and complicated searching. Scan the universal QR code and get Thailand's smartest savings tool via the Google Play Store or directly via Aptoide!</p>"
   },
   "omnigate": {
@@ -244,12 +253,12 @@
     "title": "OmniFix AI Document — Omni Solutions Global® Co. Ltd.",
     "subtitle": "AI document analysis & structuring",
     "pageTitle": "OmniFix AI Document",
-    "pageDesc": "<p>OmniFix AI-Dokument is a highly specialized, AI-powered application for automated correction, stylistic optimization, and structural reorganization of text, documents, and PDF correspondence. After uploading or pasting text, artificial intelligence performs an in-depth linguistic analysis.</p><p>The system does not merely correct simple spelling and grammar errors — it optimizes the entire writing style toward highly professional expression. A core feature of the app is intelligent document structuring: paragraphs are logically ordered, formatting is adjusted, and correspondence is transformed into polished, complete layouts.</p><p>The app operates fluently in multiple languages and automatically detects the smartphone's preset system language to ensure accessible handling without manual configuration. Integration on the homepage uses a floating, chrome-finished 3D icon design without background. The download process is controlled via a universal QR code that gives Android device users the choice to install the app through the Google Play Store or the open Aptoide platform.</p>",
+    "pageDesc": "<p>OmniFix AI Document is a highly specialized, AI-powered application for automated correction, stylistic optimization, and structural reorganization of text, documents, and PDF correspondence. After uploading or pasting text, artificial intelligence performs an in-depth linguistic analysis.</p><p>The system does not merely correct simple spelling and grammar errors — it optimizes the entire writing style toward highly professional expression. A core feature of the app is intelligent document structuring: paragraphs are logically ordered, formatting is adjusted, and correspondence is transformed into polished, complete layouts.</p><p>The app operates fluently in multiple languages and automatically detects the smartphone's preset system language to ensure accessible handling without manual configuration. Integration on the homepage uses a floating, chrome-finished 3D icon design without background. The download process is controlled via a universal QR code that gives Android device users the choice to install the app through the Google Play Store or the open Aptoide platform.</p>",
     "tag1": "AI document",
     "tag2": "Document analysis",
     "tag3": "Structuring",
     "descTitle": "OmniFix AI Document — Description",
-    "frontWerbetext": "<p>Elevate your documents, contracts, and correspondence to absolute premium level! OmniFix AI-Dokument is the professional secret weapon for flawless text and legally sound structure. Why is this app the right choice for you? Because it puts an end to embarrassing grammar mistakes, unprofessional wording, and cluttered document layouts. Whether business emails, official PDF letters, or contracts — our artificial intelligence analyzes your text in real time and optimizes it at the touch of a button. You do not need to be a language expert; the app polishes every text to a high gloss and structures it flawlessly. Save valuable time and impress customers, authorities, and partners with truly professional documents. Download the app now via the universal QR code and experience AI text optimization at its finest — available flexibly on the Google Play Store and Aptoide!</p>"
+    "frontWerbetext": "<p>Elevate your documents, contracts, and correspondence to absolute premium level! OmniFix AI Document is the professional secret weapon for flawless text and legally sound structure. Why is this app the right choice for you? Because it puts an end to embarrassing grammar mistakes, unprofessional wording, and cluttered document layouts. Whether business emails, official PDF letters, or contracts — our artificial intelligence analyzes your text in real time and optimizes it at the touch of a button. You do not need to be a language expert; the app polishes every text to a high gloss and structures it flawlessly. Save valuable time and impress customers, authorities, and partners with truly professional documents. Download the app now via the universal QR code and experience AI text optimization at its finest — available flexibly on the Google Play Store and Aptoide!</p>"
   },
   "omniqr": {
     "meta": "OmniQR-AI for Tourist of Thailand — Omni Solutions Global® Co. Ltd.",

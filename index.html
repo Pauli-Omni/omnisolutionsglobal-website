@@ -157,6 +157,38 @@
             </div>
           </div>
         </section>
+
+        <section
+          class="home-pauli-download neo-accent-box content-wrapper"
+          id="home-pauli-download"
+          aria-labelledby="home-pauli-download-title"
+          data-i18n-aria="home.pauliDownloadSectionAria"
+        >
+          <h2 class="home-section-title" id="home-pauli-download-title" data-i18n="home.pauliDownloadTitle"></h2>
+          <p class="home-pauli-download-lead" data-i18n="home.pauliDownloadLead"></p>
+          <div class="product-qr-panel home-pauli-download-qr">
+            <p class="product-qr-universal-tag" data-i18n="pauli.downloadQrTag"></p>
+            <div class="product-qr-scan-slot">
+              <div class="product-qr-frame" data-i18n-aria="pauli.downloadQrAria">
+                <canvas class="pauli-download-qr-canvas product-qr-img" width="200" height="200"></canvas>
+              </div>
+            </div>
+            <a
+              class="btn btn-neon btn-neon--compact pauli-download-open-link"
+              href="https://pauli-best-price-api.onrender.com/download"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="pauli.downloadOpenLink"
+            ></a>
+            <button
+              type="button"
+              class="product-qr-download-btn"
+              id="pauli-download-qr-btn"
+              data-i18n="product.qrDownloadBtn"
+              data-i18n-aria="product.qrDownloadBtnAria"
+            ></button>
+          </div>
+        </section>
       </div>
 
       <div id="contact-modal" class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title" hidden>
@@ -213,6 +245,8 @@
   <script src="js/osg-affiliate-check.js?v=2026.06.15.50"></script>
   <script src="js/home.js?v=2026.06.15.50"></script>
   <script src="js/home-starfield.js?v=2026.06.15.50"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script src="js/pauli-download-qr.js?v=2026.06.15.50"></script>
   <script src="js/portal-video.js?v=2026.06.15.50"></script>
   <script src="js/app.js?v=2026.06.15.50"></script>
   <div id="osg-security-container" class="osg-security-container--home-gutter">

@@ -10,13 +10,16 @@
     {
       id: 'pauliBestprice',
       pageKey: 'pauli',
+      brandName: 'Pauli BestPrice Thailand',
       frontFile: 'pauli-bestprice-thailand.html',
       descFile: 'pauli-bestprice-thailand-beschreibung.html',
-      icon: 'assets/icons/apps/pauli-bestprice.png'
+      icon: 'assets/icons/apps/pauli-bestprice.png',
+      downloadHubUrl: 'https://pauli-best-price-api.onrender.com/download'
     },
     {
       id: 'omnicadAiCam',
       pageKey: 'omnicad',
+      brandName: 'OmniCAD-AI CAM',
       frontFile: 'omnicad-ai-cam.html',
       descFile: 'omnicad-ai-cam-beschreibung.html',
       icon: 'assets/icons/apps/omnicad-ai-cam.png',
@@ -25,6 +28,7 @@
     {
       id: 'omnigateAiMaster',
       pageKey: 'omnigate',
+      brandName: 'Omnigate - AI Master',
       frontFile: 'omnigate-master.html',
       descFile: 'omnigate-master-beschreibung.html',
       icon: 'assets/icons/apps/omnigate-ai-master.png'
@@ -32,6 +36,7 @@
     {
       id: 'omniqrAiPay',
       pageKey: 'omniqr',
+      brandName: 'OmniQR-AI for Tourist of Thailand',
       frontFile: '/omniqr-ai-for-tourist-of-thailand/index.html',
       descFile: '/omniqr-ai-for-tourist-of-thailand/beschreibung.html',
       icon: '/assets/icons/apps/omniqr-ai-pay.png'
@@ -39,6 +44,7 @@
     {
       id: 'omnifixAiDokument',
       pageKey: 'omnifix',
+      brandName: 'OmniFix AI Document',
       frontFile: 'omnifix-ai.html',
       descFile: 'omnifix-ai-beschreibung.html',
       icon: 'assets/icons/apps/omnifix-ai-dokument.png'
@@ -46,6 +52,7 @@
     {
       id: 'omnibotKiProfit',
       pageKey: 'omnibot',
+      brandName: 'OmniBot - AI Profit',
       frontFile: 'omnibot-ki-profit.html',
       descFile: 'omnibot-ki-profit-beschreibung.html',
       icon: 'assets/icons/apps/omnibot-ki-profit.png'
@@ -53,6 +60,7 @@
     {
       id: 'omniaiQrGenerator',
       pageKey: 'omniaiQr',
+      brandName: 'OmniAI-QR Code Generator',
       frontFile: 'omniai-qr-generator.html',
       descFile: 'omniai-qr-generator-beschreibung.html',
       icon: 'assets/icons/apps/omniai-qr-generator.png'
@@ -60,6 +68,7 @@
     {
       id: 'omnitalkAiLive',
       pageKey: 'omnitalk',
+      brandName: 'OmniTalk-AI Live',
       frontFile: 'omnitalk-ai-live.html',
       descFile: 'omnitalk-ai-live-beschreibung.html',
       icon: 'assets/icons/apps/omnitalk-ai-live.png'

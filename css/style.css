@@ -4753,3 +4753,35 @@ body:has(.app-shell) .store-badge--missing {
   outline: none;
   box-shadow: none;
 }
+
+/* Pauli download QR — mobile-first */
+.home-pauli-download {
+  margin-top: 1rem;
+}
+.home-pauli-download-lead,
+.app-front-download-lead {
+  margin: 0 0 0.85rem;
+  opacity: 0.92;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.home-pauli-download-qr,
+.app-front-download {
+  display: grid;
+  gap: 0.65rem;
+  justify-items: center;
+  text-align: center;
+}
+.app-front-download-title {
+  font-size: 1.05rem;
+  margin: 0.75rem 0 0.25rem;
+}
+.pauli-download-open-link {
+  margin-top: 0.25rem;
+}
+@media (max-width: 480px) {
+  .home-pauli-download-lead,
+  .app-front-download-lead {
+    font-size: 0.86rem;
+  }
+}

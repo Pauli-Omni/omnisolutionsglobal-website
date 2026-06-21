@@ -34,6 +34,34 @@
         <h1 id="app-front-title" class="app-front-title chrome-silver-text" data-i18n="pauli.pageTitle"></h1>
         <div class="app-front-werbetext chrome-silver-text" id="app-front-werbetext"></div>
         <a href="pauli-bestprice-thailand-beschreibung.html" id="app-front-cta" class="btn btn-neon app-front-cta" data-i18n="app.learnMore"></a>
+        <section
+          class="product-qr-panel app-front-download"
+          id="pauli-front-download"
+          aria-labelledby="pauli-front-download-title"
+          data-i18n-aria="pauli.downloadSectionAria"
+        >
+          <h2 class="app-front-download-title chrome-silver-text" id="pauli-front-download-title" data-i18n="pauli.downloadHubTitle"></h2>
+          <p class="app-front-download-lead chrome-silver-text" data-i18n="pauli.downloadHubLead"></p>
+          <div class="product-qr-scan-slot">
+            <div class="product-qr-frame" data-i18n-aria="pauli.downloadQrAria">
+              <canvas class="pauli-download-qr-canvas product-qr-img" width="200" height="200"></canvas>
+            </div>
+          </div>
+          <a
+            class="btn btn-neon btn-neon--compact pauli-download-open-link"
+            href="https://pauli-best-price-api.onrender.com/download"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-i18n="pauli.downloadOpenLink"
+          ></a>
+          <button
+            type="button"
+            class="product-qr-download-btn"
+            id="pauli-download-qr-btn"
+            data-i18n="product.qrDownloadBtn"
+            data-i18n-aria="product.qrDownloadBtnAria"
+          ></button>
+        </section>
       </section>
     </main>
 
@@ -50,6 +78,8 @@
   <script src="js/i18n.js?v=2026.06.15.50"></script>
   <script src="js/app-registry.js?v=2026.06.15.50"></script>
   <script src="js/app-front-page.js?v=2026.06.15.50"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <script src="js/pauli-download-qr.js?v=2026.06.15.50"></script>
   <script src="js/app.js?v=2026.06.15.50"></script>
   <link rel="stylesheet" href="css/osg-security.css?v=2026.06.15.50" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/osg-security.css?v=2026.06.15.50"></noscript>
