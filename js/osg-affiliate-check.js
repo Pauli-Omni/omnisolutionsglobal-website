@@ -8,9 +8,17 @@
     var body = document.body;
     if (!body) return "omnisolutionsglobal_web";
     var page = body.getAttribute("data-page") || "";
+    var appId = body.getAttribute("data-app-id") || "";
     var path = String(global.location && global.location.pathname) || "";
     if (path.indexOf("omniqr-ai-for-tourist-of-thailand") >= 0) {
       return "omniqr_ai_thailand";
+    }
+    if (
+      page === "pauli" ||
+      appId === "pauliBestprice" ||
+      path.indexOf("pauli-bestprice") >= 0
+    ) {
+      return "pauli_best_price_thailand";
     }
     if (page === "home" || path === "/" || path.indexOf("index.html") >= 0) {
       return "omnisolutionsglobal_web";
