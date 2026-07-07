@@ -133,6 +133,15 @@ app.use('/api/i18n', createI18nRouter(path.join(SITE_ROOT, 'assets', 'locales'))
 
 app.use(OMNI_QR_API_BASE, createOmniQrRouter());
 
+app.get('/sitemap.xml', function (_req, res) {
+  res.type('application/xml');
+  res.sendFile(path.join(SITE_ROOT, 'sitemap.xml'));
+});
+app.get('/robots.txt', function (_req, res) {
+  res.type('text/plain');
+  res.sendFile(path.join(SITE_ROOT, 'robots.txt'));
+});
+
 app.use(express.static(SITE_ROOT));
 
 app.listen(PORT, function () {
