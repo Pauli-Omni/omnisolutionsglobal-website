@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Official Pauli product page for publisher / affiliate verification (bypass portal overlay)
+Allow: /pauli-bestprice-thailand.html
+Allow: /pauli-bestprice-thailand-beschreibung.html
+Allow: /legal/
+Allow: /impressum.html
+Allow: /agb.html
+Allow: /ueber-uns.html
+
 Sitemap: https://omnisolutionsglobal.com/sitemap.xml

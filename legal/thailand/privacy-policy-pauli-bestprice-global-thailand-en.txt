@@ -1,0 +1,65 @@
+PAULI BESTPRICE GLOBAL — THAILAND EDITION
+PRIVACY POLICY (STORE / APP LISTING)
+Operator: Omni Solutions Global Co., Ltd.
+Effective: 2026-07-19
+Governing law: Kingdom of Thailand (see full Terms of Use)
+
+────────────────────────────────────────
+1. Who we are
+Omni Solutions Global Co., Ltd. (“we”, “operator”) provides Pauli BestPrice Global Thailand Edition (“App”) as a digital price-comparison and mediation assistant. We do not sell the goods shown; purchases are between you and third-party sellers.
+
+Contact: support@omnisolutionsglobal.com
+Website: https://omnisolutionsglobal.com
+
+2. Summary — device-first
+Pauli is built as a mediation tool, not a data-harvesting platform. Where designed, personal usage data (search history, session basket, complaint letter drafts, language settings, consents, merchant review drafts, map destinations) stays on your device in local storage. We do not sell user profiles or shopping histories to third parties.
+
+3. Data stored on your device (local)
+• Search queries and session basket
+• JIT profile / complaint letter master data (if you enter it)
+• Merchant review drafts (helper only — you post reviews yourself)
+• Map navigation last destination
+• Language, accessibility and compliance consents
+• App rating prompt state
+• Pseudonymous Pauli installation ID (local) where applicable
+
+You can remove this data by clearing app/site data in your browser or uninstalling the app.
+
+4. Data sent to our servers (only when triggered)
+• Support tickets: email and message text you voluntarily submit
+• Payment confirmations: avatar unlock, platform service payments (PromptPay flow)
+• Technical identifiers: pseudonymous install fingerprint for fraud prevention (not sold)
+• Optional anonymised improvement events — only if you accept (Section 5)
+• Affiliate / price API requests: product search terms and region context (no sale of your profile)
+
+We do not use server data for advertising profiles.
+
+5. Optional anonymised improvement data
+Before first purchase you may accept or decline anonymised or pseudonymised usage events (e.g. feature used, error class) to improve stability. Refusal does not block price comparison or checkout.
+
+6. Permissions
+• Microphone: voice input, avatar responses, optional dictation — only after your consent at first start; OS permission separate.
+• Camera: only when you open scan/photo features — not at app start.
+• Location: optional for map directions start point — only when you enable it in map navigation.
+
+7. Third parties
+After redirect to marketplaces, banks, insurers, auto partners, Grab/Bolt, or Google Maps, their privacy policies apply. We are not responsible for third-party sites.
+
+8. Affiliate mediation
+We may earn commission when you use partner links. Offers are labelled transparently. We prefer verified affiliate partners where technically enforced.
+
+9. Children
+Users under 20 need legal guardian consent for contracts under Thai law (CCC). We do not collect date of birth or verify age technically.
+
+10. Security product (separate)
+Emergency / personal security features are not part of this mediation app listing. If offered later as a separate product, a separate privacy policy applies.
+
+11. Your rights
+You may contact support@omnisolutionsglobal.com for questions about data we process on our servers. Local device data is controlled by you via device settings.
+
+12. Changes
+Material changes require re-confirmation on next app start. Full Terms of Use (AGB): /legal/thailand/agb-pauli-bestprice-global-thailand-en.txt
+
+────────────────────────────────────────
+Hosted URL (production): https://omnisolutionsglobal.com/legal/thailand/privacy-policy-pauli-bestprice-global-thailand-en.txt
+Alternate API host: https://api.omnisolutionsglobal.com/legal/thailand/privacy-policy-pauli-bestprice-global-thailand-en.txt

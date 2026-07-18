@@ -1,0 +1,81 @@
+PAULI BESTPRICE GLOBAL
+Thailand Edition
+Terms of Use (full text)
+────────────────────────────────────────
+1. Scope and product: These terms apply to „Pauli BestPrice Global“ Thailand Edition (the „App“). Operator: Omni Solutions Global Co., Ltd. („we“, „operator“). Use in the Kingdom of Thailand. Other regional editions will have separate terms and governing law.
+
+2. Governing law: Law of the Kingdom of Thailand, especially the Civil and Commercial Code (ประมวลกฎหมายแพ่งและพาณิชย์, ป.พ.พ.) and the Electronic Transactions Act B.E. 2544 (พ.ร.บ. ว่าด้วยธุรกรรมทางอิเล็กทรอนิกส์ พ.ศ. 2544).
+
+3. Age and contracts (ประมวลกฎหมายแพ่งและพาณิชย์, ป.พ.พ.):
+
+มาตรา 19:
+ไทย: บุคคลย่อมพ้นจากภาวะผู้เยาว์และบรรลุนิติภาวะเมื่อมีอายุยี่สิบปีบริบูรณ์
+EN: On completion of 20 years of age, a person ceases to be a minor and becomes fully capable of civil acts.
+DE: Mit vollendeten 20 Jahren endet die Minderjährigkeit; die Person ist voll geschäftsfähig.
+
+มาตรา 21:
+ไทย: ผู้เยาว์จะทำนิติกรรมใด ๆ ต้องได้รับความยินยอมของผู้แทนโดยชอบธรรมก่อน การใด ๆ ที่ผู้เยาว์ได้ทำลงปราศจากความยินยอมเช่นว่านั้นเป็นโมฆียะ เว้นแต่จะบัญญัติไว้เป็นอย่างอื่น
+EN: A minor must obtain the legal representative's prior consent for any juristic act; without consent the act is voidable (โมฆียะ), unless the law provides otherwise.
+DE: Minderjährige brauchen die vorherige Zustimmung des gesetzlichen Vertreters; ohne Zustimmung ist die Handlung anfechtbar (โมฆียะ), sofern das Gesetz nichts anderes bestimmt.
+
+มาตรา 24:
+ไทย: ผู้เยาว์อาจทำการใด ๆ ได้ทั้งสิ้น ซึ่งเป็นการสมแก่ฐานานุรูปแห่งตนและเป็นการอันจำเป็นในการดำรงชีพตามสมควร
+EN: Exception: a minor may perform acts suitable to their condition in life and reasonably necessary for living.
+DE: Ausnahme: Minderjährige dürfen Handlungen vornehmen, die ihrer Lebenslage angemessen und für angemessene Lebensbedürfnisse erforderlich sind.
+
+4. Online contracts (พระราชบัญญัติว่าด้วยธุรกรรมทางอิเล็กทรอนิกส์ พ.ศ. 2544):
+
+มาตรา 13:
+ไทย: การเสนอหรือตอบรับในการทำสัญญาอาจแสดงโดยข้อความอิเล็กทรอนิกส์ และสัญญาจะไม่ถูกปฏิเสธผลทางกฎหมายเพียงเพราะทำในรูปแบบข้อความอิเล็กทรอนิกส์
+EN: An offer or acceptance may be expressed by a data message; a contract is not denied legal effect solely because it was made electronically.
+DE: Angebot und Annahme können elektronisch erfolgen; ein Vertrag wird nicht allein deshalb unwirksam, weil er elektronisch geschlossen wurde.
+
+5. Services: Pauli BestPrice Global® acts as a digital intermediary and guide — not the seller of displayed goods. Mediation services include in particular: price and product comparison; product information; referral to checkout at marketplaces and vendors; assistance with marketplace delivery and 7-Eleven pickup; shipment tracking; accessible avatar-guided use; neutral complaint and letter assistance; support contact. The operator's own services (e.g. avatar unlock, Pauli freight for 7-Eleven pickup) are separate (Section 9). For goods purchases, only you and the respective seller are contracting parties (Section 8).
+
+6. Comparison vs purchase: Viewing prices or recommendations is not concluding a contract. A purchase contract arises only at checkout/payment with the respective vendor or marketplace.
+
+7. Users under 20: Under CCC s. 21 you must obtain prior consent of your legal guardian before contracts and purchases. The App does not collect that consent, does not store date of birth, and does not enforce age technically. Exceptions under s. 24 case by case. Full capacity at 20 (s. 19).
+
+8. Third parties and contracting partners: Price, product and shop data come from linked marketplaces, affiliate partners and vendors. Their terms apply to your purchase. We are not a party to the sale contract between you and the seller. After redirect to a shop or marketplace, only that third party's rules, offers and security mechanisms apply.
+
+9. Fees and payments: Product prices, freight (e.g. 7-Eleven), and one-off payments (e.g. avatar unlock via PromptPay) may apply. Amounts are summarised before you complete payment.
+
+10. Start requirements: You must actively confirm these terms and consent to microphone use before first use. Without microphone consent the App will not start.
+
+11. Microphone: For voice input, avatar responses, and optional dictation (e.g. support). Processing occurs primarily on your device or via OS speech services. The OS may require a separate permission.
+
+12. Camera: Only when you trigger scan or photo features — not at app start.
+
+13. Emergency calls: An emergency/help function may initiate a call without an extra confirmation click if you have allowed it.
+
+14. Usage improvement (overview): Optional anonymised improvement data and the „device-first“ privacy principle are set out in Sections 24 and 25. Refusal does not affect checkout.
+
+15. Avatar and conduct protection: The avatar supports accessible use. Abusive language may lead to temporary interaction lock. Avatar unlock may become paid after a trial period.
+
+16. Installation ID: A pseudonymous Pauli-ID may be assigned on your device and registered technically (Section 29). It is not used to sell user profiles.
+
+17. Support: Contact via form with ticket number and email you voluntarily provide. Response times are targets without guarantee.
+
+18. Availability: Prices, images, stock and delivery times may change; in-app displays are without warranty and do not replace the seller's display at purchase time.
+
+19. Your duties: Lawful use; no abuse, scraping, or reverse engineering.
+
+20. Liability (general): To the extent permitted by law, no liability for indirect damages, lost profit or third-party contracts (especially Sections 26–28). Statutory liability for intent and gross negligence remains. Our intermediary role does not create liability for foreign shops, postal/courier companies or affiliate page content (details Sections 26–28).
+
+21. Copyright: Software, avatar, coin, design and brands are protected; use only as intended.
+
+22. Changes and language: Material changes require re-confirmation on next start. Thai statutory text (ไทย) prevails for legal meaning; EN and DE are for understanding.
+
+23. Liability exclusion for product returns: Pauli BestPrice Global® acts solely as a digital intermediary between the end customer and third-party sellers. The purchase contract for goods is concluded directly between the customer and the respective seller. If the customer cancels, withdraws or returns the purchase contract with the seller, product, defect and warranty claims must be directed to the seller; the platform is not liable for returns or replacements.
+
+24. Privacy — device-first principle: We operate Pauli as a mediation and assistance tool, not as a data-harvesting or profiling platform for selling user data. Where designed, personal usage data — e.g. search history, session basket, complaint letter master data, language settings, consents and app state — remain on your device. We mediate prices, shops and help without researching, selling or marketing your data to third parties. No central permanent storage of your shopping, search or profile data for advertising.
+
+25. Optional anonymised improvement data: Before first purchase you may accept or decline anonymised or pseudonymised usage events (e.g. whether a feature was used, tracking consent granted, technical error classes) to improve the App. Used only for quality and stability — not sold to third parties and not for ad profiling. Refusal does not restrict price comparison or purchase.
+
+26. Affiliate displays, prices and partner safety: (a) Displayed prices, images, descriptions, ratings and availability come from third parties or their APIs and may be delayed, incomplete or wrong. (b) Where technically enforced, we prefer offers from our verified affiliate partner network; non-affiliate merchants should not appear as Pauli recommendations. (c) Content on a marketplace, affiliate or seller site after your redirect (wrong goods, misleading images, hidden fees, fake shops) is that third party's responsibility — not Pauli's as intermediary. (d) We do not warrant that every foreign page matches the in-app display at purchase time. (e) If you suspect fake vendors or fraud, we neutrally help you contact the seller or support — without becoming a contracting party or liable for foreign shops.
+
+27. Delivery, post, courier and logistics: (a) Marketplace home delivery: shipping contract between you and the seller/marketplace logistics; postal, courier and carriers act under their own terms. (b) 7-Eleven pickup (path B): we mediate the route and, where booked, our Pauli freight service; hub, parcel and store processes belong to respective logistics and retail companies. (c) Shipment status and tracking are shown without guarantee from third-party or demo/partner feeds. (d) Loss, damage, delay or non-delivery in post/courier channels must primarily be claimed against seller, marketplace or carrier — not Pauli as intermediary, except for our own separately paid Pauli freight within the agreed scope.
+
+28. Non-delivery, defects and fraudulent vendors: (a) If goods do not arrive, are defective or wrong, claim first against seller/marketplace. (b) Pauli is not liable for non-delivery, fraud or insolvency of third-party sellers. (c) We support you as neutral intermediary via the complaint ladder (Sections 5 and 23) and letter assistance — fairly and without fraudulent claims. (d) Our safety contribution: strict affiliate filtering, transparent labelling, report suspicious offers to support; we may suspend partners for proven violations — without guaranteeing or refunding purchases already made with third parties.
+
+29. Minimal server contact (support, payment, technical IDs): Only when you trigger it or operationally required, limited technical data may be sent to our servers — e.g. support email and ticket text you enter, payment confirmations for avatar unlock or Pauli freight, pseudonymous Pauli-ID, install fingerprint or anonymised event logs per Section 25. Not sold, not used for ad profiling; used only for support, billing our own services, technical fraud prevention and app improvement (with consent).
