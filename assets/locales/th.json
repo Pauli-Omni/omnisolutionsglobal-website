@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "หน้าแรก",
-    "pauli": "Pauli BestPrice Thailand",
+    "pauli": "Pauli BestPrice Global",
     "apps": "แอปเพิ่มเติม",
     "werbe": "มุมโฆษาวิดีโอ",
     "impressum": "ข้อมูลทางกฎหมาย",
@@ -189,8 +189,8 @@
       "desc": "อัลกอริทึมระดับสูงสำหรับการเพิ่มประสิทธิภาพตลาดและผลกำไรแบบอัตโนมัติ"
     },
     "pauliBestprice": {
-      "name": "Pauli BestPrice Thailand",
-      "desc": "พอร์ทัลเปรียบเทียบราคาและคูปองแบบกรรมสิทธิ์ด้วยการวิเคราะห์เรียลไทม์"
+      "name": "Pauli BestPrice Global",
+      "desc": "ผลิตภัณฑ์เปรียบเทียบราคาระดับโลก — ตลาดประเทศภายใต้หลังคาเดียว ไทยเปิดก่อน"
     },
     "omniaiQrGenerator": {
       "name": "OmniAI-QR Code Generator",
@@ -206,10 +206,10 @@
     }
   },
   "pauli": {
-    "meta": "Pauli BestPrice Thailand — Omni Solutions Global® Co. Ltd.",
-    "title": "Pauli BestPrice Thailand — Omni Solutions Global® Co. Ltd.",
-    "subtitle": "พอร์ทัลเปรียบเทียบราคา",
-    "pageTitle": "Pauli BestPrice Thailand",
+    "meta": "Pauli BestPrice Global® — ประเทศไทย — Omni Solutions Global® Co. Ltd.",
+    "title": "Pauli BestPrice Global® — ประเทศไทย — Omni Solutions Global® Co. Ltd.",
+    "subtitle": "ตลาดประเทศไทยของ Pauli BestPrice Global",
+    "pageTitle": "Pauli BestPrice Global® — ประเทศไทย",
     "pageDesc": "<p>Pauli BestPrice Thailand คือพอร์ทัลเปรียบเทียบราคาและการปรับปรุงตลาดที่ขับเคลื่อนด้วย AI ระดับล้ำสมัย ซึ่งพัฒนาขึ้นเฉพาะสำหรับตลาดค้าปลีกของไทย คุณสมบัติหลักที่โดดเด่นของแอปนี้คือการเข้าถึงที่ไม่ประนีประนอม: แอปทั้งหมดออกแบบสถาปัตยกรรมมาเพื่อให้ผู้ที่มีข้อจำกัดทางร่างกายหรือความพิการใช้งานได้โดยไม่ต้องใช้คีย์บอร์ดหรือป้อนข้อมูลบนหน้าจอด้วยตนเอง</p><p>การควบคุมทำผ่านเมทริกซ์การรู้จำเสียง AI ที่พัฒนาอย่างล้ำสมัย 100% ผู้ใช้เพียงพูดสินค้าหรือบริการที่ต้องการค้นหา แอปรับคำขอ ตรวจจับภาษาของระบบอุปกรณ์โดยอัตโนมัติ และสลับระบบทั้งหมดเป็นภาษาแม่ของผู้ใช้</p><p>ในพื้นหลัง AI สแกนแพลตฟอร์มออนไลน์ไทย ฐานข้อมูลผู้ค้า และข้อเสนอท้องถิ่นแบบเรียลไทม์ กรองเงื่อนไขที่ดีที่สุด และนำเสนอผลลัพธ์ที่ถูกที่สุด ไอคอนผสานรวมบนเว็บไซต์เป็นเหรียญบาท 3D (฿) ขัดเพชรลอยตัวที่ไม่มีพื้นหลัง ดาวน์โหลดผ่าน QR Code สากลอัจฉริยะที่นำผู้ใช้ Android ไปเลือกระหว่าง Google Play Store และตลาดเปิด Aptoide ได้โดยตรง</p>",
     "lead": "Pauli BestPrice Thailand คือผลิตภัณฑ์ของ Omni Solutions Global® Co. Ltd.",
     "text": "หน้านี้แสดงข้อมูลและสื่อโฆษณาสำหรับพอร์ทัล Pauli BestPrice Thailand",

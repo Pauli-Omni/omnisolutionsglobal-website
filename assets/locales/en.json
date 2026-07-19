@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "Home",
-    "pauli": "Pauli BestPrice Thailand",
+    "pauli": "Pauli BestPrice Global",
     "apps": "More Apps",
     "werbe": "Video Ads",
     "impressum": "Legal Notice",
@@ -166,9 +166,9 @@
     "ctaAbout": "Legal Notice",
     "ctaLearnMoreAria": "Learn more about our company",
     "splashActionsAria": "Quick actions on the welcome tile",
-    "pauliDownloadTitle": "Pauli BestPrice Thailand — Download hub",
-    "pauliDownloadLead": "Scan the QR code or open the download hub — app for iPhone, iPad, Android, Mac, Windows, and Linux without store lock-in.",
-    "pauliDownloadSectionAria": "Pauli BestPrice download and QR code",
+    "pauliDownloadTitle": "Pauli BestPrice Global® — Download hub",
+    "pauliDownloadLead": "Scan the QR code or open the download hub — app for iPhone, iPad, Android, Mac, Windows, and Linux without store lock-in. Thailand market first.",
+    "pauliDownloadSectionAria": "Pauli BestPrice Global download and QR code",
     "modalTitle": "Project submission",
     "modalIntro": "Secure inquiry — no address required. Your data is transmitted encrypted.",
     "modalCloseAria": "Close dialog",
@@ -200,8 +200,8 @@
       "desc": "Top-tier algorithms for fully automated market and revenue optimization."
     },
     "pauliBestprice": {
-      "name": "Pauli BestPrice Thailand",
-      "desc": "Proprietary price comparison and voucher portal based on intelligent real-time analytics."
+      "name": "Pauli BestPrice Global",
+      "desc": "Global price comparison product — country markets under one roof. Thailand live first."
     },
     "omniaiQrGenerator": {
       "name": "OmniAI-QR Code Generator",
@@ -217,24 +217,24 @@
     }
   },
   "pauli": {
-    "meta": "Pauli BestPrice Thailand — Omni Solutions Global® Co. Ltd.",
-    "title": "Pauli BestPrice Thailand — Omni Solutions Global® Co. Ltd.",
-    "subtitle": "Our Price Comparison Portal",
-    "pageTitle": "Pauli BestPrice Thailand",
-    "pageDesc": "<p>Pauli BestPrice Thailand is a state-of-the-art, AI-powered price comparison and market optimization portal developed specifically for the Thai retail market. The outstanding core feature of this application is its uncompromising accessibility: the entire app was architecturally designed so that people with physical limitations or disabilities can operate it fully without a keyboard or manual screen input.</p><p>Control is 100% via an advanced AI speech recognition matrix. The user simply speaks the product or service they are looking for. The app captures the request, automatically determines the device system language, and switches the entire system to the user's native language.</p><p>In the background, AI scans Thai online platforms, merchant databases, and local offers in real time, filters the best conditions, and presents the lowest-priced result. The icon is integrated on the website as a floating, diamond-cut 3D baht coin (฿) without background. Download is via an intelligent universal QR code that leads Android users directly to a choice between the Google Play Store and the open Aptoide marketplace.</p>",
-    "lead": "Pauli BestPrice Thailand is a product of Omni Solutions Global® Co. Ltd. — intelligent, transparent, and user-focused.",
-    "text": "This page provides information and promotional material about the Pauli BestPrice Thailand portal.",
+    "meta": "Pauli BestPrice Global® — Thailand — Omni Solutions Global® Co. Ltd.",
+    "title": "Pauli BestPrice Global® — Thailand — Omni Solutions Global® Co. Ltd.",
+    "subtitle": "Thailand market of Pauli BestPrice Global",
+    "pageTitle": "Pauli BestPrice Global® — Thailand",
+    "pageDesc": "<p>Pauli BestPrice Global® — Thailand is the first live country market of Pauli BestPrice Global, an AI-powered price comparison and market optimization product by Omni Solutions Global Co., Ltd. The outstanding core feature is uncompromising accessibility: the app is designed so that people with physical limitations can operate it fully without a keyboard or manual screen input.</p><p>Control is via an advanced AI speech recognition matrix. Inside the Thailand market, guest languages remain available for tourists and expats.</p><p>In the background, AI scans Thai online platforms, merchant databases, and local offers in real time, filters the best conditions, and presents the lowest-priced result. Download is via a universal QR code for major platforms.</p>",
+    "lead": "Pauli BestPrice Global® — Thailand market is a product of Omni Solutions Global® Co. Ltd. — intelligent, transparent, and user-focused.",
+    "text": "This page provides information about the Thailand market of Pauli BestPrice Global.",
     "tag1": "Price comparison",
     "tag2": "Vouchers",
     "tag3": "Thailand market",
-    "descTitle": "Pauli BestPrice Thailand — Description",
+    "descTitle": "Pauli BestPrice Global® — Thailand — Description",
     "downloadHubTitle": "Install the app — no store required",
     "downloadHubLead": "PWA, APK, and desktop packages — straight from the web.",
     "downloadOpenLink": "Open download hub",
     "downloadQrTag": "Universal QR — all platforms",
     "downloadQrAria": "QR code for the Pauli download hub",
     "downloadSectionAria": "Pauli download and QR code",
-    "frontWerbetext": "<p>Find the absolute best price anywhere in Thailand — without ever typing a single word again! Pauli BestPrice Thailand is the revolutionary flagship among price comparison portals. Why is this app the right choice for you? Because it completely redefines shopping and saving with maximum accessibility. This app was purpose-built for the needs of all users and, through full voice control, is the perfect solution for people with disabilities or physical limitations. Simply speak to the app! The integrated AI searches the entire Thai market in real time, compares offers in a flash, and instantly shows you where you can save the most. The system automatically detects your smartphone language, so you do not have to worry about a thing. End overpriced purchases and complicated searching. Scan the universal QR code and get Thailand's smartest savings tool via the Google Play Store or directly via Aptoide!</p>"
+    "frontWerbetext": "<p>Find the absolute best price in Thailand — with full accessibility. Pauli BestPrice Global® — Thailand market compares offers in real time and guides you to partner checkout. Guest languages available for tourists. Open the Global hub to pick other countries as they launch.</p>"
   },
   "omnigate": {
     "meta": "Omnigate - AI Master — Omni Solutions Global® Co. Ltd.",

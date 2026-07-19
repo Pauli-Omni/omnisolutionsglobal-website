@@ -2,6 +2,7 @@ User-agent: *
 Allow: /
 
 # Official Pauli product page for publisher / affiliate verification (bypass portal overlay)
+Allow: /pauli-bestprice-global.html
 Allow: /pauli-bestprice-thailand.html
 Allow: /pauli-bestprice-thailand-beschreibung.html
 Allow: /legal/

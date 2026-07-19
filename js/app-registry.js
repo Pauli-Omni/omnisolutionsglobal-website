@@ -10,8 +10,8 @@
     {
       id: 'pauliBestprice',
       pageKey: 'pauli',
-      brandName: 'Pauli BestPrice Thailand',
-      frontFile: 'pauli-bestprice-thailand.html',
+      brandName: 'Pauli BestPrice Global',
+      frontFile: 'pauli-bestprice-global.html',
       descFile: 'pauli-bestprice-thailand-beschreibung.html',
       icon: 'assets/icons/apps/pauli-bestprice.png',
       downloadHubUrl: 'https://pauli-best-price-api.onrender.com/download'

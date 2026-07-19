@@ -4785,3 +4785,114 @@ body:has(.app-shell) .store-badge--missing {
     font-size: 0.86rem;
   }
 }
+
+/* Desktop Home: nach Vorhang volle Breite nutzen (nicht Handy-Spalte) */
+@media screen and (min-width: 901px) {
+  body[data-page="home"] .main-content {
+    width: auto;
+  }
+
+  body[data-page="home"] .home-splash-core {
+    max-width: min(100%, 52rem);
+  }
+
+  body[data-page="home"] .home-splash-logo {
+    width: min(100%, 36rem);
+    max-width: 36rem;
+  }
+
+  body[data-page="home"] .home-splash-learn-btn,
+  body[data-page="home"] .home-splash-foot .btn-neon,
+  body[data-page="home"] .home-splash-foot .btn-outline-neon {
+    width: auto;
+    min-width: 12rem;
+  }
+}
+
+/* Pauli BestPrice Global — Länder-Hub */
+.pbg-global-hub {
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pbg-global-hub__lead {
+  margin: 0.75rem auto 1.25rem;
+  max-width: 40rem;
+  line-height: 1.55;
+  opacity: 0.92;
+}
+
+.pbg-country-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+@media screen and (min-width: 701px) {
+  .pbg-country-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.pbg-country-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 5.5rem;
+  padding: 0.85rem 0.6rem;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid rgba(0, 229, 255, 0.28);
+  background: rgba(6, 10, 18, 0.55);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+a.pbg-country-card:hover,
+a.pbg-country-card:focus-visible {
+  border-color: rgba(0, 229, 255, 0.7);
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.18);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.pbg-country-card--soon {
+  opacity: 0.55;
+  pointer-events: none;
+  cursor: default;
+}
+
+.pbg-country-card__code {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--neon-cyan);
+}
+
+.pbg-country-card__name {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.pbg-country-card__meta {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.pbg-global-hub__note {
+  margin: 0 auto 1rem;
+  max-width: 40rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.85;
+}

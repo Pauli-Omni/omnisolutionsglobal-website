@@ -19,7 +19,7 @@
   },
   "nav": {
     "home": "Home",
-    "pauli": "Pauli BestPrice Thailand",
+    "pauli": "Pauli BestPrice Global",
     "apps": "Weitere Apps",
     "werbe": "Werbe-Ecke",
     "impressum": "Impressum",
@@ -198,8 +198,8 @@
       "desc": "Algorithmen auf höchstem Niveau zur vollautomatischen Markt- und Ertragsoptimierung."
     },
     "pauliBestprice": {
-      "name": "Pauli BestPrice Thailand",
-      "desc": "Proprietäres Preisvergleichs- und Gutscheinportal auf Basis intelligenter Echtzeit-Analysen."
+      "name": "Pauli BestPrice Global",
+      "desc": "Globales Preisvergleichsprodukt — Ländermärkte unter einem Dach. Thailand zuerst live."
     },
     "omniaiQrGenerator": {
       "name": "OmniAI-QR Code Generator",

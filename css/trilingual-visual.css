@@ -19,6 +19,18 @@ body[data-page="home"] .home-splash-core > :not(.home-splash-logo) {
   max-width: min(100%, 440px);
 }
 
+/* Desktop: Home nach Vorhang nicht wie Handy-Spalte */
+@media screen and (min-width: 901px) {
+  body[data-page="home"] .home-splash-core > :not(.home-splash-logo) {
+    max-width: min(100%, 42rem);
+  }
+
+  body[data-page="home"] .home-splash-logo {
+    width: min(100%, 36rem);
+    max-width: 36rem;
+  }
+}
+
 body[data-page="home"] .home-welcome-silver,
 body[data-page="home"] .home-ai-tagline,
 body[data-page="home"] .home-splash-foot,
