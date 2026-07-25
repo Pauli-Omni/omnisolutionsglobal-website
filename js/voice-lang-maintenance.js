@@ -39,7 +39,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.25.04');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.01');
     document.head.appendChild(link);
   }
 
@@ -50,7 +50,7 @@
   }
 
   function pickerLocales() {
-    return window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_LOCALES : ['th', 'en', 'ru', 'de', 'pl', 'zh'];
+    return window.OSGI18nConfig ? OSGI18nConfig.UI_PICKER_LOCALES : ['th', 'en', 'ru', 'zh', 'de', 'pl'];
   }
 
   function pickerBase(lng) {
