@@ -6,7 +6,8 @@ const path = require('path');
 const crypto = require('crypto');
 
 const ENV_FILE = path.join(__dirname, 'render.local.env');
-const ELEVEN_FILE = path.join(__dirname, '..', 'server', 'elevenlabs.config.env');
+const ELEVEN_FILE_CORE = path.join(__dirname, '..', '02_Quellcode', 'Core_Logik', 'elevenlabs.config.env');
+const ELEVEN_FILE_LEGACY = path.join(__dirname, '..', 'server', 'elevenlabs.config.env');
 const API = 'https://api.render.com/v1';
 const SERVICE_NAME = 'omnisolutionsglobal-web';
 
@@ -26,7 +27,22 @@ function loadKey() {
 }
 
 function readElevenLabsKey() {
-  const keyMod = require(path.join(__dirname, '..', 'server', 'elevenlabs-key'));
+  // Prefer Core_Logik module (production path); fall back to legacy server/ leftover.
+  let keyMod;
+  try {
+    keyMod = require(path.join(__dirname, '..', '02_Quellcode', 'Core_Logik', 'elevenlabs-key'));
+  } catch (e) {
+    keyMod = require(path.join(__dirname, '..', 'server', 'elevenlabs-key'));
+  }
+  // Ensure config file beside the module is discoverable: copy legacy into Core_Logik if missing.
+  if (!fs.existsSync(ELEVEN_FILE_CORE) && fs.existsSync(ELEVEN_FILE_LEGACY)) {
+    try {
+      fs.copyFileSync(ELEVEN_FILE_LEGACY, ELEVEN_FILE_CORE);
+      console.log('copied elevenlabs.config.env → Core_Logik');
+    } catch (copyErr) {
+      console.warn('could not copy elevenlabs.config.env:', copyErr && copyErr.message);
+    }
+  }
   return {
     key: keyMod.getElevenLabsApiKey(),
     voice: keyMod.getElevenLabsVoiceIdFromConfig()
@@ -92,7 +108,8 @@ async function main() {
   const vars = {
     NODE_VERSION: '20',
     OMNI_DEV_MODE: '0',
-    BRAND_TTS_ENGINE: 'xtts',
+    BRAND_TTS_ENGINE: 'elevenlabs',
+    BRAND_TTS_CLOUD_FIRST: '1',
     BRAND_USE_CONFIGURED_VOICE: '1',
     ELEVENLABS_PREMADE_VOICE_ID: '21m00Tcm4TlvDq8ikWAM',
     ELEVENLABS_API_KEY: local.ELEVENLABS_API_KEY || eleven.key,

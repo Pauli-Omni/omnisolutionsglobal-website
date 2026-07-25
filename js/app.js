@@ -31,15 +31,22 @@
     var btn = document.getElementById('portal-enter-btn');
 
     function dismissPortal() {
-      portal.classList.add('portal-reveal');
+      if (portal.classList.contains('portal-opening') || portal.classList.contains('portal-hidden')) {
+        return;
+      }
+      portal.classList.add('portal-opening');
       portal.setAttribute('aria-hidden', 'true');
+      // Curtain slide (~1.1s) then fade/hide so WELCOME is not an abrupt cut.
       setTimeout(function () {
-        portal.classList.add('portal-hidden');
-        portal.classList.remove('portal-reveal');
-      }, 420);
+        portal.classList.add('portal-reveal');
+        setTimeout(function () {
+          portal.classList.add('portal-hidden');
+          portal.classList.remove('portal-reveal', 'portal-opening');
+        }, 420);
+      }, 1100);
     }
 
-    portal.classList.remove('portal-hidden', 'portal-reveal');
+    portal.classList.remove('portal-hidden', 'portal-reveal', 'portal-opening');
     portal.setAttribute('aria-hidden', 'false');
 
     if (btn) btn.addEventListener('click', dismissPortal);

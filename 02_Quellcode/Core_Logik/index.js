@@ -142,6 +142,19 @@ app.get('/robots.txt', function (_req, res) {
   res.sendFile(path.join(SITE_ROOT, 'robots.txt'));
 });
 
+/** Explicit legal routes — affiliate crawlers must not get Express default 404 HTML. */
+[
+  'privacy-policy-pauli-bestprice-global-thailand-en.txt',
+  'privacy-policy-pauli-bestprice-global-thailand-th.txt',
+  'agb-pauli-bestprice-global-thailand-en.txt',
+  'agb-pauli-bestprice-global-thailand-th.txt'
+].forEach(function (name) {
+  app.get('/legal/thailand/' + name, function (_req, res) {
+    res.type('text/plain; charset=utf-8');
+    res.sendFile(path.join(SITE_ROOT, 'legal', 'thailand', name));
+  });
+});
+
 app.use(express.static(SITE_ROOT));
 
 app.listen(PORT, function () {

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var DEFAULT_DOWNLOAD_URL = 'https://pauli-best-price-api.onrender.com/download';
+  var DEFAULT_DOWNLOAD_URL = 'pauli-bestprice-thailand-beschreibung.html';
 
   function t(key, fb) {
     if (window.OSGI18n) {

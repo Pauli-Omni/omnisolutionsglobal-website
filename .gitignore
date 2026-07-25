@@ -9,7 +9,6 @@ scripts/cloudflare.local.env
 # Dependencies & builds
 02_Quellcode/Core_Logik/node_modules/
 node_modules/
-
 # Python / XTTS (lokal, zu groß für GitHub)
 .venv-xtts/
 .venv-tts/
@@ -17,21 +16,19 @@ node_modules/
 .venv/
 __pycache__/
 *.pyc
-
 # Runtime / cache
 02_Quellcode/Core_Logik/.brand-voice-id
 02_Quellcode/Core_Logik/omniqr-ai-for-tourist-of-thailand/data/
 .DS_Store
-
 # Lokale Referenz-Stimme (nicht deployen)
 assets/audio/voice_reference_template.wav
 assets/audio/omni-homepage-voice.mp3
-
 # Deploy-ZIPs (lokal, nicht für GitHub)
 deploy/*.zip
-
 # Lokale Asset-Backups (nicht deployen)
 assets/**/*backup*
 assets/**/*.old.mp4
 assets/**/*.prev.mp4
 assets/**/*rejected*.mp4
+*.pre-fix.jpg
+server/

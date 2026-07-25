@@ -76,7 +76,7 @@ async function main() {
     ownerId: ownerId,
     repo: REPO,
     branch: 'main',
-    rootDir: 'server',
+    rootDir: '02_Quellcode/Core_Logik',
     serviceDetails: {
       env: 'node',
       envSpecificDetails: {

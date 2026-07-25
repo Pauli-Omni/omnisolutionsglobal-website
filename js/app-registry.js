@@ -14,7 +14,8 @@
       frontFile: 'pauli-bestprice-global.html',
       descFile: 'pauli-bestprice-thailand-beschreibung.html',
       icon: 'assets/icons/apps/pauli-bestprice.png',
-      downloadHubUrl: 'https://pauli-best-price-api.onrender.com/download'
+      // Live download API currently suspended on Render — land on product desc (QR/store) until resumed.
+      downloadHubUrl: 'pauli-bestprice-thailand-beschreibung.html'
     },
     {
       id: 'omnicadAiCam',
