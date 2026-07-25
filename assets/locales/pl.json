@@ -215,7 +215,7 @@
     "title": "Pauli BestPrice Thailand — Omni Solutions Global® Co. Ltd.",
     "subtitle": "Nasz portal porównywania cen",
     "pageTitle": "Pauli BestPrice Thailand",
-    "pageDesc": "<p>Pauli BestPrice Thailand to nowoczesny portal porównywania cen i optymalizacji rynku oparty na sztucznej inteligencji, zaprojektowany specjalnie dla tajlandzkiego rynku handlowego. Wyjątkową cechą tej aplikacji jest jej bezkompromisowa dostępność: cała aplikacja została zaprojektowana architektonicznie tak, aby osoby z ograniczeniami ruchowymi lub niepełnosprawnościami mogły z niej w pełni korzystać bez użycia klawiatury lub ręcznego wprowadzania danych na ekranie.</p><p>Sterowanie odbywa się w 100% przez zaawansowaną macierz rozpoznawania mowy opartą na sztucznej inteligencji. Użytkownik po prostu wypowiada poszukiwany produkt lub usługę. Aplikacja rejestruje zapytanie, automatycznie określa język systemu urządzenia i przełącza cały system na odpowiedni język ojczysty użytkownika.</p><p>W tle sztuczna inteligencja skanuje w czasie rzeczywistym tajlandzkie platformy online, bazy danych sprzedawców i lokalne oferty, filtruje najlepsze warunki i prezentuje najtańszy wynik. Ikona jest zintegrowana na stronie jako unosząca się, diamentowo szlifowana 3D moneta baht (฿) bez tła. Pobieranie odbywa się przez inteligentny, uniwersalny kod QR, który kieruje użytkowników Androida bezpośrednio do wyboru między Google Play Store a wolnym rynkiem Aptoide.</p>",
+    "pageDesc": "<p>Pauli BestPrice Thailand to portal porównywania cen oparty na sztucznej inteligencji, stworzony dla rynku tajlandzkiego. Porównuje oferty online w czasie rzeczywistym i pomaga wybrać korzystną ścieżkę zakupu u partnerów.</p><p>Interfejs jest zaprojektowany z myślą o dostępności, w tym o obsłudze głosowej. Aplikacja dopasowuje język do ustawień urządzenia, aby turyści i mieszkańcy mogli szybko znaleźć produkty i usługi.</p><p>Pauli koncentruje się na porównaniu cen i doprowadzeniu do zakupu — jasno, szybko i zrozumiale.</p>",
     "lead": "Pauli BestPrice Thailand to produkt Omni Solutions Global® Co. Ltd.",
     "text": "Informacje i materiały promocyjne dotyczące portalu Pauli BestPrice Thailand.",
     "tag1": "Porównanie cen",
@@ -228,7 +228,7 @@
     "downloadQrTag": "Uniwersalny QR — wszystkie platformy",
     "downloadQrAria": "Kod QR do centrum pobierania Pauli",
     "downloadSectionAria": "Pobieranie Pauli i kod QR",
-    "frontWerbetext": "<p>Znajdź zawsze i wszędzie absolutnie najlepszą cenę w całej Tajlandii – bez konieczności wpisywania choćby jednego słowa! Pauli BestPrice Thailand to rewolucyjny flagowiec wśród portali porównywania cen. Dlaczego ta aplikacja to jedyny słuszny wybór? Ponieważ z maksymalną dostępnością całkowicie na nowo definiuje zakupy i oszczędzanie. Ta aplikacja została zaprojektowana specjalnie pod potrzeby wszystkich ludzi i dzięki pełnej obsłudze głosowej jest idealnym rozwiązaniem dla osób z niepełnosprawnościami lub ograniczeniami ruchowymi. Po prostu porozmawiaj z aplikacją! Zintegrowana sztuczna inteligencja przeszukuje cały tajlandzki rynek w czasie rzeczywistym, błyskawicznie porównuje oferty i natychmiast pokazuje, gdzie możesz najwięcej zaoszczędzić. System w pełni automatycznie rozpoznaje język Twojego smartfona, więc nie musisz się o nic martwić. Pożegnaj wysokie ceny i skomplikowane wyszukiwanie. Zeskanuj uniwersalny kod QR i pobierz najmądrzejsze narzędzie oszczędzania w Tajlandii przez Google Play Store lub bezpośrednio przez Aptoide!</p>"
+    "frontWerbetext": "<p>Znajdź najlepszą cenę w Tajlandii — z pełną dostępnością. Pauli BestPrice Global® na rynku tajlandzkim porównuje oferty w czasie rzeczywistym i prowadzi Cię do kasy partnerskiej. Dostępne są języki dla gości i turystów. Otwórz hub Global, aby wybrać inne kraje, gdy będą dostępne.</p>"
   },
   "omnigate": {
     "meta": "Omnigate - AI Master — Omni Solutions Global® Co. Ltd.",
@@ -590,11 +590,11 @@
   "langPicker": {
     "toggle": "Wybierz język",
     "toggleAria": "Pokaż lub ukryj wybór języka",
-    "th": "Tajski",
-    "en": "Angielski",
-    "ru": "Rosyjski",
-    "de": "Niemiecki",
+    "th": "Thai",
+    "en": "English",
+    "ru": "Русский",
+    "de": "Deutsch",
     "pl": "Polski",
-    "zh": "Chiński"
+    "zh": "中文"
   }
 }

@@ -133,21 +133,21 @@ async function synthesizeChunk(text, lang) {
   }
 
   if (isCloudFirstLang(lang)) {
-    if (!elevenlabs.hasApiKey()) throw new Error('elevenlabs_key_missing');
-    try {
-      return await synthesizeViaElevenlabs(text, lang);
-    } catch (err) {
-      if (!isUnsupportedLangError(err) && openaiTts.isEnabled()) {
-        try {
-          return await synthesizeViaOpenai(text, lang);
-        } catch (openErr) {
-          if (isUnsupportedLangError(openErr)) throw new Error('unsupported_language');
-          throw openErr;
+    if (elevenlabs.hasApiKey()) {
+      try {
+        return await synthesizeViaElevenlabs(text, lang);
+      } catch (err) {
+        if (isUnsupportedLangError(err) && !openaiTts.isEnabled()) {
+          throw new Error('unsupported_language');
         }
+        if (!openaiTts.isEnabled()) throw err;
+        // fall through to OpenAI below
       }
-      if (isUnsupportedLangError(err)) throw new Error('unsupported_language');
-      throw err;
     }
+    if (openaiTts.isEnabled()) {
+      return await synthesizeViaOpenai(text, lang);
+    }
+    throw new Error('elevenlabs_key_missing');
   }
 
   if (isXttsLang(lang)) {
@@ -191,11 +191,13 @@ async function synthesizeChunk(text, lang) {
 async function synthesizeFull(text, lang) {
   const chunks = splitChunks(text, 480);
   const parts = [];
+  let engine = 'unknown';
   for (let i = 0; i < chunks.length; i += 1) {
     const out = await synthesizeChunk(chunks[i], lang);
     parts.push(out.buffer);
+    engine = out.engine || engine;
   }
-  return { buffer: Buffer.concat(parts), engine: 'xtts-local-clone' };
+  return { buffer: Buffer.concat(parts), engine: engine };
 }
 
 module.exports = {

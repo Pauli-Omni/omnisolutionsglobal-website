@@ -587,11 +587,11 @@
   "langPicker": {
     "toggle": "选择语言",
     "toggleAria": "显示或隐藏语言选择",
-    "th": "泰语",
-    "en": "英语",
-    "ru": "俄语",
-    "de": "德语",
-    "pl": "波兰语",
+    "th": "Thai",
+    "en": "English",
+    "ru": "Русский",
+    "de": "Deutsch",
+    "pl": "Polski",
     "zh": "中文"
   }
 }

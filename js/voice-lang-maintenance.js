@@ -39,7 +39,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.25.03');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.25.04');
     document.head.appendChild(link);
   }
 
@@ -55,6 +55,25 @@
 
   function pickerBase(lng) {
     return window.OSGI18nConfig ? OSGI18nConfig.uiPickerBase(lng) : 'en';
+  }
+
+  /** Always show fixed endonyms (Thai, Polski, Русский, …) — never translate with UI locale. */
+  function nativeLabel(locale) {
+    var map = window.OSGI18nConfig && OSGI18nConfig.LOCALE_NATIVE_LABELS;
+    if (map && map[locale]) return map[locale];
+    return String(locale || '').toUpperCase();
+  }
+
+  function applyNativePickerLabels(root) {
+    var scope = root || document;
+    scope.querySelectorAll('.hub-lang-picker__btn[data-ui-locale]').forEach(function (btn) {
+      var locale = btn.getAttribute('data-ui-locale');
+      var label = nativeLabel(locale);
+      btn.textContent = label;
+      btn.removeAttribute('data-i18n');
+      btn.setAttribute('aria-label', label);
+      btn.setAttribute('lang', locale === 'zh' ? 'zh-CN' : locale);
+    });
   }
 
   function ttsState() {
@@ -173,8 +192,10 @@
     var uid = 'hub-lang-' + toolbarUid;
     var panelId = uid + '-panel';
     var buttons = pickerLocales().map(function (locale) {
+      var label = nativeLabel(locale);
       return '<button type="button" class="hub-lang-picker__btn trilingual-ui-picker__btn" data-ui-locale="' +
-        locale + '" data-i18n="langPicker.' + locale + '" aria-pressed="false"></button>';
+        locale + '" lang="' + (locale === 'zh' ? 'zh-CN' : locale) + '" aria-label="' + label +
+        '" aria-pressed="false">' + label + '</button>';
     }).join('');
     var wrap = document.createElement('div');
     wrap.className = 'hub-voice-lang-tools page-header-tools';
@@ -235,6 +256,7 @@
     if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
       OSGI18n.applyToDom(toolbar);
     }
+    applyNativePickerLabels(toolbar);
   }
 
   function mountLangToolbar(host, position) {
@@ -313,6 +335,7 @@
         if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
           OSGI18n.applyToDom(document);
         }
+        applyNativePickerLabels(document);
       });
     }
 

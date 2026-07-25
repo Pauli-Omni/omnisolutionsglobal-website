@@ -26,8 +26,9 @@
     ar: 'ar-SA', ja: 'ja-JP', ko: 'ko-KR', vi: 'vi-VN', tr: 'tr-TR', hi: 'hi-IN', id: 'id-ID'
   };
 
+  /** Fixed endonyms for the UI picker — never translate with the active UI locale. */
   var LOCALE_NATIVE_LABELS = {
-    de: 'Deutsch', en: 'English', th: 'ไทย', pl: 'Polski', ru: 'Русский', zh: '中文',
+    de: 'Deutsch', en: 'English', th: 'Thai', pl: 'Polski', ru: 'Русский', zh: '中文',
     fr: 'Français', es: 'Español', it: 'Italiano', pt: 'Português', nl: 'Nederlands',
     ar: 'العربية', ja: '日本語', ko: '한국어', vi: 'Tiếng Việt', tr: 'Türkçe', hi: 'हिन्दी', id: 'Bahasa Indonesia'
   };
