@@ -3,11 +3,24 @@
 
   var NARRATION_ROOT = 'assets/audio/narration/';
   var SPEAK_ENDPOINT = '/api/speak';
-  var HUB_PAGES = { home: true, werbe: true, impressum: true, agb: true };
+  var SEEK_STEP_SEC = 10;
+  /** Paul 2026-07-25: Thai read-aloud baseline = 1.2× (natural TH speaking pace). */
+  var RATE_TH = 1.2;
+  var RATE_DEFAULT = 1.0;
+  var HUB_PAGES = {
+    home: true,
+    werbe: true,
+    impressum: true,
+    agb: true,
+    about: true,
+    presentation: true
+  };
 
   var audioEl = null;
   var playing = false;
+  var paused = false;
   var sessionCache = {};
+  var activeLangTag = 'en-US';
 
   function assetBase() {
     if (window.OSGI18nConfig && typeof OSGI18nConfig.assetUrl === 'function') {
@@ -37,12 +50,31 @@
     return 'en';
   }
 
+  function playbackRateForTag(langTag) {
+    var tag = String(langTag || '').toLowerCase();
+    if (tag.indexOf('th') === 0) return RATE_TH;
+    return RATE_DEFAULT;
+  }
+
+  function applyRate(el, langTag) {
+    if (!el) return;
+    var rate = playbackRateForTag(langTag || activeLangTag);
+    try {
+      el.defaultPlaybackRate = rate;
+      el.playbackRate = rate;
+    } catch (err) { /* ignore */ }
+  }
+
   function pageContext() {
     var page = document.body.getAttribute('data-page');
     if (!page) return null;
     if (HUB_PAGES[page]) return { pageKey: page, view: 'hub' };
     var view = document.body.getAttribute('data-app-view');
-    if (view === 'front' || view === 'desc') return { pageKey: page, view: view };
+    if (view === 'front' || view === 'desc' || view === 'agb') {
+      return { pageKey: page, view: view === 'agb' ? 'desc' : view };
+    }
+    // Fallback: any product-ish page key still tries front narration.
+    if (page && page !== 'opsVoiceCheck') return { pageKey: page, view: 'front' };
     return null;
   }
 
@@ -50,18 +82,48 @@
     return assetBase() + NARRATION_ROOT + pageKey + '/' + view + '/' + langTag + '.mp3' + buildIdQuery();
   }
 
+  function emitState() {
+    document.dispatchEvent(new CustomEvent('osg:ttsState', {
+      detail: {
+        playing: playing,
+        paused: paused,
+        currentTime: audioEl ? audioEl.currentTime : 0,
+        duration: audioEl && isFinite(audioEl.duration) ? audioEl.duration : 0,
+        rate: playbackRateForTag(activeLangTag)
+      }
+    }));
+  }
+
   function ensureAudio() {
     if (audioEl) return audioEl;
     audioEl = new Audio();
-    audioEl.preload = 'none';
+    audioEl.preload = 'auto';
     audioEl.addEventListener('ended', function () {
       playing = false;
+      paused = false;
       document.dispatchEvent(new CustomEvent('osg:ttsEnded'));
+      emitState();
+    });
+    audioEl.addEventListener('timeupdate', function () {
+      emitState();
+    });
+    audioEl.addEventListener('play', function () {
+      playing = true;
+      paused = false;
+      applyRate(audioEl, activeLangTag);
+      document.dispatchEvent(new CustomEvent('osg:ttsPlaying'));
+      emitState();
     });
     audioEl.addEventListener('pause', function () {
-      if (audioEl && audioEl.currentTime > 0 && !audioEl.ended) return;
-      playing = false;
-      document.dispatchEvent(new CustomEvent('osg:ttsEnded'));
+      if (!audioEl) return;
+      if (audioEl.ended || audioEl.currentTime <= 0.05) {
+        playing = false;
+        paused = false;
+      } else {
+        playing = false;
+        paused = true;
+      }
+      emitState();
     });
     return audioEl;
   }
@@ -69,6 +131,8 @@
   function stop() {
     if (!audioEl) {
       playing = false;
+      paused = false;
+      emitState();
       return;
     }
     try {
@@ -78,12 +142,49 @@
       audioEl.load();
     } catch (err) { /* ignore */ }
     playing = false;
+    paused = false;
     document.dispatchEvent(new CustomEvent('osg:ttsEnded'));
+    emitState();
   }
 
-  function playUrl(url) {
-    stop();
+  function pause() {
     var el = ensureAudio();
+    if (!el.src) return;
+    try { el.pause(); } catch (err) { /* ignore */ }
+    playing = false;
+    paused = el.currentTime > 0.05 && !el.ended;
+    emitState();
+  }
+
+  function resume() {
+    var el = ensureAudio();
+    if (!el.src) return Promise.reject(new Error('nothing_to_resume'));
+    applyRate(el, activeLangTag);
+    return el.play().then(function () {
+      playing = true;
+      paused = false;
+      document.dispatchEvent(new CustomEvent('osg:ttsPlaying'));
+      emitState();
+    });
+  }
+
+  function seekBy(seconds) {
+    var el = ensureAudio();
+    if (!el.src || !isFinite(el.duration) || el.duration <= 0) return;
+    var next = el.currentTime + Number(seconds || 0);
+    if (next < 0) next = 0;
+    if (next > el.duration) next = el.duration;
+    try { el.currentTime = next; } catch (err) { /* ignore */ }
+    emitState();
+  }
+
+  function playUrl(url, langTag) {
+    activeLangTag = langTag || activeLangTag;
+    var el = ensureAudio();
+    // Soft restart of the same element without wiping transport mid-load.
+    try {
+      el.pause();
+    } catch (err) { /* ignore */ }
     return new Promise(function (resolve, reject) {
       function cleanup() {
         el.removeEventListener('canplaythrough', onReady);
@@ -91,14 +192,20 @@
       }
       function onReady() {
         cleanup();
+        applyRate(el, activeLangTag);
         el.play().then(function () {
           playing = true;
+          paused = false;
           document.dispatchEvent(new CustomEvent('osg:ttsPlaying'));
+          emitState();
           resolve();
         }).catch(reject);
       }
       function onError() {
         cleanup();
+        playing = false;
+        paused = false;
+        emitState();
         reject(new Error('narration_play_failed'));
       }
       el.addEventListener('canplaythrough', onReady, { once: true });
@@ -112,7 +219,20 @@
     var ctx = pageContext();
     if (!ctx) return Promise.reject(new Error('no_page_context'));
     var tag = speechTag(uiLocale(locale));
-    return playUrl(narrationUrl(ctx.pageKey, ctx.view, tag));
+    activeLangTag = tag;
+    return playUrl(narrationUrl(ctx.pageKey, ctx.view, tag), tag);
+  }
+
+  function togglePlayPause(locale) {
+    var el = ensureAudio();
+    if (playing) {
+      pause();
+      return Promise.resolve({ action: 'pause' });
+    }
+    if (paused && el.src) {
+      return resume().then(function () { return { action: 'resume' }; });
+    }
+    return playPageNarration(locale).then(function () { return { action: 'play' }; });
   }
 
   function fetchSpeakMp3(text, langTag) {
@@ -156,7 +276,7 @@
     if (!prepared) return Promise.reject(new Error('empty_text'));
 
     return fetchSpeakMp3(prepared, tag).then(function (blobUrl) {
-      return playUrl(blobUrl);
+      return playUrl(blobUrl, tag);
     });
   }
 
@@ -180,16 +300,42 @@
     return playing;
   }
 
+  function isPaused() {
+    return paused;
+  }
+
+  function getState() {
+    return {
+      playing: playing,
+      paused: paused,
+      currentTime: audioEl ? audioEl.currentTime : 0,
+      duration: audioEl && isFinite(audioEl.duration) ? audioEl.duration : 0,
+      rate: playbackRateForTag(activeLangTag),
+      langTag: activeLangTag
+    };
+  }
+
   window.OSGBrandTts = {
     speak: speak,
     stop: stop,
+    pause: pause,
+    resume: resume,
+    seekBy: seekBy,
+    seekBack: function () { seekBy(-SEEK_STEP_SEC); },
+    seekForward: function () { seekBy(SEEK_STEP_SEC); },
+    togglePlayPause: togglePlayPause,
     playPageNarration: playPageNarration,
     pageContext: pageContext,
     narrationUrl: narrationUrl,
     hasApi: hasApi,
     getSpeakEndpoint: getSpeakEndpoint,
     clearSessionCache: clearSessionCache,
-    isPlaying: isPlaying
+    isPlaying: isPlaying,
+    isPaused: isPaused,
+    getState: getState,
+    playbackRateForTag: playbackRateForTag,
+    SEEK_STEP_SEC: SEEK_STEP_SEC,
+    RATE_TH: RATE_TH
   };
   window.OSGBrandVoice = window.OSGBrandTts;
 })();

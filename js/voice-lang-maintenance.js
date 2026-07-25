@@ -1,15 +1,29 @@
 (function () {
   'use strict';
 
+  var ICON_BACK =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">' +
+      '<path d="M11 7 5 12l6 5"/><path d="M19 7v10"/><path d="M5 12h10"/>' +
+      '<text x="14.2" y="16.2" font-size="6.5" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">10</text>' +
+    '</svg>';
+  var ICON_FWD =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">' +
+      '<path d="M13 7 19 12l-6 5"/><path d="M5 7v10"/><path d="M9 12h10"/>' +
+      '<text x="3.2" y="16.2" font-size="6.5" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">10</text>' +
+    '</svg>';
+  var ICON_PLAY =
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+  var ICON_PAUSE =
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h3v14H7zm7 0h3v14h-3z"/></svg>';
+  var ICON_STOP =
+    '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg>';
+
   var SPEAKER_SVG =
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
       '<path d="M11 5 6 9H3v6h3l5 4V5z"/>' +
       '<path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>' +
       '<path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>' +
     '</svg>';
-
-  var SPEAKER_SELECTOR =
-    '.voice-btn:not(.hub-lang-picker__btn), [data-osg-speaker-trigger]';
 
   var toolbarUid = 0;
 
@@ -20,12 +34,12 @@
   }
 
   function loadStylesheet(href) {
-    var id = 'osg-css-' + href.replace(/[^a-z0-9]/gi, '');
+    var id = 'osg-css-' + href.replace(/[^a-z0-9]+/gi, '');
     if (document.getElementById(id)) return;
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.06.15.50');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.25.03');
     document.head.appendChild(link);
   }
 
@@ -43,48 +57,71 @@
     return window.OSGI18nConfig ? OSGI18nConfig.uiPickerBase(lng) : 'en';
   }
 
-  function updateSpeakerButtons() {
-    var active = window.OSGBrandTts && OSGBrandTts.isPlaying && OSGBrandTts.isPlaying();
-    document.querySelectorAll(SPEAKER_SELECTOR).forEach(function (btn) {
-      btn.classList.toggle('voice-btn--playing', !!active);
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      var ariaKey = active ? 'voice.ariaPlaying' : 'voice.ariaReady';
-      btn.setAttribute('aria-label', t(ariaKey));
+  function ttsState() {
+    if (window.OSGBrandTts && typeof OSGBrandTts.getState === 'function') {
+      return OSGBrandTts.getState();
+    }
+    return { playing: false, paused: false };
+  }
+
+  function updateTransportUi() {
+    var st = ttsState();
+    var playing = !!st.playing;
+    var paused = !!st.paused;
+    document.querySelectorAll('[data-osg-tts-playpause]').forEach(function (btn) {
+      btn.classList.toggle('is-playing', playing);
+      btn.classList.toggle('is-paused', paused && !playing);
+      btn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      btn.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      var ariaKey = playing ? 'voice.transportPauseAria' : (paused ? 'voice.transportResumeAria' : 'voice.transportPlayAria');
+      btn.setAttribute('aria-label', t(ariaKey) || ariaKey);
+      btn.setAttribute('data-i18n-aria', ariaKey);
+    });
+    document.querySelectorAll('.osg-tts-transport').forEach(function (bar) {
+      bar.classList.toggle('is-active', playing || paused);
     });
   }
 
   function showSpeakError() {
-    var msg = t('voice.ttsError');
-    if (msg && typeof window.alert === 'function') {
-      window.alert(msg);
-    }
+    var msg = t('voice.ttsError') || t('voice.brandVoiceRetry');
+    if (msg && typeof window.alert === 'function') window.alert(msg);
   }
 
-  function handleSpeakerClick(e) {
+  function handleTransportClick(e) {
     if (document.body.getAttribute('data-page') === 'opsVoiceCheck') return;
-    var trigger = e.target.closest(SPEAKER_SELECTOR);
-    if (!trigger) return;
+    var btn = e.target.closest('[data-osg-tts-action]');
+    if (!btn) return;
     e.preventDefault();
     e.stopPropagation();
-
-    if (!window.OSGBrandTts || typeof OSGBrandTts.playPageNarration !== 'function') {
+    if (!window.OSGBrandTts) {
       showSpeakError();
       return;
     }
-
-    if (OSGBrandTts.isPlaying && OSGBrandTts.isPlaying()) {
-      OSGBrandTts.stop();
-      updateSpeakerButtons();
+    var action = btn.getAttribute('data-osg-tts-action');
+    if (action === 'back') {
+      OSGBrandTts.seekBack();
+      updateTransportUi();
       return;
     }
-
-    OSGBrandTts.playPageNarration().then(function () {
-      updateSpeakerButtons();
-    }).catch(function () {
+    if (action === 'forward') {
+      OSGBrandTts.seekForward();
+      updateTransportUi();
+      return;
+    }
+    if (action === 'stop') {
       OSGBrandTts.stop();
-      updateSpeakerButtons();
-      showSpeakError();
-    });
+      updateTransportUi();
+      return;
+    }
+    if (action === 'playpause') {
+      OSGBrandTts.togglePlayPause().then(function () {
+        updateTransportUi();
+      }).catch(function () {
+        OSGBrandTts.stop();
+        updateTransportUi();
+        showSpeakError();
+      });
+    }
   }
 
   function setPanelOpen(toolbar, open) {
@@ -110,16 +147,14 @@
   function pickUiLocale(locale, toolbar) {
     if (!window.i18next || !window.OSGI18nConfig) return;
     if (!OSGI18nConfig.isUiPickerLocale(locale)) return;
-    if (window.OSGBrandTts && OSGBrandTts.isPlaying && OSGBrandTts.isPlaying()) {
-      OSGBrandTts.stop();
-    }
+    if (window.OSGBrandTts && OSGBrandTts.stop) OSGBrandTts.stop();
     try {
       localStorage.setItem(OSGI18nConfig.STORAGE_KEY, locale);
       localStorage.setItem('osg-lang-user-picked', '1');
     } catch (err) { /* ignore */ }
     i18next.changeLanguage(locale);
     updatePickerState();
-    updateSpeakerButtons();
+    updateTransportUi();
     document.documentElement.classList.add('osg-hub-lang-stable');
     if (toolbar) setPanelOpen(toolbar, false);
   }
@@ -133,11 +168,10 @@
     });
   }
 
-  function buildToolbar() {
+  function buildLangToolbar() {
     toolbarUid += 1;
     var uid = 'hub-lang-' + toolbarUid;
     var panelId = uid + '-panel';
-    var voiceId = uid + '-voice';
     var buttons = pickerLocales().map(function (locale) {
       return '<button type="button" class="hub-lang-picker__btn trilingual-ui-picker__btn" data-ui-locale="' +
         locale + '" data-i18n="langPicker.' + locale + '" aria-pressed="false"></button>';
@@ -145,12 +179,9 @@
     var wrap = document.createElement('div');
     wrap.className = 'hub-voice-lang-tools page-header-tools';
     wrap.innerHTML =
-      '<div id="app-voice-slot" class="app-voice-slot">' +
+      '<div class="app-voice-slot">' +
         '<div class="app-voice-toolbar hub-lang-toolbar">' +
-          '<button type="button" id="' + voiceId + '" class="voice-btn" ' +
-            'data-osg-speaker-trigger data-i18n-aria="voice.ariaReady" aria-pressed="false">' +
-            SPEAKER_SVG +
-          '</button>' +
+          '<span class="voice-btn voice-btn--marker" aria-hidden="true">' + SPEAKER_SVG + '</span>' +
           '<button type="button" class="hub-lang-toggle" aria-expanded="false" aria-controls="' + panelId + '" ' +
             'data-i18n="langPicker.toggle" data-i18n-aria="langPicker.toggleAria"></button>' +
           '<div id="' + panelId + '" class="hub-lang-picker trilingual-ui-picker" role="group" hidden ' +
@@ -162,7 +193,28 @@
     return wrap;
   }
 
-  function wireToolbar(toolbar) {
+  function buildTransportBar() {
+    var bar = document.createElement('div');
+    bar.className = 'osg-tts-transport';
+    bar.setAttribute('role', 'group');
+    bar.setAttribute('data-i18n-aria', 'voice.transportBarAria');
+    bar.innerHTML =
+      '<button type="button" class="osg-tts-transport__btn" data-osg-tts-action="back" data-i18n-aria="voice.transportBackAria">' +
+        ICON_BACK +
+      '</button>' +
+      '<button type="button" class="osg-tts-transport__btn osg-tts-transport__btn--main" data-osg-tts-action="playpause" data-osg-tts-playpause data-i18n-aria="voice.transportPlayAria">' +
+        ICON_PLAY +
+      '</button>' +
+      '<button type="button" class="osg-tts-transport__btn" data-osg-tts-action="stop" data-i18n-aria="voice.transportStopAria">' +
+        ICON_STOP +
+      '</button>' +
+      '<button type="button" class="osg-tts-transport__btn" data-osg-tts-action="forward" data-i18n-aria="voice.transportForwardAria">' +
+        ICON_FWD +
+      '</button>';
+    return bar;
+  }
+
+  function wireLangToolbar(toolbar) {
     var toggle = toolbar.querySelector('.hub-lang-toggle');
     if (toggle) {
       toggle.addEventListener('click', function (e) {
@@ -173,52 +225,61 @@
         if (willOpen) setPanelOpen(toolbar, true);
       });
     }
-
     toolbar.querySelectorAll('.hub-lang-picker__btn').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
         pickUiLocale(btn.getAttribute('data-ui-locale'), toolbar);
       });
     });
-
     updatePickerState();
-    updateSpeakerButtons();
     if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
       OSGI18n.applyToDom(toolbar);
     }
   }
 
-  function mountToolbar(host, position) {
+  function mountLangToolbar(host, position) {
     if (!host || host.querySelector('.hub-voice-lang-tools')) return;
-    var toolbar = buildToolbar();
-    if (position === 'prepend') {
-      host.insertBefore(toolbar, host.firstChild);
-    } else {
-      host.appendChild(toolbar);
-    }
-    wireToolbar(toolbar);
+    var toolbar = buildLangToolbar();
+    if (position === 'prepend') host.insertBefore(toolbar, host.firstChild);
+    else host.appendChild(toolbar);
+    wireLangToolbar(toolbar);
   }
 
-  function mountToolbars() {
+  function mountLangToolbars() {
     document.querySelectorAll('.page-header-row').forEach(function (row) {
-      mountToolbar(row, 'append');
+      mountLangToolbar(row, 'append');
     });
 
     var homeCore = document.querySelector('body[data-page="home"] .home-splash-core');
-    if (homeCore) {
+    if (homeCore && !homeCore.querySelector('.hub-voice-lang-tools')) {
       var anchor = homeCore.querySelector('.home-enterprise-band');
       if (anchor && anchor.nextElementSibling) {
-        var tools = buildToolbar();
+        var tools = buildLangToolbar();
         homeCore.insertBefore(tools, anchor.nextElementSibling);
-        wireToolbar(tools);
+        wireLangToolbar(tools);
       } else {
-        mountToolbar(homeCore, 'append');
+        mountLangToolbar(homeCore, 'append');
       }
     }
 
-    document.querySelectorAll('.app-front, .app-desc').forEach(function (section) {
-      mountToolbar(section, 'prepend');
+    document.querySelectorAll('.app-front, .app-desc, .legal-page, .content-wrapper').forEach(function (section) {
+      mountLangToolbar(section, 'prepend');
     });
+  }
+
+  function mountTransportBar() {
+    if (document.body.getAttribute('data-page') === 'opsVoiceCheck') return;
+    if (document.getElementById('osg-tts-transport-root')) return;
+    var root = document.createElement('div');
+    root.id = 'osg-tts-transport-root';
+    root.className = 'osg-tts-transport-root';
+    var bar = buildTransportBar();
+    root.appendChild(bar);
+    document.body.appendChild(root);
+    if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
+      OSGI18n.applyToDom(root);
+    }
+    updateTransportUi();
   }
 
   function onDocumentClick(e) {
@@ -234,21 +295,21 @@
     loadStylesheet('css/voice-lang-maintenance.css');
     loadStylesheet('css/trilingual-visual.css');
 
-    mountToolbars();
-    document.addEventListener('click', handleSpeakerClick, true);
+    mountLangToolbars();
+    mountTransportBar();
+    document.addEventListener('click', handleTransportClick, true);
     document.addEventListener('click', onDocumentClick);
-    document.addEventListener('osg:ttsEnded', updateSpeakerButtons);
-    document.addEventListener('osg:ttsPlaying', updateSpeakerButtons);
+    document.addEventListener('osg:ttsEnded', updateTransportUi);
+    document.addEventListener('osg:ttsPlaying', updateTransportUi);
+    document.addEventListener('osg:ttsState', updateTransportUi);
 
     if (window.i18next) {
       updatePickerState();
-      updateSpeakerButtons();
+      updateTransportUi();
       i18next.on('languageChanged', function () {
-        if (window.OSGBrandTts && OSGBrandTts.isPlaying && OSGBrandTts.isPlaying()) {
-          OSGBrandTts.stop();
-        }
+        if (window.OSGBrandTts && OSGBrandTts.stop) OSGBrandTts.stop();
         updatePickerState();
-        updateSpeakerButtons();
+        updateTransportUi();
         if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
           OSGI18n.applyToDom(document);
         }
@@ -262,6 +323,7 @@
 
   window.OSGVoiceLangMaintenance = {
     init: init,
-    updateSpeakerButtons: updateSpeakerButtons
+    updateSpeakerButtons: updateTransportUi,
+    updateTransportUi: updateTransportUi
   };
 })();
