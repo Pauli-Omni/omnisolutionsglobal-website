@@ -100,7 +100,14 @@ async function handleSpeak(req, res) {
     if (msg.indexOf('elevenlabs_key_missing') >= 0) {
       res.status(503).json({
         error: 'elevenlabs_key_missing',
-        hint: 'Thai and other non-XTTS languages need ELEVENLABS_API_KEY in 02_Quellcode/Core_Logik/elevenlabs.config.env'
+        hint: 'Set a valid ELEVENLABS_API_KEY on Render (Dashboard → Environment). Static page narration still works without it.'
+      });
+      return;
+    }
+    if (msg.indexOf('elevenlabs_unauthorized') >= 0) {
+      res.status(503).json({
+        error: 'elevenlabs_unauthorized',
+        hint: 'ELEVENLABS_API_KEY is set but rejected by ElevenLabs (invalid/expired). Create a new key at elevenlabs.io and update Render env, then redeploy. Static narration MP3s still work.'
       });
       return;
     }

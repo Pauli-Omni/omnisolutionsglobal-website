@@ -286,7 +286,8 @@ function parseUpstreamError(status, detail) {
     throw new Error('elevenlabs_quota_exceeded');
   }
   if (status === 401 || status === 403) {
-    throw new Error('elevenlabs_key_missing');
+    // Key string may be present but rejected by ElevenLabs — do not pretend it is "missing".
+    throw new Error('elevenlabs_unauthorized:' + String(detail || '').slice(0, 160));
   }
   if (status === 400 && detail.indexOf('unsupported_language') >= 0) {
     return 'unsupported_language';
