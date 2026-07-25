@@ -1,6 +1,6 @@
 # Affiliate / Publisher Property — Pauli BestPrice Global
 
-**Stand:** 2026-07-19  
+**Stand:** 2026-07-25  
 **Zweck:** Involve Asia / ACCESSTRADE / andere Netzwerke — welche URL eintragen.
 
 ## Property-URL (empfohlen für Thailand-Markt)
@@ -16,6 +16,16 @@ https://omnisolutionsglobal.com/pauli-bestprice-global.html
 ```
 
 **Nicht** nur `https://omnisolutionsglobal.com/` (Portal/Vorhang) — Crawler bleiben dort oft stecken.
+
+## Legal (Live 200 — Stand 2026-07-25)
+
+```
+https://omnisolutionsglobal.com/legal/thailand/privacy-policy-pauli-bestprice-global-thailand-en.txt
+https://omnisolutionsglobal.com/legal/thailand/privacy-policy-pauli-bestprice-global-thailand-th.txt
+https://omnisolutionsglobal.com/legal/thailand/agb-pauli-bestprice-global-thailand-en.txt
+https://omnisolutionsglobal.com/legal/thailand/agb-pauli-bestprice-global-thailand-th.txt
+https://omnisolutionsglobal.com/impressum.html
+```
 
 ## Naming (kanonisch)
 
