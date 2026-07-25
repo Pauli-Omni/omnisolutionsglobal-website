@@ -51,12 +51,34 @@
 
     var body = document.body;
     var titleKey = body.getAttribute('data-i18n-title');
-    if (titleKey) document.title = i18next.t(titleKey, { year: new Date().getFullYear() });
+    if (titleKey) {
+      var translatedTitle = i18next.t(titleKey, { year: new Date().getFullYear() });
+      // Never wipe a good static <title> with missing/undefined i18n values (affiliate crawlers + tabs).
+      if (
+        translatedTitle &&
+        typeof translatedTitle === 'string' &&
+        translatedTitle !== titleKey &&
+        translatedTitle !== 'undefined' &&
+        translatedTitle.trim()
+      ) {
+        document.title = translatedTitle;
+      }
+    }
 
     var metaKey = body.getAttribute('data-i18n-meta');
     if (metaKey) {
       var meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.content = i18next.t(metaKey);
+      var translatedMeta = i18next.t(metaKey);
+      if (
+        meta &&
+        translatedMeta &&
+        typeof translatedMeta === 'string' &&
+        translatedMeta !== metaKey &&
+        translatedMeta !== 'undefined' &&
+        translatedMeta.trim()
+      ) {
+        meta.content = translatedMeta;
+      }
     }
 
     document.documentElement.lang = cfg.htmlLangFor(i18next.language);
