@@ -9,6 +9,8 @@
   var SPEECH_STORAGE = 'osg-speech-lang';
   var SPEECH_USER_PICKED = 'osg-speech-user-picked';
   var UI_USER_PICKED = 'osg-lang-user-picked';
+  /** Session-only: after tab close, homepage opens in English again (Paul 2026-07-26). */
+  var UI_SESSION_PICKED = 'osg-lang-session-picked';
 
   var NAME_TO_BCP = {
     de: 'de-DE', deu: 'de-DE', german: 'de-DE', deutsch: 'de-DE', allemand: 'de-DE',
@@ -52,6 +54,14 @@
 
   function storageSet(key, val) {
     try { localStorage.setItem(key, val); } catch (e) { /* ignore */ }
+  }
+
+  function sessionGet(key) {
+    try { return sessionStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function sessionSet(key, val) {
+    try { sessionStorage.setItem(key, val); } catch (e) { /* ignore */ }
   }
 
   function normalizeKey(raw) {
@@ -106,7 +116,12 @@
   }
 
   function hasUserUiPick() {
-    return storageGet(UI_USER_PICKED) === '1';
+    return sessionGet(UI_SESSION_PICKED) === '1';
+  }
+
+  function markUserUiPick() {
+    sessionSet(UI_SESSION_PICKED, '1');
+    storageSet(UI_USER_PICKED, '1');
   }
 
   function getSpeechTag() {
@@ -140,7 +155,7 @@
 
   function markUserSpeechPick() {
     storageSet(SPEECH_USER_PICKED, '1');
-    storageSet(UI_USER_PICKED, '1');
+    markUserUiPick();
   }
 
   function getInitialUiLocale() {
@@ -148,7 +163,8 @@
       var saved = storageGet(cfg.STORAGE_KEY);
       if (saved && isUiLocale(saved)) return saved;
     }
-    return mapTagToUiLocale(getSystemLanguageTag());
+    // Fresh visit / new tab: always English first (not system/Thai default).
+    return 'en';
   }
 
   function applyUserLanguageInput(raw) {
@@ -157,7 +173,7 @@
     var uiLocale = mapTagToUiLocale(speechTag);
     if (isUiLocale(uiLocale)) {
       setSpeechTag(cfg.speechTagFor(uiLocale));
-      storageSet(UI_USER_PICKED, '1');
+      markUserUiPick();
       try { localStorage.removeItem(SPEECH_USER_PICKED); } catch (e) { /* ignore */ }
     } else {
       setSpeechTag(speechTag);

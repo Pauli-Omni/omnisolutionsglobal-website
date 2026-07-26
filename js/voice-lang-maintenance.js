@@ -37,7 +37,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.03');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.04');
     document.head.appendChild(link);
   }
 
@@ -151,6 +151,7 @@
     try {
       localStorage.setItem(OSGI18nConfig.STORAGE_KEY, locale);
       localStorage.setItem('osg-lang-user-picked', '1');
+      sessionStorage.setItem('osg-lang-session-picked', '1');
     } catch (err) { /* ignore */ }
     i18next.changeLanguage(locale);
     updatePickerState();

@@ -29,8 +29,8 @@
     if (!portal) return;
 
     var btn = document.getElementById('portal-enter-btn');
-    /** Paul: 3–5 s globe, then curtains open automatically onto Home. */
-    var AUTO_OPEN_MS = 4000;
+    /** Paul: ≥5 s portal (audio/loop time), then curtains open onto Home. */
+    var AUTO_OPEN_MS = 5500;
     var autoTimer = null;
 
     function dismissPortal() {

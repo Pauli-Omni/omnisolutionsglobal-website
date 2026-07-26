@@ -5,7 +5,8 @@ const path = require('path');
 
 const OPENAI_KEY = (process.env.OPENAI_API_KEY || '').trim();
 const OPENAI_MODEL = process.env.LOCAL_OPENAI_TTS_MODEL || 'gpt-4o-mini-tts';
-const OPENAI_VOICE = process.env.LOCAL_OPENAI_TTS_VOICE || 'nova';
+/* Brand priority is ElevenLabs; OpenAI fallback uses male onyx (not female nova). */
+const OPENAI_VOICE = process.env.LOCAL_OPENAI_TTS_VOICE || 'onyx';
 
 function isEnabled() {
   if (process.env.LOCAL_OPENAI_FALLBACK === '0') return false;

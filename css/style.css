@@ -1292,8 +1292,8 @@ body[data-page="home"] {
   }
 
   .portal-logo-dock {
-    min-width: 180px;
-    max-width: 200px;
+    min-width: 90px;
+    max-width: 100px;
     transform: translate(clamp(0.35rem, 3.5vw, 1rem), 0) scale(1);
   }
 
@@ -1302,18 +1302,18 @@ body[data-page="home"] {
   }
 
   .portal-logo-dock .portal-logo-slot--official {
-    max-width: 180px;
-    min-width: 150px;
+    max-width: 90px;
+    min-width: 75px;
     max-height: none;
     filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.38));
   }
 
   body[data-page="home"] .portal-logo-dock .portal-logo-official {
-    min-width: 150px;
-    width: 180px;
-    max-width: 180px;
+    min-width: 75px;
+    width: 90px;
+    max-width: 90px;
     height: auto;
-    max-height: min(24vh, 160px);
+    max-height: min(12vh, 80px);
     animation: none;
   }
 
@@ -1437,8 +1437,8 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   }
 
   .portal-logo-dock {
-    min-width: 180px;
-    max-width: 200px;
+    min-width: 90px;
+    max-width: 100px;
     bottom: calc(
       var(--frame-width)
       + clamp(0.45rem, 1.5vh, 0.75rem)
@@ -1449,11 +1449,11 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   }
 
   body[data-page="home"] .portal-logo-dock .portal-logo-official {
-    min-width: 150px;
-    width: 180px;
-    max-width: 180px;
+    min-width: 75px;
+    width: 90px;
+    max-width: 90px;
     height: auto;
-    max-height: min(28vh, 120px);
+    max-height: min(14vh, 60px);
   }
 }
 
@@ -1661,8 +1661,8 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   display: flex;
   justify-content: center;
   pointer-events: none;
-  /* Keep full brand wordmark inside the frame (no rightward clip). */
-  transform: translate(0, 0) scale(0.82);
+  /* ~50% smaller than prior portal logo (was scale 0.82 → 0.41). */
+  transform: translate(0, 0) scale(0.41);
   transform-origin: center bottom;
 }
 
@@ -1715,6 +1715,9 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   user-select: none;
   -webkit-user-drag: none;
   animation: portal-logo-float 5s ease-in-out infinite;
+  /* Soft fog edge: square frame fades to transparent. */
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 38%, rgba(0, 0, 0, 0.75) 58%, transparent 86%);
+  mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 38%, rgba(0, 0, 0, 0.75) 58%, transparent 86%);
 }
 
 @keyframes portal-logo-float {
@@ -2002,13 +2005,13 @@ body:has(.chrome-frame-inner) .portal-overlay {
   border-radius: calc(var(--frame-radius) - 6px);
 }
 
-/* Homepage: Enterprise Core — fixed top-left in left chrome gutter (style.css = no late-load jump) */
+/* Homepage: Enterprise Core — top-right (never over TTS / portal controls) */
 body[data-page="home"] #osg-security-container.osg-security-container--home-gutter {
   position: fixed;
   top: calc(var(--frame-width) + 3px + env(safe-area-inset-top, 0px));
-  left: calc(var(--frame-width) + 3px + env(safe-area-inset-left, 0px));
+  right: calc(var(--frame-width) + 3px + env(safe-area-inset-right, 0px));
+  left: auto;
   bottom: auto;
-  right: auto;
   transform: none;
   transition: none;
   z-index: 999999;
@@ -2170,8 +2173,8 @@ body[data-page="home"] .portal-logo-official {
 body[data-page="home"] #osg-security-container.osg-security-container--home-gutter #osg-security-modal {
   bottom: auto;
   top: calc(100% + 8px);
-  left: 0;
-  right: auto;
+  left: auto;
+  right: 0;
   transform: none;
 }
 
@@ -2244,6 +2247,9 @@ body.app-page:has(.chrome-frame-inner) .app-legal-footer {
   object-fit: contain;
   border-radius: 0;
   background: transparent;
+  -webkit-mask-image: radial-gradient(ellipse 78% 78% at 50% 50%, #000 42%, rgba(0, 0, 0, 0.82) 62%, transparent 90%);
+  mask-image: radial-gradient(ellipse 78% 78% at 50% 50%, #000 42%, rgba(0, 0, 0, 0.82) 62%, transparent 90%);
+
   /* Coin art already circular — avoid white square from opaque assets. */
   mix-blend-mode: normal;
   filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
@@ -3106,6 +3112,9 @@ body[data-page="home"] .main-content > .page-header {
     drop-shadow(0 10px 32px rgba(0, 0, 0, 0.45));
   user-select: none;
   -webkit-user-drag: none;
+  /* Soft fog edge: hard square box dissolves to zero. */
+  -webkit-mask-image: radial-gradient(ellipse 74% 74% at 50% 50%, #000 40%, rgba(0, 0, 0, 0.8) 60%, transparent 88%);
+  mask-image: radial-gradient(ellipse 74% 74% at 50% 50%, #000 40%, rgba(0, 0, 0, 0.8) 60%, transparent 88%);
 }
 
 .home-brand-title {
@@ -4495,8 +4504,8 @@ a.store-badge:hover {
       + 2.35rem
       + 0.3rem
     );
-    min-width: 180px;
-    max-width: 200px;
+    min-width: 90px;
+    max-width: 100px;
     transform: translate(clamp(0.1rem, 1.8vw, 0.45rem), 0) scale(1);
   }
 
@@ -4506,18 +4515,18 @@ a.store-badge:hover {
   }
 
   .portal-logo-dock .portal-logo-slot--official {
-    min-width: 150px;
-    max-width: 180px;
+    min-width: 75px;
+    max-width: 90px;
     max-height: none;
     filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.32));
   }
 
   body[data-page="home"] .portal-logo-dock .portal-logo-official {
-    min-width: 150px;
-    width: 180px;
-    max-width: 180px;
+    min-width: 75px;
+    width: 90px;
+    max-width: 90px;
     height: auto;
-    max-height: min(22vh, 140px);
+    max-height: min(11vh, 70px);
   }
 
   .portal-logo-slot--official {

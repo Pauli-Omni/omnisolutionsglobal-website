@@ -1,7 +1,9 @@
 #osg-security-container {
   position: fixed;
-  bottom: max(12px, env(safe-area-inset-bottom, 12px));
+  /* Top-right: never cover bottom TTS transport (−10 / Play / +10). */
+  top: max(12px, env(safe-area-inset-top, 12px));
   right: max(12px, env(safe-area-inset-right, 12px));
+  bottom: auto;
   z-index: 999999;
   font-family: 'Segoe UI', Roboto, sans-serif;
   pointer-events: none;
@@ -52,7 +54,8 @@
 #osg-security-modal {
   display: none;
   position: absolute;
-  bottom: 55px;
+  top: 55px;
+  bottom: auto;
   right: 0;
   width: min(320px, calc(100vw - 24px));
   background: rgba(10, 15, 30, 0.98);
