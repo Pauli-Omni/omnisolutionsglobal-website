@@ -99,12 +99,12 @@ body.app-page--desc {
   padding-bottom: 0;
 }
 
-/* TTS transport sits ON inner silver frame (between outer + inner chrome) */
+/* TTS transport: centered on bottom inner silver frame line (chrome-frame-inner) */
 .osg-tts-transport-root {
   position: fixed;
   left: 50%;
-  bottom: calc(var(--frame-inset, 1cm) + 1cm + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
+  bottom: calc(var(--frame-inset, 1cm) + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 50%);
   z-index: 11050;
   pointer-events: none;
   width: min(calc(100vw - var(--frame-inset, 1cm) * 2 - 1rem), 16rem);
