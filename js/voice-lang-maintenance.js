@@ -37,7 +37,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.10');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.11');
     document.head.appendChild(link);
   }
 
@@ -246,10 +246,12 @@
   }
 
   function mountLangToolbars() {
-    // One fixed top language row on every page — never centered in content.
-    if (document.querySelector('.hub-voice-lang-tools')) return;
+    if (document.body.querySelector(':scope > #osg-lang-rail .hub-voice-lang-tools')) return;
 
     var rail = document.getElementById('osg-lang-rail');
+    if (rail && rail.parentElement !== document.body) {
+      document.body.appendChild(rail);
+    }
     if (!rail) {
       rail = document.createElement('div');
       rail.id = 'osg-lang-rail';

@@ -10,13 +10,15 @@
   max-width: 100%;
 }
 
-/* Languages: fixed right, vertical — minimal footprint (Paul 2026-07-26) */
+/* ═══ SPRACH-BUTTONS (Thai, EN, …) — rechts oben, fix am Body ═══ */
 #osg-lang-rail {
   position: fixed;
   top: calc(var(--frame-inset, 1cm) + env(safe-area-inset-top, 0px) + 0.2rem);
   right: calc(var(--frame-inset, 1cm) + env(safe-area-inset-right, 0px) + 0.2rem);
-  left: auto;
-  transform: none;
+  left: auto !important;
+  bottom: auto !important;
+  transform: none !important;
+  margin: 0 !important;
   z-index: 11060;
   width: min(5.4rem, 22vw);
   pointer-events: none;
@@ -87,7 +89,7 @@
   display: none !important;
 }
 
-/* Home: content higher — lang rail is on the right, not top center */
+/* Home: Platz für Sprachleiste rechts */
 body[data-page="home"] .home-stage--fit {
   padding-top: 0.35rem;
   padding-right: calc(5.6rem + env(safe-area-inset-right, 0px));
@@ -99,25 +101,20 @@ body.app-page--desc {
   padding-bottom: 0;
 }
 
-/* TTS transport: on bottom inner silver frame — true horizontal center, 0.5cm below mid correction */
-.osg-tts-transport-root {
+/* ═══ PLAY-LEISTE (−10 | Play | +10) — nur #osg-tts-transport-root ═══ */
+#osg-tts-transport-root {
   position: fixed;
-  left: 0;
-  right: 0;
+  left: 50% !important;
+  right: auto !important;
   bottom: calc(var(--frame-inset, 1cm) + env(safe-area-inset-bottom, 0px));
-  transform: translateY(calc(50% + 0.5cm));
-  margin-inline: auto;
+  transform: translate(-50%, calc(50% + 0.5cm));
+  margin: 0 !important;
   z-index: 11050;
   pointer-events: none;
   width: min(calc(100vw - var(--frame-inset, 1cm) * 2 - 1rem), 16rem);
 }
 
-body[data-page="home"] .osg-tts-transport-root {
-  left: var(--sidebar-w, 0px);
-  right: 0;
-}
-
-.osg-tts-transport {
+#osg-tts-transport-root .osg-tts-transport {
   pointer-events: auto;
   display: flex;
   align-items: center;
@@ -134,11 +131,11 @@ body[data-page="home"] .osg-tts-transport-root {
   -webkit-backdrop-filter: blur(10px);
 }
 
-.osg-tts-transport.is-active {
+#osg-tts-transport-root .osg-tts-transport.is-active {
   border-color: rgba(0, 212, 255, 0.55);
 }
 
-.osg-tts-transport__btn {
+#osg-tts-transport-root .osg-tts-transport__btn {
   width: 2.55rem;
   height: 2.55rem;
   display: inline-flex;
@@ -151,8 +148,8 @@ body[data-page="home"] .osg-tts-transport-root {
   cursor: pointer;
 }
 
-.osg-tts-transport__btn[data-osg-tts-action="back"],
-.osg-tts-transport__btn[data-osg-tts-action="forward"] {
+#osg-tts-transport-root .osg-tts-transport__btn[data-osg-tts-action="back"],
+#osg-tts-transport-root .osg-tts-transport__btn[data-osg-tts-action="forward"] {
   width: 3.35rem;
   height: 2.85rem;
   flex-direction: column;
@@ -179,21 +176,21 @@ body[data-page="home"] .osg-tts-transport-root {
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-.osg-tts-transport__btn--main {
+#osg-tts-transport-root .osg-tts-transport__btn--main {
   width: 3.15rem;
   height: 3.15rem;
   border-color: rgba(0, 212, 255, 0.45);
   background: linear-gradient(160deg, rgba(0, 180, 220, 0.35), rgba(18, 24, 34, 0.95));
 }
 
-.osg-tts-transport__btn--main.is-playing {
+#osg-tts-transport-root .osg-tts-transport__btn--main.is-playing {
   border-color: rgba(0, 229, 255, 0.95);
   box-shadow: 0 0 16px rgba(0, 229, 255, 0.35);
   color: #fff;
 }
 
-.osg-tts-transport__btn:hover,
-.osg-tts-transport__btn:focus-visible {
+#osg-tts-transport-root .osg-tts-transport__btn:hover,
+#osg-tts-transport-root .osg-tts-transport__btn:focus-visible {
   border-color: rgba(0, 212, 255, 0.7);
   color: #fff;
   outline: none;
@@ -208,7 +205,7 @@ body[data-page="home"] .osg-tts-transport-root {
     padding-right: calc(4.9rem + env(safe-area-inset-right, 0px));
   }
 
-  .hub-lang-picker__btn {
+  #osg-lang-rail .hub-lang-picker__btn {
     padding: 0.22rem 0.28rem;
     font-size: 0.56rem;
     min-height: 1.65rem;
@@ -216,7 +213,7 @@ body[data-page="home"] .osg-tts-transport-root {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .osg-tts-transport__btn {
+  #osg-tts-transport-root .osg-tts-transport__btn {
     transition: none;
   }
 }
