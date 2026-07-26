@@ -6,6 +6,20 @@
 
 ---
 
+## Phase Homepage-Rundumschlag WP-012 (2026-07-26 23:20 UTC+7)
+
+| Punkt | Ergebnis |
+|---|---|
+| Referenzen zurück | kompakt, i18n |
+| About / AI-Text | Sidebar + CTA + Lead |
+| Eine Brand-Stimme | ElevenLabs-only |
+| Play-Leiste | innere Silberleiste |
+| Thai-Rest | Quota blockiert |
+
+Build **2026.07.26.12**.
+
+---
+
 ## Befund Protokoll-Lücke (2026-07-26 22:56 UTC+7)
 
 | Ort | Letzter **vollständiger** Protokoll-Stand **vor** der Lücke | Was fehlte |

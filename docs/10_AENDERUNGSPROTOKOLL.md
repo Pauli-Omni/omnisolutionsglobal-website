@@ -12,6 +12,60 @@
 
 ---
 
+## 2026-07-26 23:20 UTC+7 — WP-012
+
+### Kennzeichnung
+| Feld | Wert |
+|---|---|
+| Master-Prompt-ID | `MP-2026-07-26-003` |
+| Arbeitspaket-ID | `WP-012` |
+| Betroffene Module | UI, i18n, Voice/TTS, Dokumentation |
+| Änderungsart | Feature, Bugfix, Konfiguration, Dokumentation |
+| Auswirkungsgrad | Änderung bestehender Funktionen |
+| Abhängigkeiten | WP-011 |
+| Status | Teilweise implementiert |
+
+### 1. Zeitstempel
+2026-07-26 23:20 UTC+7 · Build **2026.07.26.12**
+
+### 2. Arbeitspaket
+Homepage-Rundumschlag nach Composer-Fehlern — Pauls Befehle nacheinander.
+
+### 3. Ziel
+Referenzen zurück; OSG-Company/AI-Infrastruktur sichtbar; About erreichbar; eine Brand-Stimme (ElevenLabs) für alle Vorlesen; Play-Leiste auf innere Silberleiste; Protokoll.
+
+### 4. Ausgangszustand
+Referenz-Keys vorhanden, DOM fehlte; CTA „About“ → Impressum; About-Seite isoliert; TTS mischte OpenAI/ElevenLabs; Thai-Quota blockiert 6 MP3s.
+
+### 5. Architekturentscheidung
+Kompakte Referenz-Marquee (kein Scroll-Bruch); Sidebar + CTA → `ueber-uns.html`; `BRAND_VOICE_ONLY` Standard = ElevenLabs-Brand; OpenAI nur mit `BRAND_ALLOW_OPENAI_FALLBACK=1`.
+
+### 6. Neue Dateien
+—
+
+### 7. Geänderte Dateien
+- `index.html` (Refs-Sektion, Sidebar About, CTA)
+- `js/home.js` (`initHomeRefs`)
+- `css/style.css` (`.home-refs--fit`)
+- `css/voice-lang-maintenance.css` (Play-Bar `translateY(50%)` auf `--frame-inset`)
+- `assets/locales/{en,de,th,pl,ru,zh}.json` (AI-Infrastruktur-Texte, nav.about, ctaAbout)
+- `02_Quellcode/Core_Logik/tts-router.js` + `tts-router.test.js`
+- Build-IDs → `2026.07.26.12`
+
+### 12–13. Verifikation
+- `node --test tts-router.test.js` → 2 pass
+- `node -c js/home.js` → OK
+- Locale-JSON parse → OK
+- `generate-all-narration --only=omnibot --langs=th` → FAIL `elevenlabs_quota_exceeded` (6 Thai-Dateien weiter alt)
+
+### 14. Einschränkungen
+ElevenLabs-Kontingent: omnibot/omniaiQr/omnitalk Thai-MP3s noch nicht neu. Live-Browser-Check durch Paul.
+
+### 15. Nächster Schritt
+Nach Quota: Thai-Narration Rest regenerieren; Paul Live-Abnahme.
+
+---
+
 ## 2026-07-26 22:56 UTC+7 — WP-011
 
 ### Kennzeichnung

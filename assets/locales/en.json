@@ -22,12 +22,13 @@
     "pauli": "Pauli BestPrice Global",
     "apps": "More Apps",
     "werbe": "Video Ads",
+    "about": "About us",
     "impressum": "Legal Notice",
     "agb": "Terms",
     "back": "Back"
   },
   "brand": {
-    "sub": "AI · ML · UI Engineering"
+    "sub": "AI Infrastructure · Enterprise Systems"
   },
   "product": {
     "qrUniversal": "Universal QR code — all stores",
@@ -139,11 +140,11 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — High-end AI software development & premium UI.",
     "title": "Home — Omni Solutions Global® Company Limited",
-    "lead": "Official hub of Omni Solutions Global® Company Limited — AI products with Pauli BestPrice Global® as flagship.",
+    "lead": "Omni Solutions Global® Company Limited — AI infrastructure, high-end software, and enterprise systems. Flagship: Pauli BestPrice Global®.",
     "welcomeTo": "Welcome to",
     "welcomeDeck": "WELCOME",
-    "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "Enterprise AI products — clear, accessible, ready to use.",
+    "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® COMPANY LIMITED</span>",
+    "aiTagline": "Enterprise AI infrastructure — neural systems, secure APIs, cross-platform products.",
     "scrollHint": "Click or scroll to enter",
     "splashAria": "Welcome area",
     "portfolioTitle": "High-End Portfolio",
@@ -170,8 +171,8 @@
     "ref6Title": "TV Broadcasters",
     "ref6Text": "Broadcast-grade system solutions for television operations — stable control, monitoring, and scalable media architecture.",
     "ctaProject": "Request a project",
-    "ctaAbout": "Legal Notice",
-    "ctaLearnMoreAria": "Learn more about our company",
+    "ctaAbout": "About us",
+    "ctaLearnMoreAria": "Learn more about Omni Solutions Global Company Limited",
     "splashActionsAria": "Quick actions on the welcome tile",
     "pauliDownloadTitle": "Pauli BestPrice Global® — Download hub",
     "pauliDownloadLead": "Scan the QR code or open the download hub — app for iPhone, iPad, Android, Mac, Windows, and Linux without store lock-in. Thailand market first.",

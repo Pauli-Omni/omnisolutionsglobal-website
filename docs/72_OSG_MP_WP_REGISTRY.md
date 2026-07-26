@@ -4,6 +4,7 @@
 
 | Master-Prompt-ID | Arbeitspaket-ID | Datum (UTC+7) | Kurz | Build / Beleg |
 |---|---|---|---|---|
+| MP-2026-07-26-003 | WP-012 | 2026-07-26 23:20 | Homepage: Refs + About + Brand-Voice + Play-Bar | 2026.07.26.12 |
 | MP-2026-07-26-002 | WP-011 | 2026-07-26 22:56 | Voll-Nachzug Chronologie + Gemini + Tresor | Doku |
 | MP-2026-07-26-WEB-000 | WP-010 | 2026-07-26 15:14–22:09 | Seek/Brand/Portal/PL/Thai 0,6× (Nachzug) | `0e8f87b`…`b71ee12` |
 | MP-2026-07-26-WEB-000 | WP-009 | 2026-07-26 08:05–08:14 | Hub live + Promo-Video (Nachzug) | `a78548c`, `d32dad5` |

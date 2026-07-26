@@ -23,10 +23,11 @@
     "werbe": "视频广告区",
     "impressum": "法律声明",
     "agb": "条款",
-    "back": "返回"
+    "back": "返回",
+    "about": "关于我们"
   },
   "brand": {
-    "sub": "AI · ML · UI Engineering"
+    "sub": "AI 基础设施 · 企业系统"
   },
   "product": {
     "qrUniversal": "通用二维码 — 所有商店",
@@ -126,11 +127,11 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — 高端 AI 软件与 Premium UI。",
     "title": "首页 — Omni Solutions Global® Company Limited",
-    "lead": "Omni Solutions Global® Company Limited 官方中心 — AI 产品，旗舰为 Pauli BestPrice Global®。",
+    "lead": "Omni Solutions Global® Company Limited — AI 基础设施、高端软件与企业系统。旗舰：Pauli BestPrice Global®。",
     "welcomeTo": "欢迎来到",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "企业级 AI 产品 — 清晰、无障碍、即用。",
+    "aiTagline": "企业级 AI 基础设施 — 神经网络、安全 API、跨平台产品。",
     "scrollHint": "点击或滚动进入",
     "splashAria": "欢迎区域 — 滚动至主内容",
     "portfolioTitle": "高端作品集",
@@ -157,8 +158,8 @@
     "ref6Title": "电视台",
     "ref6Text": "电视台广播级系统解决方案 — 稳定控制与监控。",
     "ctaProject": "项目咨询",
-    "ctaAbout": "法律声明",
-    "ctaLearnMoreAria": "了解更多公司信息",
+    "ctaAbout": "关于我们",
+    "ctaLearnMoreAria": "了解更多关于 Omni Solutions Global Company Limited",
     "splashActionsAria": "欢迎区块快捷操作",
     "pauliDownloadTitle": "Pauli BestPrice Thailand — 下载中心",
     "pauliDownloadLead": "扫描二维码或打开下载中心 — 适用于 iPhone、iPad、Android、Mac、Windows 和 Linux，无需商店。",

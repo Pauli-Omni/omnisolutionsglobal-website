@@ -107,7 +107,7 @@ body.app-page--desc {
   left: 50% !important;
   right: auto !important;
   bottom: calc(var(--frame-inset, 1cm) + env(safe-area-inset-bottom, 0px));
-  transform: translate(-50%, calc(50% + 0.5cm));
+  transform: translate(-50%, 50%);
   margin: 0 !important;
   z-index: 11050;
   pointer-events: none;

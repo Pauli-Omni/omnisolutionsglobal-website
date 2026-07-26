@@ -23,10 +23,11 @@
     "werbe": "Reklama wideo",
     "impressum": "Informacje prawne",
     "agb": "Regulamin",
-    "back": "Wstecz"
+    "back": "Wstecz",
+    "about": "O nas"
   },
   "brand": {
-    "sub": "AI · ML · UI Engineering"
+    "sub": "Infrastruktura AI · Systemy enterprise"
   },
   "product": {
     "qrUniversal": "Uniwersalny kod QR — wszystkie sklepy",
@@ -127,11 +128,11 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — High-end AI i premium UI.",
     "title": "Strona główna — Omni Solutions Global® Company Limited",
-    "lead": "Oficjalne centrum Omni Solutions Global® Company Limited — produkty AI z Pauli BestPrice Global® jako flagowym.",
+    "lead": "Omni Solutions Global® Company Limited — infrastruktura AI, oprogramowanie high-end i systemy enterprise. Flagowiec: Pauli BestPrice Global®.",
     "welcomeTo": "Witamy w",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "Produkty AI dla firm — jasne, dostępne, gotowe do użycia.",
+    "aiTagline": "Infrastruktura AI klasy enterprise — systemy neuronowe, bezpieczne API, produkty wieloplatformowe.",
     "scrollHint": "Kliknij lub przewiń, aby wejść",
     "splashAria": "Obszar powitalny — przewiń do treści",
     "portfolioTitle": "Portfolio premium",
@@ -158,8 +159,8 @@
     "ref6Title": "Nadawcy telewizyjni",
     "ref6Text": "Rozwiązania broadcast dla stacji telewizyjnych — stabilne sterowanie i monitoring.",
     "ctaProject": "Zapytaj o projekt",
-    "ctaAbout": "Informacje prawne",
-    "ctaLearnMoreAria": "Dowiedz się więcej o naszej firmie",
+    "ctaAbout": "O nas",
+    "ctaLearnMoreAria": "Dowiedz się więcej o Omni Solutions Global Company Limited",
     "splashActionsAria": "Szybkie akcje na kafelku powitalnym",
     "pauliDownloadTitle": "Pauli BestPrice Thailand — centrum pobierania",
     "pauliDownloadLead": "Zeskanuj QR lub otwórz hub pobierania — aplikacja na iPhone, iPad, Android, Mac, Windows i Linux bez sklepów.",

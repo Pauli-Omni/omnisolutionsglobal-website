@@ -3370,10 +3370,59 @@ body[data-page="home"] .home-right-col {
   gap: 1.25rem;
 }
 
-.home-refs {
-  padding: 1.5rem;
+body[data-page="home"] .home-refs--fit {
+  width: 100%;
+  max-width: min(100%, 68rem);
+  margin: 0.15rem auto 0;
+  padding: 0.2rem 0 0;
+  flex: 0 0 auto;
   overflow: hidden;
 }
+
+body[data-page="home"] .home-refs--fit .home-section-title {
+  margin: 0 0 0.25rem;
+  padding: 0;
+  font-size: clamp(0.72rem, 1.4vw, 0.88rem);
+  text-align: center;
+}
+
+body[data-page="home"] .home-refs--fit .refs-marquee {
+  max-height: 4.6rem;
+}
+
+body[data-page="home"] .home-refs--fit .ref-card {
+  flex: 0 0 min(12.5rem, 70vw);
+  width: min(12.5rem, 70vw);
+  padding: 0.4rem 0.55rem;
+}
+
+body[data-page="home"] .home-refs--fit .ref-card h3 {
+  font-size: 0.68rem;
+  margin-bottom: 0.2rem;
+}
+
+body[data-page="home"] .home-refs--fit .ref-card p {
+  font-size: 0.58rem;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+body[data-page="home"] .home-app-grid {
+  max-height: 32vh;
+}
+
+@media (max-width: 480px) {
+  body[data-page="home"] .home-refs--fit .refs-marquee {
+    max-height: 4.2rem;
+  }
+  body[data-page="home"] .home-app-tile__desc {
+    display: none;
+  }
+}
+
 
 body[data-page="home"] .home-refs .home-section-title {
   margin-bottom: 0.5rem;

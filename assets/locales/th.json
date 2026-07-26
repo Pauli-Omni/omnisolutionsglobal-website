@@ -24,10 +24,11 @@
     "werbe": "มุมโฆษาวิดีโอ",
     "impressum": "ข้อมูลทางกฎหมาย",
     "agb": "ข้อกำหนด",
-    "back": "กลับ"
+    "back": "กลับ",
+    "about": "เกี่ยวกับเรา"
   },
   "brand": {
-    "sub": "วิศวกรรม AI · ML · UI"
+    "sub": "โครงสร้างพื้นฐาน AI · ระบบองค์กร"
   },
   "product": {
     "qrUniversal": "QR Code สากล — ทุกสโตร์",
@@ -131,11 +132,11 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — การพัฒนาซอฟต์แวร์ AI ระดับสูง",
     "title": "หน้าแรก — Omni Solutions Global® Company Limited",
-    "lead": "ศูนย์กลางอย่างเป็นทางการของ Omni Solutions Global® Company Limited — ผลิตภัณฑ์ AI โดยมี Pauli BestPrice Global® เป็นเรือธง",
+    "lead": "Omni Solutions Global® Company Limited — โครงสร้างพื้นฐาน AI ซอฟต์แวร์ระดับสูง และระบบองค์กร เรือธง: Pauli BestPrice Global®",
     "welcomeTo": "ยินดีต้อนรับสู่",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "ผลิตภัณฑ์ AI ระดับองค์กร — ชัดเจน เข้าถึงได้ พร้อมใช้งาน",
+    "aiTagline": "โครงสร้างพื้นฐาน AI ระดับองค์กร — ระบบประสาท API ปลอดภัย และผลิตภัณฑ์ข้ามแพลตฟอร์ม",
     "scrollHint": "คลิกหรือเลื่อนเพื่อเข้าสู่เนื้อหา",
     "splashAria": "พื้นที่ต้อนรับ — เลื่อนไปยังเนื้อหาหลัก",
     "portfolioTitle": "พอร์ตโฟลิโอระดับสูง",
@@ -162,8 +163,8 @@
     "ref6Title": "สถานีโทรทัศน์",
     "ref6Text": "โซลูชันระบบระดับ broadcast สำหรับสถานีโทรทัศน์",
     "ctaProject": "สอบถามโครงการ",
-    "ctaAbout": "ข้อมูลทางกฎหมาย",
-    "ctaLearnMoreAria": "เรียนรู้เพิ่มเติมเกี่ยวกับบริษัทของเรา",
+    "ctaAbout": "เกี่ยวกับเรา",
+    "ctaLearnMoreAria": "เรียนรู้เพิ่มเติมเกี่ยวกับ Omni Solutions Global Company Limited",
     "splashActionsAria": "การดำเนินการด่วนบนแผ่นต้อนรับ",
     "pauliDownloadTitle": "Pauli BestPrice Thailand — ศูนย์ดาวน์โหลด",
     "pauliDownloadLead": "สแกน QR หรือเปิดศูนย์ดาวน์โหลด — แอปสำหรับ iPhone iPad Android Mac Windows และ Linux โดยไม่ต้องผ่าน Store",

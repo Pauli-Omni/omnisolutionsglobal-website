@@ -111,18 +111,12 @@ async function synthesizeViaOpenai(text, lang) {
 }
 
 async function synthesizeThai(text, lang) {
-  if (openaiTts.isEnabled()) {
-    try {
-      return await synthesizeViaOpenai(text, lang);
-    } catch (err) {
-      if (!isUnsupportedLangError(err) && !elevenlabs.hasApiKey()) throw err;
-    }
-  }
+  // Paul 2026-07-26: one brand voice for all languages — ElevenLabs clone first.
   if (!elevenlabs.hasApiKey()) throw new Error('thai_tts_unavailable');
   try {
     return await synthesizeViaElevenlabs(text, lang);
   } catch (err) {
-    if (openaiTts.isEnabled() && !isUnsupportedLangError(err)) {
+    if (process.env.BRAND_ALLOW_OPENAI_FALLBACK === '1' && openaiTts.isEnabled() && !isUnsupportedLangError(err)) {
       return await synthesizeViaOpenai(text, lang);
     }
     throw err;
@@ -134,7 +128,9 @@ async function synthesizeChunk(text, lang) {
     return synthesizeThai(text, lang);
   }
 
-  const preferCloud = String(process.env.BRAND_TTS_ENGINE || '').trim().toLowerCase() === 'elevenlabs'
+  const forceBrand = process.env.BRAND_VOICE_ONLY !== '0';
+  const preferCloud = forceBrand
+    || String(process.env.BRAND_TTS_ENGINE || '').trim().toLowerCase() === 'elevenlabs'
     || process.env.BRAND_TTS_CLOUD_FIRST === '1';
 
   if (preferCloud) {
@@ -142,7 +138,7 @@ async function synthesizeChunk(text, lang) {
     try {
       return await synthesizeViaElevenlabs(text, lang);
     } catch (err) {
-      if (!isUnsupportedLangError(err) && openaiTts.isEnabled()) {
+      if (process.env.BRAND_ALLOW_OPENAI_FALLBACK === '1' && !isUnsupportedLangError(err) && openaiTts.isEnabled()) {
         try {
           return await synthesizeViaOpenai(text, lang);
         } catch (openErr) {

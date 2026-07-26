@@ -24,10 +24,11 @@
     "werbe": "Werbe-Ecke",
     "impressum": "Impressum",
     "agb": "AGB",
-    "back": "Zurück"
+    "back": "Zurück",
+    "about": "Über uns"
   },
   "brand": {
-    "sub": "KI · UI Engineering"
+    "sub": "KI-Infrastruktur · Enterprise-Systeme"
   },
   "product": {
     "qrUniversal": "Universeller QR-Code — alle Stores",
@@ -137,11 +138,11 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — High-End KI-Softwareentwicklung & Premium UI.",
     "title": "Home — Omni Solutions Global® Company Limited",
-    "lead": "Offizielle Seite der Omni Solutions Global® Company Limited — KI-Produkte mit Pauli BestPrice Global® als Flagship.",
+    "lead": "Omni Solutions Global® Company Limited — KI-Infrastruktur, High-End-Software und Enterprise-Systeme. Flaggschiff: Pauli BestPrice Global®.",
     "welcomeTo": "Willkommen bei",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "Enterprise-KI-Produkte — klar, barrierefrei, sofort nutzbar.",
+    "aiTagline": "Enterprise-KI-Infrastruktur — neuronale Systeme, sichere APIs, Cross-Platform-Produkte.",
     "scrollHint": "Klicken oder Scrollen zum Eintreten",
     "splashAria": "Willkommensbereich",
     "portfolioTitle": "High-End Portfolio",
@@ -168,8 +169,8 @@
     "ref6Title": "TV-Sender & Broadcast",
     "ref6Text": "Broadcast-nahe Systemlösungen für Sendebetriebe — stabile Steuerung, Monitoring und skalierbare Medienarchitektur.",
     "ctaProject": "Projekt anfragen",
-    "ctaAbout": "Impressum",
-    "ctaLearnMoreAria": "Mehr über unser Unternehmen erfahren",
+    "ctaAbout": "Über uns",
+    "ctaLearnMoreAria": "Mehr über Omni Solutions Global Company Limited erfahren",
     "splashActionsAria": "Schnellaktionen auf der Willkommens-Kachel",
     "pauliDownloadTitle": "Pauli BestPrice Thailand — Download-Hub",
     "pauliDownloadLead": "QR-Code scannen oder Download-Hub öffnen — App für iPhone, iPad, Android, Mac, Windows und Linux ohne Store-Zwang.",

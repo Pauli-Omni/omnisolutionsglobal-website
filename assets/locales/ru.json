@@ -23,10 +23,11 @@
     "werbe": "Видеореклама",
     "impressum": "Правовая информация",
     "agb": "Условия",
-    "back": "Назад"
+    "back": "Назад",
+    "about": "О нас"
   },
   "brand": {
-    "sub": "AI · ML · UI Engineering"
+    "sub": "AI-инфраструктура · Enterprise-системы"
   },
   "product": {
     "qrUniversal": "Универсальный QR-код — все магазины",
@@ -126,11 +127,11 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — High-end AI и premium UI.",
     "title": "Главная — Omni Solutions Global® Company Limited",
-    "lead": "Официальный хаб Omni Solutions Global® Company Limited — ИИ-продукты с флагманом Pauli BestPrice Global®.",
+    "lead": "Omni Solutions Global® Company Limited — AI-инфраструктура, high-end ПО и enterprise-системы. Флагман: Pauli BestPrice Global®.",
     "welcomeTo": "Добро пожаловать в",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "Корпоративные ИИ-продукты — ясно, доступно, готово к работе.",
+    "aiTagline": "Корпоративная AI-инфраструктура — нейронные системы, защищённые API, кроссплатформенные продукты.",
     "scrollHint": "Нажмите или прокрутите для входа",
     "splashAria": "Приветственная зона — прокрутка к контенту",
     "portfolioTitle": "Портфолио премиум-класса",
@@ -157,8 +158,8 @@
     "ref6Title": "Телевизионные вещатели",
     "ref6Text": "Broadcast-решения для телевизионных станций — стабильный контроль и мониторинг.",
     "ctaProject": "Запросить проект",
-    "ctaAbout": "Правовая информация",
-    "ctaLearnMoreAria": "Узнать больше о нашей компании",
+    "ctaAbout": "О нас",
+    "ctaLearnMoreAria": "Узнать больше об Omni Solutions Global Company Limited",
     "splashActionsAria": "Быстрые действия на приветственной плитке",
     "pauliDownloadTitle": "Pauli BestPrice Thailand — центр загрузки",
     "pauliDownloadLead": "Сканируйте QR или откройте центр загрузки — приложение для iPhone, iPad, Android, Mac, Windows и Linux без магазинов.",
