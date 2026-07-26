@@ -1,16 +1,23 @@
 (function () {
   'use strict';
 
+  /** Spiral rewind / forward — not skip-track chevrons. Labels: −10 / +10 */
   var ICON_BACK =
-    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">' +
-      '<path d="M11 7 5 12l6 5"/><path d="M19 7v10"/><path d="M5 12h10"/>' +
-      '<text x="14.2" y="16.2" font-size="6.5" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">10</text>' +
-    '</svg>';
+    '<span class="osg-tts-seek">' +
+      '<svg class="osg-tts-seek__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">' +
+        '<path d="M11.5 4.5A7.5 7.5 0 1 0 19 12" stroke-linecap="round"/>' +
+        '<path d="M11.5 4.5 9 7.2M11.5 4.5 14.2 7" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>' +
+      '<span class="osg-tts-seek__label">−10</span>' +
+    '</span>';
   var ICON_FWD =
-    '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">' +
-      '<path d="M13 7 19 12l-6 5"/><path d="M5 7v10"/><path d="M9 12h10"/>' +
-      '<text x="3.2" y="16.2" font-size="6.5" fill="currentColor" stroke="none" font-family="system-ui,sans-serif">10</text>' +
-    '</svg>';
+    '<span class="osg-tts-seek">' +
+      '<svg class="osg-tts-seek__icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">' +
+        '<path d="M12.5 4.5A7.5 7.5 0 1 1 5 12" stroke-linecap="round"/>' +
+        '<path d="M12.5 4.5 15 7.2M12.5 4.5 9.8 7" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>' +
+      '<span class="osg-tts-seek__label">+10</span>' +
+    '</span>';
   var ICON_PLAY =
     '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
   var ICON_PAUSE =
@@ -30,7 +37,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.02');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.03');
     document.head.appendChild(link);
   }
 

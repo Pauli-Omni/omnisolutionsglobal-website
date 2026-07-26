@@ -5,7 +5,7 @@ const path = require('path');
 
 const OPENAI_KEY = (process.env.OPENAI_API_KEY || '').trim();
 const OPENAI_MODEL = process.env.LOCAL_OPENAI_TTS_MODEL || 'gpt-4o-mini-tts';
-const OPENAI_VOICE = process.env.LOCAL_OPENAI_TTS_VOICE || 'onyx';
+const OPENAI_VOICE = process.env.LOCAL_OPENAI_TTS_VOICE || 'nova';
 
 function isEnabled() {
   if (process.env.LOCAL_OPENAI_FALLBACK === '0') return false;
@@ -14,12 +14,17 @@ function isEnabled() {
 
 function speechInstruction(lang) {
   const code = String(lang || 'de-DE').split('-')[0].toLowerCase();
-  if (code === 'th') return 'Speak in Thai (ภาษาไทย) with natural native fluency and clear pronunciation.';
-  if (code === 'de') return 'Speak in German with natural native fluency.';
+  // CRITICAL: force correct spoken language — never Arabic/English when Thai/German text is given.
+  if (code === 'th') {
+    return 'Speak only in Thai (ภาษาไทย). Native Central Thai pronunciation. Do not use Arabic, English, or any other language.';
+  }
+  if (code === 'de') {
+    return 'Speak only in natural German (Hochdeutsch), warm and clear, like a professional German presenter. Do not use English.';
+  }
   if (code === 'en') return 'Speak in English with natural native fluency.';
-  if (code === 'pl') return 'Speak in Polish with natural native fluency.';
-  if (code === 'ru') return 'Speak in Russian with natural native fluency.';
-  if (code === 'zh') return 'Speak in Mandarin Chinese with natural native fluency.';
+  if (code === 'pl') return 'Speak only in Polish with natural native fluency.';
+  if (code === 'ru') return 'Speak only in Russian with natural native fluency.';
+  if (code === 'zh') return 'Speak only in Mandarin Chinese with natural native fluency.';
   return 'Speak in the language of the input text with natural native fluency.';
 }
 

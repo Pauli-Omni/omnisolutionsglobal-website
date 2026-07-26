@@ -171,10 +171,24 @@
   function seekBy(seconds) {
     var el = ensureAudio();
     if (!el.src || !isFinite(el.duration) || el.duration <= 0) return;
+    // Keep playback going after ±10s — no second Play tap needed.
+    var wasPlaying = playing || (!el.paused && !el.ended);
     var next = el.currentTime + Number(seconds || 0);
     if (next < 0) next = 0;
     if (next > el.duration) next = el.duration;
     try { el.currentTime = next; } catch (err) { /* ignore */ }
+    if (wasPlaying || paused) {
+      applyRate(el, activeLangTag);
+      el.play().then(function () {
+        playing = true;
+        paused = false;
+        document.dispatchEvent(new CustomEvent('osg:ttsPlaying'));
+        emitState();
+      }).catch(function () {
+        emitState();
+      });
+      return;
+    }
     emitState();
   }
 
