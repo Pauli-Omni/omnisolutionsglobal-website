@@ -1,0 +1,17 @@
+---
+description: OSG Protokoll — absolute Priorität auf Homepage
+alwaysApply: true
+---
+
+# OSG Dokumentations-Priorität (Homepage)
+
+**Paul 2026-07-26:** Absolute Priorität. Gilt für Composer, Auto und jedes Modell.
+
+## Vor Commit / nach jedem Arbeitspaket
+
+1. Eintrag in `docs/10_AENDERUNGSPROTOKOLL.md` (oben, Zeitstempel UTC+7, Kennzeichnung + Status)
+2. Registry `docs/72_OSG_MP_WP_REGISTRY.md` aktualisieren
+3. Snapshot `docs/20_ZWISCHENBERICHT.md` aktualisieren
+4. Kanon: `docs/70_OSG_PROTOKOLL_UND_ARBEITSREGELN.md`
+
+**Verboten:** Code deployen ohne Protokoll. Kein „später nachtragen“ außer dokumentierter Nachzug eines Regelverstoßes.
