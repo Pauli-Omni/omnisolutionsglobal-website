@@ -4,8 +4,8 @@
   var NARRATION_ROOT = 'assets/audio/narration/';
   var SPEAK_ENDPOINT = '/api/speak';
   var SEEK_STEP_SEC = 10;
-  /** Paul 2026-07-26: 0.48× then −50% → 0.24× (verifiable slow TH pace). */
-  var RATE_TH = 0.24;
+  /** Paul 2026-07-26: 0.24× was too slow — +30% → 0.312×. */
+  var RATE_TH = 0.312;
   var RATE_DEFAULT = 1.0;
   var HUB_PAGES = {
     home: true,

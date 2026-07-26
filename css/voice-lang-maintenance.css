@@ -99,15 +99,22 @@ body.app-page--desc {
   padding-bottom: 0;
 }
 
-/* TTS transport: centered on bottom inner silver frame line (chrome-frame-inner) */
+/* TTS transport: on bottom inner silver frame — true horizontal center, 0.5cm below mid correction */
 .osg-tts-transport-root {
   position: fixed;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: calc(var(--frame-inset, 1cm) + env(safe-area-inset-bottom, 0px));
-  transform: translate(-50%, 50%);
+  transform: translateY(calc(50% + 0.5cm));
+  margin-inline: auto;
   z-index: 11050;
   pointer-events: none;
   width: min(calc(100vw - var(--frame-inset, 1cm) * 2 - 1rem), 16rem);
+}
+
+body[data-page="home"] .osg-tts-transport-root {
+  left: var(--sidebar-w, 0px);
+  right: 0;
 }
 
 .osg-tts-transport {
