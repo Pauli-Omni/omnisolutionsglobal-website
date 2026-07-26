@@ -103,7 +103,7 @@ body.app-page--desc {
 .osg-tts-transport-root {
   position: fixed;
   left: 50%;
-  bottom: calc(var(--frame-inset, 1cm) + env(safe-area-inset-bottom, 0px));
+  bottom: calc(var(--frame-inset, 1cm) + 1cm + env(safe-area-inset-bottom, 0px));
   transform: translateX(-50%);
   z-index: 11050;
   pointer-events: none;

@@ -3,12 +3,62 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
 
-test('synthesizeChunk uses ElevenLabs first for Thai', async function () {
+test('synthesizeChunk uses OpenAI first for Thai when available', async function () {
   const xtts = require('./xtts-bridge');
   const elevenlabs = require('./elevenlabs-speak');
+  const openaiTts = require('./local-openai-speak');
   const originalHealth = xtts.health;
   const originalHasKey = elevenlabs.hasApiKey;
   const originalSynth = elevenlabs.synthesizeMp3;
+  const originalOpenaiEnabled = openaiTts.isEnabled;
+  const originalOpenaiSynth = openaiTts.synthesizeMp3;
+  let xttsCalled = false;
+  let elevenCalled = false;
+
+  xtts.health = async function () { return { ok: true }; };
+  xtts.synthesizeMp3 = async function () {
+    xttsCalled = true;
+    return Buffer.from('xtts');
+  };
+  elevenlabs.hasApiKey = function () { return true; };
+  elevenlabs.synthesizeMp3 = async function (_text, lang) {
+    elevenCalled = true;
+    assert.equal(lang, 'th-TH');
+    return Buffer.from('elevenlabs-th');
+  };
+  openaiTts.isEnabled = function () { return true; };
+  openaiTts.synthesizeMp3 = async function (_text, lang) {
+    assert.equal(lang, 'th-TH');
+    return Buffer.from('openai-th');
+  };
+
+  delete require.cache[require.resolve('./tts-router.js')];
+  const tts = require('./tts-router');
+
+  try {
+    const out = await tts.synthesizeChunk('สวัสดี', 'th-TH');
+    assert.equal(out.engine, 'openai-tts');
+    assert.equal(xttsCalled, false);
+    assert.equal(elevenCalled, false);
+  } finally {
+    xtts.health = originalHealth;
+    delete xtts.synthesizeMp3;
+    elevenlabs.hasApiKey = originalHasKey;
+    elevenlabs.synthesizeMp3 = originalSynth;
+    openaiTts.isEnabled = originalOpenaiEnabled;
+    openaiTts.synthesizeMp3 = originalOpenaiSynth;
+    delete require.cache[require.resolve('./tts-router.js')];
+  }
+});
+
+test('synthesizeChunk uses ElevenLabs for Thai when OpenAI disabled', async function () {
+  const xtts = require('./xtts-bridge');
+  const elevenlabs = require('./elevenlabs-speak');
+  const openaiTts = require('./local-openai-speak');
+  const originalHealth = xtts.health;
+  const originalHasKey = elevenlabs.hasApiKey;
+  const originalSynth = elevenlabs.synthesizeMp3;
+  const originalOpenaiEnabled = openaiTts.isEnabled;
   let xttsCalled = false;
 
   xtts.health = async function () { return { ok: true }; };
@@ -21,6 +71,7 @@ test('synthesizeChunk uses ElevenLabs first for Thai', async function () {
     assert.equal(lang, 'th-TH');
     return Buffer.from('elevenlabs-th');
   };
+  openaiTts.isEnabled = function () { return false; };
 
   delete require.cache[require.resolve('./tts-router.js')];
   const tts = require('./tts-router');
@@ -34,6 +85,7 @@ test('synthesizeChunk uses ElevenLabs first for Thai', async function () {
     delete xtts.synthesizeMp3;
     elevenlabs.hasApiKey = originalHasKey;
     elevenlabs.synthesizeMp3 = originalSynth;
+    openaiTts.isEnabled = originalOpenaiEnabled;
     delete require.cache[require.resolve('./tts-router.js')];
   }
 });

@@ -110,7 +110,30 @@ async function synthesizeViaOpenai(text, lang) {
   return { buffer: buf, engine: 'openai-tts' };
 }
 
+async function synthesizeThai(text, lang) {
+  if (openaiTts.isEnabled()) {
+    try {
+      return await synthesizeViaOpenai(text, lang);
+    } catch (err) {
+      if (!isUnsupportedLangError(err) && !elevenlabs.hasApiKey()) throw err;
+    }
+  }
+  if (!elevenlabs.hasApiKey()) throw new Error('thai_tts_unavailable');
+  try {
+    return await synthesizeViaElevenlabs(text, lang);
+  } catch (err) {
+    if (openaiTts.isEnabled() && !isUnsupportedLangError(err)) {
+      return await synthesizeViaOpenai(text, lang);
+    }
+    throw err;
+  }
+}
+
 async function synthesizeChunk(text, lang) {
+  if (langCode(lang) === 'th') {
+    return synthesizeThai(text, lang);
+  }
+
   const preferCloud = String(process.env.BRAND_TTS_ENGINE || '').trim().toLowerCase() === 'elevenlabs'
     || process.env.BRAND_TTS_CLOUD_FIRST === '1';
 

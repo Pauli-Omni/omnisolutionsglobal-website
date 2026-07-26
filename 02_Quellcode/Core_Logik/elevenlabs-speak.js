@@ -198,6 +198,11 @@ if (shouldPreferConfiguredVoice()) {
   clearVoiceCache();
 }
 
+function isMissingVoicesReadError(err) {
+  const msg = String((err && err.message) || err || '');
+  return msg.indexOf('missing_permissions') >= 0 || msg.indexOf('voices_read') >= 0;
+}
+
 async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
   const candidates = [];
   const seen = new Set();
@@ -257,6 +262,9 @@ async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
     return buf;
   } catch (accountErr) {
     lastErr = accountErr;
+    if (isMissingVoicesReadError(accountErr)) {
+      throw lastErr || new Error('elevenlabs_voice_missing');
+    }
   }
 
   throw lastErr || new Error('elevenlabs_voice_missing');
@@ -275,8 +283,10 @@ function langCode(lang) {
 }
 
 function languagePayload(lang, forceAuto) {
-  if (forceAuto) return {};
   const code = langCode(lang);
+  // ElevenLabs rejects language_code "th" — rely on Thai script auto-detect instead.
+  if (code === 'th') return {};
+  if (forceAuto) return {};
   if (MULTILINGUAL_V2_LANGS.has(code)) return { language_code: code };
   return {};
 }
@@ -322,7 +332,7 @@ async function requestTts(apiKey, voiceId, text, lang, streamPreferred, forceAut
   if (!res.ok) {
     const detail = await res.text().catch(function () { return ''; });
     const kind = parseUpstreamError(res.status, detail);
-    if (kind === 'unsupported_language' && !forceAutoLang) {
+    if (kind === 'unsupported_language' && !forceAutoLang && langCode(lang) !== 'th') {
       return requestTts(apiKey, voiceId, text, lang, streamPreferred, true);
     }
     throw new Error('elevenlabs_upstream:' + res.status + ':' + detail.slice(0, 200));

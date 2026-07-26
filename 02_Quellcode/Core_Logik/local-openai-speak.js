@@ -17,7 +17,7 @@ function speechInstruction(lang) {
   const code = String(lang || 'de-DE').split('-')[0].toLowerCase();
   // CRITICAL: force correct spoken language — never Arabic/English when Thai/German text is given.
   if (code === 'th') {
-    return 'Speak only in Thai (ภาษาไทย). Native Central Thai pronunciation. Do not use Arabic, English, or any other language.';
+    return 'Speak exclusively in standard Central Thai (ภาษาไทยมาตรฐาน / ภาษาไทยกลาง). Every syllable must be native Thai. Never use Lao, Khmer, Vietnamese, English, German, or Arabic pronunciation.';
   }
   if (code === 'de') {
     return 'Speak only in natural German (Hochdeutsch), warm and clear, like a professional German presenter. Do not use English.';
