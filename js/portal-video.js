@@ -69,6 +69,7 @@
       if (!video.muted) {
         video.volume = 1;
         tryPlay(video);
+        document.dispatchEvent(new CustomEvent('osg:portalSoundOn'));
       }
       syncPortalSoundButton(video);
     });

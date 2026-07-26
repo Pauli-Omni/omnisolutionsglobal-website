@@ -37,7 +37,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.04');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.05');
     document.head.appendChild(link);
   }
 
@@ -234,31 +234,17 @@
   }
 
   function mountLangToolbars() {
-    // One always-visible picker per page — prefer dedicated rail, else header/home/app.
+    // One fixed top language row on every page — never centered in content.
     if (document.querySelector('.hub-voice-lang-tools')) return;
 
     var rail = document.getElementById('osg-lang-rail');
-    if (rail) {
-      mountLangToolbar(rail, 'append');
-      return;
+    if (!rail) {
+      rail = document.createElement('div');
+      rail.id = 'osg-lang-rail';
+      rail.setAttribute('aria-label', 'Language');
+      document.body.appendChild(rail);
     }
-
-    var homeCore = document.querySelector('body[data-page="home"] .home-splash-core');
-    if (homeCore) {
-      mountLangToolbar(homeCore, 'prepend');
-      return;
-    }
-
-    var header = document.querySelector('.page-header-row');
-    if (header) {
-      mountLangToolbar(header, 'append');
-      return;
-    }
-
-    var appSection = document.querySelector('.app-front, .app-desc, .legal-page, .pbg-global-hub');
-    if (appSection) {
-      mountLangToolbar(appSection, 'prepend');
-    }
+    mountLangToolbar(rail, 'append');
   }
 
   function mountTransportBar() {

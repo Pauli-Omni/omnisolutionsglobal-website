@@ -1779,6 +1779,11 @@ body[data-page="home"].portal-video-phone-landscape #hero-video {
   pointer-events: none;
 }
 
+/* Auto-portal: no WELCOME button — sound toggle + timer only (Paul 2026-07-26). */
+.portal-has-video #portal-enter-btn {
+  display: none !important;
+}
+
 .btn-portal-enter {
   flex: 0 0 auto;
   margin-top: clamp(0.35rem, 1.2vh, 0.85rem);

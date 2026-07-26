@@ -33,8 +33,7 @@ body[data-page="home"] .home-splash-core > :not(.home-splash-logo) {
 
 body[data-page="home"] .home-welcome-silver,
 body[data-page="home"] .home-ai-tagline,
-body[data-page="home"] .home-splash-foot,
-body[data-page="home"] .hub-voice-lang-tools {
+body[data-page="home"] .home-splash-foot {
   text-align: center;
 }
 

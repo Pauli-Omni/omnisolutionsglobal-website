@@ -29,8 +29,11 @@
     if (!portal) return;
 
     var btn = document.getElementById('portal-enter-btn');
-    /** Paul: ≥5 s portal (audio/loop time), then curtains open onto Home. */
-    var AUTO_OPEN_MS = 5500;
+    /** Paul: ≥5.5 s portal minimum; if sound enabled, ≥5 s audible before curtains. */
+    var MIN_PORTAL_MS = 5500;
+    var MIN_SOUND_MS = 5000;
+    var portalStart = Date.now();
+    var soundOnAt = null;
     var autoTimer = null;
 
     function dismissPortal() {
@@ -58,11 +61,30 @@
 
     if (btn) btn.addEventListener('click', dismissPortal);
 
+    function scheduleDismiss() {
+      if (autoTimer) {
+        clearTimeout(autoTimer);
+        autoTimer = null;
+      }
+      var now = Date.now();
+      var wait = MIN_PORTAL_MS - (now - portalStart);
+      if (soundOnAt) {
+        wait = Math.max(wait, MIN_SOUND_MS - (now - soundOnAt));
+      }
+      if (wait < 0) wait = 0;
+      autoTimer = setTimeout(dismissPortal, wait);
+    }
+
+    document.addEventListener('osg:portalSoundOn', function () {
+      if (!soundOnAt) soundOnAt = Date.now();
+      scheduleDismiss();
+    });
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       dismissPortal();
       return;
     }
-    autoTimer = setTimeout(dismissPortal, AUTO_OPEN_MS);
+    scheduleDismiss();
   }
 
   function initModules() {
