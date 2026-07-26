@@ -34,7 +34,7 @@
     ar: 'العربية', ja: '日本語', ko: '한국어', vi: 'Tiếng Việt', tr: 'Türkçe', hi: 'हिन्दी', id: 'Bahasa Indonesia'
   };
 
-  var FALLBACK_LOCALES = ['en', 'de'];
+  var FALLBACK_LOCALES = ['en'];
   var STORAGE_KEY = 'osg-lang';
   var LOCALE_LOAD_PATH = '/api/i18n/{{lng}}.json';
   var ASSET_ROOT = '/';

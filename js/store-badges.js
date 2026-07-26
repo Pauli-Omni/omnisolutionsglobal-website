@@ -24,62 +24,18 @@
     }
   };
 
-  var DEFAULT_STORES = ['ios', 'android', 'huawei', 'samsung'];
-
-  function t(key) {
-    return window.OSGI18n ? OSGI18n.t(key) : key;
-  }
+  var DEFAULT_STORES = [];
 
   function resolveStores(entry) {
-    if (entry && entry.stores && entry.stores.length) return entry.stores;
-    return DEFAULT_STORES;
+    // Paul 2026-07-26: no multi-store badge row — single universal download later.
+    if (entry && Array.isArray(entry.stores) && entry.stores.length === 0) return [];
+    return [];
   }
 
-  function buildBadge(storeId, url) {
-    var meta = BADGES[storeId];
-    if (!meta) return null;
-
-    var label = t(meta.labelKey);
-    var wrap = document.createElement(url ? 'a' : 'span');
-    wrap.className = 'store-badge';
-    if (url) {
-      wrap.href = url;
-      wrap.target = '_blank';
-      wrap.rel = 'noopener noreferrer';
-    }
-
-    var img = document.createElement('img');
-    img.className = 'store-badge-img';
-    img.src = meta.img;
-    img.alt = label;
-    img.width = 120;
-    img.height = 40;
-    img.loading = 'lazy';
-    img.onerror = function () {
-      wrap.classList.add('store-badge--missing');
-      wrap.setAttribute('title', label);
-      img.remove();
-      var fallback = document.createElement('span');
-      fallback.className = 'store-badge-fallback';
-      fallback.textContent = label;
-      wrap.appendChild(fallback);
-    };
-
-    wrap.appendChild(img);
-    return wrap;
-  }
-
-  function renderInto(container, entry) {
+  function renderInto(container) {
     if (!container) return;
     container.innerHTML = '';
-
-    var stores = resolveStores(entry);
-    var links = (entry && entry.storeUrls) || {};
-
-    stores.forEach(function (storeId) {
-      var badge = buildBadge(storeId, links[storeId] || '');
-      if (badge) container.appendChild(badge);
-    });
+    container.hidden = true;
   }
 
   window.OSGStoreBadges = {

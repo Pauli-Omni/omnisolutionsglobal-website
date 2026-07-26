@@ -225,11 +225,13 @@
 
   function togglePlayPause(locale) {
     var el = ensureAudio();
-    if (playing) {
+    // Source of truth: audio element, not stale flags.
+    var isPlaying = el && el.src && !el.paused && !el.ended;
+    if (isPlaying || playing) {
       pause();
       return Promise.resolve({ action: 'pause' });
     }
-    if (paused && el.src) {
+    if ((paused || (el && el.src && el.currentTime > 0.05 && el.paused)) && el && el.src) {
       return resume().then(function () { return { action: 'resume' }; });
     }
     return playPageNarration(locale).then(function () { return { action: 'play' }; });

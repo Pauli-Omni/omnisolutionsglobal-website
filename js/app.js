@@ -29,14 +29,21 @@
     if (!portal) return;
 
     var btn = document.getElementById('portal-enter-btn');
+    /** Paul: 3–5 s globe, then curtains open automatically onto Home. */
+    var AUTO_OPEN_MS = 4000;
+    var autoTimer = null;
 
     function dismissPortal() {
       if (portal.classList.contains('portal-opening') || portal.classList.contains('portal-hidden')) {
         return;
       }
+      if (autoTimer) {
+        clearTimeout(autoTimer);
+        autoTimer = null;
+      }
       portal.classList.add('portal-opening');
       portal.setAttribute('aria-hidden', 'true');
-      // Curtain slide (~1.1s) then fade/hide so WELCOME is not an abrupt cut.
+      // Curtain slide (~1.1s) then fade/hide.
       setTimeout(function () {
         portal.classList.add('portal-reveal');
         setTimeout(function () {
@@ -50,6 +57,12 @@
     portal.setAttribute('aria-hidden', 'false');
 
     if (btn) btn.addEventListener('click', dismissPortal);
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      dismissPortal();
+      return;
+    }
+    autoTimer = setTimeout(dismissPortal, AUTO_OPEN_MS);
   }
 
   function initModules() {

@@ -123,11 +123,11 @@
   "home": {
     "meta": "Omni Solutions Global® Co. Ltd. — 高端 AI 软件与 Premium UI。",
     "title": "首页 — Omni Solutions Global® Co. Ltd.",
-    "lead": "高端 AI 软件开发，拥有国际级优质客户参考。",
+    "lead": "Omni Solutions Global® Co., Ltd. 官方中心 — AI 产品，旗舰为 Pauli BestPrice Global®。",
     "welcomeTo": "欢迎来到",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "AI · ML · UI — 企业级智能",
+    "aiTagline": "企业级 AI 产品 — 清晰、无障碍、即用。",
     "scrollHint": "点击或滚动进入",
     "splashAria": "欢迎区域 — 滚动至主内容",
     "portfolioTitle": "高端作品集",
@@ -225,7 +225,7 @@
     "downloadQrTag": "通用二维码 — 全平台",
     "downloadQrAria": "Pauli 下载中心二维码",
     "downloadSectionAria": "Pauli 下载与二维码",
-    "frontWerbetext": "<p>随时随地找到泰国绝对最优惠的价格——无需再输入任何一个字！Pauli BestPrice Thailand 是价格比较门户中的革命性旗舰产品。为什么这款应用是您唯一正确的选择？因为它以最大的无障碍性彻底重新定义了购物与省钱。该应用专为满足所有人的需求而开发，凭借完整的语音控制，是残障人士或身体受限用户的完美解决方案。只需与您的应用对话！集成的人工智能实时搜索整个泰国市场，闪电般比较报价，并立即显示您在哪里能省得最多。系统全自动识别您智能手机的语言，您无需操心任何事。告别高昂价格和复杂搜索。扫描通用二维码，通过 Google Play Store 或 Aptoide 获取泰国最聪明的省钱工具！</p>"
+    "frontWerbetext": "<p>在泰国找到最优惠的价格——并支持完整无障碍访问。Pauli BestPrice Global® 实时比较报价，并引导您到合作伙伴结账。为游客提供访客语言。</p>"
   },
   "omnigate": {
     "meta": "Omnigate - AI Master — Omni Solutions Global® Co. Ltd.",

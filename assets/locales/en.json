@@ -139,11 +139,11 @@
   "home": {
     "meta": "Omni Solutions Global® Co. Ltd. — High-end AI software development & premium UI.",
     "title": "Home — Omni Solutions Global® Co. Ltd.",
-    "lead": "High-end AI software development with international premium references.",
+    "lead": "Official hub of Omni Solutions Global® Co., Ltd. — AI products with Pauli BestPrice Global® as flagship.",
     "welcomeTo": "Welcome to",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® CO., LTD.</span>",
-    "aiTagline": "AI · ML · UI — Enterprise Intelligence",
+    "aiTagline": "Enterprise AI products — clear, accessible, ready to use.",
     "scrollHint": "Click or scroll to enter",
     "splashAria": "Welcome area",
     "portfolioTitle": "High-End Portfolio",
@@ -241,7 +241,7 @@
     "downloadQrTag": "Universal QR — all platforms",
     "downloadQrAria": "QR code for the Pauli download hub",
     "downloadSectionAria": "Pauli download and QR code",
-    "frontWerbetext": "<p>Find the absolute best price in Thailand — with full accessibility. Pauli BestPrice Global® — Thailand market compares offers in real time and guides you to partner checkout. Guest languages available for tourists. Open the Global hub to pick other countries as they launch.</p>"
+    "frontWerbetext": "<p>Find the best price in Thailand — with full accessibility. Pauli BestPrice Global® compares offers in real time and guides you to partner checkout. Guest languages available for tourists.</p>"
   },
   "omnigate": {
     "meta": "Omnigate - AI Master — Omni Solutions Global® Co. Ltd.",

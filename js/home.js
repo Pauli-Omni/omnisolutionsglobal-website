@@ -130,12 +130,59 @@
     });
   }
 
+  function initHomeAppGrid() {
+    var grid = document.getElementById('home-app-grid');
+    if (!grid || !window.OSGAppRegistry || !OSGAppRegistry.APPS) return;
+    grid.innerHTML = '';
+    OSGAppRegistry.APPS.forEach(function (app) {
+      var nameKey = 'portfolio.' + app.id + '.name';
+      var descKey = 'portfolio.' + app.id + '.desc';
+      var name = (window.OSGI18n && OSGI18n.t(nameKey)) || app.brandName || app.id;
+      if (name === nameKey) name = app.brandName || app.id;
+      var desc = (window.OSGI18n && OSGI18n.t(descKey)) || '';
+      if (desc === descKey) desc = '';
+      var href = app.frontFile || '#';
+      var li = document.createElement('li');
+      li.className = 'home-app-grid__item';
+      var a = document.createElement('a');
+      a.className = 'home-app-tile';
+      a.href = href;
+      a.setAttribute('aria-label', name);
+      var img = document.createElement('img');
+      img.className = 'home-app-tile__icon';
+      img.src = app.icon;
+      img.alt = '';
+      img.width = 56;
+      img.height = 56;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      var title = document.createElement('span');
+      title.className = 'home-app-tile__name';
+      title.textContent = name;
+      a.appendChild(img);
+      a.appendChild(title);
+      if (desc) {
+        var sub = document.createElement('span');
+        sub.className = 'home-app-tile__desc';
+        sub.textContent = desc;
+        a.appendChild(sub);
+      }
+      li.appendChild(a);
+      grid.appendChild(li);
+    });
+  }
+
   window.OSGHome = {
     initAnimatedLogo: initAnimatedLogo,
     initPortalFallbackLogo: initPortalFallbackLogo,
+    initHomeAppGrid: initHomeAppGrid,
     init: function () {
       if (document.body.getAttribute('data-page') !== 'home') return;
       initContactModal();
+      initHomeAppGrid();
+      if (window.i18next) {
+        i18next.on('languageChanged', initHomeAppGrid);
+      }
     }
   };
 })();

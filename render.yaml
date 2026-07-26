@@ -16,6 +16,8 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "20"
+      - key: OSG_MAINTENANCE
+        value: "0"
       - key: OMNI_DEV_MODE
         value: "0"
       - key: BRAND_TTS_ENGINE
