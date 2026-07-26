@@ -2208,8 +2208,10 @@ body.app-page:has(.chrome-frame-inner) .app-page-shell {
   width: auto;
   margin: 0;
   min-height: 0;
-  overflow-y: auto;
+  overflow: hidden;
   border-radius: calc(var(--frame-radius) - 6px);
+  padding: clamp(0.55rem, 1.8vw, 1rem) clamp(0.75rem, 2vw, 1.35rem)
+    calc(var(--frame-inset, 1cm) + 3.25rem);
 }
 
 body.app-page:has(.chrome-frame-inner) .app-page-body,
@@ -2230,19 +2232,20 @@ body.app-page:has(.chrome-frame-inner) .app-legal-footer {
 .app-page--desc .app-page-body,
 .app-page--front .app-page-body {
   align-items: flex-start;
-  padding-top: clamp(3.5rem, 12vw, 5rem);
+  padding-top: clamp(0.35rem, 2vw, 0.85rem);
+  padding-right: calc(5.4rem + env(safe-area-inset-right, 0px));
 }
 
 .app-front {
   width: 100%;
   text-align: center;
-  padding: clamp(1.75rem, 5vw, 3rem);
+  padding: clamp(0.85rem, 2.5vw, 1.35rem);
 }
 
 .app-front-icon {
-  width: clamp(7rem, 28vw, 10rem);
-  height: clamp(7rem, 28vw, 10rem);
-  margin: 0 auto clamp(1.25rem, 4vw, 2rem);
+  width: clamp(5.5rem, 22vw, 8rem);
+  height: clamp(5.5rem, 22vw, 8rem);
+  margin: 0 auto clamp(0.65rem, 2vw, 1rem);
   position: relative;
 }
 
@@ -4959,19 +4962,19 @@ body[data-page="home"] .home-stage--fit .home-splash {
 }
 
 body[data-page="home"] .home-stage--fit .home-splash-core {
-  width: min(100%, 68rem);
+  width: min(100%, 72rem);
   max-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
+  justify-content: flex-start;
+  gap: 0.28rem;
   overflow: hidden;
 }
 
 body[data-page="home"] .home-stage--fit .home-splash-logo {
-  width: min(42vw, 22rem);
-  max-height: 18vh;
+  width: min(38vw, 18rem);
+  max-height: 14vh;
   height: auto;
   object-fit: contain;
   margin: 0 auto;
@@ -4993,13 +4996,13 @@ body[data-page="home"] .home-ai-tagline {
 
 .home-app-grid {
   list-style: none;
-  margin: 0.25rem 0 0;
+  margin: 0.15rem 0 0;
   padding: 0;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.45rem;
-  max-height: 42vh;
+  gap: 0.35rem;
+  max-height: 38vh;
   overflow: hidden;
 }
 
@@ -5037,6 +5040,9 @@ body[data-page="home"] .home-ai-tagline {
   font-size: clamp(0.68rem, 1.15vw, 0.82rem);
   font-weight: 650;
   line-height: 1.2;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: manual;
 }
 
 .home-app-tile__desc {

@@ -1,7 +1,7 @@
 .page-header-tools {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-end;
   flex-shrink: 0;
 }
 
@@ -10,14 +10,15 @@
   max-width: 100%;
 }
 
-/* Fixed horizontal language row — top, minimal height, all locales visible */
+/* Languages: fixed right, vertical — minimal footprint (Paul 2026-07-26) */
 #osg-lang-rail {
   position: fixed;
-  top: calc(var(--frame-width, 0.75rem) + env(safe-area-inset-top, 0px) + 0.35rem);
-  left: 50%;
-  transform: translateX(-50%);
+  top: calc(var(--frame-inset, 1cm) + env(safe-area-inset-top, 0px) + 0.2rem);
+  right: calc(var(--frame-inset, 1cm) + env(safe-area-inset-right, 0px) + 0.2rem);
+  left: auto;
+  transform: none;
   z-index: 11060;
-  width: min(calc(100vw - 1rem), 42rem);
+  width: min(5.4rem, 22vw);
   pointer-events: none;
 }
 
@@ -27,23 +28,21 @@
 
 .app-voice-toolbar {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 0.22rem;
   width: 100%;
 }
 
 .hub-lang-toolbar--always-open .hub-lang-picker {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: 0.22rem;
   width: 100%;
-  max-height: none;
+  max-height: calc(100dvh - var(--frame-inset, 1cm) * 2 - 3rem);
   opacity: 1;
   transform: none;
   pointer-events: auto;
@@ -51,16 +50,16 @@
 }
 
 .hub-lang-picker__btn {
-  width: auto;
-  flex: 1 1 auto;
+  width: 100%;
+  flex: 0 0 auto;
   min-width: 0;
-  min-height: 1.85rem;
-  padding: 0.28rem 0.42rem;
+  min-height: 1.75rem;
+  padding: 0.26rem 0.4rem;
   border-radius: 999px;
   border: 1px solid var(--border-strong, rgba(180, 200, 220, 0.35));
   background: rgba(14, 18, 26, 0.88);
   color: var(--silver, #d7dde8);
-  font-size: clamp(0.62rem, 2.4vw, 0.74rem);
+  font-size: clamp(0.58rem, 2.2vw, 0.72rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   cursor: pointer;
@@ -88,26 +87,27 @@
   display: none !important;
 }
 
-/* Room for fixed lang row — no scroll on home one-screen layout */
+/* Home: content higher — lang rail is on the right, not top center */
 body[data-page="home"] .home-stage--fit {
-  padding-top: calc(2.15rem + env(safe-area-inset-top, 0px));
+  padding-top: 0.35rem;
+  padding-right: calc(5.6rem + env(safe-area-inset-right, 0px));
 }
 
 body.app-page--front,
 body.app-page--desc {
-  padding-top: calc(2.35rem + env(safe-area-inset-top, 0px));
-  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
-/* Fixed transport — app pages with Vorlesen only */
+/* TTS transport sits ON inner silver frame (between outer + inner chrome) */
 .osg-tts-transport-root {
   position: fixed;
   left: 50%;
-  bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  bottom: calc(var(--frame-inset, 1cm) + env(safe-area-inset-bottom, 0px));
   transform: translateX(-50%);
   z-index: 11050;
   pointer-events: none;
-  width: min(100% - 1.25rem, 16rem);
+  width: min(calc(100vw - var(--frame-inset, 1cm) * 2 - 1rem), 16rem);
 }
 
 .osg-tts-transport {
@@ -194,12 +194,17 @@ body.app-page--desc {
 
 @media screen and (max-width: 480px) {
   #osg-lang-rail {
-    width: calc(100vw - 0.65rem);
+    width: min(4.8rem, 20vw);
+  }
+
+  body[data-page="home"] .home-stage--fit {
+    padding-right: calc(4.9rem + env(safe-area-inset-right, 0px));
   }
 
   .hub-lang-picker__btn {
-    padding: 0.24rem 0.28rem;
-    font-size: 0.58rem;
+    padding: 0.22rem 0.28rem;
+    font-size: 0.56rem;
+    min-height: 1.65rem;
   }
 }
 

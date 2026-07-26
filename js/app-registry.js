@@ -29,10 +29,10 @@
     {
       id: 'omnigateAiMaster',
       pageKey: 'omnigate',
-      brandName: 'Omnigate - AI Master',
+      brandName: 'OmniGate - AI Master',
       frontFile: 'omnigate-master.html',
       descFile: 'omnigate-master-beschreibung.html',
-      icon: 'assets/icons/apps/omnigate-ai-master.png'
+      icon: 'assets/images/omni-solutions-global-logo.png'
     },
     {
       id: 'omniqrAiPay',

@@ -4,8 +4,8 @@
   var NARRATION_ROOT = 'assets/audio/narration/';
   var SPEAK_ENDPOINT = '/api/speak';
   var SEEK_STEP_SEC = 10;
-  /** Paul 2026-07-25: Thai read-aloud baseline = 1.2× (natural TH speaking pace). */
-  var RATE_TH = 1.2;
+  /** Paul 2026-07-26: Thai 0.6× then −20% → 0.48× (clear, verifiable TH pace). */
+  var RATE_TH = 0.48;
   var RATE_DEFAULT = 1.0;
   var HUB_PAGES = {
     home: true,

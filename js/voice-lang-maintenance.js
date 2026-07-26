@@ -37,7 +37,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.06');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.07');
     document.head.appendChild(link);
   }
 
@@ -153,10 +153,22 @@
       localStorage.setItem('osg-lang-user-picked', '1');
       sessionStorage.setItem('osg-lang-session-picked', '1');
     } catch (err) { /* ignore */ }
-    i18next.changeLanguage(locale);
-    updatePickerState();
-    updateTransportUi();
-    document.documentElement.classList.add('osg-hub-lang-stable');
+
+    function afterSwitch() {
+      updatePickerState();
+      updateTransportUi();
+      if (window.OSGI18n && OSGI18n.applyToDom) OSGI18n.applyToDom();
+      applyNativePickerLabels(document);
+      if (window.OSGHome && OSGHome.initHomeAppGrid) OSGHome.initHomeAppGrid();
+      document.documentElement.classList.add('osg-hub-lang-stable');
+    }
+
+    var current = pickerBase(i18next.language);
+    if (current === locale) {
+      afterSwitch();
+      return;
+    }
+    i18next.changeLanguage(locale).then(afterSwitch).catch(afterSwitch);
   }
 
   function updatePickerState() {
