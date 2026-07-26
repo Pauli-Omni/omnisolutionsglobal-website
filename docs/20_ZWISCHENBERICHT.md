@@ -1,28 +1,24 @@
 # Zwischenbericht — Omni Solutions Global Homepage
 
-**Stand:** 2026-07-26 22:46 UTC+7  
+**Stand:** 2026-07-26 22:56 UTC+7  
 **Build live (Release):** `2026.07.26.11`  
-**Master-Prompt:** `MP-2026-07-26-001` (noch offen — Paul prüft UI/TTS)  
-**Datei überschreibbar** — beendet den Lauf **nicht**.
+**Master-Prompts offen:** `MP-2026-07-26-001` (UI-Feinschliff Paul prüft) · `MP-2026-07-26-002` (Protokoll-Nachzug)
 
-## Aktueller Zustand
+## Protokoll-Lage (ehrlich)
 
-| Thema | Status |
-|--------|--------|
-| OSG-Protokoll-Ordner `docs/` | neu angelegt (WP-006) |
-| Play-Leiste `#osg-tts-transport-root` | mittig unten, innere Silberleiste + 0,5 cm |
-| Sprachbuttons `#osg-lang-rail` | rechts oben, getrennt vom Play |
-| Thai-Wiedergaberate | `RATE_TH = 0.312` |
-| Thai-Narration | 14/20 neu; 6 blockiert (ElevenLabs Quota) |
-| OmniGate Schreibweise | OmniGate (großes G) |
-| Homepage Vorlesen | absichtlich **aus** (nur App front/desc) |
+| Frage | Antwort (belegt) |
+|--------|------------------|
+| Wann zuletzt Gemini-lesbar protokolliert? | **2026-07-22 13:25** (`GEMINI_INBOX` / Desktop-`10_`) |
+| Wann erstmals Homepage-`docs/10_`? | **2026-07-26 22:47** (`514aef6`) |
+| Was fehlte dazwischen? | Alle Homepage-Commits **25.07. 13:57 → 26.07. 22:09** + Sync Gemini/Tresor |
+| Nachzug jetzt? | WP-007…011 + `02_PROTOKOLL_CHRONOLOGISCH.md` |
 
-## Offen / Paul prüft
+## Offen
 
-1. Play-Leiste Position (Mitte, innere Leiste) — Live-Check
-2. Thai-Klang + Tempo 0,312×
-3. Restliche Thai-MP3s nach Quota (omnibot, omniaiQr, omnitalk)
+1. Paul: Live-Check Play-Leiste / Thai Tempo / Sprache  
+2. 6 Thai-MP3s (OmniBot, OmniAI-QR, OmniTalk) Quota  
+3. Inmazda-WEB-Archiv falls externes Volume gewünscht  
 
-## Regel-Hinweis (verbindlich)
+## Regel
 
-Jede weitere Aktion: **erst Protokoll (Zeitstempel + WP)**, dann Code/Commit. Gilt für Composer, Auto und jedes andere Modell.
+Ab sofort: Protokoll mit Stempel **vor** jedem Commit. Composer = kein Ausnahme-Status.

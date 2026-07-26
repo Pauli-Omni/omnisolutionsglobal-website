@@ -8,6 +8,149 @@
 
 **Status nur:** Implementiert und getestet | Implementiert, aber nicht getestet | Teilweise implementiert | Nicht implementiert | Blockiert (mit Begründung)
 
+**Chronologie-Volltext:** `docs/02_PROTOKOLL_CHRONOLOGISCH.md`
+
+---
+
+## 2026-07-26 22:56 UTC+7 — WP-011
+
+### Kennzeichnung
+| Feld | Wert |
+|---|---|
+| Master-Prompt-ID | `MP-2026-07-26-002` |
+| Arbeitspaket-ID | `WP-011` |
+| Betroffene Module | Dokumentation, Infrastruktur |
+| Änderungsart | Dokumentation, Infrastruktur |
+| Auswirkungsgrad | Erweiterung bestehender Funktionen |
+| Abhängigkeiten | WP-007 … WP-010, WP-006 |
+| Status | Implementiert, aber nicht getestet |
+
+### 1. Zeitstempel
+2026-07-26 22:56 UTC+7
+
+### 2. Arbeitspaket
+Vollständiger Protokoll-Nachzug: alles **nach** dem letzten Gemini-lesbaren Stand (**2026-07-22 13:25**) + Homepage-Commits ohne Protokoll; Master-Tresor WEB; Gemini-Inbox.
+
+### 3. Ziel
+Paul: prüfen, ab wann Protokolle fehlen; alles danach wie früher protokollieren (Zeitstempel, lesbar für Gemini/ChatGPT).
+
+### 4. Ausgangszustand (belegt)
+- `GEMINI_INBOX.md` / Desktop-`10_`: letzter Eintrag **2026-07-22 13:25**
+- Homepage `docs/`: erst ab **2026-07-26 22:47**, und nur WP-001…006 (Abend)
+- Commits **241a31a … b71ee12** (25.07. 13:57 → 26.07. 22:09): **ohne** Protokoll gewesen
+- Tresor `Omni_Solutions_Global_WEB`: **kein** Snapshot; Dev-Pfad im Script war `WEBSEITE` (existiert nicht), real `WEBSEITE-kopie`
+
+### 5–7. Umsetzung
+- `docs/02_PROTOKOLL_CHRONOLOGISCH.md` neu
+- WP-007…010 in diesem File (Blöcke A–D)
+- Desktop Docs + GEMINI_INBOX Sync
+- Master-Tresor: Pfad-Fix + Snapshot/Protokoll-Kopie
+
+### 12–13. Verifikation
+Git-Log + Time-Log gelesen (Befehle ausgeführt). Kein UI-Test.
+
+### 14. Einschränkungen
+Inmazda-Extern-Pfad: nur `Pauli_BestPrice_Global` gemountet gesehen; WEB-Snapshot lokal unter Desktop-Tresor.
+
+### 15. Nächster Schritt
+Jede weitere Aktion: Protokoll **vor** Commit.
+
+---
+
+## 2026-07-26 22:56 UTC+7 — WP-010 (Nachzug-Block D)
+
+### Kennzeichnung
+| Feld | Wert |
+|---|---|
+| Master-Prompt-ID | `MP-2026-07-26-WEB-000` |
+| Arbeitspaket-ID | `WP-010` |
+| Betroffene Module | Voice/TTS, UI, Portal, i18n |
+| Änderungsart | Feature, Bugfix, Konfiguration |
+| Auswirkungsgrad | Änderung bestehender Funktionen |
+| Abhängigkeiten | WP-009 |
+| Status | Implementiert, aber nicht getestet |
+
+### 1. Zeitstempel (Commits)
+2026-07-26 15:14 / 15:42 / 21:54 / 22:09 UTC+7
+
+### 2–3. Arbeitspaket / Ziel
+TTS Seek + TH/DE Narration; Publisher-i18n / English default / Logo-Fog / Security / Brand TH+DE; PL Brand-Voice + Portal Sound + Welcome hidden + Lang-Row; Thai Rate 0,6×.
+
+### 7. Commits (Beleg)
+`0e8f87b`, `2b40480`, `c21566d`, `b71ee12`
+
+### 12. Verifikation damals
+Nur Deploy via Push (laut Session-Notizen). Kein nachträglicher Testlauf in diesem WP.
+
+---
+
+## 2026-07-26 22:56 UTC+7 — WP-009 (Nachzug-Block C)
+
+### Kennzeichnung
+| Feld | Wert |
+|---|---|
+| Master-Prompt-ID | `MP-2026-07-26-WEB-000` |
+| Arbeitspaket-ID | `WP-009` |
+| Betroffene Module | UI, Portal, Marketing |
+| Änderungsart | Feature |
+| Auswirkungsgrad | Änderung bestehender Funktionen |
+| Abhängigkeiten | WP-008 |
+| Status | Implementiert, aber nicht getestet |
+
+### 1. Zeitstempel (Commits)
+2026-07-26 08:05 / 08:14 UTC+7 · `a78548c`, `d32dad5`
+
+### 2–3.
+Clean Hub live (Logo, Auto-Portal, Fit-Home); Pauli-Thailand Promo-Video + Captions in Werbe-Ecke.
+
+---
+
+## 2026-07-26 22:56 UTC+7 — WP-008 (Nachzug-Block B)
+
+### Kennzeichnung
+| Feld | Wert |
+|---|---|
+| Master-Prompt-ID | `MP-2026-07-26-WEB-000` |
+| Arbeitspaket-ID | `WP-008` |
+| Betroffene Module | i18n, Voice/TTS |
+| Änderungsart | Bugfix, Feature |
+| Auswirkungsgrad | Änderung bestehender Funktionen |
+| Abhängigkeiten | WP-007 |
+| Status | Implementiert, aber nicht getestet |
+
+### 1. Zeitstempel (Commits)
+2026-07-26 01:17 / 02:12 UTC+7 · `cca8eda`, `2349897`
+
+### 2–3.
+Language-Picker Endonyme / feste DE-Label-Reihenfolge; Thai/Polish Narration Fixes. Session-Log: 191 min + 1 min.
+
+---
+
+## 2026-07-26 22:56 UTC+7 — WP-007 (Nachzug-Block A)
+
+### Kennzeichnung
+| Feld | Wert |
+|---|---|
+| Master-Prompt-ID | `MP-2026-07-25-WEB-001` |
+| Arbeitspaket-ID | `WP-007` |
+| Betroffene Module | UI, Voice/TTS, Legal, Affiliate |
+| Änderungsart | Feature, Bugfix, Konfiguration |
+| Auswirkungsgrad | Änderung bestehender Funktionen |
+| Abhängigkeiten | — |
+| Status | Implementiert, aber nicht getestet |
+
+### 1. Zeitstempel (Commits)
+2026-07-25 13:57 → 15:16 UTC+7
+
+### 2–3.
+Affiliate-Readiness (Legal, TTS, Visuals, QR); ElevenLabs-Auth-Hinweis; SEO-Titel-Fallback; Affiliate-Checklist; TTS-Transportleiste + Thai 1,2× (damaliger Stand).
+
+### 7. Commits (Beleg)
+`241a31a`, `168a560`, `f2376e9`, `0a741ff`, `74fd9d3`
+
+### 12. Session-Log
+2026-07-25 13:26–15:01 UTC+7 · 95 min
+
 ---
 
 ## 2026-07-26 22:46 UTC+7 — WP-006
