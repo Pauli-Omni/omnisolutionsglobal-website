@@ -1,4 +1,4 @@
-## 2026-08-01 02:40 UTC+7 — Pauli-Märkte/UX laut Screenshots
+## 2026-08-01 02:55 UTC+7 — Pauli-Märkte/UX laut Screenshots
 
 - **Master-Prompt-ID:** MP-2026-08-01-PAULI-MARKET-UX
 - **Arbeitspaket-ID:** WP-035
@@ -7,7 +7,8 @@
 - **Auswirkungsgrad:** Thailand ohne doppelte Länderleiste; DE/US/NL/UK/VN öffnen Marktseite in Markt-Sprache (Soon); Home-/Global-Icons verkleinert; Back/Play kleiner; ozgs+OmniKing live
 - **Dateien neu:** `pauli-bestprice-market.html`, `js/pauli-market-soon.js`
 - **Dateien geändert:** Thailand/Global HTML, CSS, Locales, release
-- **Status:** Deploy in Arbeit
+- **Verifikation:** Render `74d858d` live; Build `2026.08.01.04`; Thailand ohne `pbg-market-switch`; Global mit VN-Link; DE/VN market HTTP 200; ozgs+King HTTP 200
+- **Status:** Live — Build `2026.08.01.04`
 
 ---
 
