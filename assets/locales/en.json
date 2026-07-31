@@ -19,13 +19,14 @@
   },
   "nav": {
     "home": "Home",
-    "pauli": "Pauli BestPrice Global",
+    "pauli": "Pauli BestPrice Global of Thailand",
     "apps": "More Apps",
     "werbe": "Video Ads",
     "about": "About us",
     "impressum": "Legal Notice",
     "agb": "Terms",
-    "back": "Back"
+    "back": "Back",
+    "future": "Future"
   },
   "brand": {
     "sub": "AI Infrastructure · Enterprise Systems"
@@ -140,21 +141,21 @@
   "home": {
     "meta": "Omni Solutions Global® Company Limited — High-end AI software development & premium UI.",
     "title": "Home — Omni Solutions Global® Company Limited",
-    "lead": "Omni Solutions Global® Company Limited — AI infrastructure, high-end software, and enterprise systems. Flagship: Pauli BestPrice Global®.",
+    "lead": "Omni Solutions Global® builds flagship AI products and the infrastructure behind them — for markets that demand precision, security, and true accessibility.",
     "welcomeTo": "Welcome to",
     "welcomeDeck": "WELCOME",
     "brandTitle": "OMNI SOLUTIONS<br><span class=\"home-brand-accent\">GLOBAL® COMPANY LIMITED</span>",
-    "aiTagline": "Enterprise AI infrastructure — neural systems, secure APIs, cross-platform products.",
+    "aiTagline": "Enterprise AI infrastructure — neural systems, secure APIs, and a fleet of flagship products under one roof.",
     "scrollHint": "Click or scroll to enter",
     "splashAria": "Welcome area",
     "portfolioTitle": "High-End Portfolio",
-    "portfolio1Name": "Pauli BestPrice Thailand",
+    "portfolio1Name": "Pauli BestPrice Global of Thailand",
     "portfolio1Desc": "Proprietary price comparison portal powered by advanced algorithms.",
     "portfolio2Name": "OmniGate - AI Master",
     "portfolio2Desc": "Interface control for autonomous and self-managed barrier systems.",
-    "portfolio3Name": "OmniFix AI Document",
+    "portfolio3Name": "OmniFIX - AI Document Assistant",
     "portfolio3Desc": "Fully automated, autonomous AI structuring of complex data streams.",
-    "portfolio4Name": "OmniQR-AI for Tourist of Thailand",
+    "portfolio4Name": "OmniQR-AI for Tourists of Thailand",
     "portfolio4Desc": "Self-managed transaction system for the international tourism sector.",
     "refsTitle": "Premium References",
     "refsMarqueeAria": "Scrollable reference list",
@@ -200,12 +201,8 @@
       "desc": "AI-driven, crisis-resilient payment API for the international tourism sector."
     },
     "omnifixAiDokument": {
-      "name": "OmniFix AI Document",
+      "name": "OmniFIX - AI Document Assistant",
       "desc": "Autonomous, highly efficient AI structuring and analysis of complex data streams."
-    },
-    "omnibotKiProfit": {
-      "name": "OmniBot - AI Profit",
-      "desc": "Top-tier algorithms for fully automated market and revenue optimization."
     },
     "pauliBestprice": {
       "name": "Pauli BestPrice Global",
@@ -222,14 +219,18 @@
     "omnitalkAiLive": {
       "name": "OmniTalk-AI Live",
       "desc": "Real-time AI voice communication with intelligent live interaction at enterprise level."
+    },
+    "omniKingAiTrading": {
+      "name": "Omni King AI Trading",
+      "desc": "Top-tier algorithms for fully automated market and revenue optimization."
     }
   },
   "pauli": {
     "meta": "Pauli BestPrice Global® — Thailand — Omni Solutions Global® Company Limited",
     "title": "Pauli BestPrice Global® — Thailand — Omni Solutions Global® Company Limited",
     "subtitle": "Thailand market of Pauli BestPrice Global",
-    "pageTitle": "Pauli BestPrice Global® — Thailand",
-    "pageDesc": "<p>Pauli BestPrice Global® — Thailand is the first live country market of Pauli BestPrice Global, an AI-powered price comparison and market optimization product by Omni Solutions Global Company Limited The outstanding core feature is uncompromising accessibility: the app is designed so that people with physical limitations can operate it fully without a keyboard or manual screen input.</p><p>Control is via an advanced AI speech recognition matrix. Inside the Thailand market, guest languages remain available for tourists and expats.</p><p>In the background, AI scans Thai online platforms, merchant databases, and local offers in real time, filters the best conditions, and presents the lowest-priced result. Download is via a universal QR code for major platforms.</p>",
+    "pageTitle": "Pauli BestPrice Global®",
+    "pageDesc": "<p>Pauli BestPrice Global® — Thailand is the first live country market of Pauli BestPrice Global, an AI-powered price comparison and market optimization product by Omni Solutions Global Company Limited. The outstanding core feature is uncompromising accessibility: the app is designed so that people with physical limitations can operate it fully without a keyboard or manual screen input.</p><p>Control is entirely via an advanced AI speech recognition matrix. Inside the Thailand market, guest languages remain available for tourists and expats.</p><p>In the background, AI scans Thai online platforms, merchant databases, and local offers in real time, filters the best conditions, and presents the lowest-priced result. Download is via a universal QR code for major platforms.</p>",
     "lead": "<strong>Pauli BestPrice Global® — Thailand market</strong> is a product of <strong>Omni Solutions Global® Company Limited</strong> — an AI-assisted price comparison and shopping guide for Thailand. Pauli is a digital mediator / guide only. Purchase contracts are concluded with partner shops, not with Omni Solutions Global.",
     "text": "This page provides information about the Thailand market of Pauli BestPrice Global.",
     "tag1": "Price comparison",
@@ -242,8 +243,15 @@
     "downloadQrTag": "Universal QR — all platforms",
     "downloadQrAria": "QR code for the Pauli download hub",
     "downloadSectionAria": "Pauli download and QR code",
-    "frontWerbetext": "<p>Find the best price in Thailand — with full accessibility. Pauli BestPrice Global® compares offers in real time and guides you to partner checkout. Guest languages available for tourists.</p>",
-    "publisherLine": "<strong>Publisher:</strong> Omni Solutions Global® Company Limited · Product of the company — not a standalone fake site."
+    "frontWerbetext": "<p>Find the best price in Thailand — with uncompromising accessibility. Pauli BestPrice Global® is the Thailand market of our AI price-comparison product: speak or search, and artificial intelligence scans Thai platforms and partner offers in real time. You see the strongest conditions first and continue to partner checkout — contracts are with the shops, not with us. Guest languages stay available for tourists and expats. Scan the universal QR code and start with confidence. By tapping the app icon you land in the App Store or Play Store intended for your device.</p>",
+    "publisherLine": "<strong>Publisher:</strong> Omni Solutions Global® Company Limited · Product of the company — not a standalone fake site.",
+    "linkGlobalHub": "All countries (Global hub)",
+    "linkImprint": "Imprint / Company",
+    "linkWebsiteTerms": "Website Terms",
+    "linkPrivacyEn": "Privacy (EN)",
+    "linkAppTermsEn": "App Terms (EN)",
+    "linkAbout": "About Omni Solutions Global",
+    "linkProductFront": "Product front"
   },
   "omnigate": {
     "meta": "OmniGate - AI Master — Omni Solutions Global® Company Limited",
@@ -255,19 +263,19 @@
     "tag2": "Access control",
     "tag3": "Interface control",
     "descTitle": "OmniGate - AI Master — Description",
-    "frontWerbetext": "<p>Security and convenience on an entirely new level — that is OmniGate - AI Master! Why struggle with complicated remotes, vulnerable keypad locks, or unreliable networks? This app is the right choice because it unites full control over your automated gate systems and your entire router infrastructure in a single, highly secure platform. You never have to hunt for buttons or painstakingly type passwords again. Simply speak to your app! It was purpose-built to work fully accessibly via voice command — ideal for maximum convenience and essential for people with physical limitations. Trust German engineering quality combined with smart AI security for your home. Get master control now via the universal QR code on the Play Store or Aptoide!</p>"
+    "frontWerbetext": "<p>Security and convenience on an entirely new level — that is OmniGate - AI Master! Why struggle with complicated remotes, vulnerable keypad locks, or unreliable networks? This app is the right choice because it unites full control over your automated gate systems and your entire router infrastructure in a single, highly secure platform. You never have to hunt for buttons or painstakingly type passwords again. Simply speak to your app! It was purpose-built to work fully accessibly via voice command — ideal for maximum convenience and essential for people with physical limitations. Trust German engineering quality combined with smart AI security for your home. Get master control now via the universal QR code on the Play Store or Aptoide! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>"
   },
   "omnifix": {
-    "meta": "OmniFix AI Document — Omni Solutions Global® Company Limited",
-    "title": "OmniFix AI Document — Omni Solutions Global® Company Limited",
+    "meta": "OmniFIX - AI Document Assistant — Omni Solutions Global® Company Limited",
+    "title": "OmniFIX - AI Document Assistant — Omni Solutions Global® Company Limited",
     "subtitle": "AI document analysis & structuring",
-    "pageTitle": "OmniFix AI Document",
-    "pageDesc": "<p>OmniFix AI Document is a highly specialized, AI-powered application for automated correction, stylistic optimization, and structural reorganization of text, documents, and PDF correspondence. After uploading or pasting text, artificial intelligence performs an in-depth linguistic analysis.</p><p>The system does not merely correct simple spelling and grammar errors — it optimizes the entire writing style toward highly professional expression. A core feature of the app is intelligent document structuring: paragraphs are logically ordered, formatting is adjusted, and correspondence is transformed into polished, complete layouts.</p><p>The app operates fluently in multiple languages and automatically detects the smartphone's preset system language to ensure accessible handling without manual configuration. Integration on the homepage uses a floating, chrome-finished 3D icon design without background. The download process is controlled via a universal QR code that gives Android device users the choice to install the app through the Google Play Store or the open Aptoide platform.</p>",
+    "pageTitle": "OmniFIX - AI Document Assistant",
+    "pageDesc": "<p>OmniFIX - AI Document Assistant is a highly specialized, AI-powered application for automated correction, stylistic optimization, and structural reorganization of text, documents, and PDF correspondence. After uploading or pasting text, artificial intelligence performs an in-depth linguistic analysis.</p><p>The system does not merely correct simple spelling and grammar errors — it optimizes the entire writing style toward highly professional expression. A core feature of the app is intelligent document structuring: paragraphs are logically ordered, formatting is adjusted, and correspondence is transformed into polished, complete layouts.</p><p>The app operates fluently in multiple languages and automatically detects the smartphone's preset system language to ensure accessible handling without manual configuration. Integration on the homepage uses a floating, chrome-finished 3D icon design without background. The download process is controlled via a universal QR code that gives Android device users the choice to install the app through the Google Play Store or the open Aptoide platform.</p>",
     "tag1": "AI document",
     "tag2": "Document analysis",
     "tag3": "Structuring",
-    "descTitle": "OmniFix AI Document — Description",
-    "frontWerbetext": "<p>Elevate your documents, contracts, and correspondence to absolute premium level! OmniFix AI Document is the professional secret weapon for flawless text and legally sound structure. Why is this app the right choice for you? Because it puts an end to embarrassing grammar mistakes, unprofessional wording, and cluttered document layouts. Whether business emails, official PDF letters, or contracts — our artificial intelligence analyzes your text in real time and optimizes it at the touch of a button. You do not need to be a language expert; the app polishes every text to a high gloss and structures it flawlessly. Save valuable time and impress customers, authorities, and partners with truly professional documents. Download the app now via the universal QR code and experience AI text optimization at its finest — available flexibly on the Google Play Store and Aptoide!</p>"
+    "descTitle": "OmniFIX - AI Document Assistant — Description",
+    "frontWerbetext": "<p>Elevate your documents, contracts, and correspondence to absolute premium level! OmniFIX - AI Document Assistant is the professional secret weapon for flawless text and legally sound structure. Why is this app the right choice for you? Because it puts an end to embarrassing grammar mistakes, unprofessional wording, and cluttered document layouts. Whether business emails, official PDF letters, or contracts — our artificial intelligence analyzes your text in real time and optimizes it at the touch of a button. You do not need to be a language expert; the app polishes every text to a high gloss and structures it flawlessly. Save valuable time and impress customers, authorities, and partners with truly professional documents. Download the app now via the universal QR code and experience AI text optimization at its finest — available flexibly on the Google Play Store and Aptoide! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>"
   },
   "omniqr": {
     "meta": "OmniQR-AI for Tourist of Thailand — Omni Solutions Global® Company Limited",
@@ -279,7 +287,7 @@
     "tag2": "Tourism",
     "tag3": "QR transactions",
     "descTitle": "OmniQR-AI for Tourist of Thailand — Description",
-    "frontWerbetext": "<p>Paying in Thailand has never been so elegant, fast, and secure! OmniQR-AI for Tourist of Thailand is the ultimate companion for tourists, business travelers, and locals alike. Why is this app the best choice for payments? Because it makes the hassle of chasing cash, overpriced exchange booths, and complicated bank forms completely obsolete. With this app, you are instantly part of Thailand's modern PromptPay network. The special advantage: you do not have to painstakingly enter amounts on screen or convert figures in your head. Simply speak to the app! Artificial intelligence understands you in your native language, converts currencies such as Euro or Złoty in real time, and completes the payment in seconds. End payment stress on holiday and choose maximum security and accessibility. Scan the universal QR code and get started with confidence!</p>",
+    "frontWerbetext": "<p>Paying in Thailand has never been so elegant, fast, and secure! OmniQR-AI for Tourist of Thailand is the ultimate companion for tourists, business travelers, and locals alike. Why is this app the best choice for payments? Because it makes the hassle of chasing cash, overpriced exchange booths, and complicated bank forms completely obsolete. With this app, you are instantly part of Thailand's modern PromptPay network. The special advantage: you do not have to painstakingly enter amounts on screen or convert figures in your head. Simply speak to the app! Artificial intelligence understands you in your native language, converts currencies such as Euro or Złoty in real time, and completes the payment in seconds. End payment stress on holiday and choose maximum security and accessibility. Scan the universal QR code and get started with confidence! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>",
     "payActionsAria": "Payment actions",
     "payZoneAria": "PromptPay payment area",
     "payZoneLabel": "Pay with PromptPay",
@@ -348,27 +356,15 @@
       "welcomeContinue": "Continue to app",
       "welcomeContinueAria": "Continue to the app home screen",
       "s1Title": "§ 1 Scope",
-      "s1Text": "These Terms and Conditions apply to use of the app 'OmniQR-AI for Tourist of Thailand' by Omni Solutions Global. All contracts are governed exclusively by the laws of the Kingdom of Thailand. Place of jurisdiction is the Kingdom of Thailand.",
+      "s1Text": "These Terms and Conditions apply to use of the app 'OmniQR-AI for Tourist of Thailand' by Omni Solutions Global® Company Limited. All contracts are governed exclusively by the laws of the Kingdom of Thailand. Place of jurisdiction is the Kingdom of Thailand.",
       "s2Title": "§ 2 App Status",
       "s2Text": "Download and installation of the app are completely free for the user. Use requires acceptance of these terms at app start. If the user refuses updated terms, payment functions are automatically locked until confirmation is given again.",
       "s3Title": "§ 3 Billing & Exchange Rate",
       "s3P1": "Billing is based on the current daily rate of the Frankfurt Stock Exchange plus a combined system and processing surcharge of up to 4.5%.",
-      "s3P2": "Omni Solutions Global acts solely as a technical payment intermediary (gateway) and fully excludes liability for incorrect price displays by local merchants, exchange rate changes, or the quality of goods and services purchased.",
+      "s3P2": "Omni Solutions Global® Company Limited acts solely as a technical payment intermediary (gateway) and fully excludes liability for incorrect price displays by local merchants, exchange rate changes, or the quality of goods and services purchased.",
       "s4Title": "§ 4 Support Diagnostics",
-      "s4Text": "To ensure system integrity and targeted troubleshooting, support requests automatically and temporarily capture the device model, OS version, IP address and approximate location of the user. Omni Solutions Global does not share or sell personal customer data beyond this technical purpose."
+      "s4Text": "To ensure system integrity and targeted troubleshooting, support requests automatically and temporarily capture the device model, OS version, IP address and approximate location of the user. Omni Solutions Global® Company Limited does not share or sell personal customer data beyond this technical purpose."
     }
-  },
-  "omnibot": {
-    "meta": "OmniBot - AI Profit — Omni Solutions Global® Company Limited",
-    "title": "OmniBot - AI Profit — Omni Solutions Global® Company Limited",
-    "subtitle": "Autonomous market & revenue optimization",
-    "pageTitle": "OmniBot - AI Profit",
-    "pageDesc": "<p>OmniBot - AI Profit is a highly advanced, automated trading and market analysis platform based on artificial intelligence and mathematical algorithms. The application monitors global financial and crypto markets continuously in real time.</p><p>The AI bot is capable of processing vast volumes of data, chart patterns, and historical trends in parallel to make trading decisions with maximum statistical probability of success. The system works fully autonomously, executes profit-optimized market actions independently, protects invested capital through automated risk management protocols, and removes the human factor.</p><p>The user interface is uncompromisingly accessible and adapts instantly to the smartphone operating system language without manual setup. For quick access, the app is integrated on the homepage via a freestanding, reflective 3D symbol and is distributed via a universal QR code with intelligent routing for iOS and Android (including Google Play Store and Aptoide connectivity).</p>",
-    "tag1": "AI profit",
-    "tag2": "Market analysis",
-    "tag3": "Yield optimization",
-    "descTitle": "OmniBot - AI Profit — Description",
-    "frontWerbetext": "<p>Let the most powerful artificial intelligence in the financial world work around the clock for your financial success! OmniBot - AI Profit is the exclusive trading and market optimization app for crypto and financial markets. Why is this app the best choice for you? Because it completely eliminates emotional stress, hours of staring at charts, and the risk of poor decisions. While you sleep, our state-of-the-art AI bot analyzes global markets in millisecond cycles, identifies rising trends, and optimizes trading strategies fully autonomously for maximum profit. The app is structured so simply that both beginners and professionals achieve maximum results immediately. It speaks your language, works fully automatically, and is absolutely secure. Bet on the future of intelligent wealth building. Scan the universal QR code and activate your personal AI profit bot today via the Play Store or Aptoide!</p>"
   },
   "omniaiQr": {
     "meta": "OmniAI-QR Code Generator — Omni Solutions Global® Company Limited",
@@ -380,7 +376,7 @@
     "tag2": "Smart link",
     "tag3": "Encryption",
     "descTitle": "OmniAI-QR Code Generator — Description",
-    "frontWerbetext": "<p>Create the smartest and most powerful QR codes in modern marketing! The OmniAI-QR Code Generator is the professional all-in-one platform for future-proof customer routing and dynamic marketing. Why is this app the best choice for your business? Because conventional, static QR codes simply are not enough today. This app generates universal, AI-driven marketing codes that think ahead: when scanned, they automatically detect the customer's device operating system and route users instantly to the exactly right store — whether Google Play, Apple App Store, or Aptoide! Perfect for posters, flyers, and digital media. The app is extremely easy to use, runs fully automatically in your smartphone language, and offers maximum clarity. Make your marketing measurable and efficient. Download the app now via the universal download code and get started!</p>"
+    "frontWerbetext": "<p>Create the smartest and most powerful QR codes in modern marketing! The OmniAI-QR Code Generator is the professional all-in-one platform for future-proof customer routing and dynamic marketing. Why is this app the best choice for your business? Because conventional, static QR codes simply are not enough today. This app generates universal, AI-driven marketing codes that think ahead: when scanned, they automatically detect the customer's device operating system and route users instantly to the exactly right store — whether Google Play, Apple App Store, or Aptoide! Perfect for posters, flyers, and digital media. The app is extremely easy to use, runs fully automatically in your smartphone language, and offers maximum clarity. Make your marketing measurable and efficient. Download the app now via the universal download code and get started! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>"
   },
   "omnicad": {
     "meta": "OmniCAD-AI CAM — Omni Solutions Global® Company Limited",
@@ -393,13 +389,13 @@
     "tag2": "AI automation",
     "tag3": "Manufacturing",
     "descTitle": "OmniCAD-AI CAM — Description",
-    "frontWerbetext": "<p>Say goodbye to tape measures, inaccurate sketches, and nasty surprises when buying materials! OmniCAD-AI CAM is the definitive milestone for the job site and home renovation. Why is this app the right choice for you? Because it transforms complex engineering into an effortless one-click solution. You do not need to be a professional or learn complicated software. The app turns your smartphone into an intelligent, vision-enabled site manager that thinks ahead, saves costs, and eliminates errors before they happen. Whether you are a professional tradesperson looking to save time or a homeowner who wants to renovate perfectly — this app has you covered. It is radically accessible, extremely fast, and automatically adapts to your smartphone language. Scan the universal QR code and experience the future of space planning. Android users enjoy complete freedom when downloading — choose between the Google Play Store and Aptoide!</p>"
+    "frontWerbetext": "<p>Say goodbye to tape measures, inaccurate sketches, and nasty surprises when buying materials! OmniCAD-AI CAM is the definitive milestone for the job site and home renovation. Why is this app the right choice for you? Because it transforms complex engineering into an effortless one-click solution. You do not need to be a professional or learn complicated software. The app turns your smartphone into an intelligent, vision-enabled site manager that thinks ahead, saves costs, and eliminates errors before they happen. Whether you are a professional tradesperson looking to save time or a homeowner who wants to renovate perfectly — this app has you covered. It is radically accessible, extremely fast, and automatically adapts to your smartphone language. Scan the universal QR code and experience the future of space planning. Android users enjoy complete freedom when downloading — choose between the Google Play Store and Aptoide! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>"
   },
   "apps": {
     "meta": "More Apps — Omni Solutions Global® Company Limited",
     "title": "More Apps — Omni Solutions Global® Company Limited",
     "subtitle": "Software portfolio of Omni Solutions Global® Company Limited",
-    "lead": "Beyond Pauli BestPrice Thailand, Omni Solutions Global® Company Limited develops further high-end applications in AI, ML, and premium UI.",
+    "lead": "Beyond Pauli BestPrice Global of Thailand, Omni Solutions Global® Company Limited develops further high-end applications in AI, ML, and premium UI.",
     "text": "Additional products will be presented here progressively. Business inquiries: info@omnisolutionsglobal.com",
     "soon": "More Products"
   },
@@ -410,7 +406,7 @@
     "premiumTitle": "VIDEO ADVERTISING & BRANDING",
     "mainVideoTitle": "Omni Solutions Global® — Corporate Presentation",
     "mainVideoDesc": "Experience our combined expertise in AI (Artificial Intelligence) and UI (User Interface Design). Our presentation showcases tailored software architecture for European and global markets, directed from our strategic tech hub in Thailand.",
-    "pauliVideoTitle": "Pauli BestPrice Thailand™ — Thailand Portal",
+    "pauliVideoTitle": "Pauli BestPrice Global of Thailand™ — Thailand Portal",
     "pauliVideoDesc": "The official promotional clip for the revolutionary price comparison portal.",
     "brandingTitle": "CORPORATE BRANDING",
     "brandLabel": "Brand:",
@@ -439,7 +435,7 @@
     "meta": "About us — Omni Solutions Global Company Limited®",
     "title": "About us",
     "subtitle": "The architectural peak of next-generation technology",
-    "body": "<p>We do not simply build software. We create the digital nervous systems for tomorrow's markets.</p><p><strong>Omni Solutions Global&nbsp;Company Limited®</strong> is a highly specialized technological elite forge operating at the intersection of hyper-scalable system architecture, decentralized data processing, and disruptive artificial intelligence. We develop and operate in-house flagship platforms in global e-commerce, automated market analysis, and AI-powered computer vision. These internal large-scale projects serve as our proof of technological feasibility: what we realize for our own flagships, we transfer as bespoke high-end architecture into our clients' systems.</p><p>Those who work with us are not looking for off-the-shelf solutions. Those who commission us want absolute technological dominance in their sector.</p><hr /><h2>Our technological service areas for your enterprise</h2><div class=\"about-services-grid\"><h3>1. Disruptive Hyper-AI &amp; Predictive Data Analytics</h3><p>Artificial intelligence in our architectures is not a bolt-on tool, but the fundamental logic layer. We design neural networks and machine-learning models for processing massive, unstructured big-data streams.</p><ul><li><strong>Neural filters &amp; real-time validation:</strong> We develop AI systems that scan global market and price data in microseconds, compute mathematical anomalies, and automatically eliminate manipulated data structures or fake providers with 99.9 percent precision.</li><li><strong>Multimodal AI interfaces &amp; autonomous voice layers:</strong> We break the barrier between human and machine. Through advanced AI-driven speech and audio engines, we create barrier-free high-end interfaces that translate complex data patterns visually and acoustically in real time.</li><li><strong>Intelligent computer vision:</strong> Using advanced image-recognition algorithms, we deliver video-based real-time spatial capture and automated CAD data conversion directly via mobile devices.</li></ul><h3>2. High-performance cross-platform engineering</h3><p>Our software architectures know no system boundaries. We develop cross-platform ecosystems (iOS, Android, Web) tuned for maximum data throughput and extreme fault tolerance under full load.</p><ul><li><strong>Clean-code excellence:</strong> Every line of code is optimized for minimal latency and maximum execution speed. Our systems perform without delay even under massive global server demand.</li><li><strong>Dynamic legal &amp; localization engines:</strong> We build intelligent localization modules that fully automatically analyze the end device's environment at system start. In microseconds, complex legal structures (<a href=\"agb.html\" class=\"about-inline-link\">Terms</a>, <a href=\"impressum.html\" class=\"about-inline-link\">Legal Notice</a>), currency systems, and user interfaces in major global languages (German, Thai, English, Russian, Polish, Chinese) are dynamically deployed.</li><li><strong>Secure API &amp; payment infrastructures:</strong> We integrate highly complex interfaces (such as crypto seals, PromptPay structures, or international credit-card gateways) seamlessly and manipulation-proof into the existing corporate structure of Omni Solutions Global&nbsp;Company Limited®</li></ul><h3>3. Monetization architectures &amp; scalable marketplaces</h3><p>We design and deliver digital platforms aimed at making markets transparent, redirecting consumption flows entirely, and generating maximum conversion rates. By combining intelligent comparison logic, real-time voucher management, and automated affiliate interfaces, we create highly profitable digital ecosystems for global partners.</p></div><hr /><h2>High-end AI portfolio</h2><ul class=\"about-portfolio-list\"><li><a href=\"pauli-bestprice-thailand-beschreibung.html\" class=\"about-inline-link\">Pauli BestPrice Thailand</a></li><li><a href=\"omnicad-ai-cam-beschreibung.html\" class=\"about-inline-link\">OmniCAD-AI CAM</a></li><li><a href=\"omnigate-master-beschreibung.html\" class=\"about-inline-link\">OmniGate - AI Master</a></li><li><a href=\"/omniqr-ai-for-tourist-of-thailand/beschreibung.html\" class=\"about-inline-link\">OmniQR-AI for Tourist of Thailand</a></li><li><a href=\"omnifix-ai-beschreibung.html\" class=\"about-inline-link\">OmniFix AI Document</a></li><li><a href=\"omnibot-ki-profit-beschreibung.html\" class=\"about-inline-link\">OmniBot - AI Profit</a></li><li><a href=\"omniai-qr-generator-beschreibung.html\" class=\"about-inline-link\">OmniAI-QR Code Generator</a></li><li><a href=\"omnitalk-ai-live-beschreibung.html\" class=\"about-inline-link\">OmniTalk-AI Live</a></li></ul><hr /><h2>Our philosophy: absolute focus</h2><p>Omni Solutions Global&nbsp;Company Limited® works behind the scenes to move mountains in the foreground. Our capacity for external mandates is strictly limited. We deliberately forgo mass business, public representation, or classic agency services. Our development forge is fully sealed and operates in absolute focus mode exclusively for players who have the budget and the will to redefine industry standards in their field.</p><p>If you are looking for standard software, we are the wrong partner. If you want the technological spearhead, we are your only option.</p><hr /><h2>Corporate structure</h2><ul><li><strong>Legal form:</strong> Company Limited (Company Limited)</li><li><strong>Owner &amp; Managing Director:</strong> Chatchadapha Hausser</li><li><strong>Focus:</strong> Artificial intelligence, high-end software development, cross-platform ecosystems &amp; scalable API infrastructure</li></ul>"
+    "body": "<p>We do not merely ship apps. We build the digital nervous systems that tomorrow’s markets will run on.</p><p><strong>Omni Solutions Global&nbsp;Company Limited®</strong> is a highly specialized technological elite forge at the intersection of hyper-scalable architecture, encrypted data flows, and disruptive artificial intelligence. Under one corporate roof we design, operate, and continuously harden flagship products that must work in the real world — not as demos, but as living systems.</p><p>Every product currently listed in our portfolio is a <strong>flagship</strong>: Pauli BestPrice Global® (Thailand market), OmniGate - AI Master, OmniFIX - AI Document Assistant, OmniQR-AI for Tourists of Thailand, Omni King AI Trading, OmniAI-QR Code Generator, OmniCAD-AI CAM, and OmniTalk-AI Live. None of them is a side project. Each one proves what we can transfer into client architectures as bespoke high-end systems.</p><p>We are among the first to dare putting under one roof what the industry still treats as separate worlds: <strong>intelligent price discovery</strong> and <strong>uncompromising accessibility for people with disabilities</strong> — voice-first operation without keyboard or manual screen input. To our knowledge, no application worldwide combines this depth of market intelligence with that level of barrier-free control in a single product.</p><p>Those who commission us are not looking for templates. They want absolute technological leadership in their sector — and a partner that builds as if the company’s own reputation were on the line. Because it is.</p><hr /><h2>What we do for enterprises</h2><div class=\"about-services-grid\"><h3>1. Disruptive Hyper-AI &amp; predictive analytics</h3><p>Artificial intelligence is the foundation layer of our architecture, not a bolt-on. We design neural filters, real-time verification, multimodal voice interfaces, and computer-vision pipelines that turn unstructured reality into actionable structure.</p><h3>2. High-performance cross-platform engineering</h3><p>iOS, Android, and Web without system borders — tuned for throughput, fault tolerance, and clean-code latency discipline under global load.</p><h3>3. Secure enterprise infrastructure</h3><p>Encrypted control planes, integrity feedback, and operational discipline so flagship products remain trustworthy when money, identity, or physical access are at stake.</p></div><p>Omni Solutions Global does not chase trends. We forge systems that must still work when the trend has moved on.</p>"
   },
   "agb": {
     "meta": "Terms — Omni Solutions Global® Company Limited",
@@ -470,7 +466,7 @@
     "tag1": "Live AI",
     "tag2": "Real-time speech",
     "tag3": "Communication",
-    "frontWerbetext": "<p>Break down every language barrier in the world in a single second — right while you are on a normal phone call! OmniTalk-AI Live is the absolute sensation in the communications market and the right choice for worldwide connections. Why do you need this app on your smartphone immediately? Because it ends misunderstandings and complicated translation tools. Imagine: someone calls you and speaks Thai, Polish, or English. You do not need to open a separate app, press buttons, or activate anything. OmniTalk-AI Live automatically hooks directly into your ongoing phone call, recognizes the foreign language in real time, and interprets the conversation in a fraction of a second! And the best part: the app does not translate with a robotic computer voice — it uses your own AI-adapted voice for the other party! Call customers, friends, or authorities worldwide as if you were speaking the same language. Scan the universal QR code and get this groundbreaking technology now on the Play Store or Aptoide!</p>"
+    "frontWerbetext": "<p>Break down every language barrier in the world in a single second — right while you are on a normal phone call! OmniTalk-AI Live is the absolute sensation in the communications market and the right choice for worldwide connections. Why do you need this app on your smartphone immediately? Because it ends misunderstandings and complicated translation tools. Imagine: someone calls you and speaks Thai, Polish, or English. You do not need to open a separate app, press buttons, or activate anything. OmniTalk-AI Live automatically hooks directly into your ongoing phone call, recognizes the foreign language in real time, and interprets the conversation in a fraction of a second! And the best part: the app does not translate with a robotic computer voice — it uses your own AI-adapted voice for the other party! Call customers, friends, or authorities worldwide as if you were speaking the same language. Scan the universal QR code and get this groundbreaking technology now on the Play Store or Aptoide! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>"
   },
   "contact": {
     "openAria": "Open contact form",
@@ -600,7 +596,7 @@
     "voiceLangTitle": "Maintenance notice",
     "voiceLangClose": "OK",
     "voiceLangCloseAria": "Close maintenance notice",
-    "speakerNotice": "Maintenance until 18:00."
+    "speakerNotice": "Read-aloud is currently in a modification phase. Thank you for your understanding."
   },
   "langPicker": {
     "toggle": "Choose language",
@@ -611,5 +607,79 @@
     "de": "Deutsch",
     "pl": "Polnisch",
     "zh": "Chinesisch"
+  },
+  "pauliGlobal": {
+    "meta": "Pauli BestPrice Global® — Choose your country — Omni Solutions Global®",
+    "title": "Pauli BestPrice Global® — Choose your country — Omni Solutions Global®",
+    "pageTitle": "Pauli BestPrice Global®",
+    "lead": "Product of <strong>Omni Solutions Global® Company Limited</strong>. Choose your country. Each market has its own structure (affiliates, languages, partners). Thailand is live first — more countries follow under the same Global product.",
+    "note": "Country labels stay in the language of that market. Opening a country starts in that market language; you can switch anytime. Homepage always opens in English first.",
+    "countriesAria": "Pauli BestPrice Global country markets",
+    "marketSwitchAria": "Market switch — choose country",
+    "countryTh": "Thailand",
+    "countryDe": "Germany",
+    "countryUs": "USA",
+    "countryNl": "Netherlands",
+    "countryUk": "United Kingdom",
+    "countryVn": "Vietnam",
+    "thLive": "Thailand · Live",
+    "thOpenAria": "Open Pauli BestPrice Global — Thailand market",
+    "thCurrentAria": "Current market: Thailand",
+    "deSoon": "Germany · Soon",
+    "usSoon": "USA · Soon",
+    "nlSoon": "Netherlands · Soon",
+    "ukSoon": "United Kingdom · Soon",
+    "vnSoon": "Vietnam · Soon",
+    "linkThailand": "Thailand market page",
+    "linkPrivacy": "Privacy (TH market EN)",
+    "linkAbout": "About Omni Solutions Global",
+    "linkLegal": "Legal notice",
+    "statusLive": "Live",
+    "statusSoon": "Soon"
+  },
+  "omniKing": {
+    "meta": "Omni King AI Trading — Omni Solutions Global® Company Limited",
+    "title": "Omni King AI Trading — Omni Solutions Global® Company Limited",
+    "subtitle": "Autonomous market & revenue optimization",
+    "pageTitle": "Omni King AI Trading",
+    "pageDesc": "<p>Omni King AI Trading is a highly advanced, automated trading and market analysis platform based on artificial intelligence and mathematical algorithms. The application monitors global financial and crypto markets continuously in real time.</p><p>The AI bot is capable of processing vast volumes of data, chart patterns, and historical trends in parallel to make trading decisions with maximum statistical probability of success. The system works fully autonomously, executes profit-optimized market actions independently, protects invested capital through automated risk management protocols, and removes the human factor.</p><p>The user interface is uncompromisingly accessible and adapts instantly to the smartphone operating system language without manual setup. For quick access, the app is integrated on the homepage via a freestanding, reflective 3D symbol and is distributed via a universal QR code with intelligent routing for iOS and Android (including Google Play Store and Aptoide connectivity).</p>",
+    "tag1": "AI profit",
+    "tag2": "Market analysis",
+    "tag3": "Yield optimization",
+    "descTitle": "Omni King AI Trading — Description",
+    "frontWerbetext": "<p>Let the most powerful artificial intelligence in the financial world work around the clock for your financial success! Omni King AI Trading is the exclusive trading and market optimization app for crypto and financial markets. Why is this app the best choice for you? Because it completely eliminates emotional stress, hours of staring at charts, and the risk of poor decisions. While you sleep, our state-of-the-art AI bot analyzes global markets in millisecond cycles, identifies rising trends, and optimizes trading strategies fully autonomously for maximum profit. The app is structured so simply that both beginners and professionals achieve maximum results immediately. It speaks your language, works fully automatically, and is absolutely secure. Bet on the future of intelligent wealth building. Scan the universal QR code and activate your personal AI profit bot today via the Play Store or Aptoide! By tapping the app icon you land in the App Store or Play Store intended for your device.</p>"
+  },
+  "ozgs": {
+    "eyebrow": "Future Security Infrastructure",
+    "brandName": "Omni Zero Gate Security",
+    "badge": "Coming Soon",
+    "title": "Omni Zero Gate Security",
+    "lead": "Next-generation zero-knowledge security infrastructure for institutions that cannot compromise.",
+    "intro": "Ladies and gentlemen. We hereby present our future vision of uncompromising security infrastructure: Omni Solutions Global is currently developing the next generation of Omni Zero Gate Security. In an increasingly connected yet massively threatened digital era, institutions, law firms and enterprises face a fundamental challenge. Whether attorneys and court offices handling highly sensitive mandate and litigation traffic, insurers protecting regulated policyholder data and policies, municipal bodies and city halls exchanging confidential data continuously, medical chambers and healthcare systems, or the critical IT infrastructure of major industrial operations — anyone responsible for sensitive information that must be transmitted at the highest level of security can accept no compromise and must not rely on fragile standard clouds. Our forthcoming architecture breaks with the weaknesses of conventional software. The system is built on an uncompromising zero-knowledge approach: all data is encrypted decentralized and directly on the endpoint before it travels even a centimetre. No one — not even we as developers — ever gains insight into the plaintext infrastructure. This vision is reinforced by pioneering controls: an external recipient such as a court or authority needs no software licence and accesses content through a protected, ephemeral web container. The sender retains full control via a central dashboard and can revoke access within seconds. Dynamic personalised watermarks make any analogue leak immediately traceable, while multi-combo access and biometric verification shut out unauthorised use from the outset. Development of this landmark security infrastructure is advancing at full speed. Stay curious. Be ready to be surprised. Or is this exactly the technological solution you and your institution have been searching for?",
+    "audiolabel": "Official presentation — brand voice",
+    "playAria": "Play Omni Zero Gate Security presentation",
+    "pauseAria": "Pause presentation audio",
+    "audienceTitle": "Built for institutions that carry responsibility",
+    "audience1Title": "Lawyers & Courts",
+    "audience1Text": "Mandate and litigation traffic that demands absolute confidentiality.",
+    "audience2Title": "Insurance",
+    "audience2Text": "Regulated protection of policyholder data and policies.",
+    "audience3Title": "Municipalities & City Halls",
+    "audience3Text": "Continuous confidential data exchange across public administration.",
+    "audience4Title": "Medical Chambers & Healthcare",
+    "audience4Text": "Sensitive medical and institutional information under strict duty of care.",
+    "audience5Title": "Enterprise IT Security",
+    "audience5Text": "Critical infrastructure of large industrial and corporate environments.",
+    "waitlistTitle": "Early Access Waitlist",
+    "waitlistLead": "Register for exclusive early access. We notify selected institutions first.",
+    "waitlistName": "Name (optional)",
+    "waitlistOrg": "Organisation / Institution (optional)",
+    "waitlistEmail": "Professional email (required)",
+    "waitlistSubmit": "Join Early Access",
+    "waitlistSuccess": "You are on the Early Access list. We will contact you.",
+    "waitlistError": "Registration failed. Please check your email and try again.",
+    "waitlistEmailInvalid": "Please enter a valid professional email address.",
+    "visualAria": "Omni Zero Gate Security branding artwork",
+    "sectionAria": "Omni Zero Gate Security — upcoming security infrastructure"
   }
 }

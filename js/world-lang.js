@@ -198,6 +198,7 @@
     getInitialUiLocale: getInitialUiLocale,
     hasUserSpeechPick: hasUserSpeechPick,
     hasUserUiPick: hasUserUiPick,
+    markUserUiPick: markUserUiPick,
     applyUserLanguageInput: applyUserLanguageInput
   };
 })();

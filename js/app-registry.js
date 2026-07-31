@@ -5,8 +5,19 @@
    * Master app registry — sidebar order, front/desc routes, icons.
    * name/desc → assets/locales/*.json unter portfolio.{id}
    * frontWerbetext → {pageKey}.frontWerbetext (App-Vorderseite)
+   * Brand names are ALWAYS English (never localized product names).
    */
   var APPS = [
+    {
+      id: 'omniKingAiTrading',
+      pageKey: 'omniKing',
+      brandName: 'Omni King AI Trading',
+      frontFile: 'omni-king-ai-trading.html',
+      descFile: 'omni-king-ai-trading-beschreibung.html',
+      icon: 'assets/icons/apps/omni-king-ai-trading.png',
+      iconPackZip: 'assets/downloads/omni-king-ai-trading-icons.zip',
+      downloadIconPackUrl: 'assets/downloads/omni-king-ai-trading-icons.zip'
+    },
     {
       id: 'pauliBestprice',
       pageKey: 'pauli',
@@ -14,6 +25,13 @@
       frontFile: 'pauli-bestprice-global.html',
       descFile: 'pauli-bestprice-thailand-beschreibung.html',
       icon: 'assets/icons/apps/pauli-bestprice.png',
+      marketIcons: {
+        th: 'assets/icons/apps/pauli-bestprice-thailand.png',
+        de: 'assets/icons/apps/pauli-bestprice-deutschland.png',
+        us: 'assets/icons/apps/pauli-bestprice-usa.png',
+        nl: 'assets/icons/apps/pauli-bestprice-nederland.png',
+        uk: 'assets/icons/apps/pauli-bestprice-uk.png'
+      },
       // Live download API currently suspended on Render — land on product desc (QR/store) until resumed.
       downloadHubUrl: 'pauli-bestprice-thailand-beschreibung.html'
     },
@@ -24,6 +42,8 @@
       frontFile: 'omnicad-ai-cam.html',
       descFile: 'omnicad-ai-cam-beschreibung.html',
       icon: 'assets/icons/apps/omnicad-ai-cam.png',
+      iconPackZip: 'assets/downloads/omnicad-ai-cam-icons.zip',
+      downloadIconPackUrl: 'assets/downloads/omnicad-ai-cam-icons.zip',
       stores: ['windows', 'ios', 'android']
     },
     {
@@ -32,7 +52,7 @@
       brandName: 'OmniGate - AI Master',
       frontFile: 'omnigate-master.html',
       descFile: 'omnigate-master-beschreibung.html',
-      icon: 'assets/images/omni-solutions-global-logo.png'
+      icon: 'assets/icons/apps/omnigate-ai-master.png'
     },
     {
       id: 'omniqrAiPay',
@@ -45,18 +65,12 @@
     {
       id: 'omnifixAiDokument',
       pageKey: 'omnifix',
-      brandName: 'OmniFix AI Document',
+      brandName: 'OmniFIX - AI Document Assistant',
       frontFile: 'omnifix-ai.html',
       descFile: 'omnifix-ai-beschreibung.html',
-      icon: 'assets/icons/apps/omnifix-ai-dokument.png'
-    },
-    {
-      id: 'omnibotKiProfit',
-      pageKey: 'omnibot',
-      brandName: 'OmniBot - AI Profit',
-      frontFile: 'omnibot-ki-profit.html',
-      descFile: 'omnibot-ki-profit-beschreibung.html',
-      icon: 'assets/icons/apps/omnibot-ki-profit.png'
+      icon: 'assets/icons/apps/omnifix-ai-dokument.png',
+      iconPackZip: 'assets/downloads/omnifix-ai-dokument-icons.zip',
+      downloadIconPackUrl: 'assets/downloads/omnifix-ai-dokument-icons.zip'
     },
     {
       id: 'omniaiQrGenerator',

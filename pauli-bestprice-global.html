@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <!-- osg-release -->
-  <meta name="osg-build-id" content="2026.07.26.12">
-  <script src="js/release-guard.js?v=2026.07.26.12"></script>
+  <meta name="osg-build-id" content="2026.08.01.01">
+  <script src="js/release-guard.js?v=2026.08.01.01"></script>
   <!-- /osg-release -->
   <title>Pauli BestPrice Global® — Choose your country — Omni Solutions Global®</title>
   <meta name="description" content="Pauli BestPrice Global by Omni Solutions Global Company Limited Choose your country market. Thailand is live; more countries follow. Price comparison and partner mediation.">
@@ -45,12 +45,10 @@
     }
   }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=2026.07.26.12">
+  <link rel="stylesheet" href="css/fonts.css?v=2026.08.01.01">
+  <link rel="stylesheet" href="css/style.css?v=2026.08.01.01">
 </head>
-<body class="app-page app-page--front" data-page="pauli-global" data-app-id="pauliBestprice" data-app-view="global-hub">
+<body class="app-page app-page--front" data-page="pauli-global" data-app-id="pauliBestprice" data-app-view="global-hub" data-i18n-title="pauliGlobal.title" data-i18n-meta="pauliGlobal.meta">
 
   <div class="chrome-frame" aria-hidden="true"></div>
   <div class="chrome-frame-inner" aria-hidden="true"></div>
@@ -59,63 +57,76 @@
     <div class="chameleon-wave chameleon-wave--mid" aria-hidden="true"></div>
     <div class="chameleon-wave chameleon-wave--crest" aria-hidden="true"></div>
   </div>
-  <a href="#main" class="skip-link">Skip to content</a>
+  <a href="#main" class="skip-link" data-i18n="a11y.skipLink"></a>
   <div class="app-page-shell"><main class="app-page-body" id="main">
       <section class="app-front neo-accent-box pbg-global-hub" aria-labelledby="pbg-global-title">
+        <h1 id="pbg-global-title" class="app-front-title chrome-silver-text" data-i18n="pauliGlobal.pageTitle"></h1>
         <div class="app-front-icon" id="app-front-icon">
           <div class="app-front-icon-placeholder" id="app-front-icon-placeholder" aria-hidden="true"></div>
           <img id="app-front-icon-img" class="app-front-icon-img" alt="" width="160" height="160" hidden>
         </div>
-        <h1 id="pbg-global-title" class="app-front-title chrome-silver-text">Pauli BestPrice Global®</h1>
-        <p class="pbg-global-hub__lead chrome-silver-text">
-          Product of <strong>Omni Solutions Global® Company Limited</strong>
-          Choose your country. Each market has its own structure (affiliates, languages, partners).
-          Thailand is live first — more countries follow under the same Global product.
-        </p>
-        <p class="pbg-global-hub__note chrome-silver-text">
-          Country choice sets your market. Inside Thailand, guest languages remain available for tourists and expats.
-        </p>
-        <ul class="pbg-country-grid" aria-label="Pauli BestPrice Global country markets">
-          <li>
-            <a class="pbg-country-card" href="pauli-bestprice-thailand.html" aria-label="Open Pauli BestPrice Global — Thailand market">
-              <span class="pbg-country-card__code">TH</span>
-              <span class="pbg-country-card__name">Thailand</span>
-              <span class="pbg-country-card__meta">Live</span>
-            </a>
-          </li>
-          <li>
-            <span class="pbg-country-card pbg-country-card--soon" aria-label="Germany — coming soon">
-              <span class="pbg-country-card__code">DE</span>
-              <span class="pbg-country-card__name">Germany</span>
-              <span class="pbg-country-card__meta">Soon</span>
-            </span>
-          </li>
-          <li>
-            <span class="pbg-country-card pbg-country-card--soon" aria-label="United States — coming soon">
-              <span class="pbg-country-card__code">US</span>
-              <span class="pbg-country-card__name">USA</span>
-              <span class="pbg-country-card__meta">Soon</span>
-            </span>
-          </li>
-          <li>
-            <span class="pbg-country-card pbg-country-card--soon" aria-label="Vietnam — coming soon">
-              <span class="pbg-country-card__code">VN</span>
-              <span class="pbg-country-card__name">Vietnam</span>
-              <span class="pbg-country-card__meta">Soon</span>
-            </span>
-          </li>
-        </ul>
+        <p class="pbg-global-hub__lead chrome-silver-text" data-i18n="pauliGlobal.lead" data-i18n-html></p>
+        <p class="pbg-global-hub__note chrome-silver-text" data-i18n="pauliGlobal.note"></p>
+        <nav class="pbg-market-switch" data-i18n-aria="pauliGlobal.marketSwitchAria">
+          <ul class="pbg-country-grid pbg-country-grid--switch" data-i18n-aria="pauliGlobal.countriesAria">
+            <li>
+              <a class="pbg-country-card" href="pauli-bestprice-thailand.html?lang=th" data-i18n-aria="pauliGlobal.thOpenAria" data-market="th" data-market-lang="th">
+                <span class="pbg-country-card__icon pbg-country-card__icon--medallion" aria-hidden="true">
+                  <img class="pbg-country-card__icon-img" src="assets/icons/apps/pauli-bestprice-thailand.png?v=2026.08.01.01" alt="" width="96" height="96" loading="lazy" decoding="async">
+                </span>
+                <span class="pbg-country-card__name" lang="th">ประเทศไทย</span>
+                <span class="pbg-country-card__meta" data-i18n="pauliGlobal.statusLive"></span>
+              </a>
+            </li>
+            <li>
+              <span class="pbg-country-card pbg-country-card--soon" data-i18n-aria="pauliGlobal.deSoon" data-market="de" data-market-lang="de">
+                <span class="pbg-country-card__icon pbg-country-card__icon--medallion" aria-hidden="true">
+                  <img class="pbg-country-card__icon-img" src="assets/icons/apps/pauli-bestprice-deutschland.png?v=2026.08.01.01" alt="" width="96" height="96" loading="lazy" decoding="async">
+                </span>
+                <span class="pbg-country-card__name" lang="de">Deutschland</span>
+                <span class="pbg-country-card__meta" data-i18n="pauliGlobal.statusSoon"></span>
+              </span>
+            </li>
+            <li>
+              <span class="pbg-country-card pbg-country-card--soon" data-i18n-aria="pauliGlobal.usSoon" data-market="us" data-market-lang="en">
+                <span class="pbg-country-card__icon pbg-country-card__icon--medallion" aria-hidden="true">
+                  <img class="pbg-country-card__icon-img" src="assets/icons/apps/pauli-bestprice-usa.png?v=2026.08.01.01" alt="" width="96" height="96" loading="lazy" decoding="async">
+                </span>
+                <span class="pbg-country-card__name" lang="en">United States</span>
+                <span class="pbg-country-card__meta" data-i18n="pauliGlobal.statusSoon"></span>
+              </span>
+            </li>
+            <li>
+              <span class="pbg-country-card pbg-country-card--soon" data-i18n-aria="pauliGlobal.nlSoon" data-market="nl" data-market-lang="nl">
+                <span class="pbg-country-card__icon pbg-country-card__icon--medallion" aria-hidden="true">
+                  <img class="pbg-country-card__icon-img" src="assets/icons/apps/pauli-bestprice-nederland.png?v=2026.08.01.01" alt="" width="96" height="96" loading="lazy" decoding="async">
+                </span>
+                <span class="pbg-country-card__name" lang="nl">Nederland</span>
+                <span class="pbg-country-card__meta" data-i18n="pauliGlobal.statusSoon"></span>
+              </span>
+            </li>
+            <li>
+              <span class="pbg-country-card pbg-country-card--soon" data-i18n-aria="pauliGlobal.ukSoon" data-market="uk" data-market-lang="en-GB">
+                <span class="pbg-country-card__icon pbg-country-card__icon--medallion" aria-hidden="true">
+                  <img class="pbg-country-card__icon-img" src="assets/icons/apps/pauli-bestprice-uk.png?v=2026.08.01.01" alt="" width="96" height="96" loading="lazy" decoding="async">
+                </span>
+                <span class="pbg-country-card__name" lang="en-GB">United Kingdom</span>
+                <span class="pbg-country-card__meta" data-i18n="pauliGlobal.statusSoon"></span>
+              </span>
+            </li>
+          </ul>
+        </nav>
         <p class="app-front-legal-links chrome-silver-text">
-          <a href="pauli-bestprice-thailand.html">Thailand market page</a> ·
-          <a href="impressum.html">Imprint</a> ·
-          <a href="legal/thailand/privacy-policy-pauli-bestprice-global-thailand-en.txt">Privacy (TH market EN)</a> ·
-          <a href="ueber-uns.html">About Omni Solutions Global</a>
+          <a href="pauli-bestprice-thailand.html" data-i18n="pauliGlobal.linkThailand"></a> ·
+          <a href="impressum.html" data-i18n="pauli.linkImprint"></a> ·
+          <a href="legal/thailand/privacy-policy-pauli-bestprice-global-thailand-en.txt" data-i18n="pauliGlobal.linkPrivacy"></a> ·
+          <a href="ueber-uns.html" data-i18n="pauliGlobal.linkAbout"></a>
         </p>
       </section>
     </main>
 
     <footer class="app-legal-footer">
-      <a href="impressum.html" class="app-legal-footer-link chrome-silver-text">Legal notice</a>
+      <a href="impressum.html" class="app-legal-footer-link chrome-silver-text" data-i18n="pauliGlobal.linkLegal"></a>
     </footer>
   </div>
 
@@ -135,12 +146,37 @@
   <script src="https://cdn.jsdelivr.net/npm/i18next@23.11.5/dist/umd/i18next.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@2.5.2/i18nextHttpBackend.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@7.2.1/i18nextBrowserLanguageDetector.min.js"></script>
-  <script src="js/i18n-config.js?v=2026.07.26.12"></script>
-  <script src="js/world-lang.js?v=2026.07.26.12"></script>
-  <script src="js/i18n.js?v=2026.07.26.12"></script>
-  <script src="js/app-registry.js?v=2026.07.26.12"></script>
-  <script src="js/app.js?v=2026.07.26.12"></script>
-  <link rel="stylesheet" href="css/osg-security.css?v=2026.07.26.12" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="css/osg-security.css?v=2026.07.26.12"></noscript>
+  <script src="js/i18n-config.js?v=2026.08.01.01"></script>
+  <script src="js/world-lang.js?v=2026.08.01.01"></script>
+  <script src="js/i18n.js?v=2026.08.01.01"></script>
+  <script src="js/app-registry.js?v=2026.08.01.01"></script>
+  <script src="js/app-front-page.js?v=2026.08.01.01"></script>
+  <script src="js/app.js?v=2026.08.01.01"></script>
+  <link rel="stylesheet" href="css/osg-security.css?v=2026.08.01.01" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/osg-security.css?v=2026.08.01.01"></noscript>
+  <div id="osg-security-container">
+    <div id="osg-secure-badge" role="button" tabindex="0" data-i18n-aria="security.badgeAria">
+      <div class="osg-secure-badge__dot" aria-hidden="true"></div>
+      <span class="osg-secure-badge__label" data-i18n="security.badgeLabel"></span>
+    </div>
+    <div id="osg-security-modal" aria-hidden="true" role="dialog" aria-labelledby="osg-security-modal-title">
+      <div class="osg-security-modal__head">
+        <h4 id="osg-security-modal-title" class="osg-security-modal__title" data-i18n="security.modalTitle"></h4>
+        <button type="button" id="osg-security-close" class="osg-security-modal__close" data-i18n-aria="security.modalCloseAria">&times;</button>
+      </div>
+      <div class="osg-security-modal__status">
+        <div class="osg-security-modal__radar" aria-hidden="true">
+          <div class="osg-security-modal__radar-scan"></div>
+        </div>
+        <div>
+          <div class="osg-security-modal__gpu" data-i18n-html="security.gpuStatus"></div>
+          <div id="osg-security-latency" class="osg-security-modal__meta"></div>
+        </div>
+      </div>
+      <p class="osg-security-modal__text" data-i18n-html="security.architectureP1"></p>
+      <p class="osg-security-modal__text" data-i18n-html="security.architectureP2"></p>
+    </div>
+  </div>
+  <script src="js/osg-security.js?v=2026.08.01.01" defer></script>
 </body>
 </html>

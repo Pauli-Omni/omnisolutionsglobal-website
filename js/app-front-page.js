@@ -23,6 +23,19 @@
     return window.OSGI18nConfig ? OSGI18nConfig.assetUrl(descFile) : descFile;
   }
 
+  function resolveAppIcon(app) {
+    if (!app) return '';
+    if (app.id === 'omniqrAiPay') return OMNIQR_ICON;
+    var page = document.body.getAttribute('data-page') || '';
+    var market = document.body.getAttribute('data-market') || '';
+    if (app.id === 'pauliBestprice' && app.marketIcons) {
+      if ((page === 'pauli' || market === 'th') && app.marketIcons.th) {
+        return app.marketIcons.th;
+      }
+    }
+    return app.icon;
+  }
+
   function initIcon(app) {
     var img = document.getElementById('app-front-icon-img');
     var placeholder = document.getElementById('app-front-icon-placeholder');
@@ -37,11 +50,8 @@
       img.hidden = true;
       placeholder.hidden = false;
     };
-    if (app.id === 'omniqrAiPay') {
-      img.src = OMNIQR_ICON;
-      return;
-    }
-    img.src = window.OSGI18nConfig ? OSGI18nConfig.assetUrl(app.icon) : app.icon;
+    var iconPath = resolveAppIcon(app);
+    img.src = window.OSGI18nConfig ? OSGI18nConfig.assetUrl(iconPath) : iconPath;
   }
 
   function initWerbetext(app) {

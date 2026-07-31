@@ -115,7 +115,13 @@
 
       try {
         var urlLang = new URLSearchParams(window.location.search).get('lang');
-        if (urlLang) initialLng = normalizeActiveLocale(urlLang);
+        if (urlLang) {
+          initialLng = normalizeActiveLocale(urlLang);
+          // Market entry (?lang=th from country icon): stick for this tab session.
+          if (window.OSGWorldLang && OSGWorldLang.markUserUiPick) {
+            OSGWorldLang.markUserUiPick();
+          }
+        }
       } catch (e) { /* ignore */ }
 
       initialLng = normalizeActiveLocale(initialLng);

@@ -1,3 +1,308 @@
+## 2026-08-01 00:55 UTC+7 — Länder-Medaillen TH/DE/US/NL/UK + OmniTalk-Icon
+
+- **Master-Prompt-ID:** MP-2026-08-01-PAULI-MARKET-MEDALLIONS
+- **Arbeitspaket-ID:** WP-032
+- **Module:** Pauli Global-Hub, Thailand-Markt, App-Registry, OmniTalk-Icon, Release-Cache
+- **Änderungsart:** Branding | Assets | i18n
+- **Auswirkungsgrad:** Nutzer-Medaillen eingebaut (TH live; DE/US/NL/UK soon); VN durch NL+UK ersetzt (kein VN-Asset geliefert); OmniTalk-Icon aktualisiert; Build-Cache `2026.08.01.01`
+- **Dateien neu:** `assets/icons/apps/pauli-bestprice-{thailand,deutschland,usa,nederland,uk}.png` (ersetzt/ergänzt), `assets/icons/apps/omnitalk-ai-live.png`
+- **Dateien geändert:** `assets/icons/apps/pauli-bestprice.png`, `js/app-registry.js`, `pauli-bestprice-global.html`, `pauli-bestprice-thailand.html`, `assets/locales/en.json`, `assets/config/release.json`
+- **Verifikation:** Icons echte PNG 1024×1024 (`file`); `en.json` parse OK; `node --check` app-registry; lokal Build `2026.08.01.01`
+- **Status:** Lokal fertig; **Live noch alt** — WEBSEITE ohne Git; Deploy (Render Manual / Sync) ausstehend
+- **Hinweis:** Live-Check Thailand-Icon folgt nach Deploy; bis dahin 404/altes Build möglich
+
+---
+
+## 2026-07-30 18:15 UTC+7 — Pauli Global-Icon + Länder-Medaillen + Markt-Sprache
+
+- **Master-Prompt-ID:** MP-2026-07-30-PAULI-GLOBAL-ICON
+- **Arbeitspaket-ID:** WP-031
+- **Module:** Home-Icon, Pauli Global-Hub, Thailand-Markt, i18n Markt-Entry
+- **Änderungsart:** Branding | UX | i18n
+- **Auswirkungsgrad:** Home + Global-Hub zeigen globales Medaillon (Omni Solutions Global®); Thailand-Icon nur im Länder-Slot / Thailand-Seite; Länderlabels nativ (ประเทศไทย / Deutschland / United States / Việt Nam); Klick Thailand → `?lang=th` + Session-Pick; Homepage weiter EN-first
+- **Dateien neu:** `assets/icons/apps/pauli-bestprice-thailand.png`
+- **Dateien geändert:** `assets/icons/apps/pauli-bestprice.png`, `js/app-registry.js`, `js/app-front-page.js`, `js/i18n.js`, `js/world-lang.js`, `pauli-bestprice-global.html`, `pauli-bestprice-thailand.html`, `css/style.css`, `assets/locales/*`, `index.html`, `impressum.html` (Nav→Global-Hub), `assets/config/release.json`
+- **Verifikation:** `node --check` JS OK; Locale-JSON parse OK; Icons 1024×1024 PNG; Build `2026.07.30.08`
+- **Status:** Lokal behoben
+- **Hinweis:** DE/US/VN-Medaillen folgen, sobald Nutzer die Icons liefert
+
+---
+
+## 2026-07-30 03:50 UTC+7 — Pauli Markt-Schaltkasten; Chrome außen; Refs sichtbar
+
+- **Master-Prompt-ID:** MP-2026-07-30-PAULI-MARKET-CHROME
+- **Arbeitspaket-ID:** WP-030
+- **Module:** Pauli Global/Thailand Front, Chrome-Meta, Home-Refs, Locales
+- **Änderungsart:** UX | Layout | i18n
+- **Auswirkungsgrad:** Titel über Münze; Markt-Schaltkasten TH live + DE/US/VN Platzhalter; Münze mittig; Samko/© auf äußerer Silberleiste; Enterprise auf Global-Hub; Home-Refs ohne Höhen-Clip
+- **Dateien geändert:** `pauli-bestprice-global.html`, `pauli-bestprice-thailand.html`, `css/style.css`, `js/release-guard.js`, `assets/locales/*`, `assets/config/release.json`, `index.html`
+- **Verifikation:** Locale-JSON parse OK; `node --check` release-guard; HTTP 200 Global/Thailand/CSS/locales; Markup `pbg-market-switch` + Enterprise auf beiden Pauli-Seiten; Build `2026.07.30.07`
+- **Status:** Lokal behoben
+- **Hinweis:** DE/RU-Werbetext-Länge vs. EN später gesondert prüfen (Nutzer)
+
+---
+
+## 2026-07-30 02:30 UTC+7 — Schrift runter; OmniQR AGB/Chrome-Ecken korrekt
+
+- **Master-Prompt-ID:** MP-2026-07-30-OMNIQR-CHROME
+- **Arbeitspaket-ID:** WP-029
+- **Module:** Rubber-Scale, OmniQR AGB-Texte, Chrome-Ecken (Enterprise/Menü/PDF/Support)
+- **Änderungsart:** Bugfix | UX | Legal | Layout
+- **Auswirkungsgrad:** Kleinere Schrift (Rubber max 1.0); AGB-Name OmniQR-AI + Company Limited®; Menü links innen; PDF links / Support rechts; Enterprise oben links
+- **Dateien geändert:** `js/release-guard.js`, `js/osg-rubber-scale.js`, `css/osg-security.css`, `css/style.css`, `omniqr-ai-for-tourist-of-thailand/css/omniqr-a11y.css`, `legal/agb-canonical-de.js`, `assets/locales/*`, `js/app-registry.js`
+- **Verifikation:** Locale DE/EN s1 mit Company Limited® + OmniQR-AI; HTTP 200 AGB/CSS; `node --check` OK; Build `2026.07.30.06`
+- **Status:** Lokal behoben
+
+---
+
+## 2026-07-30 01:40 UTC+7 — Home QA: Gummi-Skalierung, CTAs, OmniFIX Dokumentassistent
+
+- **Master-Prompt-ID:** MP-2026-07-30-HOME-QA
+- **Arbeitspaket-ID:** WP-028
+- **Module:** Rubber-Scale, Home-CTAs, OmniFIX-Brand, Sidebar mobil, Chrome-rem
+- **Änderungsart:** UX | Layout | Content | A11y
+- **Auswirkungsgrad:** Gesamte UI skaliert mit Viewport (rem-Root); About-Us-CTA weg; OmniFIX = Document Assistant / Dokumentassistent; Sidebar-Toggle über Chrome
+- **Dateien neu:** `js/osg-rubber-scale.js`
+- **Dateien geändert:** `js/release-guard.js`, `css/style.css`, `css/trilingual-visual.css`, `index.html`, `js/app-registry.js`, `assets/locales/*`, `assets/config/release.json`
+- **Verifikation:** `node --check` release-guard; About-CTA entfernt; Brand-String Document Assistant; Build `2026.07.30.05`
+- **Status:** Struktur lokal; **Icons:** Nutzer liefert kompletten korrekten Satz nach
+
+---
+
+## 2026-07-30 01:20 UTC+7 — Portal einmalig; Back → Home; 10s
+
+- **Master-Prompt-ID:** MP-2026-07-30-PORTAL-ONCE
+- **Arbeitspaket-ID:** WP-027
+- **Module:** Portal (`js/app.js`), Hub-Back (`js/hub-back-nav.js`)
+- **Änderungsart:** UX | Navigation
+- **Auswirkungsgrad:** Vorhang nur 1× pro Tab-Session; Back von App landet auf Home ohne Vorhang; Portal-Dauer 10s
+- **Dateien geändert:** `js/app.js`, `js/hub-back-nav.js`, `index.html`, `assets/config/release.json`
+- **Verifikation:** `node --check` OK; `MIN_PORTAL_MS=10000`; Session-Key `osg-portal-seen`
+- **Status:** Lokal erledigt
+
+---
+
+## 2026-07-30 01:10 UTC+7 — Future von Home getrennt; Überlappung behoben
+
+- **Master-Prompt-ID:** MP-2026-07-30-HOME-CLEAN
+- **Arbeitspaket-ID:** WP-026
+- **Module:** Home-Struktur, OZGS/Future-Seite, Chrome-Meta, Icon-Grid Lesbarkeit
+- **Änderungsart:** Bugfix | UX | Struktur
+- **Auswirkungsgrad:** Future (OZGS) ist nicht mehr auf der Home; Home = lesbares Icon-Grid; Silberrahmen unverändert
+- **Dateien neu:** `ozgs.html`
+- **Dateien geändert:** `index.html` (OZGS entfernt), `css/style.css`, `js/home.js`, `assets/locales/{en,de,th,pl,ru,zh}.json` (`nav.future`), `assets/config/release.json`
+- **Dateien gelöscht:** OZGS-Block aus Home-DOM
+- **Verifikation:** Home ohne `#ozgs`/`ozgs.js`; `ozgs.html` 200; Chrome-Frames weiter vorhanden; Build `2026.07.30.03`
+- **Status:** Lokal behoben
+
+---
+
+## 2026-07-30 00:47 UTC+7 — App-Icons final ersetzt; Alt-Archive vernichtet
+
+- **Master-Prompt-ID:** MP-2026-07-30-ICON-PURGE
+- **Arbeitspaket-ID:** WP-025
+- **Module:** App-Icons Pauli / OmniFIX / OmniCAD / OmniTalk
+- **Änderungsart:** Branding | Assets | Cleanup
+- **Auswirkungsgrad:** Hochgeladene Artwork-Dateien sind alleinige Icon-Quelle; `_replaced_*`-Archive gelöscht
+- **Dateien neu:** —
+- **Dateien geändert:** `assets/icons/apps/{pauli-bestprice,omnifix-ai-dokument,omnicad-ai-cam,omnitalk-ai-live}.{png,jpg}`, Build `2026.07.30.02`
+- **Dateien gelöscht:** `assets/icons/apps/_replaced_20260728/`, `_replaced_20260729/`, `_replaced_20260730/` (komplette Alt-Icons)
+- **Verifikation:** `_replaced_*` nicht mehr vorhanden; 4 Icons 1024×1024 PNG; lokal HTTP 200
+- **Status:** Lokal erledigt
+
+---
+
+## 2026-07-30 00:45 UTC+7 — Home-Grid wieder sichtbar; Future getrennt; Chrome-Meta fest
+
+- **Master-Prompt-ID:** MP-2026-07-30-HOME-FRAME
+- **Arbeitspaket-ID:** WP-024
+- **Module:** Home-Layout, Chrome-Rahmen, OZGS-Position, App-Icons, Site-Mark
+- **Änderungsart:** Bugfix | UX | Branding | Layout
+- **Auswirkungsgrad:** Home zeigt wieder Icon-Grid zuerst; OZGS ist Future unterhalb; Location/© fest; altes ∞-Logo entfernt; Pauli/OmniFIX/OmniCAD-Icons ersetzt
+- **Dateien neu:** —
+- **Dateien geändert:** `index.html`, `css/style.css`, `js/release-guard.js`, `js/home.js`, `weitere-apps.html`, `assets/config/release.json`, `assets/config/visual-ai-briefs.json`, `assets/icons/apps/{pauli-bestprice,omnifix-ai-dokument,omnicad-ai-cam}.png`
+- **Dateien gelöscht:** Home-`page-footer` (ersetzt durch `.chrome-fixed-meta`)
+- **Verifikation:** `node --check` release-guard/home; HTTP 200 für Index + 3 Icons + CSS/JS lokal; Grid vor `#ozgs`; Preview `http://localhost:8080/index.html#home-app-grid`
+- **Status:** Lokal implementiert und smoke-getestet
+
+---
+
+## 2026-07-29 22:20 UTC+7 — OmniTalk CALL LIVE: Icon ersetzt (OSG Homepage)
+
+- **Master-Prompt-ID:** MP-2026-07-29-OMNITALK-ICON
+- **Arbeitspaket-ID:** WP-023
+- **Module:** App-Icon OmniTalk-AI Live, Build-Cache-Bust, Visual Brief
+- **Änderungsart:** Branding | Content | Assets
+- **Auswirkungsgrad:** Altes OmniTalk-Icon durch neues „OMNITALK CALL LIVE“-Artwork ersetzt; Cache-Bust `2026.07.29.02`
+- **Dateien neu:** `assets/icons/apps/omnitalk-ai-live.jpg`, `assets/images/omnitalk/omnitalk-call-live.jpg`, `assets/images/omnitalk/omnitalk-call-live-source.jpg`
+- **Dateien geändert:** `assets/icons/apps/omnitalk-ai-live.png` (512×512 PNG), `index.html`, `omnitalk-ai-live.html`, `omnitalk-ai-live-beschreibung.html`, `assets/config/release.json`, `assets/config/visual-ai-briefs.json`, `js/ozgs.js` (Build-Fallback)
+- **Dateien gelöscht:** —
+- **Verifikation:** `file` → PNG 512×512 / JPEG 1024×1024; Build-IDs auf `2026.07.29.02` gesetzt; DNS-Check: `omnitalc.ai` resolvt nicht, `omnitalk.ai` = separates Astro/Cloudflare-Pages-Produkt (kein Quellcode/Deploy-Zugang in diesem Workspace)
+- **Status:** Lokal in Homepage-Workspace ersetzt; Live auf `omnitalk.ai` / Render **nicht** aus diesem Workspace deploybar ohne Cloudflare-/GitHub-Zugang
+
+---
+
+## 2026-07-29 20:04 UTC+7 — Omni Zero Gate Security (OZGS) Sektion + Audio + Early Access
+
+- **Master-Prompt-ID:** MP-2026-07-29-OZGS
+- **Arbeitspaket-ID:** WP-022
+- **Module:** Homepage OZGS-Sektion, i18n, Early-Access-API, ElevenLabs-Narration, Audio-Player
+- **Änderungsart:** Feature | Content | UX | API
+- **Auswirkungsgrad:** Startseite erhält Zukunftssektion OZGS inkl. Präsentationstext, Zielgruppen, Warteliste und Brand-Voice-Audio
+- **Dateien neu:** `css/ozgs.css`, `js/ozgs.js`, `02_Quellcode/Core_Logik/ozgs-waitlist.js`, `scripts/generate-ozgs-narration.js`, `assets/images/ozgs/omni-zero-gate-security.png`, `assets/audio/narration/ozgs/{de-DE,en-US,th-TH,pl-PL,ru-RU,zh-CN}.mp3`
+- **Dateien geändert:** `index.html` (Sektion + Build `2026.07.29.01`), `assets/locales/{de,en,th,pl,ru,zh}.json` (`ozgs.*`), `02_Quellcode/Core_Logik/index.js` (Waitlist-Router)
+- **Dateien gelöscht:** —
+- **Verifikation:** Waitlist POST ok; Audio DE/EN generiert (ElevenLabs); HTTP 200 für Sektion/CSS/JS/Bild/Audio; `npm run test:omniqr` 13/13; Preview `http://localhost:8080/index.html#ozgs`; Sync → WEBSEITE-kopie
+- **Status:** Lokal implementiert, getestet und zur Ansicht bereit
+
+---
+
+## 2026-07-29 15:12 UTC+7 — Vorlesefunktion: Modifizierungs-Hinweis statt Playback
+
+- **Master-Prompt-ID:** MP-2026-07-29-VOICE-MAINTENANCE
+- **Arbeitspaket-ID:** WP-021
+- **Module:** TTS-Transport (`voice-lang-maintenance.js`), Locale-Maintenance-Texte
+- **Änderungsart:** Hotfix | UX | Content
+- **Auswirkungsgrad:** Klick auf Vorlese-Steuerung zeigt Wartungshinweis; keine Audio-Wiedergabe startet
+- **Dateien neu:** —
+- **Dateien geändert:** `js/voice-lang-maintenance.js`, `assets/locales/{de,en,th,pl,ru,zh}.json`; Sync nach `OmniSolutionsGlobal WEBSEITE-kopie`
+- **Dateien gelöscht:** —
+- **Verifikation:** `node --check js/voice-lang-maintenance.js` OK; JSON-Parse für 6 Locale-Dateien OK; `npm run test:omniqr` (13/13 pass); Render-Redeploy ausgelöst, Live-JS enthält den neuen Wartungs-Guard aktuell noch nicht
+- **Status:** Lokal implementiert und getestet; Live-Code-Quelle für Render derzeit nicht aus diesem Workspace steuerbar
+
+---
+
+## 2026-07-28 14:16 UTC+7 — Responsive Curve-Match (Fullscreen/Split stabil)
+
+- **Master-Prompt-ID:** MP-2026-07-28-CURVE-MATCH
+- **Arbeitspaket-ID:** WP-020
+- **Module:** App-Page Layout, responsive shell/body spacing, text wrapping, chrome-safe paddings
+- **Änderungsart:** Bugfix | UX | Responsive
+- **Auswirkungsgrad:** Seiten mit Vorlesefunktion bleiben beim Resize stabil (zentriert, kein Overlap/Chaos)
+- **Dateien neu:** —
+- **Dateien geändert:** `css/style.css` (neuer Block `OSG APP-PAGE CURVE-MATCH 2026-07-28`), Build auf `2026.07.28.07`
+- **Dateien gelöscht:** —
+- **Verifikation:** lokale Browser-Prüfung in mehreren Breiten; Controls bleiben im Innenrahmen, Text bricht sauber
+- **Status:** Lokal implementiert
+
+---
+
+## 2026-07-28 13:10 UTC+7 — Chrome-UI: Play/Zurück/Enterprise an innere Leiste
+
+- **Master-Prompt-ID:** MP-2026-07-28-CHROME-CONTROLS
+- **Arbeitspaket-ID:** WP-019
+- **Module:** chrome-frame-inner, TTS-Transport, site-mark, Enterprise Core
+- **Änderungsart:** Bugfix | UX | CSS
+- **Auswirkungsgrad:** Alle Seiten mit Chrom-Doppelrahmen; Play klickbar; Badge unten links
+- **Dateien neu:** —
+- **Dateien geändert:** `css/style.css` (`--chrome-control-*`, site-mark top-left, Home-Badge), `css/voice-lang-maintenance.css` (Play innen, kein translateY 50%, z-index), `css/osg-security.css` (bottom-left, flaches Badge); Build `2026.07.28.06`
+- **Verifikation:** Lokal Hard-Reload; ≤480px gap-Variablen gesetzt
+- **Status:** Lokal implementiert
+
+---
+
+## 2026-07-28 12:26 UTC+7 — Thai-Narration: echte Thai-Stimme (nur TH)
+
+- **Master-Prompt-ID:** MP-2026-07-28-THAI-LANG
+- **Arbeitspaket-ID:** WP-018
+- **Module:** Narration MP3 (th-TH), TTS-Router/ElevenLabs-Thai-Pfad, Generate-Script
+- **Änderungsart:** Bugfix | Asset
+- **Auswirkungsgrad:** Nur thailändische Audio-Dateien; DE/EN/PL/RU/ZH unverändert
+- **Dateien neu:** `assets/audio/narration/omniKing/{front,desc}/th-TH.mp3`
+- **Dateien geändert:** alle bestehenden `**/th-TH.mp3` (20 Hub/App; neu generiert); `scripts/generate-all-narration.js` (`omnibot`→`omniKing`); `scripts/test-voice-all-pages.js`; Build-Cache `2026.07.28.05`; zuvor `elevenlabs-speak.js` (eleven_v3 + `language_code: th`); `js/osg-brand-tts.js` (`RATE_TH=1.0`)
+- **Dateien gelöscht:** —
+- **Verifikation:** 20/20 Thai-Targets OK (18 + 2 omniKing); EN/DE/PL/RU/ZH MP3-mtime/size unverändert; `node --check` Generate/Brand-TTS/ElevenLabs OK; Sync → WEBSEITE-kopie (22× th-TH.mp3)
+- **Hinweis:** ElevenLabs-Quota leer → Fallback macOS-Stimme **Kanya** (th_TH) → MP3. Kein gibberish mehr von multilingual_v2. Nach Quota-Reset optional Brand-Voice mit `generate-all-narration.js --force --langs=th` ersetzen.
+- **Status:** Lokal behoben — Hard-Reload localhost; Live-Deploy ausstehend
+
+---
+
+## 2026-07-28 03:05 UTC+7 — Home/Portal Fix: Icons, 10s Ton, Layout, Flaggen, Chrom
+
+- **Master-Prompt-ID:** MP-2026-07-28-HOME-PORTAL
+- **Arbeitspaket-ID:** WP-017
+- **Module:** Portal, Home-Layout, Icons, Sprachleiste, Chrome-Frame
+- **Änderungsart:** Bugfix | Content | Asset | UX
+- **Auswirkungsgrad:** Startseite lokal (Deploy für Live nötig)
+- **Dateien neu:** `assets/icons/apps/_replaced_20260728/` (Archiv alter Icons)
+- **Dateien geändert:** Icons (6 Apps aus Desktop `Applikation Icon's`, Pauli unverändert); `js/app.js` (Portal 10s); `js/i18n-config.js` (🇺🇸 EN); `js/home.js` (Icon-Cache-Bust); `css/style.css` (Scroll, gleiche Kacheln, Refs kompakt, Chrom dünner); `css/voice-lang-maintenance.css` (Flaggen-Position); `index.html` (Build `2026.07.28.01`, quiet Welcome)
+- **Dateien gelöscht:** alte Icon-Backups `*.bak*` / `*.pre-fix.jpg`
+- **Verifikation:** Icon-Dateigrößen ≠ vorher (DIFF bestätigt); `MIN_PORTAL_MS=10000`; Sync → WEBSEITE-kopie
+- **Status:** Lokal implementiert — Hard-Reload localhost:8080; Live-Deploy ausstehend
+
+---
+
+## 2026-07-28 01:05 UTC+7 — Affiliate/Involve Impressum no-JS Prüfbarkeit
+
+- **Master-Prompt-ID:** MP-2026-07-28-AFFILIATE-AUDIT
+- **Arbeitspaket-ID:** WP-016
+- **Module:** impressum.html, Affiliate Live-Check
+- **Änderungsart:** Bugfix | Compliance (Publisher-Verification)
+- **Auswirkungsgrad:** Impressum ohne JavaScript lesbar für Involve/Affiliate-Crawler
+- **Dateien neu:** `docs/AFFILIATE_LIVE_CHECK_20260728.txt` (aktualisiert)
+- **Dateien geändert:** `impressum.html` (EN-Fallbacks in data-i18n, mailto, Pauli/Legal-Links, noscript); Sync → `WEBSEITE-kopie`
+- **Dateien gelöscht:** —
+- **Verifikation:** Live-HTTP 200 für Property/Legal/API; live Impressum vor Fix plain≈58 Zeichen; lokal nach Fix plain≈1237 + Company/Email; Affiliate-API live `involve_authenticate_ok` / active=true
+- **Hinweis:** Live noch Build `2026.07.26.12` — Deploy nötig bevor Involve erneut beantragen
+- **Status:** Lokal implementiert und verifiziert; Live-Deploy ausstehend
+
+---
+
+## 2026-07-27 22:29 UTC+7 — Meta/Icons/Locales/Cache-Bust Fix (WP-015)
+
+- **Master-Prompt-ID:** MP-2026-07-27-OSG-TRANSPARENCY2
+- **Arbeitspaket-ID:** WP-015
+- **Module:** HTML meta, Icons (Pillow), Locales, Cache-Bust, WEBSEITE-kopie Sync
+- **Änderungsart:** Bugfix | Content | Asset
+- **Auswirkungsgrad:** Alle HTML-Seiten (Build-ID), App-Icons Transparenz, Produktnamen Locales, Browser-Cache
+- **Dateien neu:** —
+- **Dateien geändert:** `*.html` (28 meta + 29 ?v=), `assets/icons/apps/{omnicad,omnigate,omniqr,omniai,pauli}*.png`, `assets/locales/{de,en,pl,ru,th,zh}.json`; Sync → `WEBSEITE-kopie`
+- **Dateien gelöscht:** —
+- **Verifikation:** Broken meta = 0; corner alpha = 0 (5 Icons); old `2026.07.26.13` in HTML = 0; Kopie Meta/Icons OK
+- **Log:** `OSG_TRANSPARENCY2.txt` (OmniBot-AI-PROFIT Cursor project)
+- **Status:** Implementiert und verifiziert (Pillow/Regex/JSON; kein Browser-Live-Test)
+
+---
+
+## 2026-07-27 22:19 UTC+7 — Portal sound, chrome-inner, English brands, icons
+
+- **Master-Prompt-ID:** MP-2026-07-27-OSG-FIX-A-G
+- **Arbeitspaket-ID:** WP-014
+- **Module:** Portal-Video, Chrome-Frames, App-Registry, Locales, Icons, CSS
+- **Änderungsart:** Bugfix | Feature | Content
+- **Auswirkungsgrad:** Portal-Audio, Rahmen auf allen Hauptseiten, Produktnamen EN-only, Icon-Transparenz
+- **Dateien neu:** `omni-king-ai-trading.html`, `omni-king-ai-trading-beschreibung.html` (aus OmniBot-Templates); Script `scripts/osg_fix_all.py` (Cursor-Projekt)
+- **Dateien geändert:** `js/portal-video.js`, `js/app.js`, `js/app-registry.js`, `css/style.css`, `index.html`, `werbe-ecke.html`, `weitere-apps.html`, `presentation.html`, `omniqr-pay.html`, `omniqr-pay-beschreibung.html`, `omnibot-ki-profit*.html` (Redirect), `assets/locales/*.json` (18), `assets/icons/apps/*` (transparent PNGs)
+- **Dateien gelöscht:** —
+- **Verifikation:** `node --check js/portal-video.js` OK; `node --check js/app-registry.js` OK; chrome-frame-inner YES auf index/impressum/agb/werbe-ecke; registry ohne OmniBot, mit Omni King; Pillow flood-fill Icons
+- **Hinweis:** Vollständige Site liegt unter `OmniSolutionsGlobal WEBSEITE-kopie` (Ordner `WEBSEITE` ist Stub nur assets/js/scripts)
+- **Status:** Implementiert und getestet (Syntax/Verify; kein Browser-Live-Test)
+
+---
+
+## 2026-07-26 23:36 UTC+7 — WP-013 Final QA Durchgang (Texte + Stimme)
+
+- **Master-Prompt-ID:** MP-2026-07-26-OSG-QA
+- **Arbeitspaket-ID:** WP-013
+- **Module:** Locales, Pauli HTML, OSGBrandTts, ElevenLabs Speak, Voice-Lang-Maintenance
+- **Änderungsart:** Bugfix | Feature | Qualität
+- **Auswirkungsgrad:** Änderung bestehender Funktionalität (i18n-Vollständigkeit, TTS-Gate, Stimmmodulation)
+- **Dateien neu:** —
+- **Dateien geändert:** `assets/locales/{en,de,th,pl,ru,zh}.json`, `pauli-bestprice-thailand.html`, `pauli-bestprice-thailand-beschreibung.html`, `pauli-bestprice-global.html`, `js/voice-lang-maintenance.js`, `js/osg-brand-tts.js`, `02_Quellcode/Core_Logik/elevenlabs-speak.js`, `assets/config/release.json` (build `2026.07.26.13`)
+- **Dateien gelöscht:** —
+- **Verifikation:** `node --test 02_Quellcode/Core_Logik/tts-router.test.js` → 2/2 pass; Locale-Scan: kein `100 percent` / `99.9 percent` mehr; Pauli-HTML ohne sichtbare EN-Hardcodes im Body; Narration-Regen `pauli-front` → **FAIL elevenlabs_quota_exceeded** (alle 6 Sprachen)
+- **Abhängigkeiten:** WP-012
+- **Status:** Teilweise implementiert — Text/i18n/TTS-Gate/Modulation erledigt; **Pauli-Front-MP3s müssen nach Quota-Reset mit `--force --only=pauli-front` neu erzeugt werden** (DE/PL/TH waren Stub, EN/RU/ZH alt/lang — alle nicht mehr textaktuell)
+
+### Befund → Fix
+1. Gemischte EN-Reste (`100 percent`) in DE/TH/RU/ZH → native Formulierungen
+2. PL/RU/ZH: Wartungstexte + brandVoice*-Keys fehlten → nachgezogen
+3. Pauli-Seiten: Hardcode-Englisch neben i18n → data-i18n verdrahtet; Global-Hub neuer Block `pauliGlobal.*`
+4. TTS-Leiste fälschlich auf `global-hub` (Klasse `app-page--front`) → Gate nur noch `data-app-view=front|desc`
+5. Stimmmodulation: ElevenLabs `voice_settings` sprachabhängig; Playback-Rate TH 0.312 / ZH 0.94 / RU 0.96
+6. Pauli `frontWerbetext` auf volle Marketinglänge (alle 6 UI-Sprachen) — Audio-Regen blockiert durch Quota
+
+
 # Änderungsprotokoll (laufend) — Omni Solutions Global Homepage
 
 **Pflicht:** Nach jedem Arbeitspaket sofort eintragen — **oben** (neueste zuerst). Datei nie gesamtheitlich überschreiben.
