@@ -1,3 +1,16 @@
+## 2026-08-01 02:40 UTC+7 — Pauli-Märkte/UX laut Screenshots
+
+- **Master-Prompt-ID:** MP-2026-08-01-PAULI-MARKET-UX
+- **Arbeitspaket-ID:** WP-035
+- **Module:** Pauli Global/Thailand/Market-Soon, Home-Icons, Back, Play-Leiste, ozgs/King Deploy
+- **Änderungsart:** UX | Bugfix | Branding
+- **Auswirkungsgrad:** Thailand ohne doppelte Länderleiste; DE/US/NL/UK/VN öffnen Marktseite in Markt-Sprache (Soon); Home-/Global-Icons verkleinert; Back/Play kleiner; ozgs+OmniKing live
+- **Dateien neu:** `pauli-bestprice-market.html`, `js/pauli-market-soon.js`
+- **Dateien geändert:** Thailand/Global HTML, CSS, Locales, release
+- **Status:** Deploy in Arbeit
+
+---
+
 ## 2026-08-01 02:20 UTC+7 — Thailand-Schaltkasten Medaillen (VN raus)
 
 - **Master-Prompt-ID:** MP-2026-08-01-TH-MARKET-MEDALLIONS
@@ -7,7 +20,7 @@
 - **Auswirkungsgrad:** Thailand-Seite hatte noch DE/US/VN-Buchstaben; jetzt gleiche Medaillen wie Global (TH live + DE/US/NL/UK); Münze über Titel; Build `2026.08.01.03`
 - **Dateien geändert:** `pauli-bestprice-thailand.html`, `pauli-bestprice-global.html`, `index.html`, `css/style.css`, `assets/config/release.json`
 - **Verifikation:** folgt nach Deploy
-- **Status:** Deploy in Arbeit
+- **Status:** Live — Build `2026.08.01.03`; Thailand ohne VN; Medaillen DE/US/NL/UK
 
 ---
 

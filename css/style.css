@@ -5109,13 +5109,64 @@ body[data-app-id="pauliBestprice"] .app-front-icon-img {
   background: transparent;
 }
 
-/* Global medallion includes OSG plaque — do not circular-crop; largest center piece */
+/* Global medallion — centered, moderated size (not oversized) */
 body[data-page="pauli-global"] .app-front-icon-img {
-  width: min(82vw, 28rem) !important;
-  max-width: 28rem !important;
+  width: min(52vw, 14.5rem) !important;
+  max-width: 14.5rem !important;
   height: auto !important;
   -webkit-mask-image: none !important;
   mask-image: none !important;
+}
+
+body[data-page="pauli"] .app-front-icon-img,
+body[data-app-id="pauliBestprice"] .app-front-icon-img {
+  width: min(48vw, 13rem) !important;
+  max-width: 13rem !important;
+}
+
+body[data-page="pauli-market"] .app-front-icon-img {
+  width: min(48vw, 13rem) !important;
+  max-width: 13rem !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+body[data-page="pauli-market"] .pbg-market-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+body[data-page="pauli-market"] .pbg-market-soon__status {
+  margin: 0.35rem 0 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+body[data-page="pauli-market"] .pbg-market-soon__lead {
+  margin: 0 auto 1.1rem;
+  max-width: 34rem;
+  line-height: 1.55;
+  opacity: 0.92;
+}
+
+body[data-page="pauli-market"] .pbg-market-soon__code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.5rem;
+  height: 5.5rem;
+  margin: 0.5rem auto;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  font-size: 1.35rem;
+  font-weight: 700;
 }
 
 body[data-page="pauli-global"] .app-front-title {
@@ -5297,9 +5348,10 @@ body[data-page="home"] .home-ai-tagline {
   outline: none;
 }
 
+/* Home portfolio icons — compact (screenshots: previously oversized) */
 .home-app-tile__icon {
-  width: clamp(6.75rem, 14vw, 8.75rem);
-  height: clamp(6.75rem, 14vw, 8.75rem);
+  width: clamp(4.25rem, 8.5vw, 5.75rem);
+  height: clamp(4.25rem, 8.5vw, 5.75rem);
   object-fit: contain;
   flex: 0 0 auto;
   display: block;
@@ -5521,16 +5573,16 @@ body[data-page="home"] .home-app-tile {
   gap: 0.3rem !important;
 }
 body[data-page="home"] .home-app-tile__icon {
-  width: clamp(6.75rem, 14vw, 8.75rem) !important;
-  height: clamp(6.75rem, 14vw, 8.75rem) !important;
+  width: clamp(4.25rem, 8.5vw, 5.75rem) !important;
+  height: clamp(4.25rem, 8.5vw, 5.75rem) !important;
   margin: 0 auto !important;
   object-fit: contain !important;
   object-position: center center !important;
 }
 body[data-page="home"] .home-app-tile__icon--pauli,
 body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
-  width: clamp(8.25rem, 16.5vw, 10.5rem) !important;
-  height: clamp(8.25rem, 16.5vw, 10.5rem) !important;
+  width: clamp(4.75rem, 9.5vw, 6.25rem) !important;
+  height: clamp(4.75rem, 9.5vw, 6.25rem) !important;
   transform: none !important;
   transform-origin: center center !important;
   object-fit: contain !important;
@@ -5568,16 +5620,16 @@ body[data-page="home"] .home-refs--fit {
     padding-right: 0 !important;
   }
   body[data-page="home"] .home-app-tile {
-    min-height: 9.5rem !important;
+    min-height: 7.5rem !important;
   }
   body[data-page="home"] .home-app-tile__icon {
-    width: clamp(5.75rem, 22vw, 7.25rem) !important;
-    height: clamp(5.75rem, 22vw, 7.25rem) !important;
+    width: clamp(4rem, 16vw, 5.25rem) !important;
+    height: clamp(4rem, 16vw, 5.25rem) !important;
   }
   body[data-page="home"] .home-app-tile__icon--pauli,
   body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
-    width: clamp(6.5rem, 24vw, 8rem) !important;
-    height: clamp(6.5rem, 24vw, 8rem) !important;
+    width: clamp(4.25rem, 17vw, 5.5rem) !important;
+    height: clamp(4.25rem, 17vw, 5.5rem) !important;
   }
 }
 @media (max-width: 480px) {
@@ -5585,16 +5637,16 @@ body[data-page="home"] .home-refs--fit {
     padding: 0.4rem 0.4rem 0.85rem !important;
   }
   body[data-page="home"] .home-app-tile {
-    min-height: 8.5rem !important;
+    min-height: 6.75rem !important;
   }
   body[data-page="home"] .home-app-tile__icon {
-    width: clamp(5.25rem, 28vw, 6.5rem) !important;
-    height: clamp(5.25rem, 28vw, 6.5rem) !important;
+    width: clamp(3.75rem, 22vw, 4.85rem) !important;
+    height: clamp(3.75rem, 22vw, 4.85rem) !important;
   }
   body[data-page="home"] .home-app-tile__icon--pauli,
   body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
-    width: clamp(5.9rem, 30vw, 7.2rem) !important;
-    height: clamp(5.9rem, 30vw, 7.2rem) !important;
+    width: clamp(4rem, 23vw, 5.1rem) !important;
+    height: clamp(4rem, 23vw, 5.1rem) !important;
   }
 }
 
@@ -5737,11 +5789,11 @@ body[data-page="home"] .home-app-grid {
   margin-right: auto !important;
 }
 
-/* Pauli icon must have same diameter as all others */
+/* Pauli icon same size as other home tiles */
 body[data-page="home"] .home-app-tile__icon--pauli,
 body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
-  width: clamp(6.75rem, 14vw, 8.75rem) !important;
-  height: clamp(6.75rem, 14vw, 8.75rem) !important;
+  width: clamp(4.25rem, 8.5vw, 5.75rem) !important;
+  height: clamp(4.25rem, 8.5vw, 5.75rem) !important;
   transform: none !important;
 }
 

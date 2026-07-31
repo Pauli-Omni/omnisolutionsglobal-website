@@ -677,5 +677,12 @@
     "waitlistEmailInvalid": "Bitte eine gültige geschäftliche E-Mail-Adresse eingeben.",
     "visualAria": "Omni Zero Gate Security Markenvisual",
     "sectionAria": "Omni Zero Gate Security — kommende Sicherheitsinfrastruktur"
+  },
+  "pauliMarketSoon": {
+    "meta": "Pauli BestPrice Global® — Demnächst — Omni Solutions Global®",
+    "title": "Pauli BestPrice Global® — Demnächst — Omni Solutions Global®",
+    "status": "Demnächst",
+    "lead": "Dieser Ländermarkt ist noch nicht live. Thailand ist verfügbar — weitere Märkte folgen unter demselben Global-Produkt.",
+    "backHub": "Zurück zur Länderauswahl"
   }
 }

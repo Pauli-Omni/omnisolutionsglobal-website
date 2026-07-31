@@ -635,7 +635,14 @@
     "linkAbout": "About Omni Solutions Global",
     "linkLegal": "Legal notice",
     "statusLive": "Live",
-    "statusSoon": "Soon"
+    "statusSoon": "Coming soon"
+  },
+  "pauliMarketSoon": {
+    "meta": "Pauli BestPrice Global® — Coming soon — Omni Solutions Global®",
+    "title": "Pauli BestPrice Global® — Coming soon — Omni Solutions Global®",
+    "status": "Coming soon",
+    "lead": "This country market is not live yet. Thailand is available now — more markets follow under the same Global product.",
+    "backHub": "Back to country hub"
   },
   "omniKing": {
     "meta": "Omni King AI Trading — Omni Solutions Global® Company Limited",

@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700&display=swap');
-
 /* ── Hub UI language picker (DE / EN / TH / PL / RU / ZH) ── */
 
 html.osg-hub-lang-stable,
@@ -124,29 +122,38 @@ html[lang="th"] .home-chrome-bar {
   width: min(92%, 340px);
 }
 
-/* Back-Navigation (alle Hub-Seiten) */
+/* Back — never over sidebar brand; sit on inner chrome ledge only */
 .hub-back-btn {
   position: fixed;
-  z-index: 640;
-  top: calc(var(--frame-inset, 0.75rem) + env(safe-area-inset-top, 0px) + 0.35rem);
-  left: calc(var(--frame-inset, 0.75rem) + env(safe-area-inset-left, 0px) + 3.35rem);
-  min-height: 2.25rem;
-  padding: 0.4rem 0.85rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-strong);
-  background: rgba(8, 10, 14, 0.88);
+  z-index: 11040;
+  top: var(--chrome-control-top, calc(var(--frame-inset, 1.7rem) + 0.35rem));
+  left: max(
+    calc(var(--frame-inset, 1.7rem) + 0.45rem),
+    calc(var(--sidebar-width, 15.5rem) + var(--frame-inset, 1.7rem) + 0.65rem)
+  );
+  min-height: 1.7rem;
+  padding: 0.22rem 0.55rem;
+  border-radius: 0.3rem;
+  border: none;
+  background: transparent;
   color: var(--silver);
-  font-size: 0.78rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   cursor: pointer;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+body[data-page="home"] #hub-back-btn {
+  display: none !important;
 }
 
 .hub-back-btn:hover,
 .hub-back-btn:focus-visible {
-  border-color: rgba(0, 212, 255, 0.55);
+  border: none;
+  background: rgba(0, 212, 255, 0.12);
   color: #fff;
   outline: none;
 }
@@ -172,6 +179,10 @@ html[lang="th"] .home-chrome-bar {
   letter-spacing: 0.06em;
   cursor: pointer;
   line-height: 1.2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
 }
 
 .trilingual-ui-picker__btn:hover,
@@ -201,10 +212,10 @@ html[lang="th"] .home-chrome-bar {
   }
 
   .hub-back-btn {
-    top: calc(env(safe-area-inset-top, 0px) + 0.35rem);
-    left: calc(env(safe-area-inset-left, 0px) + 3.25rem);
+    top: var(--chrome-control-top);
+    left: calc(var(--chrome-control-left) + 3.1rem);
     font-size: 0.72rem;
-    padding: 0.35rem 0.65rem;
+    padding: 0.3rem 0.55rem;
   }
 
   html[lang="th"] .home-enterprise-label {
@@ -219,7 +230,7 @@ html[lang="th"] .home-chrome-bar {
   }
 
   .hub-back-btn {
-    left: calc(env(safe-area-inset-left, 0px) + 2.85rem);
+    left: calc(var(--chrome-control-left) + 2.75rem);
     min-height: 2rem;
   }
 }
