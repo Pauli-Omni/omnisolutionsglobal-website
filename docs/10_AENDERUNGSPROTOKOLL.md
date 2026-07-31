@@ -1,3 +1,16 @@
+## 2026-08-01 01:45 UTC+7 — Finale App-Icons live + Pauli Global-Münze mittig
+
+- **Master-Prompt-ID:** MP-2026-08-01-APP-ICONS-LIVE
+- **Arbeitspaket-ID:** WP-033
+- **Module:** Home-Portfolio, Sidebar, Pauli Global-Hub, App-Icons
+- **Änderungsart:** Branding | Bugfix | Deploy
+- **Auswirkungsgrad:** Alle fertigen App-Icons aus `App_Icons_fertig` (King/CAD/Gate/QR/FIX/Generator/Talk + Pauli) ersetzt; Live hatte noch Alt-/Mini-Icons + King-404; Global-Münze jetzt über dem Titel, zentriert; Build `2026.08.01.02`
+- **Dateien geändert:** `assets/icons/apps/*`, `index.html`, `js/home.js`, `js/hub-sidebar.js`, `js/app-front-page.js`, `css/style.css`, `pauli-bestprice-global.html`, `assets/config/release.json`
+- **Verifikation:** PNG 1024×1024 lokal; Deploy + Live-HTTP-Größen folgen
+- **Status:** Deploy in Arbeit
+
+---
+
 ## 2026-08-01 00:55 UTC+7 — Länder-Medaillen TH/DE/US/NL/UK + OmniTalk-Icon
 
 - **Master-Prompt-ID:** MP-2026-08-01-PAULI-MARKET-MEDALLIONS
@@ -8,8 +21,8 @@
 - **Dateien neu:** `assets/icons/apps/pauli-bestprice-{thailand,deutschland,usa,nederland,uk}.png` (ersetzt/ergänzt), `assets/icons/apps/omnitalk-ai-live.png`
 - **Dateien geändert:** `assets/icons/apps/pauli-bestprice.png`, `js/app-registry.js`, `pauli-bestprice-global.html`, `pauli-bestprice-thailand.html`, `assets/locales/en.json`, `assets/config/release.json`
 - **Verifikation:** Icons echte PNG 1024×1024 (`file`); `en.json` parse OK; `node --check` app-registry; lokal Build `2026.08.01.01`
-- **Status:** Lokal fertig; **Live noch alt** — WEBSEITE ohne Git; Deploy (Render Manual / Sync) ausstehend
-- **Hinweis:** Live-Check Thailand-Icon folgt nach Deploy; bis dahin 404/altes Build möglich
+- **Status:** Live deployed — Render `dep-d9mecubl550s73d1qpng` → Build `2026.08.01.01`; Thailand-Icon HTTP 200
+- **Hinweis:** Push über Deploy-Spiegel `OmniSolutionsGlobal WEBSEITE-kopie` (GitHub `main`); Arbeitsordner WEBSEITE weiter ohne `.git`
 
 ---
 

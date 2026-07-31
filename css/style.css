@@ -455,6 +455,13 @@ a:hover, a:focus-visible { color: var(--chrome-bright); }
 }
 
 .sidebar-link-icon { width: 1.05rem; height: 1.05rem; opacity: 0.55; flex-shrink: 0; }
+.sidebar-link-icon--app {
+  width: 1.35rem;
+  height: 1.35rem;
+  opacity: 1;
+  object-fit: contain;
+  border-radius: 0.28rem;
+}
 .sidebar-link.is-active .sidebar-link-icon { opacity: 1; color: var(--chrome); }
 
 .sidebar-footer {
@@ -5068,13 +5075,28 @@ a.pbg-country-card:focus-visible {
   opacity: 0.85;
 }
 
-/* Pauli coin: always centered under brand title */
+/* Pauli coin: centered hero — Global medallion ABOVE title */
 body[data-page="pauli"] .app-front-icon,
 body[data-page="pauli-global"] .app-front-icon,
 body[data-app-id="pauliBestprice"] .app-front-icon {
   margin-left: auto !important;
   margin-right: auto !important;
   transform: none !important;
+}
+
+body[data-page="pauli-global"] .pbg-global-hub__coin {
+  order: -1;
+  margin: 0.35rem auto 0.85rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+body[data-page="pauli-global"] .pbg-global-hub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 body[data-page="pauli"] .app-front-icon-img,
@@ -5087,12 +5109,18 @@ body[data-app-id="pauliBestprice"] .app-front-icon-img {
   background: transparent;
 }
 
-/* Global medallion includes OSG plaque — do not circular-crop */
+/* Global medallion includes OSG plaque — do not circular-crop; largest center piece */
 body[data-page="pauli-global"] .app-front-icon-img {
-  width: min(78vw, 24rem) !important;
-  max-width: 24rem !important;
+  width: min(82vw, 28rem) !important;
+  max-width: 28rem !important;
+  height: auto !important;
   -webkit-mask-image: none !important;
   mask-image: none !important;
+}
+
+body[data-page="pauli-global"] .app-front-title {
+  margin-top: 0.15rem;
+  order: 0;
 }
 
 @media (max-width: 480px) {

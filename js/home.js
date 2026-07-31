@@ -156,6 +156,13 @@
     track.innerHTML = cards.join('') + cards.join('');
   }
 
+  function iconUrl(path) {
+    var src = String(path || '');
+    if (!src) return '';
+    var bust = window.OSG_BUILD_ID || '2026.08.01.02';
+    return src + (src.indexOf('?') >= 0 ? '&' : '?') + 'v=' + encodeURIComponent(bust);
+  }
+
   function initHomeAppGrid() {
     var grid = document.getElementById('home-app-grid');
     if (!grid || !window.OSGAppRegistry || !OSGAppRegistry.APPS) return;
@@ -163,7 +170,8 @@
     OSGAppRegistry.APPS.forEach(function (app) {
       var nameKey = 'portfolio.' + app.id + '.name';
       var descKey = 'portfolio.' + app.id + '.desc';
-      var name = (window.OSGI18n && OSGI18n.t(nameKey)) || app.brandName || app.id;
+      /* Home tiles: canonical English brandName — equal visual rhythm */
+      var name = app.brandName || ((window.OSGI18n && OSGI18n.t(nameKey)) || app.id);
       if (name === nameKey) name = app.brandName || app.id;
       var desc = (window.OSGI18n && OSGI18n.t(descKey)) || '';
       if (desc === descKey) desc = '';
@@ -173,13 +181,17 @@
       var a = document.createElement('a');
       a.className = 'home-app-tile';
       a.href = href;
+      a.setAttribute('data-app-id', app.id);
       a.setAttribute('aria-label', name);
       var img = document.createElement('img');
       img.className = 'home-app-tile__icon';
-      img.src = app.icon;
+      if (app.id === 'pauliBestprice') {
+        img.className += ' home-app-tile__icon--pauli';
+      }
+      img.src = iconUrl(app.icon);
       img.alt = '';
-      img.width = 56;
-      img.height = 56;
+      img.width = 128;
+      img.height = 128;
       img.loading = 'lazy';
       img.decoding = 'async';
       var title = document.createElement('span');
@@ -187,15 +199,30 @@
       title.textContent = name;
       a.appendChild(img);
       a.appendChild(title);
-      if (desc) {
-        var sub = document.createElement('span');
-        sub.className = 'home-app-tile__desc';
-        sub.textContent = desc;
-        a.appendChild(sub);
-      }
       li.appendChild(a);
       grid.appendChild(li);
     });
+  }
+
+  function ensureHomeStartVisible() {
+    var main = document.querySelector('.main-content');
+    if (!main) return;
+    var hash = (location.hash || '').toLowerCase();
+    if (hash === '#ozgs') {
+      location.replace('ozgs.html');
+      return;
+    }
+    if (hash === '#portfolio-heading') {
+      try {
+        history.replaceState(null, '', location.pathname + location.search + '#home-app-grid');
+      } catch (e) { /* ignore */ }
+      hash = '#home-app-grid';
+    }
+    main.scrollTop = 0;
+    var target = document.getElementById(hash === '#home-app-grid' ? 'home-app-grid' : 'main');
+    if (target && typeof target.scrollIntoView === 'function') {
+      target.scrollIntoView({ block: 'start', behavior: 'auto' });
+    }
   }
 
   window.OSGHome = {
@@ -208,6 +235,8 @@
       initContactModal();
       initHomeAppGrid();
       initHomeRefs();
+      ensureHomeStartVisible();
+      window.addEventListener('hashchange', ensureHomeStartVisible);
       if (window.i18next) {
         i18next.on('languageChanged', function () {
           initHomeAppGrid();

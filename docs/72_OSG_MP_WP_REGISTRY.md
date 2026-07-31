@@ -4,7 +4,8 @@
 
 | Master-Prompt-ID | Arbeitspaket-ID | Datum (UTC+7) | Kurz | Build / Beleg |
 |---|---|---|---|---|
-| MP-2026-08-01-PAULI-MARKET-MEDALLIONS | WP-032 | 2026-08-01 00:55 | Medaillen TH/DE/US/NL/UK + OmniTalk; Build 01 | 2026.08.01.01 lokal; Live-Deploy offen |
+| MP-2026-08-01-APP-ICONS-LIVE | WP-033 | 2026-08-01 01:45 | Finale App-Icons + Global-Münze mittig | 2026.08.01.02 |
+| MP-2026-08-01-PAULI-MARKET-MEDALLIONS | WP-032 | 2026-08-01 00:55 | Medaillen TH/DE/US/NL/UK + OmniTalk; Build 01 | 2026.08.01.01 live (TH-Icon 200) |
 | MP-2026-07-30-PAULI-GLOBAL-ICON | WP-031 | 2026-07-30 18:15 | Global-Icon + Länder-Labels + Markt-lang | 2026.07.30.08 |
 | MP-2026-07-30-PAULI-MARKET-CHROME | WP-030 | 2026-07-30 03:50 | Pauli Schaltkasten + Chrome außen + Refs | 2026.07.30.07 |
 | MP-2026-07-30-OMNIQR-CHROME | WP-029 | 2026-07-30 02:30 | Schrift+OmniQR AGB/Chrome-Ecken | 2026.07.30.06 |

@@ -12,13 +12,21 @@
     return window.OSGI18n ? OSGI18n.t(key) : key;
   }
 
+  function buildAppIcon(app) {
+    var src = app && app.icon ? String(app.icon) : '';
+    if (!src) return APP_ICON_SVG;
+    var bust = window.OSG_BUILD_ID || '';
+    if (bust) src += (src.indexOf('?') >= 0 ? '&' : '?') + 'v=' + encodeURIComponent(bust);
+    return '<img class="sidebar-link-icon sidebar-link-icon--app" src="' + src + '" alt="" width="22" height="22" loading="lazy" decoding="async">';
+  }
+
   function buildAppLink(app) {
     var li = document.createElement('li');
     li.className = 'hub-app-nav-item';
     var a = document.createElement('a');
     a.className = 'sidebar-link';
     a.href = app.frontFile;
-    a.innerHTML = APP_ICON_SVG + '<span></span>';
+    a.innerHTML = buildAppIcon(app) + '<span></span>';
     a.querySelector('span').textContent = t('portfolio.' + app.id + '.name');
     li.appendChild(a);
     return li;

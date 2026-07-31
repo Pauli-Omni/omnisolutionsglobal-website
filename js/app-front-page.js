@@ -29,6 +29,9 @@
     var page = document.body.getAttribute('data-page') || '';
     var market = document.body.getAttribute('data-market') || '';
     if (app.id === 'pauliBestprice' && app.marketIcons) {
+      if (page === 'pauli-global' || page === 'pauliGlobal') {
+        return app.icon;
+      }
       if ((page === 'pauli' || market === 'th') && app.marketIcons.th) {
         return app.marketIcons.th;
       }
