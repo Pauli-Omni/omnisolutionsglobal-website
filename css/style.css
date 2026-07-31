@@ -5102,8 +5102,8 @@ body[data-page="pauli-global"] .pbg-global-hub {
 body[data-page="pauli"] .app-front-icon-img,
 body[data-page="pauli-global"] .app-front-icon-img,
 body[data-app-id="pauliBestprice"] .app-front-icon-img {
-  width: min(72vw, 22rem) !important;
-  max-width: 22rem !important;
+  width: min(48vw, 13rem) !important;
+  max-width: 13rem !important;
   -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 72%);
   mask-image: radial-gradient(circle at 50% 50%, #000 58%, transparent 72%);
   background: transparent;
