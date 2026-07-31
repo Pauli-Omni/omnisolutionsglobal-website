@@ -1,8 +1,6 @@
-# Zwischenbericht — App-Icons live (WP-033)
+# Zwischenbericht — Thailand-Schaltkasten (WP-034)
 
-**Stand:** 2026-08-01 01:45 UTC+7  
-**Build:** 2026.08.01.02  
+**Stand:** 2026-08-01 02:20 UTC+7  
+**Build:** 2026.08.01.03  
 
-1. Ursache: Live-Homepage hing auf altem Build; OmniQR/FIX/Generator etc. waren Mini-Alt-Icons; Omni King 404  
-2. Fix: Icons aus Desktop `App_Icons_fertig` installiert + Homepage mitdeployen  
-3. Pauli Global-Münze: über dem Titel, mittig  
+Screenshots: Thailand-Markt noch Alt-Codes DE/US/VN. Fix = Medaillen wie Global-Hub.

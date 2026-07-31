@@ -1,3 +1,16 @@
+## 2026-08-01 02:20 UTC+7 — Thailand-Schaltkasten Medaillen (VN raus)
+
+- **Master-Prompt-ID:** MP-2026-08-01-TH-MARKET-MEDALLIONS
+- **Arbeitspaket-ID:** WP-034
+- **Module:** Pauli Thailand Front, Markt-Schaltkasten
+- **Änderungsart:** Bugfix | Branding
+- **Auswirkungsgrad:** Thailand-Seite hatte noch DE/US/VN-Buchstaben; jetzt gleiche Medaillen wie Global (TH live + DE/US/NL/UK); Münze über Titel; Build `2026.08.01.03`
+- **Dateien geändert:** `pauli-bestprice-thailand.html`, `pauli-bestprice-global.html`, `index.html`, `css/style.css`, `assets/config/release.json`
+- **Verifikation:** folgt nach Deploy
+- **Status:** Deploy in Arbeit
+
+---
+
 ## 2026-08-01 01:45 UTC+7 — Finale App-Icons live + Pauli Global-Münze mittig
 
 - **Master-Prompt-ID:** MP-2026-08-01-APP-ICONS-LIVE
@@ -7,7 +20,8 @@
 - **Auswirkungsgrad:** Alle fertigen App-Icons aus `App_Icons_fertig` (King/CAD/Gate/QR/FIX/Generator/Talk + Pauli) ersetzt; Live hatte noch Alt-/Mini-Icons + King-404; Global-Münze jetzt über dem Titel, zentriert; Build `2026.08.01.02`
 - **Dateien geändert:** `assets/icons/apps/*`, `index.html`, `js/home.js`, `js/hub-sidebar.js`, `js/app-front-page.js`, `css/style.css`, `pauli-bestprice-global.html`, `assets/config/release.json`
 - **Verifikation:** PNG 1024×1024 lokal; Deploy + Live-HTTP-Größen folgen
-- **Status:** Deploy in Arbeit
+- **Status:** Live — Build `2026.08.01.02`; Omni King HTTP 200; OmniQR ~1.8 MB (vorher ~200 KB Alt-Icon); Home-Shell deployed
+- **Hinweis:** Hard-Reload (Cache leeren), falls Browser noch Alt-Icons zeigt
 
 ---
 

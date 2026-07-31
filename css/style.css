@@ -5123,6 +5123,24 @@ body[data-page="pauli-global"] .app-front-title {
   order: 0;
 }
 
+/* Thailand market: coin above title, centered */
+body[data-page="pauli"] .pbg-thailand-hub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+body[data-page="pauli"] .pbg-thailand-hub__coin {
+  margin: 0.35rem auto 0.85rem !important;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 @media (max-width: 480px) {
   .pbg-market-switch {
     padding: 0.55rem 0.35rem 0.5rem;
