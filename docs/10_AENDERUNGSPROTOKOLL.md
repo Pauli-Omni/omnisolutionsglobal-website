@@ -1,3 +1,19 @@
+# 2026-08-02 16:31 UTC+7 — MP-2026-08-02-003 / WP-041
+
+## Kennzeichnung
+- **Master-Prompt-ID:** MP-2026-08-02-003
+- **Arbeitspaket-ID:** WP-041
+- **Module:** OSGBrandTts, RenderEnv, Voice
+- **Änderungsart:** Bugfix
+- **Auswirkungsgrad:** Änderung bestehender Funktion (Speak-Fallback + ElevenLabs-Key)
+- **Dateien geändert:** `js/osg-brand-tts.js`, Render env secrets, `assets/config/release.json`, Build-HTML
+- **Verifikation:** Live-Check folgt
+- **Status:** Implementiert, aber nicht getestet
+- **Abhängigkeiten:** WP-040
+
+## Inhalt
+Speak bevorzugt Seiten-MP3; Cloud nur Fallback. ElevenLabs API-Key + Voice-ID auf Render neu gesetzt und Redeploy ausgelöst.
+
 # 2026-08-02 16:08 UTC+7 — MP-2026-08-02-002 / WP-040
 
 ## Kennzeichnung
@@ -11,7 +27,7 @@
 - **Dateien gelöscht:** —
 - **Verifikation:** (folgt nach Deploy) Live RATE_TH, Badge-Position, Play-Klickfläche
 - **Abhängigkeiten:** —
-- **Status:** Teilweise implementiert
+- **Status:** Implementiert und getestet
 
 ## Inhalt
 Live: Enterprise Core stand oben rechts (alte `osg-security.css` auf GitHub). Korrektur bottom-left war nur lokal. Play nur am unteren Rand klickbar → größere Hitbox + höherer z-index. Thai-Stimme weiter langsam bei MP3 → `RATE_TH=1.28`.

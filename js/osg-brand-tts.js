@@ -290,14 +290,24 @@
     var prepared = prepareText(text);
     var ctx = pageContext();
 
-    if (ctx && (!prepared || prepared.length < 40)) {
-      return playPageNarration(lang);
+    // Prefer static page MP3s whenever a page context exists — cloud /api/speak is fallback only.
+    if (ctx) {
+      return playPageNarration(lang).catch(function () {
+        if (!prepared) return Promise.reject(new Error('empty_text'));
+        return fetchSpeakMp3(prepared, tag).then(function (blobUrl) {
+          return playUrl(blobUrl, tag);
+        });
+      });
     }
 
     if (!prepared) return Promise.reject(new Error('empty_text'));
 
     return fetchSpeakMp3(prepared, tag).then(function (blobUrl) {
       return playUrl(blobUrl, tag);
+    }).catch(function (err) {
+      // Cloud TTS down → still try page narration if context appears late.
+      if (pageContext()) return playPageNarration(lang);
+      return Promise.reject(err);
     });
   }
 
