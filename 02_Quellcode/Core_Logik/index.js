@@ -105,6 +105,20 @@ async function handleSpeak(req, res) {
       });
       return;
     }
+    if (msg.indexOf('elevenlabs_cloudflare_block') >= 0 || msg.indexOf('elevenlabs_geo_or_ip_block') >= 0) {
+      res.status(503).json({
+        error: 'elevenlabs_geo_or_ip_block',
+        hint: 'ElevenLabs blocked this server IP (geo/sanction false-positive possible). API key can still be valid from home. Static narration MP3s still work. Email team@elevenlabs.io or change Render region/IP.'
+      });
+      return;
+    }
+    if (msg.indexOf('elevenlabs_non_audio') >= 0) {
+      res.status(502).json({
+        error: 'elevenlabs_non_audio',
+        hint: 'ElevenLabs returned non-audio content. Static narration MP3s still work.'
+      });
+      return;
+    }
     if (msg.indexOf('elevenlabs_unauthorized') >= 0) {
       res.status(503).json({
         error: 'elevenlabs_unauthorized',
