@@ -37,7 +37,7 @@
     var link = document.createElement('link');
     link.id = id;
     link.rel = 'stylesheet';
-    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.26.12');
+    link.href = assetBase() + href + '?v=' + encodeURIComponent(window.OSG_BUILD_ID || '2026.07.28.07');
     document.head.appendChild(link);
   }
 
@@ -62,25 +62,43 @@
     return String(locale || '').toUpperCase();
   }
 
+  function flagFor(locale) {
+    var map = window.OSGI18nConfig && OSGI18nConfig.LOCALE_FLAGS;
+    if (map && map[locale]) return map[locale];
+    return '';
+  }
+
+  function fillLangButton(btn, locale) {
+    var label = nativeLabel(locale);
+    var flag = flagFor(locale);
+    btn.textContent = '';
+    if (flag) {
+      var flagEl = document.createElement('span');
+      flagEl.className = 'hub-lang-picker__flag';
+      flagEl.setAttribute('aria-hidden', 'true');
+      flagEl.textContent = flag;
+      btn.appendChild(flagEl);
+    }
+    var textEl = document.createElement('span');
+    textEl.className = 'hub-lang-picker__label';
+    textEl.textContent = label;
+    btn.appendChild(textEl);
+    btn.removeAttribute('data-i18n');
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('lang', locale === 'zh' ? 'zh-CN' : locale);
+  }
+
   function applyNativePickerLabels(root) {
     var scope = root || document;
     scope.querySelectorAll('.hub-lang-picker__btn[data-ui-locale]').forEach(function (btn) {
-      var locale = btn.getAttribute('data-ui-locale');
-      var label = nativeLabel(locale);
-      btn.textContent = label;
-      btn.removeAttribute('data-i18n');
-      btn.setAttribute('aria-label', label);
-      btn.setAttribute('lang', locale === 'zh' ? 'zh-CN' : locale);
+      fillLangButton(btn, btn.getAttribute('data-ui-locale'));
     });
   }
 
-  /** Vorlesen only on app front/desc pages — never hub/home/legal. */
+  /** Vorlesen only on app front/desc — never hub/home/legal/global-hub. */
   function pageAllowsTts() {
     var view = document.body.getAttribute('data-app-view');
-    if (view === 'front' || view === 'desc') return true;
-    if (document.body.classList.contains('app-page--front')) return true;
-    if (document.body.classList.contains('app-page--desc')) return true;
-    return false;
+    return view === 'front' || view === 'desc';
   }
 
   function ttsState() {
@@ -110,6 +128,11 @@
 
   function showSpeakError() {
     var msg = t('voice.ttsError') || t('voice.brandVoiceRetry');
+    if (msg && typeof window.alert === 'function') window.alert(msg);
+  }
+
+  function showMaintenanceNotice() {
+    var msg = t('maintenance.speakerNotice') || 'Vorlesefunktion ist aktuell in der Modifizierungsphase. Bitte um Verstaendnis.';
     if (msg && typeof window.alert === 'function') window.alert(msg);
   }
 
@@ -172,12 +195,29 @@
   }
 
   function updatePickerState() {
-    var lng = window.i18next ? pickerBase(i18next.language) : 'de';
+    var lng = window.i18next ? pickerBase(i18next.language) : 'en';
     document.querySelectorAll('.hub-lang-picker__btn').forEach(function (btn) {
       var active = btn.getAttribute('data-ui-locale') === lng;
       btn.classList.toggle('is-active', active);
       btn.setAttribute('aria-pressed', active ? 'true' : 'false');
     });
+  }
+
+  function syncPickerStateAfterInit() {
+    var tries = 0;
+    function tick() {
+      tries += 1;
+      if (window.i18next && i18next.isInitialized) {
+        updatePickerState();
+        if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
+          OSGI18n.applyToDom(document);
+        }
+        applyNativePickerLabels(document);
+        return;
+      }
+      if (tries < 20) window.setTimeout(tick, 120);
+    }
+    tick();
   }
 
   /** Always-visible vertical language list — no toggle, no speaker. */
@@ -186,9 +226,14 @@
     var uid = 'hub-lang-' + toolbarUid;
     var buttons = pickerLocales().map(function (locale) {
       var label = nativeLabel(locale);
+      var flag = flagFor(locale);
+      var flagHtml = flag
+        ? '<span class="hub-lang-picker__flag" aria-hidden="true">' + flag + '</span>'
+        : '';
       return '<button type="button" class="hub-lang-picker__btn trilingual-ui-picker__btn" data-ui-locale="' +
         locale + '" lang="' + (locale === 'zh' ? 'zh-CN' : locale) + '" aria-label="' + label +
-        '" aria-pressed="false">' + label + '</button>';
+        '" aria-pressed="false">' + flagHtml +
+        '<span class="hub-lang-picker__label">' + label + '</span></button>';
     }).join('');
     var wrap = document.createElement('div');
     wrap.className = 'hub-voice-lang-tools page-header-tools';
@@ -293,6 +338,12 @@
     if (window.i18next) {
       updatePickerState();
       updateTransportUi();
+      syncPickerStateAfterInit();
+      if (typeof i18next.on === 'function') {
+        i18next.on('initialized', function () {
+          syncPickerStateAfterInit();
+        });
+      }
       i18next.on('languageChanged', function () {
         if (window.OSGBrandTts && OSGBrandTts.stop) OSGBrandTts.stop();
         updatePickerState();

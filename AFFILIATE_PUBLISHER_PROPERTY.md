@@ -1,7 +1,10 @@
 # Affiliate / Publisher Property — Pauli BestPrice Global
 
-**Stand:** 2026-07-25  
+**Stand:** 2026-07-28  
 **Zweck:** Involve Asia / ACCESSTRADE / andere Netzwerke — welche URL eintragen.
+
+**Live-Check:** `docs/AFFILIATE_LIVE_CHECK_20260728.txt`  
+**Vor erneutem Antrag:** Impressum-Deploy (no-JS Firmenangaben) — lokal gefixt, Live bis Deploy noch dünn.
 
 ## Property-URL (empfohlen für Thailand-Markt)
 

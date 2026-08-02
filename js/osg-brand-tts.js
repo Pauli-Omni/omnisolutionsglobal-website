@@ -4,8 +4,11 @@
   var NARRATION_ROOT = 'assets/audio/narration/';
   var SPEAK_ENDPOINT = '/api/speak';
   var SEEK_STEP_SEC = 10;
-  /** Paul 2026-07-26: 0.24× was too slow — +30% → 0.312×. */
-  var RATE_TH = 0.312;
+  /** Thai narration: normal speed (1.0×). Ultra-slow rates (0.18–0.23) made speech unintelligible. */
+  var RATE_TH = 1.0;
+  /** Slight ease for denser scripts / longer compound rhythm. */
+  var RATE_ZH = 0.94;
+  var RATE_RU = 0.96;
   var RATE_DEFAULT = 1.0;
   var HUB_PAGES = {
     home: true,
@@ -53,6 +56,8 @@
   function playbackRateForTag(langTag) {
     var tag = String(langTag || '').toLowerCase();
     if (tag.indexOf('th') === 0) return RATE_TH;
+    if (tag.indexOf('zh') === 0) return RATE_ZH;
+    if (tag.indexOf('ru') === 0) return RATE_RU;
     return RATE_DEFAULT;
   }
 
