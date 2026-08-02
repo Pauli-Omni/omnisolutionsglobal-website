@@ -376,7 +376,22 @@ async function requestTts(apiKey, voiceId, text, lang, streamPreferred, forceAut
     throw new Error('elevenlabs_upstream:' + res.status + ':' + detail.slice(0, 200));
   }
 
-  return Buffer.from(await res.arrayBuffer());
+  const contentType = String(res.headers.get('content-type') || '').toLowerCase();
+  const buf = Buffer.from(await res.arrayBuffer());
+  const looksMpeg = buf.length > 3 && (
+    buf.slice(0, 3).toString('binary') === 'ID3' ||
+    (buf[0] === 0xff && (buf[1] & 0xe0) === 0xe0)
+  );
+  const head = buf.slice(0, 64).toString('utf8').toLowerCase();
+  const looksHtml = head.indexOf('<!doctype html') >= 0 || head.indexOf('<html') >= 0;
+  if (looksHtml || (contentType && contentType.indexOf('audio') < 0 && !looksMpeg)) {
+    const snippet = buf.slice(0, 160).toString('utf8');
+    if (/restrict access|sanction|just a moment|cloudflare/i.test(snippet)) {
+      throw new Error('elevenlabs_geo_or_ip_block:' + snippet.slice(0, 120));
+    }
+    throw new Error('elevenlabs_non_audio:' + contentType + ':' + snippet.slice(0, 120));
+  }
+  return buf;
 }
 
 function isVoiceNotFoundError(message) {
