@@ -6,6 +6,8 @@ const path = require('path');
 const elevenKeyConfig = require('./elevenlabs-key');
 const { SITE_ROOT } = require('./paths');
 const MODEL_ID = process.env.BRAND_TTS_MODEL || 'eleven_multilingual_v2';
+/** Thai is NOT on multilingual_v2 — must use v3 (or override via BRAND_TTS_MODEL_TH). */
+const MODEL_ID_THAI = process.env.BRAND_TTS_MODEL_TH || 'eleven_v3';
 const VOICE_CACHE = path.join(__dirname, '.brand-voice-id');
 const REFERENCE_MP3 = path.join(SITE_ROOT, 'assets/audio/omni-homepage-voice.mp3');
 const REFERENCE_WAV = path.join(SITE_ROOT, 'assets/audio/voice_reference_template.wav');
@@ -13,6 +15,16 @@ const USE_HARDCODED_VOICE = process.env.BRAND_USE_HARDCODED_VOICE === '1';
 
 function getApiKey() {
   return elevenKeyConfig.getElevenLabsApiKey();
+}
+
+/** Node fetch without UA is often challenged by Cloudflare from cloud egress (Render). */
+function elevenHeaders(apiKey, extra) {
+  const headers = Object.assign({
+    'xi-api-key': apiKey,
+    'User-Agent': 'OmniSolutionsGlobal-TTS/1.0 (+https://omnisolutionsglobal.com)',
+    Accept: 'application/json'
+  }, extra || {});
+  return headers;
 }
 
 function configuredVoiceId() {
@@ -63,7 +75,7 @@ async function createVoiceCloneFromLocalReference(apiKey) {
 
   const res = await fetch('https://api.elevenlabs.io/v1/voices/add', {
     method: 'POST',
-    headers: { 'xi-api-key': apiKey },
+    headers: elevenHeaders(apiKey),
     body: form
   });
 
@@ -83,7 +95,7 @@ async function createVoiceCloneFromLocalReference(apiKey) {
 
 async function resolveAccountVoiceId(apiKey) {
   const res = await fetch('https://api.elevenlabs.io/v1/voices', {
-    headers: { 'xi-api-key': apiKey }
+    headers: elevenHeaders(apiKey)
   });
   if (!res.ok) {
     const detail = await res.text().catch(function () { return ''; });
@@ -272,8 +284,8 @@ async function requestTtsWithFallbacks(apiKey, text, lang, streamPreferred) {
 
 const MULTILINGUAL_V2_LANGS = new Set([
   'en', 'ja', 'zh', 'de', 'hi', 'fr', 'ko', 'pt', 'it', 'es', 'id', 'nl', 'tr',
-  'fil', 'pl', 'sv', 'bg', 'ro', 'ar', 'cs', 'el', 'fi', 'hr', 'ms', 'sk', 'da', 'ta', 'uk', 'ru',
-  'th', 'vi'
+  'fil', 'pl', 'sv', 'bg', 'ro', 'ar', 'cs', 'el', 'fi', 'hr', 'ms', 'sk', 'da', 'ta', 'uk', 'ru'
+  /* th / vi: NOT on multilingual_v2 — route via eleven_v3 in modelIdForLang */
 ]);
 
 function langCode(lang) {
@@ -282,11 +294,16 @@ function langCode(lang) {
   return tag.split('-')[0].toLowerCase();
 }
 
+function modelIdForLang(lang) {
+  if (langCode(lang) === 'th') return MODEL_ID_THAI;
+  return MODEL_ID;
+}
+
 function languagePayload(lang, forceAuto) {
   const code = langCode(lang);
-  // ElevenLabs rejects language_code "th" — rely on Thai script auto-detect instead.
-  if (code === 'th') return {};
   if (forceAuto) return {};
+  // Thai: enforce language on eleven_v3 so output is real Thai (not mis-detected gibberish).
+  if (code === 'th') return { language_code: 'th' };
   if (MULTILINGUAL_V2_LANGS.has(code)) return { language_code: code };
   return {};
 }
@@ -296,8 +313,13 @@ function parseUpstreamError(status, detail) {
     throw new Error('elevenlabs_quota_exceeded');
   }
   if (status === 401 || status === 403) {
+    const snippet = String(detail || '');
+    // Cloudflare HTML challenge from datacenter egress ≠ invalid API key.
+    if (/just a moment|cf-browser-verification|cloudflare/i.test(snippet)) {
+      throw new Error('elevenlabs_cloudflare_block:' + snippet.slice(0, 120));
+    }
     // Key string may be present but rejected by ElevenLabs — do not pretend it is "missing".
-    throw new Error('elevenlabs_unauthorized:' + String(detail || '').slice(0, 160));
+    throw new Error('elevenlabs_unauthorized:' + snippet.slice(0, 160));
   }
   if (status === 400 && detail.indexOf('unsupported_language') >= 0) {
     return 'unsupported_language';
@@ -305,27 +327,43 @@ function parseUpstreamError(status, detail) {
   throw new Error('elevenlabs_upstream:' + status + ':' + detail.slice(0, 200));
 }
 
+/** Per-language brand modulation — same clone, speech feel tuned (Paul 2026-07-26). */
+function voiceSettingsForLang(lang) {
+  const code = langCode(lang);
+  const presets = {
+    th: { stability: 0.72, similarity_boost: 0.92, style: 0.05, use_speaker_boost: true },
+    zh: { stability: 0.65, similarity_boost: 0.93, style: 0.08, use_speaker_boost: true },
+    ru: { stability: 0.60, similarity_boost: 0.94, style: 0.10, use_speaker_boost: true },
+    pl: { stability: 0.58, similarity_boost: 0.94, style: 0.11, use_speaker_boost: true },
+    de: { stability: 0.55, similarity_boost: 0.95, style: 0.12, use_speaker_boost: true },
+    en: { stability: 0.52, similarity_boost: 0.95, style: 0.14, use_speaker_boost: true }
+  };
+  return presets[code] || {
+    stability: 0.58,
+    similarity_boost: 0.95,
+    style: 0.12,
+    use_speaker_boost: true
+  };
+}
+
 async function requestTts(apiKey, voiceId, text, lang, streamPreferred, forceAutoLang) {
-  const endpoint = streamPreferred
+  const modelId = modelIdForLang(lang);
+  // eleven_v3 rejects optimize_streaming_latency — never stream-optimize for Thai/v3.
+  const useStream = !!streamPreferred && modelId !== MODEL_ID_THAI && modelId.indexOf('eleven_v3') !== 0;
+  const endpoint = useStream
     ? 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(voiceId) + '/stream?optimize_streaming_latency=3&output_format=mp3_44100_128'
-    : 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(voiceId);
+    : 'https://api.elevenlabs.io/v1/text-to-speech/' + encodeURIComponent(voiceId) + '?output_format=mp3_44100_128';
 
   const res = await fetch(endpoint, {
     method: 'POST',
-    headers: {
-      'xi-api-key': apiKey,
+    headers: elevenHeaders(apiKey, {
       'Content-Type': 'application/json',
       Accept: 'audio/mpeg'
-    },
+    }),
     body: JSON.stringify(Object.assign({
       text: text,
-      model_id: MODEL_ID,
-      voice_settings: {
-        stability: 0.58,
-        similarity_boost: 0.95,
-        style: 0.12,
-        use_speaker_boost: true
-      }
+      model_id: modelId,
+      voice_settings: voiceSettingsForLang(lang)
     }, languagePayload(lang, forceAutoLang)))
   });
 
@@ -373,5 +411,6 @@ module.exports = {
   hasLocalReference: hasLocalReference,
   getLocalReferencePath: localReferencePath,
   getVoiceId: function () { return resolvedVoiceId; },
-  usesHardcodedVoice: function () { return USE_HARDCODED_VOICE; }
+  usesHardcodedVoice: function () { return USE_HARDCODED_VOICE; },
+  modelIdForLang: modelIdForLang
 };

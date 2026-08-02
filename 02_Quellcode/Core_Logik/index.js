@@ -17,6 +17,7 @@ const { createArmorMiddleware } = require('./omniqr-ai-for-tourist-of-thailand/a
 const { createRouter: createI18nRouter } = require('./i18n/router');
 const { createRouter: createReleaseRouter } = require('./release/router');
 const { createRouter: createOpsRouter } = require('./ops/router');
+const { createOzgsWaitlistRouter } = require('./ozgs-waitlist');
 const { createCorsOriginResolver } = require('./cors-config');
 
 const { SITE_ROOT } = require('./paths');
@@ -137,6 +138,9 @@ app.use('/api', createReleaseRouter(SITE_ROOT));
 app.use('/api/affiliate', require('./services/affiliate-api.cjs').createAffiliateRouter());
 app.use('/api/ops', createOpsRouter());
 app.use('/api/i18n', createI18nRouter(path.join(SITE_ROOT, 'assets', 'locales')));
+app.use('/api/ozgs', createOzgsWaitlistRouter({
+  outDir: path.join(__dirname, 'data')
+}));
 
 app.use(OMNI_QR_API_BASE, createOmniQrRouter());
 
