@@ -315,6 +315,10 @@
     var bar = buildTransportBar();
     root.appendChild(bar);
     document.body.appendChild(root);
+    /* Direct button listeners — mid/top of Play must hit the control, not an overlay. */
+    bar.querySelectorAll('[data-osg-tts-action]').forEach(function (btn) {
+      btn.addEventListener('click', handleTransportClick);
+    });
     if (window.OSGI18n && typeof OSGI18n.applyToDom === 'function') {
       OSGI18n.applyToDom(root);
     }

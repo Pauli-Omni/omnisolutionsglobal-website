@@ -1,3 +1,37 @@
+# 2026-08-02 16:08 UTC+7 — MP-2026-08-02-002 / WP-040
+
+## Kennzeichnung
+- **Master-Prompt-ID:** MP-2026-08-02-002
+- **Arbeitspaket-ID:** WP-040
+- **Module:** VoiceTransport, OSGBrandTts, OsgSecurity
+- **Änderungsart:** Bugfix
+- **Auswirkungsgrad:** Änderung bestehender Funktion (Play-Hitbox, Thai-Tempo, Enterprise-Core-Position)
+- **Dateien neu:** —
+- **Dateien geändert:** `css/osg-security.css`, `css/voice-lang-maintenance.css`, `js/osg-brand-tts.js`, `js/voice-lang-maintenance.js`, `assets/config/release.json`, Pauli-/Legal-HTML (Build `2026.08.02.02`)
+- **Dateien gelöscht:** —
+- **Verifikation:** (folgt nach Deploy) Live RATE_TH, Badge-Position, Play-Klickfläche
+- **Abhängigkeiten:** —
+- **Status:** Teilweise implementiert
+
+## Inhalt
+Live: Enterprise Core stand oben rechts (alte `osg-security.css` auf GitHub). Korrektur bottom-left war nur lokal. Play nur am unteren Rand klickbar → größere Hitbox + höherer z-index. Thai-Stimme weiter langsam bei MP3 → `RATE_TH=1.28`.
+
+## 2026-08-02 14:05 UTC+7 — WP-036 Homepage Thai Voice + Impressum Live-Fix
+
+- **Master-Prompt-ID:** MP-2026-08-02-HOMEPAGE-FINISH
+- **Arbeitspaket-ID:** WP-036
+- **Module:** osg-brand-tts, voice-lang-maintenance, impressum, style.css Pauli-Face, legal TXT, release
+- **Änderungsart:** Bugfix | Konfiguration
+- **Auswirkungsgrad:** Änderung bestehender Funktionen (Thai-Playback-Rate, TTS-Play, Crawler-Impressum, Face-Mask)
+- **Ursache Live:** `RATE_TH=0.312` (Stimme unbrauchbar); Impressum Build `2026.07.26.12` ohne Director/noscript; harte Face-Crop-Maske 58%/72%
+- **Fix:** `RATE_TH=1.0`; TTS-Maintenance-Early-Return entfernt; Impressum Fallback+noscript+Gmail+Director; Soft-Mask; Legal Company Limited; Build `2026.08.02.01`
+- **Git:** Push `d94646c` → `Pauli-Omni/omnisolutionsglobal-website` main
+- **Live-Status:** Deploy auf Render **noch nicht** sichtbar (weiter Altstand) — **Manual Deploy** `omnisolutionsglobal-web` nötig
+- **Verifikation:** GitHub raw RATE_TH=1.0 + Impressum Chatchadapha OK; Live curl noch RATE_TH=0.312 / impressum 2026.07.26.12
+- **Status:** Implementiert und gepusht — Live-Deploy ausstehend
+
+---
+
 ## 2026-08-01 02:55 UTC+7 — Pauli-Märkte/UX laut Screenshots
 
 - **Master-Prompt-ID:** MP-2026-08-01-PAULI-MARKET-UX

@@ -1,10 +1,11 @@
 #osg-security-container {
   position: fixed;
-  /* Top-right: never cover bottom TTS transport (−10 / Play / +10). */
-  top: max(12px, env(safe-area-inset-top, 12px));
-  right: max(12px, env(safe-area-inset-right, 12px));
-  bottom: auto;
-  z-index: 999999;
+  /* Bottom-left, inside inner silver ledge — never in outer gutter */
+  top: auto;
+  right: auto;
+  bottom: var(--chrome-control-bottom, calc(var(--frame-inset, 0.72cm) + 0.55rem + env(safe-area-inset-bottom, 0px)));
+  left: var(--chrome-control-left, calc(var(--frame-inset, 0.72cm) + 0.55rem + env(safe-area-inset-left, 0px)));
+  z-index: 11045;
   font-family: 'Segoe UI', Roboto, sans-serif;
   pointer-events: none;
 }
@@ -16,20 +17,21 @@
 #osg-secure-badge {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(0, 212, 255, 0.4);
-  padding: 10px 16px;
-  border-radius: 50px;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  padding: 6px 8px;
+  border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
-  transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+  box-shadow: none;
+  transition: opacity 0.2s ease, background 0.2s ease;
 }
 
 #osg-secure-badge:hover,
 #osg-secure-badge:focus-visible {
-  transform: scale(1.05);
-  border-color: rgba(0, 212, 255, 0.8);
+  transform: none;
+  background: rgba(0, 212, 255, 0.1);
+  border: none;
   outline: none;
 }
 
@@ -54,10 +56,11 @@
 #osg-security-modal {
   display: none;
   position: absolute;
-  top: 55px;
-  bottom: auto;
-  right: 0;
-  width: min(320px, calc(100vw - 24px));
+  top: auto;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: auto;
+  width: min(320px, calc(100vw - var(--frame-inset, 0.72cm) * 2 - 1.5rem));
   background: rgba(10, 15, 30, 0.98);
   border: 1px solid #00d4ff;
   border-radius: 12px;
@@ -277,8 +280,8 @@
 
 @media (max-width: 480px) {
   #osg-secure-badge {
-    padding: 8px 12px;
-    gap: 8px;
+    padding: 4px 6px;
+    gap: 6px;
   }
 
   .osg-secure-badge__label {
@@ -287,49 +290,34 @@
   }
 
   #osg-security-modal {
-    bottom: 48px;
-    right: 0;
+    bottom: calc(100% + 8px);
+    left: 0;
+    right: auto;
     padding: 16px;
   }
 }
 
-/* Legal pages: badge oben rechts — innerhalb des inneren Chrom-Rahmens */
-body:has(.chrome-frame-inner)[data-page="impressum"] #osg-security-container,
-body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container,
-body:has(.chrome-frame-inner)[data-page="about"] #osg-security-container {
-  top: calc(var(--frame-inset) + max(12px, env(safe-area-inset-top, 12px)));
-  bottom: auto;
-  right: calc(var(--frame-inset) + max(12px, env(safe-area-inset-right, 12px)));
-  left: auto;
-}
-
-body[data-page="impressum"] #osg-security-container,
-body[data-page="agb"] #osg-security-container,
-body[data-page="about"] #osg-security-container {
-  top: max(12px, env(safe-area-inset-top, 12px));
-  bottom: auto;
-  right: max(12px, env(safe-area-inset-right, 12px));
-  left: auto;
+/* All chrome pages: Enterprise Core — bottom-left inside inner silver ledge */
+body:has(.chrome-frame-inner) #osg-security-container {
+  top: auto;
+  bottom: var(--chrome-control-bottom);
+  left: var(--chrome-control-left);
+  right: auto;
 }
 
 body[data-page="impressum"] #osg-security-modal,
 body[data-page="agb"] #osg-security-modal,
-body[data-page="about"] #osg-security-modal {
-  bottom: auto;
-  top: calc(100% + 8px);
-  right: 0;
+body[data-page="about"] #osg-security-modal,
+body:has(.chrome-frame-inner) #osg-security-modal {
+  bottom: calc(100% + 8px);
+  top: auto;
+  left: 0;
+  right: auto;
 }
 
 @media (max-width: 480px) {
-  body:has(.chrome-frame-inner)[data-page="impressum"] #osg-security-container,
-  body:has(.chrome-frame-inner)[data-page="agb"] #osg-security-container,
-  body:has(.chrome-frame-inner)[data-page="about"] #osg-security-container {
-    top: calc(var(--frame-inset) + max(4.5rem, env(safe-area-inset-top, 0px) + 4.5rem));
-  }
-
-  body[data-page="impressum"] #osg-security-container,
-  body[data-page="agb"] #osg-security-container,
-  body[data-page="about"] #osg-security-container {
-    top: max(4.5rem, calc(env(safe-area-inset-top, 0px) + 4.5rem));
+  body:has(.chrome-frame-inner) #osg-security-container {
+    bottom: var(--chrome-control-bottom);
+    left: var(--chrome-control-left);
   }
 }
