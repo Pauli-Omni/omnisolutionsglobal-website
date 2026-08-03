@@ -1,3 +1,23 @@
+# 2026-08-04 02:13 UTC+7 — MP-2026-08-04-001 / WP-043
+
+## Kennzeichnung
+- **Master-Prompt-ID:** MP-2026-08-04-001
+- **Arbeitspaket-ID:** WP-043
+- **Module:** ElevenLabs IVC, home/hub Narration
+- **Änderungsart:** Bugfix
+- **Auswirkungsgrad:** Änderung — Homepage-Stimme = Clone aus `omni-homepage-voice.mp3` (OSG Paul Brand Voice)
+- **Status:** Implementiert und getestet (Generierung OK; Deploy folgt)
+
+## Inhalt
+Paul: vorherige Stimme war nicht seine (falscher Clone „Pauli Avatar Master“).
+Neu: Instant Voice Clone aus Referenz `assets/audio/omni-homepage-voice.mp3` → Voice-ID `App35jHz3raLTCOWRUk8` („OSG Paul Brand Voice“).
+Homepage `home.lead` + `home.portfolioTitle` in 6 Locales neu generiert und ersetzt.
+
+## Verifikation
+- Clone HTTP 200; generate `--force --only=home` → 6/6 elevenlabs-clone
+
+---
+
 # 2026-08-04 02:07 UTC+7 — MP-2026-08-04-001 / WP-042
 
 ## Kennzeichnung
