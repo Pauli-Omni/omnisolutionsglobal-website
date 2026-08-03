@@ -6062,3 +6062,134 @@ body:has(.chrome-frame-inner) #osg-lang-rail {
 body[data-page="home"] .home-stage--fit .home-splash-core {
   padding-right: calc(8.2rem + env(safe-area-inset-right, 0px)) !important;
 }
+
+/* === PAUL 2026-08-04 06:47 Screenshot — CHROME LEAK FIX (WP-066) ===
+   Root cause: home .app-shell { height:100dvh } after inset blew the shell
+   past the inner silver into the outer gutter → Premium-Referenzen / marquee
+   sat ON Samko + ©. Kill 100dvh height; clip refs; fill coins; tuck lang rail. */
+body[data-page="home"]:has(.chrome-frame-inner) .app-shell {
+  /* Size ONLY from inset — never height:100dvh with a top inset */
+  inset: var(--chrome-content-inset) !important;
+  top: var(--chrome-content-inset) !important;
+  right: var(--chrome-content-inset) !important;
+  bottom: var(--chrome-content-inset) !important;
+  left: var(--chrome-content-inset) !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden !important;
+}
+body[data-page="home"]:has(.chrome-frame-inner) .main-content {
+  /* Scroll inside shell; no fake bottom padding that pushed refs into gutter */
+  height: 100% !important;
+  max-height: 100% !important;
+  padding-bottom: 0.45rem !important;
+  overflow-x: clip !important;
+  overflow-y: auto !important;
+}
+body[data-page="home"] .home-stage--fit,
+body[data-page="home"] .home-stage--fit .home-splash,
+body[data-page="home"] .home-stage--fit .home-splash-core {
+  overflow: hidden !important;
+}
+body[data-page="home"] .home-refs,
+body[data-page="home"] .home-refs.home-refs--fit,
+body[data-page="home"] .home-refs--fit,
+body[data-page="home"] .home-stage--fit .home-refs {
+  overflow: hidden !important;
+  max-width: 100% !important;
+  margin-bottom: 0 !important;
+  /* Compact so marquee stays inside splash / shell */
+  max-height: min(7.5rem, 22vh) !important;
+}
+body[data-page="home"] .home-refs--fit .refs-marquee {
+  max-height: min(5.6rem, 18vh) !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+body[data-page="home"] .home-refs--fit .ref-card {
+  overflow: hidden !important;
+  max-height: 5.2rem !important;
+}
+
+/* Meta + Enterprise: vertically centered in OUTER gutter band (between silver) */
+body:has(.chrome-frame-inner) .chrome-fixed-meta {
+  bottom: calc(
+    var(--frame-width, 0.3125rem)
+    + ((var(--frame-inset, 1.7rem) - var(--frame-width, 0.3125rem) - 0.72rem) * 0.5)
+    + env(safe-area-inset-bottom, 0px)
+  ) !important;
+  z-index: 11050 !important;
+}
+body:has(.chrome-frame-inner) #osg-security-container,
+body:has(.chrome-frame-inner) #osg-security-container.osg-security-container--home-gutter {
+  top: calc(
+    var(--frame-width, 0.3125rem)
+    + ((var(--frame-inset, 1.7rem) - var(--frame-width, 0.3125rem) - 0.72rem) * 0.5)
+    + env(safe-area-inset-top, 0px)
+  ) !important;
+}
+
+/* Home coins: fill tile — circular assets need larger box to match square medallions */
+body[data-page="home"] .home-app-tile {
+  min-height: 12.25rem !important;
+  padding: 0.4rem 0.3rem 0.35rem !important;
+  gap: 0.22rem !important;
+}
+body[data-page="home"] .home-app-tile__icon,
+body[data-page="home"] .home-app-tile__icon--pauli,
+body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
+  width: clamp(7.75rem, 16.5vw, 10.25rem) !important;
+  height: clamp(7.75rem, 16.5vw, 10.25rem) !important;
+  max-width: 92% !important;
+  margin: 0 auto !important;
+  transform: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+@media (max-width: 900px) {
+  body[data-page="home"] .home-app-tile {
+    min-height: 9.5rem !important;
+  }
+  body[data-page="home"] .home-app-tile__icon,
+  body[data-page="home"] .home-app-tile__icon--pauli,
+  body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
+    width: clamp(6.5rem, 24vw, 8.5rem) !important;
+    height: clamp(6.5rem, 24vw, 8.5rem) !important;
+  }
+}
+@media (max-width: 480px) {
+  body[data-page="home"] .home-app-tile {
+    min-height: 8.25rem !important;
+  }
+  body[data-page="home"] .home-app-tile__icon,
+  body[data-page="home"] .home-app-tile__icon--pauli,
+  body[data-page="home"] .home-app-tile[data-app-id="pauliBestprice"] .home-app-tile__icon {
+    width: clamp(5.75rem, 32vw, 7.25rem) !important;
+    height: clamp(5.75rem, 32vw, 7.25rem) !important;
+  }
+}
+
+/* Lang rail: INSIDE content inset (not on the silver stroke), aligned pills */
+body[data-page="home"] #osg-lang-rail,
+body:has(.chrome-frame-inner) #osg-lang-rail {
+  top: calc(var(--chrome-content-inset) + 0.55rem + env(safe-area-inset-top, 0px)) !important;
+  right: calc(var(--chrome-content-inset) + 0.55rem + env(safe-area-inset-right, 0px)) !important;
+  width: min(7.8rem, 28vw) !important;
+}
+body[data-page="home"] #osg-lang-rail .hub-lang-picker__btn {
+  min-height: 2.05rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.35rem !important;
+  padding: 0.38rem 0.55rem !important;
+  line-height: 1.15 !important;
+  text-align: left !important;
+}
+body[data-page="home"] #osg-lang-rail .hub-lang-picker__btn img,
+body[data-page="home"] #osg-lang-rail .hub-lang-picker__btn .lang-flag {
+  flex: 0 0 auto;
+}
+body[data-page="home"] .home-stage--fit .home-splash-core {
+  padding-right: calc(8.6rem + env(safe-area-inset-right, 0px)) !important;
+}
