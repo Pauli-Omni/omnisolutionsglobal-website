@@ -24,10 +24,10 @@
   pointer-events: none;
 }
 
-/* Home: same inner-ledge inset (chameleon stage already inside frame) */
+/* Home: Sprachleiste innen an der inneren Silberleiste (oben rechts) */
 body[data-page="home"] #osg-lang-rail {
-  top: var(--chrome-control-top, calc(var(--frame-inset, 0.72cm) + 0.55rem));
-  right: var(--chrome-control-right, calc(var(--frame-inset, 0.72cm) + 0.55rem));
+  top: calc(var(--frame-inset) + 0.28rem + env(safe-area-inset-top, 0px));
+  right: calc(var(--frame-inset) + 0.28rem + env(safe-area-inset-right, 0px));
 }
 
 #osg-lang-rail .hub-voice-lang-tools {
