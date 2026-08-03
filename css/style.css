@@ -33,12 +33,14 @@
   --frame-width: 0.3125rem; /* ~5px at 16px root */
   --frame-inset: 1.7rem;    /* ~0.72cm at 16px root */
   --frame-radius: 1rem;
+  /* Content clip clears the 2px inner silver stroke — never paint letters on/behind the rim. */
+  --chrome-content-inset: calc(var(--frame-inset) + 2px);
   /* Gap inside inner silver ledge — scales with rubber root */
   --chrome-control-gap: clamp(0.45rem, 1.6vw, 1.1rem);
-  --chrome-control-top: calc(var(--frame-inset) + var(--chrome-control-gap) + env(safe-area-inset-top, 0px));
-  --chrome-control-right: calc(var(--frame-inset) + var(--chrome-control-gap) + env(safe-area-inset-right, 0px));
-  --chrome-control-bottom: calc(var(--frame-inset) + var(--chrome-control-gap) + env(safe-area-inset-bottom, 0px));
-  --chrome-control-left: calc(var(--frame-inset) + var(--chrome-control-gap) + env(safe-area-inset-left, 0px));
+  --chrome-control-top: calc(var(--chrome-content-inset) + var(--chrome-control-gap) + env(safe-area-inset-top, 0px));
+  --chrome-control-right: calc(var(--chrome-content-inset) + var(--chrome-control-gap) + env(safe-area-inset-right, 0px));
+  --chrome-control-bottom: calc(var(--chrome-content-inset) + var(--chrome-control-gap) + env(safe-area-inset-bottom, 0px));
+  --chrome-control-left: calc(var(--chrome-content-inset) + var(--chrome-control-gap) + env(safe-area-inset-left, 0px));
   --osg-rubber: 1;
   --home-inner-gutter: clamp(0.5rem, 1.35vw, 0.8rem);
   --purple-deep: #060608;
@@ -2010,11 +2012,11 @@ body:has(#portal-overlay:not(.portal-hidden)) .app-shell {
 /* ── UI-Inhalt innerhalb des inneren Rahmens (Hintergrund bleibt vollflächig) ── */
 body:has(.chrome-frame-inner) .app-shell {
   position: fixed;
-  inset: var(--frame-inset);
+  inset: var(--chrome-content-inset);
   z-index: 2;
   display: flex;
   overflow: hidden;
-  border-radius: calc(var(--frame-radius) - 6px);
+  border-radius: calc(var(--frame-radius) - 8px);
 }
 
 body:has(.chrome-frame-inner) .sidebar {
@@ -2038,25 +2040,25 @@ body:has(.chrome-frame-inner) .main-content {
 }
 
 body:has(.chrome-frame-inner) .sidebar-toggle {
-  top: calc(var(--frame-inset) + 1rem);
-  left: calc(var(--frame-inset) + 1rem);
+  top: var(--chrome-control-top);
+  left: var(--chrome-control-left);
 }
 
 body:has(.chrome-frame-inner) .sidebar-overlay {
-  inset: var(--frame-inset);
+  inset: var(--chrome-content-inset);
 }
 
 body:has(.chrome-frame-inner) .portal-overlay {
-  inset: var(--frame-inset);
-  border-radius: calc(var(--frame-radius) - 6px);
+  inset: var(--chrome-content-inset);
+  border-radius: calc(var(--frame-radius) - 8px);
 }
 
-/* Homepage: Enterprise Core — top-left between silver ledges (not under lang rail) */
+/* Homepage: Enterprise Core — INSIDE inner silver rim (Paul 2026-08-04: nothing in outer gutter) */
 body[data-page="home"] #osg-security-container,
 body[data-page="home"] #osg-security-container.osg-security-container--home-gutter {
   position: fixed;
-  top: calc(var(--frame-width, 0.3125rem) + 0.1rem + env(safe-area-inset-top, 0px)) !important;
-  left: calc(var(--frame-width, 0.3125rem) + 0.15rem + env(safe-area-inset-left, 0px)) !important;
+  top: var(--chrome-control-top) !important;
+  left: var(--chrome-control-left) !important;
   right: auto !important;
   bottom: auto !important;
   transform: none;
@@ -2254,16 +2256,16 @@ body.app-page {
 
 body.app-page:has(.chrome-frame-inner) .app-page-shell {
   position: fixed;
-  inset: var(--frame-inset);
+  inset: var(--chrome-content-inset);
   z-index: 2;
   max-width: none;
   width: auto;
   margin: 0;
   min-height: 0;
   overflow: hidden;
-  border-radius: calc(var(--frame-radius) - 6px);
+  border-radius: calc(var(--frame-radius) - 8px);
   padding: clamp(0.55rem, 1.8vw, 1rem) clamp(0.75rem, 2vw, 1.35rem)
-    calc(var(--frame-inset, 1cm) + 3.25rem);
+    calc(var(--chrome-content-inset) + 3.25rem);
 }
 
 body.app-page:has(.chrome-frame-inner) .app-page-body,
@@ -4233,9 +4235,9 @@ a.store-badge:hover {
 
 .presentation-topbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: var(--chrome-content-inset, var(--frame-inset));
+  left: var(--chrome-content-inset, var(--frame-inset));
+  right: var(--chrome-content-inset, var(--frame-inset));
   z-index: 100;
   display: flex;
   align-items: center;
@@ -4243,7 +4245,7 @@ a.store-badge:hover {
   flex-wrap: wrap;
   gap: 0.75rem 1rem;
   padding: 0.75rem 1.25rem;
-  border-radius: 0;
+  border-radius: calc(var(--frame-radius) - 8px) calc(var(--frame-radius) - 8px) 0 0;
   background: rgba(6, 6, 8, 0.92);
   backdrop-filter: blur(10px);
 }
@@ -4275,7 +4277,13 @@ a.store-badge:hover {
 }
 
 .presentation-main {
-  padding-top: 3.25rem;
+  padding-top: calc(var(--chrome-content-inset, var(--frame-inset)) + 3.25rem);
+  padding-left: var(--chrome-content-inset, var(--frame-inset));
+  padding-right: var(--chrome-content-inset, var(--frame-inset));
+  padding-bottom: var(--chrome-content-inset, var(--frame-inset));
+  box-sizing: border-box;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 .presentation-slide {
@@ -4808,25 +4816,29 @@ body[data-page="home"] .home-splash-foot .btn-outline-neon {
 }
 
 @media screen and (max-width: 900px) {
+  /* Paul 2026-08-04: never drop clip on mobile — letters must stay inside inner silver rim */
   body:has(.chrome-frame-inner) .app-shell {
-    position: relative;
-    inset: auto;
-    min-height: 100dvh;
-    overflow: visible;
-    border-radius: 0;
+    position: fixed !important;
+    inset: var(--chrome-content-inset) !important;
+    min-height: 0;
+    height: auto;
+    overflow: hidden !important;
+    border-radius: calc(var(--frame-radius) - 8px);
   }
 
   body:has(.chrome-frame-inner) .main-content {
-    height: auto;
+    height: 100%;
     min-height: 0;
-    overflow-y: visible;
+    overflow-x: clip;
+    overflow-y: auto !important;
   }
 
   body.app-page:has(.chrome-frame-inner) .app-page-shell {
-    position: relative;
-    inset: auto;
-    overflow: visible;
-    min-height: 100dvh;
+    position: fixed !important;
+    inset: var(--chrome-content-inset) !important;
+    overflow: hidden !important;
+    min-height: 0;
+    border-radius: calc(var(--frame-radius) - 8px);
   }
 
   body.app-page--front .app-page-body,
@@ -5422,11 +5434,11 @@ body[data-page="home"] .page-footer {
   font-size: 0.72rem;
 }
 
-/* Security badge: top-left chrome ledge on home */
+/* Security badge: inside inner silver rim on home (no outer-gutter letters) */
 body[data-page="home"] #osg-security-container.osg-security-container--home-gutter {
-  top: calc(var(--frame-width, 0.3125rem) + 0.1rem + env(safe-area-inset-top, 0px));
+  top: var(--chrome-control-top);
   bottom: auto;
-  left: calc(var(--frame-width, 0.3125rem) + 0.15rem + env(safe-area-inset-left, 0px));
+  left: var(--chrome-control-left);
   right: auto;
 }
 
@@ -5713,8 +5725,8 @@ body.app-page:has(.chrome-frame-inner) .app-desc-body {
 @media (max-width: 900px) {
   body.app-page:has(.chrome-frame-inner) .app-page-shell {
     position: fixed !important;
-    inset: var(--frame-inset) !important;
-    border-radius: calc(var(--frame-radius) - 6px);
+    inset: var(--chrome-content-inset) !important;
+    border-radius: calc(var(--frame-radius) - 8px);
     overflow: hidden !important;
   }
 
@@ -5836,13 +5848,13 @@ body[data-page="home"] .home-stage--fit .home-refs {
 /* Old ∞ mark: never show */
 .osg-site-mark { display: none !important; }
 
-/* Location + ©: outer silver ledge corners (between outer chrome and inner frame) */
+/* Location + ©: INSIDE inner silver rim (Paul 2026-08-04 — no letters in outer gutter) */
 .chrome-fixed-meta {
   position: fixed;
   z-index: 11020;
-  left: calc(var(--frame-width, 0.3125rem) + 0.12rem + env(safe-area-inset-left, 0px));
-  right: calc(var(--frame-width, 0.3125rem) + 0.12rem + env(safe-area-inset-right, 0px));
-  bottom: calc(var(--frame-width, 0.3125rem) + 0.1rem + env(safe-area-inset-bottom, 0px));
+  left: var(--chrome-control-left);
+  right: var(--chrome-control-right);
+  bottom: var(--chrome-control-bottom);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -5949,9 +5961,9 @@ body[data-page="ozgs"] .ozgs-back-home {
 
 @media (max-width: 480px) {
   .chrome-fixed-meta {
-    left: calc(var(--frame-width, 0.3125rem) + 0.08rem + env(safe-area-inset-left, 0px));
-    right: calc(var(--frame-width, 0.3125rem) + 0.08rem + env(safe-area-inset-right, 0px));
-    bottom: calc(var(--frame-width, 0.3125rem) + 0.06rem + env(safe-area-inset-bottom, 0px));
+    left: var(--chrome-control-left);
+    right: var(--chrome-control-right);
+    bottom: var(--chrome-control-bottom);
     font-size: 0.52rem;
     gap: 0.15rem 0.4rem;
   }
@@ -5975,3 +5987,26 @@ body[data-page="ozgs"] .ozgs-back-home {
   }
 }
 
+/* === PAUL 2026-08-04 — INNER SILVER RIM CANON (WP-063) ===
+   Nothing (letters/UI) may sit in the outer gutter or under the inner silver stroke.
+   Background (.chameleon-bg / hero video) may stay full-bleed. */
+body:has(.chrome-frame-inner) {
+  overflow-x: clip;
+}
+body:has(.chrome-frame-inner) .app-shell,
+body.app-page:has(.chrome-frame-inner) .app-page-shell {
+  inset: var(--chrome-content-inset) !important;
+  overflow: hidden !important;
+}
+body:has(.chrome-frame-inner) .chrome-fixed-meta {
+  left: var(--chrome-control-left) !important;
+  right: var(--chrome-control-right) !important;
+  bottom: var(--chrome-control-bottom) !important;
+}
+body[data-page="home"]:has(.chrome-frame-inner) #osg-security-container,
+body[data-page="home"]:has(.chrome-frame-inner) #osg-security-container.osg-security-container--home-gutter {
+  top: var(--chrome-control-top) !important;
+  left: var(--chrome-control-left) !important;
+  right: auto !important;
+  bottom: auto !important;
+}
