@@ -4,8 +4,8 @@
   var NARRATION_ROOT = 'assets/audio/narration/';
   var SPEAK_ENDPOINT = '/api/speak';
   var SEEK_STEP_SEC = 10;
-  /** Thai pre-recorded MP3s speak deliberately; 1.28× restores natural tempo (0.3× was broken). */
-  var RATE_TH = 1.28;
+  /** Brand-voice Thai MP3s (ElevenLabs) play at natural tempo; 1.28 was only for slow system-fallback audio. */
+  var RATE_TH = 1.0;
   /** Slight ease for denser scripts / longer compound rhythm. */
   var RATE_ZH = 0.94;
   var RATE_RU = 0.96;

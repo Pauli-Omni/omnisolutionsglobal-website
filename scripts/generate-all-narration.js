@@ -31,7 +31,7 @@ const APP_PAGES = [
   { id: 'omnigate', pageKey: 'omnigate' },
   { id: 'omniqr', pageKey: 'omniqr' },
   { id: 'omnifix', pageKey: 'omnifix' },
-  { id: 'omnibot', pageKey: 'omnibot' },
+  { id: 'omniKing', pageKey: 'omniKing' },
   { id: 'omniaiQr', pageKey: 'omniaiQr' },
   { id: 'omnitalk', pageKey: 'omnitalk' }
 ];
@@ -65,7 +65,7 @@ function loadEnvFile(filePath, overwrite) {
 
 function loadAllEnv() {
   require(path.join(CORE, 'load-env')).loadProjectEnv();
-  loadEnvFile(path.join(ROOT, '..', 'Pauli Best Price', '.env'), false);
+  loadEnvFile(path.join(ROOT, '..', '..', 'Pauli BestPrice Global®', '.env'), false);
 }
 
 function deepMerge(base, overlay) {

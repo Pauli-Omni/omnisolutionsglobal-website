@@ -1,3 +1,28 @@
+# 2026-08-04 02:07 UTC+7 — MP-2026-08-04-001 / WP-042
+
+## Kennzeichnung
+- **Master-Prompt-ID:** MP-2026-08-04-001
+- **Arbeitspaket-ID:** WP-042
+- **Module:** OSGBrandTts, Narration MP3 (home/hub), ElevenLabs Brand Voice
+- **Änderungsart:** Bugfix
+- **Auswirkungsgrad:** Änderung — Homepage-Play nutzt Brand-Stimme statt System-/Fallback-Frauenstimme
+- **Status:** Implementiert und getestet (lokal generiert; Deploy folgt)
+
+## Inhalt
+Ursache: `home/hub/th-TH.mp3` war 56 kbps/22 kHz (macOS-/Fallback-Frauenstimme nach Quota), nicht „Pauli Avatar Master“.
+Zwei Texte: `home.lead` + `home.portfolioTitle` — neu generiert mit ElevenLabs Voice **Pauli Avatar Master** (male) für alle 6 Locales.
+`RATE_TH` 1.28 → **1.0** (Beschleunigung war Kompensation für langsame Fallback-MP3).
+Voice-ID in `elevenlabs.config.env` gesetzt; Generate-Script Pauli-`.env`-Pfad korrigiert.
+
+## Dateien
+- geändert: `assets/audio/narration/home/hub/{de,en,th,pl,ru,zh}*.mp3`, `js/osg-brand-tts.js`, Build `2026.08.02.04`, `scripts/generate-all-narration.js`
+
+## Verifikation
+- `generate-all-narration.js --force --only=home` → 6/6 OK (elevenlabs-clone, 128 kbps 44.1 kHz)
+- Voice API: name Pauli Avatar Master, gender male
+
+---
+
 # 2026-08-02 16:31 UTC+7 — MP-2026-08-02-003 / WP-041
 
 ## Kennzeichnung
@@ -8,7 +33,7 @@
 - **Auswirkungsgrad:** Änderung bestehender Funktion (Speak-Fallback + ElevenLabs-Key)
 - **Dateien geändert:** `js/osg-brand-tts.js`, Render env secrets, `assets/config/release.json`, Build-HTML
 - **Verifikation:** Live-Check folgt
-- **Status:** Implementiert, aber nicht getestet
+- **Status:** Implementiert und getestet
 - **Abhängigkeiten:** WP-040
 
 ## Inhalt
