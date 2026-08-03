@@ -29,7 +29,9 @@ const app = express();
 app.disable('x-powered-by');
 app.use(helmet({
   contentSecurityPolicy: false,
-  crossOriginEmbedderPolicy: false
+  crossOriginEmbedderPolicy: false,
+  /* Marketing Static Site (omnisolutionsglobal.com) calls this API host cross-origin. */
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
 }));
 app.use(cors({ origin: CORS_ORIGIN }));
 app.use(createArmorMiddleware({ basePath: '/omniqr-ai-for-tourist-of-thailand' }));
