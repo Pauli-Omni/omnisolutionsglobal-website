@@ -7,7 +7,7 @@
    * OSG Homepage hub: 6 UI locales (assets/locales/{de,en,th,pl,ru,zh}.json).
    * Extended apps (e.g. OmniQR) may use SUPPORTED_LOCALES (18).
    */
-  /** Paul 2026-07-26: fixed order + German labels — never translate with UI locale. */
+  /** Paul 2026-08-04: fixed order + endonym labels (each language named in itself). */
   var UI_PICKER_LOCALES = ['th', 'en', 'ru', 'zh', 'de', 'pl'];
 
   var SUPPORTED_LOCALES = UI_PICKER_LOCALES.concat([
@@ -27,9 +27,13 @@
     ar: 'ar-SA', ja: 'ja-JP', ko: 'ko-KR', vi: 'vi-VN', tr: 'tr-TR', hi: 'hi-IN', id: 'id-ID'
   };
 
-  /** Fixed picker labels (German names) — never translate with the active UI locale. */
+  /**
+   * Picker button labels = endonyms (Paul 2026-08-04).
+   * Never German glosses; never translate with the active UI locale —
+   * a Thai visitor must read ไทย, a Pole Polski, etc., on every page.
+   */
   var LOCALE_NATIVE_LABELS = {
-    th: 'Thai', en: 'Englisch', ru: 'Russisch', zh: 'Chinesisch', de: 'Deutsch', pl: 'Polnisch',
+    th: 'ไทย', en: 'English', ru: 'Русский', zh: '中文', de: 'Deutsch', pl: 'Polski',
     fr: 'Français', es: 'Español', it: 'Italiano', pt: 'Português', nl: 'Nederlands',
     ar: 'العربية', ja: '日本語', ko: '한국어', vi: 'Tiếng Việt', tr: 'Türkçe', hi: 'हिन्दी', id: 'Bahasa Indonesia'
   };

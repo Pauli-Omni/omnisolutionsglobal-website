@@ -35,5 +35,13 @@
       "welcomeContinue": "Continuar",
       "welcomeContinueAria": "Ir para a aplicação"
     }
+  },
+  "langPicker": {
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
+    "de": "Deutsch",
+    "pl": "Polski",
+    "zh": "中文"
   }
 }

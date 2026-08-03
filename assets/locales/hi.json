@@ -35,5 +35,13 @@
       "welcomeContinue": "जारी रखें",
       "welcomeContinueAria": "ऐप पर जाएँ"
     }
+  },
+  "langPicker": {
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
+    "de": "Deutsch",
+    "pl": "Polski",
+    "zh": "中文"
   }
 }

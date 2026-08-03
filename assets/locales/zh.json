@@ -14,7 +14,7 @@
     "menuToggle": "打开菜单",
     "portalLogo": "Omni Solutions Global 动画标志 — 地球仪与无限环",
     "navBack": "返回上一页",
-    "trilingualUiPicker": "手动选择语言：泰语、英语、俄语、德语、波兰语或中文",
+    "trilingualUiPicker": "手动选择语言：ไทย、English、Русский、Deutsch、Polski 或 中文",
     "siteMarkHome": "Omni Solutions Global — 返回首页"
   },
   "nav": {
@@ -601,12 +601,12 @@
   "langPicker": {
     "toggle": "选择语言",
     "toggleAria": "显示或隐藏语言选择",
-    "th": "Thai",
-    "en": "Englisch",
-    "ru": "Russisch",
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
     "de": "Deutsch",
-    "pl": "Polnisch",
-    "zh": "Chinesisch"
+    "pl": "Polski",
+    "zh": "中文"
   },
   "pauliGlobal": {
     "meta": "Pauli BestPrice Global® — 选择国家 — Omni Solutions Global®",

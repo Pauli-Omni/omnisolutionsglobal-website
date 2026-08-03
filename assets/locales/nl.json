@@ -35,5 +35,13 @@
       "welcomeContinue": "Verder",
       "welcomeContinueAria": "Ga naar de app"
     }
+  },
+  "langPicker": {
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
+    "de": "Deutsch",
+    "pl": "Polski",
+    "zh": "中文"
   }
 }

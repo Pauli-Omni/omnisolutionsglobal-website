@@ -15,7 +15,7 @@
     "portalLogo": "โลโก้ Omni Solutions Global แบบเคลื่อนไหว พร้อมลูกโลกและเส้นอนันต์",
     "siteMarkHome": "Omni Solutions Global — กลับหน้าแรก",
     "navBack": "ย้อนกลับหนึ่งหน้า",
-    "trilingualUiPicker": "เลือกภาษาด้วยตนเอง: ไทย อังกฤษ รัสเซีย เยอรมัน โปแลนด์ หรือจีน"
+    "trilingualUiPicker": "เลือกภาษาด้วยตนเอง: ไทย, English, Русский, Deutsch, Polski หรือ 中文"
   },
   "nav": {
     "home": "หน้าแรก",
@@ -601,12 +601,12 @@
   "langPicker": {
     "toggle": "เลือกภาษา",
     "toggleAria": "แสดงหรือซ่อนรายการเลือกภาษา",
-    "th": "Thai",
-    "en": "Englisch",
-    "ru": "Russisch",
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
     "de": "Deutsch",
-    "pl": "Polnisch",
-    "zh": "Chinesisch"
+    "pl": "Polski",
+    "zh": "中文"
   },
   "pauliGlobal": {
     "meta": "Pauli BestPrice Global® — เลือกประเทศ — Omni Solutions Global®",

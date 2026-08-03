@@ -14,7 +14,7 @@
     "menuToggle": "Открыть меню",
     "portalLogo": "Анимированный логотип Omni Solutions Global с глобусами и петлёй бесконечности",
     "navBack": "Вернуться на одну страницу",
-    "trilingualUiPicker": "Ручной выбор языка: тайский, английский, русский, немецкий, польский или китайский",
+    "trilingualUiPicker": "Ручной выбор языка: ไทย, English, Русский, Deutsch, Polski или 中文",
     "siteMarkHome": "Omni Solutions Global — назад на главную"
   },
   "nav": {
@@ -601,12 +601,12 @@
   "langPicker": {
     "toggle": "Выбрать язык",
     "toggleAria": "Показать или скрыть выбор языка",
-    "th": "Thai",
-    "en": "Englisch",
-    "ru": "Russisch",
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
     "de": "Deutsch",
-    "pl": "Polnisch",
-    "zh": "Chinesisch"
+    "pl": "Polski",
+    "zh": "中文"
   },
   "pauliGlobal": {
     "meta": "Pauli BestPrice Global® — Выберите страну — Omni Solutions Global®",

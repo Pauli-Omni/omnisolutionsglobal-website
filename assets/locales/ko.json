@@ -35,5 +35,13 @@
       "welcomeContinue": "계속",
       "welcomeContinueAria": "앱으로 이동"
     }
+  },
+  "langPicker": {
+    "th": "ไทย",
+    "en": "English",
+    "ru": "Русский",
+    "de": "Deutsch",
+    "pl": "Polski",
+    "zh": "中文"
   }
 }

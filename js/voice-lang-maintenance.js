@@ -55,7 +55,7 @@
     return window.OSGI18nConfig ? OSGI18nConfig.uiPickerBase(lng) : 'en';
   }
 
-  /** Fixed labels (Thai, Englisch, …) — never translate with UI locale. */
+  /** Endonym labels (ไทย, English, …) — never translate with UI locale. */
   function nativeLabel(locale) {
     var map = window.OSGI18nConfig && OSGI18nConfig.LOCALE_NATIVE_LABELS;
     if (map && map[locale]) return map[locale];
