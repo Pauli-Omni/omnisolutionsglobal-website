@@ -2,7 +2,11 @@
   'use strict';
 
   var NARRATION_ROOT = 'assets/audio/narration/';
-  var SPEAK_ENDPOINT = '/api/speak';
+  function speakEndpoint() {
+    return (typeof window.osgApiUrl === 'function')
+      ? window.osgApiUrl('/api/speak')
+      : '/api/speak';
+  }
   var SEEK_STEP_SEC = 10;
   /** Brand-voice Thai MP3s (ElevenLabs) play at natural tempo; 1.28 was only for slow system-fallback audio. */
   var RATE_TH = 1.0;
@@ -261,7 +265,7 @@
     if (sessionCache[cacheKey]) {
       return Promise.resolve(sessionCache[cacheKey]);
     }
-    return fetch(SPEAK_ENDPOINT, {
+    return fetch(speakEndpoint(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'audio/mpeg' },
       body: JSON.stringify({ text: text, lang: langTag })

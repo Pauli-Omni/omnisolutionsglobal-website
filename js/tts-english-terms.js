@@ -3,7 +3,7 @@
 
   var EN_SPEECH_TAG = 'en-US';
   var CONFIG_URL = '/assets/config/tts-english-terms.json';
-  var EN_LOCALE_URL = '/api/i18n/en.json';
+  var EN_LOCALE_URL = '/assets/locales/en.json';
 
   var _terms = null;
   var _loadPromise = null;

@@ -81,10 +81,12 @@
     }
     saveToken(token);
     setMessage('opsVoiceCheck.loading');
-    var url = '/api/ops/voice-check' + (probe ? '?probe=1' : '');
+    var path = '/api/ops/voice-check' + (probe ? '?probe=1' : '');
+    var url = (typeof window.osgApiUrl === 'function') ? window.osgApiUrl(path) : path;
     return fetch(url, {
       cache: 'no-store',
-      headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' }
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/json' },
+      credentials: 'omit'
     }).then(function (res) {
       return res.json().then(function (body) {
         if (!res.ok) {
@@ -123,7 +125,10 @@
     if (btnCheck) btnCheck.addEventListener('click', function () { fetchReport(false); });
     if (btnProbe) btnProbe.addEventListener('click', function () { fetchReport(true); });
 
-    fetch('/api/ops/voice/status', { cache: 'no-store' })
+    var statusUrl = (typeof window.osgApiUrl === 'function')
+      ? window.osgApiUrl('/api/ops/voice/status')
+      : '/api/ops/voice/status';
+    fetch(statusUrl, { cache: 'no-store', credentials: 'omit' })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (status) {
         var pub = document.getElementById('ops-public-status');

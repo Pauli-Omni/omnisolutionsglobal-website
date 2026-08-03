@@ -1,8 +1,9 @@
 'use strict';
 
 /**
- * CORS für Render: Same-Origin (Website + /api/speak auf einem Host) braucht
- * oft kein BRAND_TTS_CORS_ORIGIN — reflektiert die Anfrage-Origin in Produktion.
+ * CORS: Marketing Static Site (omnisolutionsglobal.com) + API host (api.*).
+ * In Produktion ohne BRAND_TTS_CORS_ORIGIN: reflektiert https?-Origins
+ * (Static → API Cross-Origin für /api/speak, affiliate, ozgs, ops).
  */
 function createCorsOriginResolver() {
   var explicit = String(process.env.BRAND_TTS_CORS_ORIGIN || '').trim();

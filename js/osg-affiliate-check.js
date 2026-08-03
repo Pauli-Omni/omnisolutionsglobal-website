@@ -42,9 +42,11 @@
     global.__OSG_AFFILIATE_CHECK_DONE__ = true;
     var appId = opts.appId || osgAffiliateAppIdFromPage();
     var headers = osgAffiliateSignHeaders(appId);
+    var path = "/api/affiliate/check?appId=" + encodeURIComponent(appId);
+    var url = (typeof global.osgApiUrl === "function") ? global.osgApiUrl(path) : path;
     return fetch(
-      "/api/affiliate/check?appId=" + encodeURIComponent(appId),
-      { cache: "no-store", headers: headers }
+      url,
+      { cache: "no-store", headers: headers, credentials: "omit" }
     )
       .then(function (r) {
         return r.ok ? r.json() : null;

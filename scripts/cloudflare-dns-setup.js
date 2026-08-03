@@ -6,7 +6,9 @@ const path = require('path');
 
 const ENV_FILE = path.join(__dirname, 'cloudflare.local.env');
 const ZONE_NAME = 'omnisolutionsglobal.com';
-const TARGET = 'omnisolutionsglobal-web.onrender.com';
+const TARGET = 'omnisolutionsglobal-static.onrender.com';
+const API_TARGET = 'omnisolutionsglobal-web.onrender.com';
+const API_HOST = 'api.omnisolutionsglobal.com';
 const API = 'https://api.cloudflare.com/client/v4';
 
 function loadToken() {
@@ -75,7 +77,9 @@ async function main() {
   console.log('Zone:', ZONE_NAME, zoneId);
   await upsertCname(zoneId, ZONE_NAME, TARGET);
   await upsertCname(zoneId, 'www.' + ZONE_NAME, TARGET);
+  await upsertCname(zoneId, API_HOST, API_TARGET);
   console.log('Fertig. DNS kann 2–15 Minuten brauchen.');
+  console.log('Marketing →', TARGET, '| API →', API_TARGET);
 }
 
 main().catch(function (err) {

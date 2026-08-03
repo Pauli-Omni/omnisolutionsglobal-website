@@ -30,8 +30,17 @@
   }
 
   function fetchRelease() {
-    return fetch('/api/release.json', { cache: 'no-store', credentials: 'same-origin' })
-      .then(function (res) { return res.ok ? res.json() : null; })
+    /* Prefer static asset (always-on Static Site); API fallback for Node-only hosts. */
+    var url = '/assets/config/release.json';
+    return fetch(url, { cache: 'no-store', credentials: 'same-origin' })
+      .then(function (res) {
+        if (res.ok) return res.json();
+        var api = (typeof window.osgApiUrl === 'function')
+          ? window.osgApiUrl('/api/release.json')
+          : '/api/release.json';
+        return fetch(api, { cache: 'no-store', credentials: 'omit' })
+          .then(function (r2) { return r2.ok ? r2.json() : null; });
+      })
       .catch(function () { return null; });
   }
 

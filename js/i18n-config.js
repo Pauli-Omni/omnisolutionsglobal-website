@@ -34,9 +34,17 @@
     ar: 'العربية', ja: '日本語', ko: '한국어', vi: 'Tiếng Việt', tr: 'Türkçe', hi: 'हिन्दी', id: 'Bahasa Indonesia'
   };
 
+  /** Flag emoji for language buttons — keyed by locale from UI_PICKER_LOCALES / SUPPORTED_LOCALES. */
+  var LOCALE_FLAGS = {
+    th: '🇹🇭', en: '🇺🇸', ru: '🇷🇺', zh: '🇨🇳', de: '🇩🇪', pl: '🇵🇱',
+    fr: '🇫🇷', es: '🇪🇸', it: '🇮🇹', pt: '🇵🇹', nl: '🇳🇱',
+    ar: '🇸🇦', ja: '🇯🇵', ko: '🇰🇷', vi: '🇻🇳', tr: '🇹🇷', hi: '🇮🇳', id: '🇮🇩'
+  };
+
   var FALLBACK_LOCALES = ['en'];
   var STORAGE_KEY = 'osg-lang';
-  var LOCALE_LOAD_PATH = '/api/i18n/{{lng}}.json';
+  /* Static Site: locales from CDN assets (no Node cold-start). */
+  var LOCALE_LOAD_PATH = '/assets/locales/{{lng}}.json';
   var ASSET_ROOT = '/';
 
   function isSupported(locale) {
@@ -92,6 +100,7 @@
     HTML_LANG: HTML_LANG,
     LOCALE_BCP47: LOCALE_BCP47,
     LOCALE_NATIVE_LABELS: LOCALE_NATIVE_LABELS,
+    LOCALE_FLAGS: LOCALE_FLAGS,
     FALLBACK_LOCALES: FALLBACK_LOCALES,
     STORAGE_KEY: STORAGE_KEY,
     LOCALE_LOAD_PATH: LOCALE_LOAD_PATH,

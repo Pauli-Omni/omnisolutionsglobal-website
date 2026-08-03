@@ -64,6 +64,7 @@ function injectReleaseBlock(html, buildId, guardSrc) {
     '<!-- osg-release -->\n' +
     '  <meta name="osg-build-id" content="' + buildId + '">\n' +
     '  <script src="' + guardSrc + 'release-guard.js?v=' + buildId + '"></script>\n' +
+    '  <script src="' + guardSrc + 'osg-api-origin.js?v=' + buildId + '"></script>\n' +
     '  <!-- /osg-release -->\n';
 
   if (/<meta name="viewport"[^>]*>\n/i.test(cleaned)) {
