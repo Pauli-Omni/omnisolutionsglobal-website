@@ -30,7 +30,8 @@
         de: 'assets/icons/apps/pauli-bestprice-deutschland.png',
         us: 'assets/icons/apps/pauli-bestprice-usa.png',
         nl: 'assets/icons/apps/pauli-bestprice-nederland.png',
-        uk: 'assets/icons/apps/pauli-bestprice-uk.png'
+        uk: 'assets/icons/apps/pauli-bestprice-uk.png',
+        vn: 'assets/icons/apps/pauli-bestprice-vietnam.png'
       },
       // Live download API currently suspended on Render — land on product desc (QR/store) until resumed.
       downloadHubUrl: 'pauli-bestprice-thailand-beschreibung.html'
