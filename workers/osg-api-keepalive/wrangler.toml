@@ -1,0 +1,9 @@
+# WP-067 — optional 1-minute keep-alive (needs Cloudflare token with Workers Edit).
+# Deploy: cd workers/osg-api-keepalive && npx wrangler deploy
+name = "osg-api-keepalive"
+main = "src/index.js"
+compatibility_date = "2026-08-04"
+account_id = "ba3000a6b9567cf4c90106bfe2953b15"
+
+[triggers]
+crons = ["* * * * *"]

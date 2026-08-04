@@ -37,6 +37,16 @@ app.use(cors({ origin: CORS_ORIGIN }));
 app.use(createArmorMiddleware({ basePath: '/omniqr-ai-for-tourist-of-thailand' }));
 app.use(express.json({ limit: '96kb' }));
 
+/** Ultra-light keep-alive (no TTS/Involve). External pingers hit this every ≤5 min. */
+app.get('/health/ping', function (_req, res) {
+  res.status(200).type('application/json').send(JSON.stringify({
+    ok: true,
+    ping: true,
+    service: 'omnisolutionsglobal-web',
+    ts: new Date().toISOString()
+  }));
+});
+
 app.get('/health', async function (_req, res) {
   try {
     const status = await tts.health();

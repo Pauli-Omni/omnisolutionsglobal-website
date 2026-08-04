@@ -4,6 +4,7 @@
 .env
 scripts/render.local.env
 scripts/cloudflare.local.env
+scripts/uptimerobot.local.env
 *.pem
 
 # Dependencies & builds

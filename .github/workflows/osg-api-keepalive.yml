@@ -1,0 +1,39 @@
+# WP-067 — Keep Render Free API awake (spin-down ≈15 min idle).
+# GitHub schedule minimum that stays reliable: every 5 minutes (< 15 → no sleep).
+name: OSG API Keep-Alive
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: osg-api-keepalive
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Ping API + Render origin
+        run: |
+          set -euo pipefail
+          UA='OSG-KeepAlive/1.0 (+github-actions; omnisolutionsglobal.com)'
+          for URL in \
+            'https://api.omnisolutionsglobal.com/health/ping' \
+            'https://omnisolutionsglobal-web.onrender.com/health/ping'
+          do
+            echo "==> $URL"
+            CODE=$(curl -sS -o /tmp/osg-ka.json -w '%{http_code}' \
+              -A "$UA" --max-time 45 -H 'Accept: application/json' "$URL" || echo '000')
+            echo "http=$CODE body=$(head -c 200 /tmp/osg-ka.json 2>/dev/null || true)"
+            if [ "$CODE" != "200" ]; then
+              # Fallback: full /health (older deploys without /health/ping)
+              CODE2=$(curl -sS -o /tmp/osg-ka2.json -w '%{http_code}' \
+                -A "$UA" --max-time 90 -H 'Accept: application/json' \
+                "${URL%/ping}" || echo '000')
+              echo "fallback=${URL%/ping} http=$CODE2"
+              [ "$CODE2" = "200" ] || exit 1
+            fi
+          done
