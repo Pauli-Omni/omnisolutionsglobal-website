@@ -28,18 +28,43 @@
     var portal = document.getElementById('portal-overlay');
     if (!portal) return;
 
+    var PORTAL_SEEN_KEY = 'osg-portal-seen';
     var btn = document.getElementById('portal-enter-btn');
-    /** Paul: ≥5.5 s portal minimum; if sound enabled, ≥5 s audible before curtains. */
-    var MIN_PORTAL_MS = 5500;
-    var MIN_SOUND_MS = 5000;
+    /** First visit only: portal runs 10s, then never again in this tab session (Back → Home). */
+    var MIN_PORTAL_MS = 10000;
     var portalStart = Date.now();
-    var soundOnAt = null;
     var autoTimer = null;
+
+    function portalAlreadySeen() {
+      try {
+        return sessionStorage.getItem(PORTAL_SEEN_KEY) === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function markPortalSeen() {
+      try {
+        sessionStorage.setItem(PORTAL_SEEN_KEY, '1');
+      } catch (e) { /* ignore */ }
+    }
+
+    function hidePortalImmediate() {
+      if (autoTimer) {
+        clearTimeout(autoTimer);
+        autoTimer = null;
+      }
+      portal.classList.add('portal-hidden');
+      portal.classList.remove('portal-reveal', 'portal-opening');
+      portal.setAttribute('aria-hidden', 'true');
+      markPortalSeen();
+    }
 
     function dismissPortal() {
       if (portal.classList.contains('portal-opening') || portal.classList.contains('portal-hidden')) {
         return;
       }
+      markPortalSeen();
       if (autoTimer) {
         clearTimeout(autoTimer);
         autoTimer = null;
@@ -56,6 +81,12 @@
       }, 1100);
     }
 
+    /* Back from app / revisit Home in same session: never reopen curtain */
+    if (portalAlreadySeen()) {
+      hidePortalImmediate();
+      return;
+    }
+
     portal.classList.remove('portal-hidden', 'portal-reveal', 'portal-opening');
     portal.setAttribute('aria-hidden', 'false');
 
@@ -66,25 +97,20 @@
         clearTimeout(autoTimer);
         autoTimer = null;
       }
-      var now = Date.now();
-      var wait = MIN_PORTAL_MS - (now - portalStart);
-      if (soundOnAt) {
-        wait = Math.max(wait, MIN_SOUND_MS - (now - soundOnAt));
-      }
+      var wait = MIN_PORTAL_MS - (Date.now() - portalStart);
       if (wait < 0) wait = 0;
       autoTimer = setTimeout(dismissPortal, wait);
     }
-
-    document.addEventListener('osg:portalSoundOn', function () {
-      if (!soundOnAt) soundOnAt = Date.now();
-      scheduleDismiss();
-    });
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       dismissPortal();
       return;
     }
     scheduleDismiss();
+
+    window.addEventListener('pageshow', function () {
+      if (portalAlreadySeen()) hidePortalImmediate();
+    });
   }
 
   function initModules() {
@@ -175,11 +201,19 @@
       document.dispatchEvent(new CustomEvent('osg:i18nReady'));
     }).catch(function (err) {
       console.error('i18n init failed', err);
-      initSidebar();
-      initPortal();
-      initModules();
-      initVoiceLangMaintenance();
-      document.dispatchEvent(new CustomEvent('osg:i18nReady'));
+      var finish = function () {
+        initSidebar();
+        initPortal();
+        initModules();
+        initVoiceLangMaintenance();
+        document.dispatchEvent(new CustomEvent('osg:i18nReady'));
+      };
+      // Keep static HTML fallbacks; still try direct locale JSON if CDN/i18next failed.
+      if (OSGI18n.applyStaticLocaleFallback) {
+        OSGI18n.applyStaticLocaleFallback('en').then(finish).catch(finish);
+      } else {
+        finish();
+      }
     });
   }
 

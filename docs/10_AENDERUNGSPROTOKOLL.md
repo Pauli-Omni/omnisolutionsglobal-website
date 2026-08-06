@@ -1,3 +1,18 @@
+## 2026-08-06 13:47 UTC+7 — WP-037 App-Texte lesbar ohne i18n-Fail (Affiliate-Schutz)
+
+- **Master-Prompt-ID:** MP-2026-08-06-SITE-READABLE
+- **Arbeitspaket-ID:** WP-037
+- **Module:** i18n.js, app.js, App-Front/Desc HTML, release
+- **Änderungsart:** Bugfix | Sicherheit (Publisher-Lesbarkeit)
+- **Auswirkungsgrad:** Änderung — kein "undefined" mehr bei fehlendem i18n; App-Beschreibungen mit EN-Fallback + noscript
+- **Ursache:** data-i18n-Knoten leer; bei CDN/i18n-Fail wurde undefined gerendert → Partner/Affiliate sieht keine App
+- **Fix:** applyToDom schreibt nur usable Strings; Static-Locale-Fallback; EN-Text in HTML; noscript; Build 2026.08.06.01
+- **Dateien:** js/i18n.js, js/app.js, 17 App-HTML, assets/config/release.json
+- **Verifikation:** node --check i18n.js + app.js OK; OmniGate HTML enthält Volltext + Build-ID
+- **Status:** Implementiert, Deploy folgt (git push + Render)
+
+---
+
 # 2026-08-04 02:13 UTC+7 — MP-2026-08-04-001 / WP-043
 
 ## Kennzeichnung
